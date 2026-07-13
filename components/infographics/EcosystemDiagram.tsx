@@ -1,6 +1,6 @@
 import { stages } from "@/components/stages";
 import { StageIcon } from "@/components/StageIcon";
-import { PhotoSlot } from "@/components/PhotoSlot";
+import { StageIllustration } from "@/components/StageIllustration";
 
 const capabilities: Record<string, string[]> = {
   govern: [
@@ -27,13 +27,6 @@ const capabilities: Record<string, string[]> = {
     "Risk management",
     "Next-generation preparation",
   ],
-};
-
-const photoCaptions: Record<string, string> = {
-  govern: "Boardroom",
-  scale: "Operating review",
-  compound: "Capital markets",
-  steward: "Family, generations",
 };
 
 function Check() {
@@ -97,7 +90,7 @@ export function EcosystemDiagram() {
                 </li>
               ))}
             </ul>
-            <PhotoSlot caption={photoCaptions[s.id]} className="mt-auto aspect-[4/5]" />
+            <StageIllustration stage={s.id} className="mt-auto aspect-[4/5]" />
           </div>
         ))}
       </div>
