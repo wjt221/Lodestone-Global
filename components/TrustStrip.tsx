@@ -1,7 +1,7 @@
 const facts = [
-  "Independent, with no products to sell",
-  "[XX] years advising entrepreneurial families",
-  "Family Advisors is registered as an independent RIA",
+  "[XX] years of investing, operating, and board experience",
+  "Private companies, family enterprises, boards, and capital allocation",
+  "Industrial, manufacturing, and founder-led operating businesses",
 ];
 
 export function TrustStrip() {

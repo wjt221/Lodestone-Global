@@ -21,17 +21,16 @@ export default function Home() {
       <Header />
       <main id="top">
         {/* HERO */}
-        <section className="flex min-h-[92vh] flex-col justify-center bg-navy pt-20 text-ivory">
-          <Container className="flex flex-col gap-10 py-16">
+        <section className="flex min-h-[80vh] flex-col justify-center bg-navy pt-20 text-ivory">
+          <Container className="flex flex-col gap-8 py-16">
             <span className="kicker text-brass-light">Lodestone</span>
             <h1 className="max-w-3xl font-serif text-display-1 font-normal text-ivory">
-              Helping Principals build, scale, compound, and steward enduring value.
+              For owners building something meant to outlast them.
             </h1>
             <p className="max-w-xl font-sans text-lg leading-relaxed text-ivory/70">
-              One trusted relationship for entrepreneurial Principals. Lodestone integrates
-              governance, operating expertise, capital, and strategic wealth advisory, so the
-              business a Principal builds and the wealth it creates are both ready for the
-              generation that inherits them.
+              Lodestone helps entrepreneurial Principals build stronger companies and govern
+              increasingly complex wealth. As a business matures, we help its owner move from
+              running it day to day to owning and stewarding it for the long term.
             </p>
             <div className="mt-4 flex flex-col gap-5 sm:flex-row sm:items-center">
               <a href="#contact" className="btn-inverse">

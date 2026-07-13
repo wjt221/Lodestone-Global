@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Newsreader, Public_Sans } from "next/font/google";
+import { Source_Serif_4, Public_Sans } from "next/font/google";
 import "./globals.css";
 
-const display = Newsreader({
+const display = Source_Serif_4({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["400", "600", "700"],
   style: ["normal", "italic"],
   variable: "--font-display",
   display: "swap",

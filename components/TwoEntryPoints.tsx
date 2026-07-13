@@ -31,7 +31,7 @@ export function TwoEntryPoints() {
             }`}
           >
             <div className="flex flex-col gap-4">
-              <span className={`kicker ${dark ? "" : ""}`}>{panel.kicker}</span>
+              <span className={`kicker ${dark ? "text-brass-light" : "text-navy/70"}`}>{panel.kicker}</span>
               <h3 className="font-serif text-display-3 font-normal">{panel.title}</h3>
               <p className={`max-w-sm font-sans text-[0.95rem] leading-relaxed ${dark ? "text-ivory/70" : "text-charcoal/65"}`}>
                 {panel.body}
