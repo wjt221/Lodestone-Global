@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+  }
+
+  body {
+    background-color: #F6F2EA;
+    color: #232220;
+    font-feature-settings: "kern" 1, "liga" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background-color: #A9834F;
+    color: #F6F2EA;
+  }
+}
+
+@layer components {
+  .eyebrow {
+    @apply font-sans text-[0.72rem] uppercase tracking-widest2 text-brass;
+  }
+
+  .rule {
+    @apply border-t border-charcoal/15;
+  }
+
+  .rule-light {
+    @apply border-t border-ivory/20;
+  }
+
+  .btn {
+    @apply inline-flex items-center gap-3 font-sans text-[0.8rem] uppercase tracking-[0.18em] transition-colors duration-300 ease-editorial;
+  }
+
+  .btn-primary {
+    @apply btn text-navy border-b border-navy pb-1 hover:text-brass hover:border-brass;
+  }
+
+  .btn-inverse {
+    @apply btn text-ivory border-b border-ivory/60 pb-1 hover:text-brass-light hover:border-brass-light;
+  }
+}
