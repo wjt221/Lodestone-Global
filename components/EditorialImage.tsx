@@ -1,9 +1,11 @@
 import Image from "next/image";
+import { hasLocalImage } from "@/lib/localImage";
 
 /**
- * Wrapper for real editorial photography (Unsplash or firm-supplied).
- * Once a real `src` is available, drop it in here — sizing, alt text, and
- * responsive behavior are already wired up via next/image.
+ * Wrapper for real local editorial photography (see /public/images/lodestone).
+ * If the file hasn't been supplied yet, renders a labeled placeholder instead
+ * of a broken image — drop the real file in with the same name and it just
+ * works, no code changes required.
  */
 export function EditorialImage({
   src,
@@ -24,18 +26,21 @@ export function EditorialImage({
   overlay?: boolean;
   className?: string;
 }) {
+  const available = hasLocalImage(src);
+
   return (
     <figure className={`relative overflow-hidden border border-charcoal/15 ${aspect} ${className}`}>
-      <Image
-        src={src}
-        alt={alt}
-        fill
-        sizes={sizes}
-        priority={priority}
-        className="object-cover"
-      />
-      {overlay && <div className="absolute inset-0 bg-navy/45" aria-hidden />}
-      {caption && (
+      {available ? (
+        <Image src={src} alt={alt} fill sizes={sizes} priority={priority} className="object-cover" />
+      ) : (
+        <div className="flex h-full w-full items-end bg-stone-light/40 p-3">
+          <span className="font-sans text-[0.68rem] uppercase tracking-[0.06em] text-charcoal/40">
+            Photography pending — {alt}
+          </span>
+        </div>
+      )}
+      {available && overlay && <div className="absolute inset-0 bg-navy/45" aria-hidden />}
+      {available && caption && (
         <figcaption className="absolute bottom-0 left-0 right-0 bg-navy/80 px-3 py-2 font-sans text-[0.68rem] uppercase tracking-[0.06em] text-ivory/80">
           {caption}
         </figcaption>

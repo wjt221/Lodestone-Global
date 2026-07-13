@@ -19,8 +19,8 @@ export function WhyLodestone() {
         </p>
       </div>
       <EditorialImage
-        src={photos.whyLodestone.src}
-        alt={photos.whyLodestone.alt}
+        src={photos.credibility.src}
+        alt={photos.credibility.alt}
         aspect="aspect-[4/5] lg:aspect-auto lg:h-full"
         sizes="(min-width: 1024px) 35vw, 100vw"
       />

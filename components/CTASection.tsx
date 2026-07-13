@@ -1,6 +1,6 @@
 export function CTASection({
-  title = "Begin with a conversation.",
-  description = "There is no cost, and no obligation, to understanding where you stand.",
+  title = "A trusted partner for what comes next.",
+  description = "As ownership grows more complex, having one team that already understands your company, your capital, and your family is worth more than another opinion.",
 }: {
   title?: string;
   description?: string;

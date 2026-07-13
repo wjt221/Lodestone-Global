@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Section } from "@/components/Section";
 import { Container } from "@/components/Container";
 import { SectionHeading } from "@/components/SectionHeading";
+import { BackgroundPhoto } from "@/components/BackgroundPhoto";
 import { WhyLodestone } from "@/components/WhyLodestone";
 import { CTASection } from "@/components/CTASection";
 import { EcosystemDiagram } from "@/components/infographics/EcosystemDiagram";
@@ -105,14 +105,7 @@ export default function EcosystemPage() {
 
         {/* FINAL CTA */}
         <section className="relative overflow-hidden py-24 md:py-32">
-          <Image
-            src={photos.closing.src}
-            alt={photos.closing.alt}
-            fill
-            sizes="100vw"
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-navy/85" aria-hidden />
+          <BackgroundPhoto src={photos.closing.src} alt={photos.closing.alt} overlayClassName="bg-navy/85" />
           <Container className="relative z-10">
             <CTASection
               title="Understand where your relationship with Lodestone could start."

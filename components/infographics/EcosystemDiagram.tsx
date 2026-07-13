@@ -47,43 +47,32 @@ function Check() {
 
 export function EcosystemDiagram() {
   return (
-    <div className="flex flex-col gap-0">
-      {/* Stage bar */}
-      <div className="grid grid-cols-2 border border-b-0 border-navy bg-navy sm:grid-cols-4">
-        {stages.map((s, i) => (
-          <a
-            key={s.id}
-            href={`#${s.id}`}
-            className={`flex items-center justify-center gap-3 py-3 font-sans text-[0.78rem] font-semibold uppercase tracking-[0.1em] text-ivory ${
-              i > 0 ? "border-l border-ivory/15" : ""
-            }`}
-          >
-            <span className="font-serif text-[0.7rem] font-normal text-brass-light">0{i + 1}</span>
-            {s.label}
-          </a>
-        ))}
-      </div>
-
-      {/* Stage columns */}
-      <div className="grid grid-cols-1 border border-charcoal/12 sm:grid-cols-2 lg:grid-cols-4">
-        {stages.map((s, i) => (
-          <div
-            key={s.id}
-            id={s.id}
-            className={`flex scroll-mt-24 flex-col gap-5 border-charcoal/12 p-7 ${
-              i > 0 ? "sm:border-l" : ""
-            } ${i >= 2 ? "border-t sm:border-t-0" : ""}`}
-          >
-            <span className="flex h-11 w-11 items-center justify-center rounded-full border border-stone text-brass">
-              <StageIcon stage={s.id} className="h-5 w-5" />
-            </span>
-            <div className="flex flex-col gap-1">
-              <h3 className="font-serif text-lg font-normal text-navy">{s.entity}</h3>
-              <span className="font-sans text-[0.72rem] uppercase tracking-[0.08em] text-charcoal/50">
-                {s.label}
+    <div className="flex flex-col">
+      {stages.map((s, i) => (
+        <div
+          key={s.id}
+          id={s.id}
+          className={`grid scroll-mt-24 grid-cols-1 gap-10 border-t border-charcoal/15 py-12 lg:grid-cols-2 lg:gap-16 ${
+            i === stages.length - 1 ? "border-b" : ""
+          }`}
+        >
+          <div className={`flex flex-col gap-6 ${i % 2 === 1 ? "lg:order-2" : ""}`}>
+            <div className="flex items-center gap-4">
+              <span className="index-number">0{i + 1}</span>
+              <span className="flex h-10 w-10 items-center justify-center rounded-full border border-stone text-brass">
+                <StageIcon stage={s.id} className="h-5 w-5" />
               </span>
             </div>
-            <ul className="flex flex-col gap-2">
+            <div className="flex flex-col gap-1">
+              <span className="font-sans text-[0.72rem] uppercase tracking-[0.08em] text-navy/60">
+                {s.label}
+              </span>
+              <h3 className="font-serif text-2xl font-normal text-navy">{s.entity}</h3>
+              <p className="mt-1 max-w-md font-sans text-[0.92rem] leading-relaxed text-charcoal/60">
+                {s.detail}
+              </p>
+            </div>
+            <ul className="grid grid-cols-1 gap-2 sm:grid-cols-2">
               {capabilities[s.id].map((item) => (
                 <li key={item} className="flex items-start gap-2 font-sans text-[0.85rem] text-charcoal/70">
                   <Check />
@@ -91,15 +80,16 @@ export function EcosystemDiagram() {
                 </li>
               ))}
             </ul>
-            <EditorialImage
-              src={photos[s.id].src}
-              alt={photos[s.id].alt}
-              className="mt-auto"
-              sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
-            />
           </div>
-        ))}
-      </div>
+          <EditorialImage
+            src={photos[s.id].src}
+            alt={photos[s.id].alt}
+            aspect="aspect-[16/10]"
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            className={i % 2 === 1 ? "lg:order-1" : ""}
+          />
+        </div>
+      ))}
 
       <div className="mt-16 flex flex-col items-center gap-1 text-center">
         <p className="font-serif text-xl font-normal italic text-navy">One Principal.</p>

@@ -1,19 +1,15 @@
-import Image from "next/image";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Section } from "@/components/Section";
 import { Container } from "@/components/Container";
 import { SectionHeading } from "@/components/SectionHeading";
-import { TrustStrip } from "@/components/TrustStrip";
+import { BackgroundPhoto } from "@/components/BackgroundPhoto";
 import { TwoEntryPoints } from "@/components/TwoEntryPoints";
-import { WhyLodestone } from "@/components/WhyLodestone";
-import { CapabilityCards } from "@/components/CapabilityCards";
-import { OutcomesList } from "@/components/OutcomesList";
-import { CaseStudyCards } from "@/components/CaseStudyCards";
+import { PrincipalJourney } from "@/components/PrincipalJourney";
+import { CapabilityGroups } from "@/components/CapabilityGroups";
+import { EvidenceSection } from "@/components/EvidenceSection";
 import { TeamPreview } from "@/components/TeamPreview";
-import { ResourceCards } from "@/components/ResourceCards";
 import { CTASection } from "@/components/CTASection";
-import { PhilosophyDiagram } from "@/components/infographics/PhilosophyDiagram";
 import { EcosystemDiagram } from "@/components/infographics/EcosystemDiagram";
 import { photos } from "@/components/photos";
 
@@ -23,25 +19,17 @@ export default function Home() {
       <Header />
       <main id="top">
         {/* HERO */}
-        <section className="relative flex min-h-[80vh] flex-col justify-center overflow-hidden pt-20 text-ivory">
-          <Image
-            src={photos.hero.src}
-            alt={photos.hero.alt}
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-navy/80" aria-hidden />
+        <section className="relative flex min-h-[80vh] flex-col justify-center overflow-hidden pt-16 text-ivory">
+          <BackgroundPhoto src={photos.hero.src} alt={photos.hero.alt} priority overlayClassName="bg-navy/80" />
           <Container className="relative z-10 flex flex-col gap-8 py-16">
             <span className="kicker text-brass-light">Lodestone</span>
             <h1 className="max-w-3xl font-serif text-display-1 font-normal text-ivory">
               For owners building something meant to outlast them.
             </h1>
             <p className="max-w-xl font-sans text-lg leading-relaxed text-ivory/80">
-              Lodestone helps entrepreneurial Principals build stronger companies and govern
-              increasingly complex wealth. As a business matures, we help its owner move from
-              running it day to day to owning and stewarding it for the long term.
+              Lodestone works alongside private-company principals to strengthen the business,
+              allocate the capital it produces, and build the structures that support long-term
+              ownership.
             </p>
             <div className="mt-4 flex flex-col gap-5 sm:flex-row sm:items-center">
               <a href="#contact" className="btn-inverse">
@@ -54,112 +42,70 @@ export default function Home() {
           </Container>
         </section>
 
-        <TrustStrip />
-
-        {/* TWO ENTRY POINTS */}
-        <TwoEntryPoints />
-
-        {/* PHILOSOPHY */}
-        <Section id="philosophy" tone="light">
-          <div className="flex flex-col items-center gap-14 text-center">
+        {/* PRINCIPAL JOURNEY */}
+        <Section id="journey" tone="light">
+          <div className="flex flex-col gap-14">
             <SectionHeading
               index="01"
-              kicker="The Lodestone Philosophy"
-              title="One relationship. A full arc of value creation."
-              description="Every entrepreneurial Principal follows a similar arc, from building something valuable to protecting it for generations."
-              align="center"
+              kicker="The Principal Journey"
+              title="As the business grows, so does the job."
+              description="Every Principal moves through the same broad arc: running the company, owning it outright, allocating the capital it produces, and stewarding it for those who come after. Lodestone is built to stay through all four."
             />
-            <PhilosophyDiagram />
+            <PrincipalJourney />
           </div>
         </Section>
 
         {/* ECOSYSTEM */}
-        <Section tone="parchment">
-          <div className="flex flex-col gap-14">
+        <Section id="ecosystem" tone="parchment">
+          <div className="flex flex-col gap-4">
             <SectionHeading
               index="02"
               kicker="The Lodestone Ecosystem"
               title="Four coordinated capabilities. One team."
-              description="Each stage of the Principal's journey is met by a dedicated capability, coordinated as a single relationship. Select a stage to see how it works."
+              description="Lodestone Global, E3, Lodestone Capital, and Lodestone Family Advisors each meet a different stage of the Principal's journey, coordinated as a single relationship rather than four separate businesses."
             />
             <EcosystemDiagram />
           </div>
         </Section>
 
-        {/* WHY LODESTONE */}
-        <Section tone="light">
+        {/* TWO ENTRY POINTS */}
+        <TwoEntryPoints />
+
+        {/* CAPABILITIES */}
+        <Section id="capabilities" tone="light">
           <div className="flex flex-col gap-14">
             <SectionHeading
               index="03"
-              kicker="Why Lodestone"
-              title="Coordination is the advantage."
+              kicker="Capabilities"
+              title="An integrated system, not a service menu."
             />
-            <WhyLodestone />
+            <CapabilityGroups />
           </div>
         </Section>
 
-        {/* SELECTED CAPABILITIES */}
+        {/* EVIDENCE AND CREDIBILITY */}
         <Section tone="parchment">
           <div className="flex flex-col gap-14">
             <SectionHeading
               index="04"
-              kicker="Selected Capabilities"
-              title="A working sample of what we do."
+              kicker="Evidence and Credibility"
+              title="What this looks like in practice."
             />
-            <CapabilityCards />
-          </div>
-        </Section>
-
-        {/* PRINCIPAL OUTCOMES */}
-        <Section tone="light">
-          <div className="flex flex-col gap-14">
-            <SectionHeading
-              index="05"
-              kicker="Principal Outcomes"
-              title="What this is actually in service of."
-            />
-            <OutcomesList />
-          </div>
-        </Section>
-
-        {/* CASE STUDIES */}
-        <Section tone="parchment">
-          <div className="flex flex-col gap-14">
-            <SectionHeading
-              index="06"
-              kicker="Representative Engagements"
-              title="How this looks in practice."
-            />
-            <CaseStudyCards />
+            <EvidenceSection />
           </div>
         </Section>
 
         {/* LEADERSHIP */}
         <Section tone="light">
           <div className="flex flex-col gap-14">
-            <SectionHeading index="07" kicker="Leadership" title="The team behind the relationship." />
+            <SectionHeading index="05" kicker="Leadership" title="The team behind the relationship." />
             <TeamPreview />
           </div>
         </Section>
 
-        {/* INSIGHTS */}
-        <Section tone="parchment">
-          <div className="flex flex-col gap-14">
-            <SectionHeading index="08" kicker="Insights" title="Perspective for entrepreneurial Principals." />
-            <ResourceCards />
-          </div>
-        </Section>
-
-        {/* FINAL CTA */}
+        {/* CLOSING */}
         <section className="relative overflow-hidden py-24 md:py-32">
-          <Image
-            src={photos.closing.src}
-            alt={photos.closing.alt}
-            fill
-            sizes="100vw"
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-navy/85" aria-hidden />
+          <BackgroundPhoto src={photos.closing.src} alt={photos.closing.alt} overlayClassName="bg-navy/85" />
           <Container className="relative z-10">
             <CTASection />
           </Container>
