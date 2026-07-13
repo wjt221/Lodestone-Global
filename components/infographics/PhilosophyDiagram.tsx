@@ -20,14 +20,12 @@ export function PhilosophyDiagram() {
           <div key={s.id} className="flex flex-col items-center gap-4 px-2 text-center">
             <div className="flex w-full items-center">
               <span className={`h-px flex-1 ${i === 0 ? "bg-transparent" : "bg-charcoal/15"}`} />
-              <span
-                className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-full border ${s.colorBorder} ${s.colorText}`}
-              >
+              <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-stone text-brass">
                 <StageIcon stage={s.id} className="h-6 w-6" />
               </span>
               <span className={`h-px flex-1 ${i === stages.length - 1 ? "bg-transparent" : "bg-charcoal/15"}`} />
             </div>
-            <span className={`font-sans text-[0.78rem] font-semibold uppercase tracking-[0.14em] ${s.colorText}`}>
+            <span className="font-sans text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-navy">
               {s.label}
             </span>
             <span className="max-w-[10rem] font-sans text-[0.82rem] leading-snug text-charcoal/60">
