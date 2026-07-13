@@ -5,26 +5,46 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 6rem;
+    scroll-padding-top: 5.5rem;
   }
 
   body {
-    background-color: #F6F2EA;
-    color: #232220;
+    background-color: #F5F1E8;
+    color: #242320;
     font-feature-settings: "kern" 1, "liga" 1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
   ::selection {
-    background-color: #A9834F;
-    color: #F6F2EA;
+    background-color: #9C7A42;
+    color: #F5F1E8;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 }
 
 @layer components {
-  .eyebrow {
-    @apply font-sans text-[0.72rem] uppercase tracking-widest2 text-brass;
+  .kicker {
+    @apply font-sans text-[0.7rem] uppercase tracking-widest2 text-brass;
+  }
+
+  .index-number {
+    @apply font-serif text-sm text-stone;
+    font-variant-numeric: tabular-nums;
   }
 
   .rule {
@@ -36,14 +56,18 @@
   }
 
   .btn {
-    @apply inline-flex items-center gap-3 font-sans text-[0.8rem] uppercase tracking-[0.18em] transition-colors duration-300 ease-editorial;
+    @apply inline-flex items-center gap-3 font-sans text-[0.78rem] uppercase tracking-[0.14em] transition-colors duration-200;
   }
 
   .btn-primary {
-    @apply btn text-navy border-b border-navy pb-1 hover:text-brass hover:border-brass;
+    @apply btn border border-navy px-6 py-3 text-navy hover:bg-navy hover:text-ivory;
   }
 
   .btn-inverse {
-    @apply btn text-ivory border-b border-ivory/60 pb-1 hover:text-brass-light hover:border-brass-light;
+    @apply btn border border-ivory/70 px-6 py-3 text-ivory hover:bg-ivory hover:text-navy;
+  }
+
+  .btn-text {
+    @apply btn border-b border-current pb-0.5;
   }
 }

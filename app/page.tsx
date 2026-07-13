@@ -3,11 +3,17 @@ import { Footer } from "@/components/Footer";
 import { Section } from "@/components/Section";
 import { Container } from "@/components/Container";
 import { SectionHeading } from "@/components/SectionHeading";
-import { Divider } from "@/components/Divider";
+import { TrustStrip } from "@/components/TrustStrip";
+import { TwoEntryPoints } from "@/components/TwoEntryPoints";
+import { WhyLodestone } from "@/components/WhyLodestone";
+import { CapabilityCards } from "@/components/CapabilityCards";
+import { OutcomesList } from "@/components/OutcomesList";
+import { CaseStudyCards } from "@/components/CaseStudyCards";
+import { TeamPreview } from "@/components/TeamPreview";
+import { ResourceCards } from "@/components/ResourceCards";
+import { CTASection } from "@/components/CTASection";
 import { PhilosophyDiagram } from "@/components/infographics/PhilosophyDiagram";
 import { EcosystemDiagram } from "@/components/infographics/EcosystemDiagram";
-import { JourneyDiagram } from "@/components/infographics/JourneyDiagram";
-import { FlywheelDiagram } from "@/components/infographics/FlywheelDiagram";
 
 export default function Home() {
   return (
@@ -15,76 +21,43 @@ export default function Home() {
       <Header />
       <main id="top">
         {/* HERO */}
-        <section className="flex min-h-screen flex-col justify-center bg-navy pt-20 text-ivory">
-          <Container className="flex flex-col gap-10 py-20">
-            <span className="eyebrow text-brass-light">
-              An Advisory Firm for Entrepreneurial Principals
-            </span>
-            <h1 className="max-w-4xl font-serif text-display-1 font-light text-ivory">
-              Built for the decisions that outlast you.
+        <section className="flex min-h-[92vh] flex-col justify-center bg-navy pt-20 text-ivory">
+          <Container className="flex flex-col gap-10 py-16">
+            <span className="kicker text-brass-light">Lodestone</span>
+            <h1 className="max-w-3xl font-serif text-display-1 font-normal text-ivory">
+              Helping Principals build, scale, compound, and steward enduring value.
             </h1>
             <p className="max-w-xl font-sans text-lg leading-relaxed text-ivory/70">
-              Lodestone Global is one integrated advisory relationship —
-              surrounding entrepreneurial Principals through every stage of
-              building, scaling, compounding, and stewarding what they&rsquo;ve
-              created.
+              One trusted relationship for entrepreneurial Principals. Lodestone integrates
+              governance, operating expertise, capital, and strategic wealth advisory to help
+              build exceptional businesses, create lasting wealth, and prepare future
+              generations.
             </p>
             <div className="mt-4 flex flex-col gap-5 sm:flex-row sm:items-center">
               <a href="#contact" className="btn-inverse">
-                Begin a Conversation
+                Schedule a Conversation
               </a>
-              <a
-                href="#philosophy"
-                className="font-sans text-[0.8rem] uppercase tracking-[0.18em] text-ivory/50 transition-colors duration-300 hover:text-ivory"
-              >
-                Our Philosophy
+              <a href="/ecosystem" className="btn-text text-ivory/70 hover:text-ivory">
+                Explore the Lodestone Ecosystem
               </a>
             </div>
           </Container>
         </section>
 
-        {/* AUDIENCE ACKNOWLEDGMENT */}
-        <Section tone="light">
-          <SectionHeading
-            eyebrow="Who We Serve"
-            title="You have seen every pitch."
-            description={
-              <>
-                You&rsquo;ve built something of real consequence — and likely
-                worked with the institutions that advise capital, talent, and
-                strategy at the highest level. You do not need another firm to
-                impress you. You need one you can trust with what matters
-                most.
-              </>
-            }
-          />
-        </Section>
+        <TrustStrip />
 
-        {/* WHAT WE PROVIDE */}
-        <Section tone="dark">
-          <SectionHeading
-            tone="dark"
-            eyebrow="What We Provide"
-            title="Not another service to hire."
-            description={
-              <span className="text-ivory/70">
-                We are not a board seat, a search process, or a capital
-                allocator, taken separately. We are the confidence to decide,
-                the judgment to act, and the continuity to see it through —
-                for as long as it matters.
-              </span>
-            }
-          />
-        </Section>
+        {/* TWO ENTRY POINTS */}
+        <TwoEntryPoints />
 
         {/* PHILOSOPHY */}
         <Section id="philosophy" tone="light">
-          <div className="flex flex-col items-center gap-16 text-center">
+          <div className="flex flex-col items-center gap-14 text-center">
             <SectionHeading
+              index="01"
+              kicker="The Lodestone Philosophy"
+              title="One relationship. A full arc of value creation."
+              description="Every entrepreneurial Principal follows a similar arc — from building something valuable to protecting it for generations."
               align="center"
-              eyebrow="The Lodestone Philosophy"
-              title="One path. Four disciplines."
-              description="Every entrepreneurial Principal follows a similar arc — from building something valuable to protecting it for generations. Lodestone exists for the entire arc, not a single chapter."
             />
             <PhilosophyDiagram />
           </div>
@@ -92,65 +65,84 @@ export default function Home() {
 
         {/* ECOSYSTEM */}
         <Section tone="parchment">
-          <div className="flex flex-col items-center gap-16 text-center">
+          <div className="flex flex-col gap-14">
             <SectionHeading
-              align="center"
-              eyebrow="The Lodestone Ecosystem"
-              title="One relationship. Four disciplines."
-              description="Each stage of the Principal's journey is supported by a dedicated capability — coordinated as a single, integrated team, not a portfolio of vendors."
+              index="02"
+              kicker="The Lodestone Ecosystem"
+              title="Four coordinated capabilities. One team."
+              description="Each stage of the Principal's journey is met by a dedicated capability — coordinated as a single relationship, not a portfolio of vendors. Select a stage to see how it works."
             />
             <EcosystemDiagram />
           </div>
         </Section>
 
-        {/* JOURNEY */}
+        {/* WHY LODESTONE */}
         <Section tone="light">
-          <div className="flex flex-col items-center gap-16 text-center">
+          <div className="flex flex-col gap-14">
             <SectionHeading
-              align="center"
-              eyebrow="The Principal Journey"
-              title="From founder to legacy."
-              description="Founders become operators. Operators become leaders. Leaders become owners, then investors, then stewards of something larger than themselves. We stand beside you at every chapter."
+              index="03"
+              kicker="Why Lodestone"
+              title="Coordination is the advantage."
             />
-            <JourneyDiagram />
+            <WhyLodestone />
           </div>
         </Section>
 
-        {/* FLYWHEEL */}
+        {/* SELECTED CAPABILITIES */}
         <Section tone="parchment">
-          <div className="flex flex-col items-center gap-16 text-center">
+          <div className="flex flex-col gap-14">
             <SectionHeading
-              align="center"
-              eyebrow="The Lodestone Flywheel"
-              title="Value, once created, compounds."
-              description="Enterprise value becomes personal wealth. Personal wealth becomes family capital. Family capital becomes the next generation of investment — and the next generation of enterprise."
+              index="04"
+              kicker="Selected Capabilities"
+              title="A working sample of what we do."
             />
-            <FlywheelDiagram />
+            <CapabilityCards />
           </div>
         </Section>
 
-        {/* THE FIRM */}
-        <Section id="firm" tone="dark">
-          <div className="flex flex-col gap-16">
+        {/* PRINCIPAL OUTCOMES */}
+        <Section tone="light">
+          <div className="flex flex-col gap-14">
             <SectionHeading
-              tone="dark"
-              eyebrow="The Firm"
-              title="One firm. Not four businesses."
-              description={
-                <span className="text-ivory/70">
-                  Governance. Executive search. Operating partnership. Private
-                  capital. Family stewardship. Each is coordinated around one
-                  Principal — not sold as separate products. Discretion is
-                  assumed. Continuity is the point.
-                </span>
-              }
+              index="05"
+              kicker="Principal Outcomes"
+              title="What this is actually in service of."
             />
-            <Divider tone="dark" />
-            <p className="mx-auto max-w-2xl text-center font-serif text-display-3 font-light italic text-ivory">
-              We do not measure our success in transactions closed. We measure
-              it in trust sustained — across decades, across generations.
-            </p>
+            <OutcomesList />
           </div>
+        </Section>
+
+        {/* CASE STUDIES */}
+        <Section tone="parchment">
+          <div className="flex flex-col gap-14">
+            <SectionHeading
+              index="06"
+              kicker="Representative Engagements"
+              title="How this looks in practice."
+            />
+            <CaseStudyCards />
+          </div>
+        </Section>
+
+        {/* LEADERSHIP */}
+        <Section tone="light">
+          <div className="flex flex-col gap-14">
+            <SectionHeading index="07" kicker="Leadership" title="The team behind the relationship." />
+            <TeamPreview />
+          </div>
+        </Section>
+
+        {/* INSIGHTS */}
+        <Section tone="parchment">
+          <div className="flex flex-col gap-14">
+            <SectionHeading index="08" kicker="Insights" title="Perspective for entrepreneurial Principals." />
+            <ResourceCards />
+          </div>
+        </Section>
+
+        {/* FINAL CTA */}
+        <Section tone="dark">
+          <CTASection />
         </Section>
       </main>
       <Footer />

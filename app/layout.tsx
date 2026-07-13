@@ -1,18 +1,18 @@
 import type { Metadata } from "next";
-import { Fraunces, Inter } from "next/font/google";
+import { Newsreader, Public_Sans } from "next/font/google";
 import "./globals.css";
 
-const display = Fraunces({
+const display = Newsreader({
   subsets: ["latin"],
-  weight: ["300", "400", "500"],
+  weight: ["400", "500", "600"],
   style: ["normal", "italic"],
   variable: "--font-display",
   display: "swap",
 });
 
-const body = Inter({
+const body = Public_Sans({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
+  weight: ["400", "500", "600"],
   variable: "--font-body",
   display: "swap",
 });
@@ -20,7 +20,7 @@ const body = Inter({
 export const metadata: Metadata = {
   title: "Lodestone Global",
   description:
-    "One integrated advisory firm for entrepreneurial Principals — through every stage of value creation and stewardship.",
+    "Helping Principals build, scale, compound, and steward enduring value — one trusted relationship, coordinated across governance, operating expertise, capital, and strategic wealth advisory.",
 };
 
 export default function RootLayout({

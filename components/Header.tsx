@@ -1,39 +1,36 @@
 import { Container } from "./Container";
 
 const links = [
-  { href: "#build", label: "Build" },
-  { href: "#scale", label: "Scale" },
-  { href: "#compound", label: "Compound" },
-  { href: "#steward", label: "Steward" },
-  { href: "#firm", label: "The Firm" },
+  { href: "/#govern", label: "Govern", index: "01" },
+  { href: "/#scale", label: "Scale", index: "02" },
+  { href: "/#compound", label: "Compound", index: "03" },
+  { href: "/#steward", label: "Steward", index: "04" },
+  { href: "/ecosystem", label: "The Ecosystem", index: "05" },
 ];
 
 export function Header() {
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-charcoal/10 bg-ivory/95 backdrop-blur-sm">
-      <Container className="flex h-20 items-center justify-between">
-        <a
-          href="#top"
-          className="font-serif text-[1.15rem] tracking-[0.08em] text-navy"
-        >
-          LODESTONE
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-charcoal/12 bg-ivory">
+      <Container className="flex h-[4.5rem] items-center justify-between">
+        <a href="/#top" className="font-serif text-[1.05rem] tracking-[0.02em] text-navy">
+          Lodestone
         </a>
-        <nav className="hidden items-center gap-9 lg:flex">
+        <nav aria-label="Primary" className="hidden items-center gap-8 lg:flex">
           {links.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="font-sans text-[0.75rem] uppercase tracking-[0.14em] text-charcoal/70 transition-colors duration-300 hover:text-brass"
+              className="group flex items-baseline gap-2 font-sans text-[0.78rem] uppercase tracking-[0.1em] text-charcoal/70 transition-colors duration-200 hover:text-brass"
             >
+              <span className="font-serif text-[0.7rem] text-stone group-hover:text-brass">
+                {link.index}
+              </span>
               {link.label}
             </a>
           ))}
         </nav>
-        <a
-          href="#contact"
-          className="font-sans text-[0.75rem] uppercase tracking-[0.16em] text-navy border-b border-navy/40 pb-0.5 transition-colors duration-300 hover:text-brass hover:border-brass"
-        >
-          Inquire
+        <a href="#contact" className="btn-primary hidden sm:inline-flex">
+          Schedule a Conversation
         </a>
       </Container>
     </header>
