@@ -11,7 +11,7 @@ const panels = [
     tone: "light" as const,
     kicker: "For Principals and Families",
     title: "Lodestone Family Advisors",
-    body: "An independent RIA multi-family office — the capabilities of a single-family office, without the cost of building one.",
+    body: "An independent RIA multi-family office. It gives a family the capabilities of a single-family office, without the cost of building one internally.",
     href: "/#steward",
     cta: "Explore Family Advisors",
   },

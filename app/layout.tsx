@@ -20,7 +20,7 @@ const body = Public_Sans({
 export const metadata: Metadata = {
   title: "Lodestone Global",
   description:
-    "Helping Principals build, scale, compound, and steward enduring value — one trusted relationship, coordinated across governance, operating expertise, capital, and strategic wealth advisory.",
+    "Helping Principals build, scale, compound, and steward enduring value. One trusted relationship, coordinated across governance, operating expertise, capital, and strategic wealth advisory.",
 };
 
 export default function RootLayout({

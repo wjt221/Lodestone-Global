@@ -29,9 +29,9 @@ export default function Home() {
             </h1>
             <p className="max-w-xl font-sans text-lg leading-relaxed text-ivory/70">
               One trusted relationship for entrepreneurial Principals. Lodestone integrates
-              governance, operating expertise, capital, and strategic wealth advisory to help
-              build exceptional businesses, create lasting wealth, and prepare future
-              generations.
+              governance, operating expertise, capital, and strategic wealth advisory, so the
+              business a Principal builds and the wealth it creates are both ready for the
+              generation that inherits them.
             </p>
             <div className="mt-4 flex flex-col gap-5 sm:flex-row sm:items-center">
               <a href="#contact" className="btn-inverse">
@@ -56,7 +56,7 @@ export default function Home() {
               index="01"
               kicker="The Lodestone Philosophy"
               title="One relationship. A full arc of value creation."
-              description="Every entrepreneurial Principal follows a similar arc — from building something valuable to protecting it for generations."
+              description="Every entrepreneurial Principal follows a similar arc, from building something valuable to protecting it for generations."
               align="center"
             />
             <PhilosophyDiagram />
@@ -70,7 +70,7 @@ export default function Home() {
               index="02"
               kicker="The Lodestone Ecosystem"
               title="Four coordinated capabilities. One team."
-              description="Each stage of the Principal's journey is met by a dedicated capability — coordinated as a single relationship, not a portfolio of vendors. Select a stage to see how it works."
+              description="Each stage of the Principal's journey is met by a dedicated capability, coordinated as a single relationship. Select a stage to see how it works."
             />
             <EcosystemDiagram />
           </div>

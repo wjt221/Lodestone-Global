@@ -11,7 +11,7 @@ import { JourneyDiagram } from "@/components/infographics/JourneyDiagram";
 import { FlywheelDiagram } from "@/components/infographics/FlywheelDiagram";
 
 export const metadata: Metadata = {
-  title: "The Ecosystem — Lodestone",
+  title: "The Ecosystem | Lodestone",
   description:
     "One relationship, four coordinated capabilities, and a Principal journey that Lodestone stays with from build to steward.",
 };
@@ -29,9 +29,9 @@ export default function EcosystemPage() {
               One relationship, built to last longer than any single engagement.
             </h1>
             <p className="max-w-xl font-sans text-lg leading-relaxed text-ivory/70">
-              Most Principals meet Lodestone through a single need — a board seat, an operating
-              partner, a capital raise, a family office question. What follows is usually
-              broader: one relationship that stays with you as the need changes.
+              Most Principals meet Lodestone through a single need. Maybe a board seat, an
+              operating partner, a capital raise, or a family office question. What follows is
+              usually broader: one relationship that stays with you as the need changes.
             </p>
           </Container>
         </section>
@@ -69,7 +69,7 @@ export default function EcosystemPage() {
               index="03"
               kicker="The Principal Journey"
               title="From founder to legacy."
-              description="Founders become operators. Operators become leaders. Leaders become owners, then investors, then stewards of something larger than themselves. Lodestone is built to stay through every stage of that arc — not just the one you're in today."
+              description="Founders become operators. Operators become leaders. Leaders become owners, then investors, then stewards of something larger than themselves. Lodestone is built to stay through every stage of that arc, including the one you're in today."
               align="center"
             />
             <JourneyDiagram />
@@ -83,33 +83,8 @@ export default function EcosystemPage() {
               index="04"
               kicker="How the Relationship Evolves"
               title="It rarely starts where it ends."
+              description="Most relationships begin with a single need in Govern or Steward, addressed on its own terms: a board, a search, an estate question. As the business scales or the wealth grows, the same team already understands the context, so no new advisor has to be brought up to speed. By the time a transition, a sale, or a generational handoff is on the table, Lodestone has been there long enough to help decide it well."
             />
-            <div className="grid grid-cols-1 gap-x-10 gap-y-8 sm:grid-cols-3">
-              <div className="flex flex-col gap-3 border-t border-charcoal/15 pt-6">
-                <span className="index-number">01</span>
-                <p className="font-serif text-lg font-normal text-navy">A single conversation</p>
-                <p className="font-sans text-[0.9rem] leading-relaxed text-charcoal/60">
-                  Most relationships begin with one need in Govern or Steward — a board, a
-                  search, an estate question — addressed on its own terms.
-                </p>
-              </div>
-              <div className="flex flex-col gap-3 border-t border-charcoal/15 pt-6">
-                <span className="index-number">02</span>
-                <p className="font-serif text-lg font-normal text-navy">A wider view</p>
-                <p className="font-sans text-[0.9rem] leading-relaxed text-charcoal/60">
-                  As the business scales or the wealth grows, the same team already understands
-                  the context — no new advisor has to be brought up to speed.
-                </p>
-              </div>
-              <div className="flex flex-col gap-3 border-t border-charcoal/15 pt-6">
-                <span className="index-number">03</span>
-                <p className="font-serif text-lg font-normal text-navy">One continuous relationship</p>
-                <p className="font-sans text-[0.9rem] leading-relaxed text-charcoal/60">
-                  By the time a transition, a sale, or a generational handoff is on the table,
-                  Lodestone has been there long enough to help decide it well.
-                </p>
-              </div>
-            </div>
           </div>
         </Section>
 
