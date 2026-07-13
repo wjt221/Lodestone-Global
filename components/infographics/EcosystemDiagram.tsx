@@ -1,6 +1,7 @@
 import { stages } from "@/components/stages";
 import { StageIcon } from "@/components/StageIcon";
-import { StageIllustration } from "@/components/StageIllustration";
+import { EditorialImage } from "@/components/EditorialImage";
+import { photos } from "@/components/photos";
 
 const capabilities: Record<string, string[]> = {
   govern: [
@@ -90,7 +91,12 @@ export function EcosystemDiagram() {
                 </li>
               ))}
             </ul>
-            <StageIllustration stage={s.id} className="mt-auto aspect-[4/5]" />
+            <EditorialImage
+              src={photos[s.id].src}
+              alt={photos[s.id].alt}
+              className="mt-auto"
+              sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+            />
           </div>
         ))}
       </div>

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Section } from "@/components/Section";
@@ -9,6 +10,7 @@ import { CTASection } from "@/components/CTASection";
 import { EcosystemDiagram } from "@/components/infographics/EcosystemDiagram";
 import { JourneyDiagram } from "@/components/infographics/JourneyDiagram";
 import { FlywheelDiagram } from "@/components/infographics/FlywheelDiagram";
+import { photos } from "@/components/photos";
 
 export const metadata: Metadata = {
   title: "The Ecosystem | Lodestone",
@@ -102,12 +104,22 @@ export default function EcosystemPage() {
         </Section>
 
         {/* FINAL CTA */}
-        <Section tone="dark">
-          <CTASection
-            title="Understand where your relationship with Lodestone could start."
-            description="There is no cost, and no obligation, to a first conversation."
+        <section className="relative overflow-hidden py-24 md:py-32">
+          <Image
+            src={photos.closing.src}
+            alt={photos.closing.alt}
+            fill
+            sizes="100vw"
+            className="object-cover"
           />
-        </Section>
+          <div className="absolute inset-0 bg-navy/85" aria-hidden />
+          <Container className="relative z-10">
+            <CTASection
+              title="Understand where your relationship with Lodestone could start."
+              description="There is no cost, and no obligation, to a first conversation."
+            />
+          </Container>
+        </section>
       </main>
       <Footer />
     </>

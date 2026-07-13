@@ -1,3 +1,6 @@
+import { EditorialImage } from "./EditorialImage";
+import { photos } from "./photos";
+
 const cases = [
   {
     stage: "Govern → Scale",
@@ -21,17 +24,25 @@ const cases = [
 
 export function CaseStudyCards() {
   return (
-    <div className="grid grid-cols-1 gap-x-10 gap-y-10 sm:grid-cols-3">
-      {cases.map((c) => (
-        <div key={c.situation} className="flex flex-col gap-4 border-t border-charcoal/15 pt-6">
-          <span className="kicker">{c.stage}</span>
-          <h3 className="font-serif text-lg font-normal text-navy">{c.situation}</h3>
-          <p className="font-sans text-[0.88rem] leading-relaxed text-charcoal/60">{c.engagement}</p>
-        </div>
-      ))}
-      <p className="col-span-full pt-2 font-sans text-[0.75rem] text-charcoal/40">
-        Representative engagements. Details are composited to protect Principal confidentiality.
-      </p>
+    <div className="flex flex-col gap-12">
+      <EditorialImage
+        src={photos.caseStudies.src}
+        alt={photos.caseStudies.alt}
+        aspect="aspect-[21/9]"
+        sizes="100vw"
+      />
+      <div className="grid grid-cols-1 gap-x-10 gap-y-10 sm:grid-cols-3">
+        {cases.map((c) => (
+          <div key={c.situation} className="flex flex-col gap-4 border-t border-charcoal/15 pt-6">
+            <span className="kicker">{c.stage}</span>
+            <h3 className="font-serif text-lg font-normal text-navy">{c.situation}</h3>
+            <p className="font-sans text-[0.88rem] leading-relaxed text-charcoal/60">{c.engagement}</p>
+          </div>
+        ))}
+        <p className="col-span-full pt-2 font-sans text-[0.75rem] text-charcoal/40">
+          Representative engagements. Details are composited to protect Principal confidentiality.
+        </p>
+      </div>
     </div>
   );
 }

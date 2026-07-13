@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Section } from "@/components/Section";
@@ -14,6 +15,7 @@ import { ResourceCards } from "@/components/ResourceCards";
 import { CTASection } from "@/components/CTASection";
 import { PhilosophyDiagram } from "@/components/infographics/PhilosophyDiagram";
 import { EcosystemDiagram } from "@/components/infographics/EcosystemDiagram";
+import { photos } from "@/components/photos";
 
 export default function Home() {
   return (
@@ -21,13 +23,22 @@ export default function Home() {
       <Header />
       <main id="top">
         {/* HERO */}
-        <section className="flex min-h-[80vh] flex-col justify-center bg-navy pt-20 text-ivory">
-          <Container className="flex flex-col gap-8 py-16">
+        <section className="relative flex min-h-[80vh] flex-col justify-center overflow-hidden pt-20 text-ivory">
+          <Image
+            src={photos.hero.src}
+            alt={photos.hero.alt}
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-navy/80" aria-hidden />
+          <Container className="relative z-10 flex flex-col gap-8 py-16">
             <span className="kicker text-brass-light">Lodestone</span>
             <h1 className="max-w-3xl font-serif text-display-1 font-normal text-ivory">
               For owners building something meant to outlast them.
             </h1>
-            <p className="max-w-xl font-sans text-lg leading-relaxed text-ivory/70">
+            <p className="max-w-xl font-sans text-lg leading-relaxed text-ivory/80">
               Lodestone helps entrepreneurial Principals build stronger companies and govern
               increasingly complex wealth. As a business matures, we help its owner move from
               running it day to day to owning and stewarding it for the long term.
@@ -36,7 +47,7 @@ export default function Home() {
               <a href="#contact" className="btn-inverse">
                 Schedule a Conversation
               </a>
-              <a href="/ecosystem" className="btn-text text-ivory/70 hover:text-ivory">
+              <a href="/ecosystem" className="btn-text text-ivory/80 hover:text-ivory">
                 Explore the Lodestone Ecosystem
               </a>
             </div>
@@ -140,9 +151,19 @@ export default function Home() {
         </Section>
 
         {/* FINAL CTA */}
-        <Section tone="dark">
-          <CTASection />
-        </Section>
+        <section className="relative overflow-hidden py-24 md:py-32">
+          <Image
+            src={photos.closing.src}
+            alt={photos.closing.alt}
+            fill
+            sizes="100vw"
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-navy/85" aria-hidden />
+          <Container className="relative z-10">
+            <CTASection />
+          </Container>
+        </section>
       </main>
       <Footer />
     </>
