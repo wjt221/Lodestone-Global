@@ -42,6 +42,28 @@ const nextConfig = {
         destination: "/insights/advisory-board-readiness",
         permanent: true,
       },
+      // Old Wix service pages -> Governance Advisory
+      { source: "/build", destination: "/governance-advisory", permanent: true },
+      { source: "/optimize", destination: "/governance-advisory", permanent: true },
+      { source: "/compensate", destination: "/governance-advisory", permanent: true },
+      { source: "/educate", destination: "/governance-advisory", permanent: true },
+      { source: "/seminars", destination: "/governance-advisory", permanent: true },
+      { source: "/qdd", destination: "/governance-advisory", permanent: true },
+      // Old Wix research/store pages -> Insights (until /research ships)
+      { source: "/reports", destination: "/insights", permanent: true },
+      { source: "/shop", destination: "/insights", permanent: true },
+      // Old Wix entity pages -> new business pages
+      { source: "/capital", destination: "/lodestone-capital", permanent: true },
+      { source: "/lodestone-family-advisors", destination: "/family-advisors", permanent: true },
+      // Team / leadership -> About
+      { source: "/team", destination: "/about", permanent: true },
+      { source: "/williamtenenbaum", destination: "/about", permanent: true },
+      { source: "/marissalevin", destination: "/about", permanent: true },
+      // Legal
+      { source: "/privacy-policy", destination: "/privacy", permanent: true },
+      // Remaining blog posts (newer /post/* and older date-path) -> Insights index
+      { source: "/post/:slug*", destination: "/insights", permanent: true },
+      { source: "/:year(\\d{4})/:rest*", destination: "/insights", permanent: true },
     ];
   },
 };
