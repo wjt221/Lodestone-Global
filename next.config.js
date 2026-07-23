@@ -9,6 +9,15 @@ const nextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      { source: "/ecosystem", destination: "/about#ecosystem", permanent: true },
+      { source: "/ecosystem/govern", destination: "/governance-advisory", permanent: true },
+      { source: "/ecosystem/scale", destination: "/e3-scale-network", permanent: true },
+      { source: "/ecosystem/compound", destination: "/lodestone-capital", permanent: true },
+      { source: "/ecosystem/steward", destination: "/family-advisors", permanent: true },
+    ];
+  },
 };
 
 module.exports = nextConfig;

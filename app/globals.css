@@ -21,6 +21,24 @@
     color: #F7F5F0;
   }
 
+  :focus-visible {
+    outline: 2px solid #0A1B2A;
+    outline-offset: 2px;
+  }
+
+  /* Skip link, hidden until focused */
+  .skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 100;
+  }
+
+  .skip-link:focus {
+    left: 1rem;
+    top: 1rem;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
