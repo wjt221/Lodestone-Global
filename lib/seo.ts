@@ -1,0 +1,100 @@
+import { SITE_URL, SITE_NAME } from "./site";
+import { CONTACT, leadership } from "./content";
+
+/** Absolute URL for a site-relative path. */
+export function abs(path: string) {
+  return path.startsWith("http") ? path : `${SITE_URL}${path.startsWith("/") ? "" : "/"}${path}`;
+}
+
+export function organizationJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": `${SITE_URL}/#organization`,
+    name: SITE_NAME,
+    url: SITE_URL,
+    description:
+      "Trusted counsel for owners building enduring companies and family wealth: governance advisory, an operating-partner network, an investment platform, and a multi-family office.",
+    foundingDate: String(CONTACT.founded),
+    email: CONTACT.email,
+    sameAs: [CONTACT.linkedin],
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Morristown",
+      addressRegion: "NJ",
+      addressCountry: "US",
+    },
+  };
+}
+
+export function websiteJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${SITE_URL}/#website`,
+    name: SITE_NAME,
+    url: SITE_URL,
+    publisher: { "@id": `${SITE_URL}/#organization` },
+  };
+}
+
+export function personJsonLd(leader: (typeof leadership)[number]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: leader.name,
+    jobTitle: leader.role,
+    description: leader.bio,
+    worksFor: { "@id": `${SITE_URL}/#organization` },
+    ...(leader.linkedin ? { sameAs: [leader.linkedin] } : {}),
+  };
+}
+
+export function breadcrumbJsonLd(items: { name: string; path: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: item.name,
+      item: abs(item.path),
+    })),
+  };
+}
+
+export function faqJsonLd(qas: { q: string; a: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: qas.map(({ q, a }) => ({
+      "@type": "Question",
+      name: q,
+      acceptedAnswer: { "@type": "Answer", text: a },
+    })),
+  };
+}
+
+/**
+ * The Private Company Board Compensation Survey, described as a research
+ * dataset. Facts kept qualitative (no unverified figures).
+ */
+export function surveyDatasetJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Dataset",
+    name: "Private Company Board Compensation Survey",
+    description:
+      "An annual study of how private companies compensate their directors, with data segmented by revenue, industry, company size, and structure, across the United States and internationally.",
+    creator: { "@id": `${SITE_URL}/#organization` },
+    publisher: { "@id": `${SITE_URL}/#organization` },
+    keywords: [
+      "private company board compensation",
+      "director compensation",
+      "board pay benchmarking",
+    ],
+    spatialCoverage: "United States and international",
+    isAccessibleForFree: false,
+    url: `${SITE_URL}/insights`,
+  };
+}

@@ -6,6 +6,8 @@ import { Container } from "./Container";
 import { BackgroundPhoto } from "./BackgroundPhoto";
 import { CTASection } from "./CTASection";
 import { photos } from "./photos";
+import { JsonLd } from "./JsonLd";
+import { breadcrumbJsonLd, faqJsonLd } from "@/lib/seo";
 import {
   businesses,
   businessDetail,
@@ -19,8 +21,17 @@ export function BusinessPage({ id }: { id: StageId }) {
   const others = businesses.filter((b) => b.id !== id);
   const photo = photos[id];
 
+  const schema: object[] = [
+    breadcrumbJsonLd([
+      { name: "Home", path: "/" },
+      { name: business.name, path: business.href },
+    ]),
+  ];
+  if (detail.faq) schema.push(faqJsonLd(detail.faq));
+
   return (
     <>
+      <JsonLd data={schema} />
       <Header />
       <main id="main">
         {/* MASTHEAD */}
@@ -98,8 +109,36 @@ export function BusinessPage({ id }: { id: StageId }) {
           </div>
         </Section>
 
+        {/* FAQ */}
+        {detail.faq && (
+          <Section tone="light">
+            <div className="flex flex-col gap-10">
+              <h2 className="max-w-2xl font-serif text-display-2 font-normal text-navy">
+                Common questions
+              </h2>
+              <dl className="flex flex-col">
+                {detail.faq.map((item, i) => (
+                  <div
+                    key={item.q}
+                    className={`grid grid-cols-1 gap-3 border-t border-charcoal/15 py-8 md:grid-cols-12 md:gap-8 ${
+                      i === detail.faq!.length - 1 ? "border-b" : ""
+                    }`}
+                  >
+                    <dt className="font-serif text-lg font-normal text-navy md:col-span-5">
+                      {item.q}
+                    </dt>
+                    <dd className="font-sans text-[0.95rem] leading-relaxed text-charcoal/70 md:col-span-7">
+                      {item.a}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+          </Section>
+        )}
+
         {/* REST OF ECOSYSTEM */}
-        <Section tone="light">
+        <Section tone={detail.faq ? "parchment" : "light"}>
           <div className="flex flex-col gap-10">
             <h2 className="font-sans text-[0.72rem] uppercase tracking-widest2 text-brass">
               Elsewhere in the practice

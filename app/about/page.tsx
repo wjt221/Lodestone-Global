@@ -10,7 +10,9 @@ import { EcosystemList } from "@/components/EcosystemList";
 import { Leadership } from "@/components/Leadership";
 import { CTASection } from "@/components/CTASection";
 import { photos } from "@/components/photos";
-import { howWeWork, CONTACT } from "@/lib/content";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbJsonLd, personJsonLd } from "@/lib/seo";
+import { howWeWork, CONTACT, leadership } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "About",
@@ -28,6 +30,15 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <>
+      <JsonLd
+        data={[
+          breadcrumbJsonLd([
+            { name: "Home", path: "/" },
+            { name: "About", path: "/about" },
+          ]),
+          ...leadership.map(personJsonLd),
+        ]}
+      />
       <Header />
       <main id="main">
         {/* MASTHEAD */}

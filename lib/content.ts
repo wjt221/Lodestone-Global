@@ -325,6 +325,8 @@ export interface BusinessDetail {
   capabilityGroups: CapabilityGroup[];
   /** Optional closing note, e.g. how the business fits the wider practice. */
   note?: string;
+  /** Optional FAQ, rendered as content and as FAQPage structured data. */
+  faq?: { q: string; a: string }[];
   meta: { title: string; description: string };
 }
 
@@ -363,6 +365,24 @@ export const businessDetail: Record<StageId, BusinessDetail> = {
         name: "Board facilitation and education",
         detail:
           "Facilitate board work and educate directors and owners through seminars and programs built for private companies.",
+      },
+    ],
+    faq: [
+      {
+        q: "How is a private company board different from a public company board?",
+        a: "A private company board is built for the owner's strategy, not a regulatory checklist. It is usually smaller, more hands-on, and staffed with directors who have run businesses of their own and understand ownership, rather than directors focused primarily on public-market compliance.",
+      },
+      {
+        q: "When does a private company need an independent board?",
+        a: "Common triggers are outgrowing founder-led decision-making, preparing for a transaction or succession, bringing in outside capital, or wanting independent oversight and accountability as the business scales.",
+      },
+      {
+        q: "What is board compensation benchmarking?",
+        a: "It is setting director pay against real market data. Lodestone Global maintains proprietary private-company board compensation research segmented by revenue, industry, company size, and structure, so owners can compensate their directors appropriately.",
+      },
+      {
+        q: "Does forming a board mean the owner gives up control?",
+        a: "No. A well-formed private company board adds independent perspective and accountability while preserving the owner's control, with its mandate defined around the owner's objectives.",
       },
     ],
     meta: {

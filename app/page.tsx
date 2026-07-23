@@ -18,27 +18,9 @@ import {
   howWeWork,
   engagements,
   sectorsServed,
-  CONTACT,
 } from "@/lib/content";
-import { SITE_URL } from "@/lib/site";
-
-const orgJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  name: "Lodestone Global",
-  url: SITE_URL,
-  description:
-    "Trusted counsel for owners building enduring companies and family wealth: governance advisory, an operating-partner network, an investment platform, and a multi-family office.",
-  foundingDate: String(CONTACT.founded),
-  email: CONTACT.email,
-  sameAs: [CONTACT.linkedin],
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Morristown",
-    addressRegion: "NJ",
-    addressCountry: "US",
-  },
-};
+import { JsonLd } from "@/components/JsonLd";
+import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 
 const whyPoints = [
   "Deep specialization in private-company governance since 2013",
@@ -52,10 +34,7 @@ const whyPoints = [
 export default function Home() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
-      />
+      <JsonLd data={[organizationJsonLd(), websiteJsonLd()]} />
       <Header />
       <main id="main">
         {/* 1. HERO */}

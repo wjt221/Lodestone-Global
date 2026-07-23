@@ -7,6 +7,8 @@ import { BackgroundPhoto } from "@/components/BackgroundPhoto";
 import { InsightCards } from "@/components/InsightCards";
 import { CTASection } from "@/components/CTASection";
 import { photos } from "@/components/photos";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbJsonLd, surveyDatasetJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Insights",
@@ -24,6 +26,15 @@ export const metadata: Metadata = {
 export default function InsightsPage() {
   return (
     <>
+      <JsonLd
+        data={[
+          breadcrumbJsonLd([
+            { name: "Home", path: "/" },
+            { name: "Insights", path: "/insights" },
+          ]),
+          surveyDatasetJsonLd(),
+        ]}
+      />
       <Header />
       <main id="main">
         <section className="bg-navy pt-[4.25rem] text-ivory">
