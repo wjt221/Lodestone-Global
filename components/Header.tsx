@@ -1,11 +1,10 @@
 import Image from "next/image";
 import { Container } from "./Container";
+import { stages } from "./stages";
 
 const links = [
-  { href: "/#journey", label: "Journey" },
-  { href: "/#ecosystem", label: "Ecosystem" },
-  { href: "/#capabilities", label: "Capabilities" },
-  { href: "/ecosystem", label: "The Firm" },
+  ...stages.map((s) => ({ href: `/ecosystem/${s.id}`, label: s.label })),
+  { href: "/ecosystem", label: "Ecosystem" },
 ];
 
 export function Header() {

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -10,6 +11,7 @@ import { CTASection } from "@/components/CTASection";
 import { stages, StageId } from "@/components/stages";
 import { ecosystemContent } from "@/components/ecosystemContent";
 import { photos } from "@/components/photos";
+import { entityLogos } from "@/components/entityLogos";
 
 function Check() {
   return (
@@ -55,6 +57,7 @@ export default async function EcosystemEntityPage({
 
   const content = ecosystemContent[stage.id as StageId];
   const siblings = stages.filter((s) => s.id !== stage.id);
+  const logo = entityLogos[stage.id as StageId];
 
   return (
     <>
@@ -62,7 +65,7 @@ export default async function EcosystemEntityPage({
       <main id="top">
         {/* MASTHEAD */}
         <section className="relative overflow-hidden pt-32 text-ivory">
-          <BackgroundPhoto src={photos[stage.id].src} alt={photos[stage.id].alt} overlayClassName="bg-navy/82" />
+          <BackgroundPhoto src={photos[stage.id].src} alt={photos[stage.id].alt} overlayClassName="bg-navy/80" />
           <Container className="relative z-10 flex flex-col gap-6 pb-20">
             <span className="kicker text-brass-light">{stage.label}</span>
             <h1 className="max-w-2xl font-serif text-display-1 font-normal text-ivory">{stage.entity}</h1>
@@ -74,6 +77,15 @@ export default async function EcosystemEntityPage({
         <Section tone="light">
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1fr_1fr] lg:gap-16">
             <div className="flex flex-col gap-6">
+              {logo && (
+                <Image
+                  src={logo.src}
+                  alt={`${stage.entity} logo`}
+                  width={logo.width}
+                  height={logo.height}
+                  className="h-10 w-auto self-start"
+                />
+              )}
               <span className="kicker">What This Includes</span>
               <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                 {content.capabilities.map((item) => (
