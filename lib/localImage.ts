@@ -14,3 +14,14 @@ export function hasLocalImage(publicPath: string): boolean {
     return false;
   }
 }
+
+/**
+ * Whether an image src is ready to render: remote URLs (Unsplash) are
+ * always considered available since the browser fetches them directly;
+ * local /public paths are checked on disk so unsupplied photography
+ * degrades to a placeholder instead of a broken image.
+ */
+export function isImageAvailable(src: string): boolean {
+  if (/^https?:\/\//.test(src)) return true;
+  return hasLocalImage(src);
+}

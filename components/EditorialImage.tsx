@@ -1,11 +1,10 @@
 import Image from "next/image";
-import { hasLocalImage } from "@/lib/localImage";
+import { isImageAvailable } from "@/lib/localImage";
 
 /**
- * Wrapper for real local editorial photography (see /public/images/lodestone).
- * If the file hasn't been supplied yet, renders a labeled placeholder instead
- * of a broken image — drop the real file in with the same name and it just
- * works, no code changes required.
+ * Wrapper for editorial photography — either a remote (Unsplash) URL or a
+ * local file under /public/images/lodestone. If a local file hasn't been
+ * supplied yet, renders a labeled placeholder instead of a broken image.
  */
 export function EditorialImage({
   src,
@@ -26,7 +25,7 @@ export function EditorialImage({
   overlay?: boolean;
   className?: string;
 }) {
-  const available = hasLocalImage(src);
+  const available = isImageAvailable(src);
 
   return (
     <figure className={`relative overflow-hidden border border-charcoal/15 ${aspect} ${className}`}>

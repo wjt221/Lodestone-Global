@@ -6,25 +6,25 @@ const columns = [
   {
     stage: "Govern",
     entity: "Lodestone Global",
-    href: "/#govern",
+    href: "/ecosystem/govern",
     items: ["Board Formation", "Executive Search", "Strategic Advisory"],
   },
   {
     stage: "Scale",
     entity: "E3 Scale Network",
-    href: "/#scale",
+    href: "/ecosystem/scale",
     items: ["Operating Partners", "Execution Systems", "Capital Allocation"],
   },
   {
     stage: "Compound",
     entity: "Lodestone Capital",
-    href: "/#compound",
+    href: "/ecosystem/compound",
     items: ["Private Equity", "Real Estate", "Co-Investments"],
   },
   {
     stage: "Steward",
     entity: "Lodestone Family Advisors",
-    href: "/#steward",
+    href: "/ecosystem/steward",
     items: ["Strategic Wealth Advisory", "Family Governance", "Trust & Estate Coordination"],
   },
 ];

@@ -80,6 +80,9 @@ export function EcosystemDiagram() {
                 </li>
               ))}
             </ul>
+            <a href={`/ecosystem/${s.id}`} className="btn-text w-fit text-navy">
+              Learn more about {s.entity}
+            </a>
           </div>
           <EditorialImage
             src={photos[s.id].src}

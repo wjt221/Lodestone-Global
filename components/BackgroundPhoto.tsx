@@ -1,11 +1,11 @@
 import Image from "next/image";
-import { hasLocalImage } from "@/lib/localImage";
+import { isImageAvailable } from "@/lib/localImage";
 
 /**
  * Full-bleed background photo (hero, closing section, entry panels) with a
- * fixed overlay tone. Falls back to a plain navy field with no image if the
- * local file hasn't been supplied yet, so the layout never shows a broken
- * <img> — drop the real file into /public/images/lodestone to activate it.
+ * fixed overlay tone. Works with either a remote (Unsplash) URL or a local
+ * /public/images/lodestone file; falls back to a plain navy field if a local
+ * file hasn't been supplied yet, so the layout never shows a broken <img>.
  */
 export function BackgroundPhoto({
   src,
@@ -22,7 +22,7 @@ export function BackgroundPhoto({
   sizes?: string;
   imageClassName?: string;
 }) {
-  const available = hasLocalImage(src);
+  const available = isImageAvailable(src);
 
   return (
     <>
