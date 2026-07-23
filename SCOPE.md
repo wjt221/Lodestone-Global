@@ -10,11 +10,15 @@ Legend: [ ] todo · [~] in progress · [x] done · 🔑 needs a secret/credentia
 
 ---
 
+## Status (updated)
+Done: A1, B1, B2, A2, B3, C1. Remaining items below are blocked on credentials
+(Stripe/Resend/analytics keys) or DNS access, noted per item.
+
 ## Epic A — Content foundation
-- [ ] **A1. Pull existing Wix content** (blog posts, store products, media) via
+- [x] **A1. Pull existing Wix content** (blog posts, store products, media) via
   the connector; produce an inventory to migrate from. _Accept:_ a list of every
   post/product/asset with fields captured.
-- [ ] **A2. Insights as real on-site articles** — `/insights/[slug]` pages from
+- [x] **A2. Insights as real on-site articles** — `/insights/[slug]` pages from
   MDX/in-repo content, with dates and summaries. _Accept:_ each insight opens a
   real page, not an external link. ✉️ (final article text/approval)
 - [ ] **A3. Migrate blog posts** from Wix into the article system. ✉️
@@ -22,20 +26,20 @@ Legend: [ ] todo · [~] in progress · [x] done · 🔑 needs a secret/credentia
   legal entity names, disclosures. ✉️
 
 ## Epic B — SEO / LLM depth
-- [ ] **B1. Expand structured data** — add `BreadcrumbList`, `Person`
+- [x] **B1. Expand structured data** — add `BreadcrumbList`, `Person`
   (leadership), `Article`/`BlogPosting` (insights), and `Dataset`/`Report` (the
   survey), plus `FAQPage` on high-intent pages. _Accept:_ valid in Rich Results
   Test.
 - [x] **B2. AI-crawler policy + llms.txt** — allow reputable AI crawlers, protect
   reports (`/downloads/`, `*.pdf`). _Done._
-- [ ] **B3. Redirect map** old Wix URLs → new URLs in `next.config.js`.
+- [x] **B3. Redirect map** old Wix URLs → new URLs in `next.config.js`.
   _Accept:_ every known old URL 301s to a live page. (depends on A1 inventory)
 - [ ] **B4. Dynamic OG images** per page via `next/og`. _Accept:_ each page has a
   branded share image.
 - [ ] **B5. `llms-full.txt` + markdown page versions** for clean LLM ingestion.
 
 ## Epic C — Reports commerce + gated downloads
-- [ ] **C1. Research page** — `/research` listing purchasable reports with free
+- [x] **C1. Research page** — `/research` listing purchasable reports with free
   public HTML summaries (visibility) and a gated full PDF. ✉️ (report list/prices)
 - [ ] **C2. Stripe Checkout** for report purchase. 🔑 (Stripe keys via env)
 - [ ] **C3. Gated download delivery** under `/downloads` with tokenized access

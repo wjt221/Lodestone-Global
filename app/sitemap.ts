@@ -10,6 +10,7 @@ const routes = [
   "/lodestone-capital",
   "/family-advisors",
   "/insights",
+  "/research",
   "/contact",
 ];
 

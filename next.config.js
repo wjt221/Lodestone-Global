@@ -49,9 +49,9 @@ const nextConfig = {
       { source: "/educate", destination: "/governance-advisory", permanent: true },
       { source: "/seminars", destination: "/governance-advisory", permanent: true },
       { source: "/qdd", destination: "/governance-advisory", permanent: true },
-      // Old Wix research/store pages -> Insights (until /research ships)
-      { source: "/reports", destination: "/insights", permanent: true },
-      { source: "/shop", destination: "/insights", permanent: true },
+      // Old Wix research/store pages -> Research
+      { source: "/reports", destination: "/research", permanent: true },
+      { source: "/shop", destination: "/research", permanent: true },
       // Old Wix entity pages -> new business pages
       { source: "/capital", destination: "/lodestone-capital", permanent: true },
       { source: "/lodestone-family-advisors", destination: "/family-advisors", permanent: true },

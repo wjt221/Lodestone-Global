@@ -256,9 +256,8 @@ export const researchCard: Insight = {
   date: null, // published annually; latest edition is 2026
   summary:
     "One of the most comprehensive studies of how private companies compensate their directors, with data by revenue, industry, company size, and structure, across the United States and internationally.",
-  href: "https://www.lodestoneglobal.com/shop",
+  href: "/research",
   cta: "View the research",
-  external: true,
 };
 
 /**
