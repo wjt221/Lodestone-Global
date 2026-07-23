@@ -63,6 +63,25 @@ export function breadcrumbJsonLd(items: { name: string; path: string }[]) {
   };
 }
 
+export function articleJsonLd(a: {
+  title: string;
+  summary: string;
+  date: string;
+  slug: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: a.title,
+    description: a.summary,
+    datePublished: a.date,
+    url: `${SITE_URL}/insights/${a.slug}`,
+    mainEntityOfPage: `${SITE_URL}/insights/${a.slug}`,
+    author: { "@id": `${SITE_URL}/#organization` },
+    publisher: { "@id": `${SITE_URL}/#organization` },
+  };
+}
+
 export function faqJsonLd(qas: { q: string; a: string }[]) {
   return {
     "@context": "https://schema.org",

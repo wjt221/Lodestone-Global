@@ -1,13 +1,12 @@
-import { insights, type Insight } from "@/lib/content";
+import Link from "next/link";
+import type { Insight } from "@/lib/content";
 
 function Card({ item }: { item: Insight }) {
   const external = item.external;
-  return (
-    <a
-      href={item.href}
-      {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-      className="group flex flex-col gap-4 border-t border-charcoal/15 pt-6 transition-colors"
-    >
+  const className =
+    "group flex flex-col gap-4 border-t border-charcoal/15 pt-6 transition-colors";
+  const inner = (
+    <>
       <div className="flex items-center justify-between gap-4">
         <span className="font-sans text-[0.72rem] uppercase tracking-[0.1em] text-brass">
           {item.category}
@@ -24,15 +23,25 @@ function Card({ item }: { item: Insight }) {
         {item.cta}
         {external ? " ↗" : " →"}
       </span>
+    </>
+  );
+
+  return external ? (
+    <a href={item.href} target="_blank" rel="noopener noreferrer" className={className}>
+      {inner}
     </a>
+  ) : (
+    <Link href={item.href} className={className}>
+      {inner}
+    </Link>
   );
 }
 
-export function InsightCards({ limit }: { limit?: number }) {
-  const items = typeof limit === "number" ? insights.slice(0, limit) : insights;
+export function InsightCards({ items, limit }: { items: Insight[]; limit?: number }) {
+  const shown = typeof limit === "number" ? items.slice(0, limit) : items;
   return (
     <div className="grid grid-cols-1 gap-x-10 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
-      {items.map((item) => (
+      {shown.map((item) => (
         <Card key={item.title} item={item} />
       ))}
     </div>

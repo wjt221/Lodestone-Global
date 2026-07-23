@@ -196,7 +196,16 @@ export const engagements: {
   situation: string;
   mandate: string;
   work: string;
+  named?: boolean;
 }[] = [
+  {
+    sector: "Family-owned enterprise",
+    situation:
+      "Diesco Ltd., a family-owned business, wanted its board to focus on a small number of clear strategic goals.",
+    mandate: "Build and facilitate a board organized around the company's strategy.",
+    work: "In the two years after implementing the board, the company's earnings nearly quadrupled, and the board was recognized as Private Company Advisory Board of the Year (as reported in Forbes).",
+    named: true,
+  },
   {
     sector: "Food and beverage",
     situation:
@@ -236,48 +245,21 @@ export interface Insight {
   external?: boolean;
 }
 
-export const insights: Insight[] = [
-  {
-    category: "Research",
-    title: "Private Company Board Compensation Survey",
-    date: null, // published annually; latest edition date NEEDS CONFIRMATION
-    summary:
-      "One of the most comprehensive studies of how private companies compensate their directors, with data by revenue, industry, company size, and structure, across the United States and internationally.",
-    href: "https://www.lodestoneglobal.com/reports",
-    cta: "View the research",
-    external: true,
-  },
-  {
-    category: "Governance",
-    title: "Building a board that fits the strategy",
-    date: null,
-    summary:
-      "How owners define a board's mandate, develop director requirements, and attract the right directors to advance their strategic objectives.",
-    href: "https://www.lodestoneglobal.com/build",
-    cta: "Read more",
-    external: true,
-  },
-  {
-    category: "Governance",
-    title: "Optimizing an existing board",
-    date: null,
-    summary:
-      "Practical steps for tuning an established board for performance, from composition and cadence to the work directors are actually asked to do.",
-    href: "https://www.lodestoneglobal.com/optimize",
-    cta: "Read more",
-    external: true,
-  },
-  {
-    category: "Director network",
-    title: "The Qualified Director Database",
-    date: null,
-    summary:
-      "A curated network of experienced directors, and a route for qualified executives to be considered for private-company boards.",
-    href: "https://www.lodestoneglobal.com/qdd",
-    cta: "Learn more",
-    external: true,
-  },
-];
+/**
+ * Featured research card for the board compensation survey. The full editions
+ * are sold on the current store; this points there until the /research page
+ * (scope item C1) is live.
+ */
+export const researchCard: Insight = {
+  category: "Research",
+  title: "Private Company Board Compensation Survey",
+  date: null, // published annually; latest edition is 2026
+  summary:
+    "One of the most comprehensive studies of how private companies compensate their directors, with data by revenue, industry, company size, and structure, across the United States and internationally.",
+  href: "https://www.lodestoneglobal.com/shop",
+  cta: "View the research",
+  external: true,
+};
 
 /**
  * Leadership. Only individuals with a confirmed name, role, and biography.

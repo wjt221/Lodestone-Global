@@ -9,6 +9,8 @@ import { CTASection } from "@/components/CTASection";
 import { photos } from "@/components/photos";
 import { JsonLd } from "@/components/JsonLd";
 import { breadcrumbJsonLd, surveyDatasetJsonLd } from "@/lib/seo";
+import { researchCard } from "@/lib/content";
+import { articleCards } from "@/lib/articles";
 
 export const metadata: Metadata = {
   title: "Insights",
@@ -51,7 +53,7 @@ export default function InsightsPage() {
         </section>
 
         <Section tone="light">
-          <InsightCards />
+          <InsightCards items={[researchCard, ...articleCards]} />
         </Section>
 
         <section className="relative overflow-hidden py-24 md:py-28">

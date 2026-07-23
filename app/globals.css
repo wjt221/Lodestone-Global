@@ -88,4 +88,48 @@
   .btn-text {
     @apply btn border-b border-current pb-0.5;
   }
+
+  /* Article body typography (no Tailwind typography plugin dependency). */
+  .article-prose {
+    @apply font-sans text-[1.02rem] leading-relaxed text-charcoal/80;
+  }
+  .article-prose > * + * {
+    margin-top: 1.35rem;
+  }
+  .article-prose h2 {
+    @apply font-serif text-2xl font-normal text-navy;
+    margin-top: 2.5rem;
+  }
+  .article-prose h3 {
+    @apply font-serif text-xl font-normal text-navy;
+    margin-top: 2rem;
+  }
+  .article-prose h4 {
+    @apply font-sans text-[0.95rem] font-semibold uppercase tracking-[0.06em] text-navy;
+  }
+  .article-prose a {
+    @apply border-b border-navy/30 text-navy transition-colors hover:border-navy;
+  }
+  .article-prose ul,
+  .article-prose ol {
+    @apply flex flex-col gap-3 pl-5;
+  }
+  .article-prose ul {
+    list-style: disc;
+  }
+  .article-prose ol {
+    list-style: decimal;
+  }
+  .article-prose li {
+    @apply pl-1;
+  }
+  .article-prose li > p {
+    margin: 0;
+  }
+  .article-prose hr {
+    @apply my-10 border-t border-charcoal/15;
+  }
+  .article-prose strong {
+    @apply font-semibold text-charcoal;
+  }
 }

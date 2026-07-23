@@ -18,9 +18,13 @@ import {
   howWeWork,
   engagements,
   sectorsServed,
+  researchCard,
 } from "@/lib/content";
 import { JsonLd } from "@/components/JsonLd";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
+import { articleCards } from "@/lib/articles";
+
+const homeInsights = [researchCard, ...articleCards];
 
 const whyPoints = [
   "Deep specialization in private-company governance since 2013",
@@ -182,7 +186,7 @@ export default function Home() {
             <SectionHeading
               kicker="Representative Engagements"
               title="What this looks like in practice."
-              description="Representative engagements. Certain details have been combined or anonymized to protect confidentiality."
+              description="Some examples are published; others are representative, with details combined or anonymized to protect confidentiality."
             />
             <div className="flex flex-col">
               {engagements.map((e, i) => (
@@ -254,7 +258,7 @@ export default function Home() {
                 View all insights
               </Link>
             </div>
-            <InsightCards limit={3} />
+            <InsightCards items={homeInsights} limit={3} />
           </div>
         </Section>
 
