@@ -3,19 +3,19 @@ const groups = [
     index: "01",
     name: "Strategy, Governance, and Execution",
     detail:
-      "Board formation and optimization, strategic advisory, and the operating discipline that turns a plan into results.",
+      "Board formation and optimization, board education, and the operating discipline that turns a plan into results — Lodestone Global's core practice since 2013.",
   },
   {
     index: "02",
     name: "Leadership, Boards, and Organizational Capability",
     detail:
-      "Executive search and organizational design, evaluated against where the business is going, not just where it is today.",
+      "Executive search through our Qualified Director Database, board compensation benchmarking, and organizational design evaluated against where the business is going, not just where it is today.",
   },
   {
     index: "03",
     name: "Capital Allocation, Transactions, and Investing",
     detail:
-      "M&A, capital allocation frameworks, and direct access to private equity, real estate, and co-investment.",
+      "M&A, capital allocation frameworks, and direct access to private equity, debt, and real estate through Lodestone Capital.",
   },
   {
     index: "04",

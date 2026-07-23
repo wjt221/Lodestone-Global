@@ -2,29 +2,32 @@ import { EditorialImage } from "./EditorialImage";
 import { photos } from "./photos";
 
 const facts = [
-  "[XX] years of investing, operating, and board experience",
-  "Private companies, family enterprises, boards, and capital allocation",
-  "Industrial, manufacturing, and founder-led operating businesses",
+  "Advising private companies since 2013",
+  "1,000+ boards assembled, consulted with, or served",
+  "Governance, capital, and family office expertise under one roof",
 ];
 
 const engagements = [
   {
-    stage: "Govern → Scale",
-    situation: "A founder-led industrial services company approaching $50M in revenue",
+    stage: "Govern",
+    situation: "Martin Preferred Foods",
     engagement:
-      "Formed an independent board, placed a lead operating partner, and rebuilt the executive team ahead of a planned recapitalization.",
+      "After Lodestone Global helped install its board, the company quadrupled EBITDA, attracted Goldman Sachs' first investment in the Caribbean, won “Advisory Board of the Year” from Directors & Boards, and secured supply contracts with Costco and Walmart.",
+    real: true,
   },
   {
     stage: "Compound",
     situation: "A third-generation manufacturing family with concentrated operating wealth",
     engagement:
       "Structured a co-investment strategy and diversified into real estate and private equity alongside the operating business.",
+    real: false,
   },
   {
     stage: "Steward",
     situation: "A Principal eighteen months from a majority sale",
     engagement:
       "Coordinated trust and estate planning, tax structuring, and a next-generation governance framework before closing.",
+    real: false,
   },
 ];
 
@@ -54,7 +57,8 @@ export function EvidenceSection() {
             </div>
           ))}
           <p className="pt-2 font-sans text-[0.75rem] text-charcoal/40">
-            Representative engagements. Details are composited to protect Principal confidentiality.
+            Martin Preferred Foods is a published Lodestone Global case study. The Compound and Steward
+            scenarios above are composited to protect Principal confidentiality.
           </p>
         </div>
       </div>

@@ -17,9 +17,9 @@ const capabilities: Record<string, string[]> = {
     "Organizational design",
     "M&A",
     "Capital allocation",
-    "AI intelligence layer",
+    "Peer network",
   ],
-  compound: ["Private equity", "Real estate", "Tactical opportunities", "Founders Fund", "Co-investments"],
+  compound: ["Private equity", "Debt investments", "Real estate", "Tactical opportunities", "Co-investments"],
   steward: [
     "Strategic wealth advisory",
     "Investment oversight",

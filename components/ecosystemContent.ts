@@ -6,11 +6,12 @@ export const ecosystemContent: Record<
 > = {
   govern: {
     intro:
-      "Lodestone Global builds the governance foundation a growing company needs before it can scale responsibly: an independent board, the right executive talent, and a strategic advisory relationship that outlasts any single decision.",
+      "Founded in 2013, Lodestone Global has assembled, consulted with, or served on more than 1,000 boards. It is the authority on private company governance: building, optimizing, compensating, and educating the boards that mid-size and family-run companies actually need.",
     capabilities: [
       "Board formation",
       "Board optimization",
       "Executive search",
+      "Qualified Director Database",
       "Board compensation",
       "Strategic advisory",
       "Board education",
@@ -18,7 +19,7 @@ export const ecosystemContent: Record<
   },
   scale: {
     intro:
-      "E3 Scale Network embeds senior operating partners inside the business to build the execution systems, organizational design, and capital discipline that let a company grow beyond what its founder can run alone.",
+      "E3 Scale Network is a curated community for $20M+ revenue companies committed to scaling with clarity, discipline, and speed. Each company is matched with a dedicated Operating Partner — a seasoned former executive, investor, and coach who acts as the quarterback of the journey, built around Envision, Execute, Expand.",
     capabilities: [
       "Lead operating partner",
       "Delivery operating partner",
@@ -29,15 +30,15 @@ export const ecosystemContent: Record<
       "Capital allocation",
       "M&A",
       "Culture",
-      "AI intelligence layer",
       "Peer network",
     ],
   },
   compound: {
     intro:
-      "Lodestone Capital deploys capital with the same discipline a Principal expects of their own business, across private equity, real estate, and direct co-investment.",
+      "Lodestone Capital is the investment arm of Lodestone Global, investing alongside family offices and board clients in private equity, debt, and real estate. Direct access to board and executive talent gives it an information advantage traditional private equity doesn't have — the ability to underwrite risk more precisely and move faster once it identifies value.",
     capabilities: [
       "Private equity",
+      "Debt investments",
       "Real estate",
       "Tactical opportunities",
       "Founders Fund",
@@ -47,7 +48,7 @@ export const ecosystemContent: Record<
   },
   steward: {
     intro:
-      "Lodestone Family Advisors operates as an independent RIA multi-family office, coordinating the wealth, governance, and generational planning that let a family steward what it has built.",
+      "Lodestone Family Advisors guides families through generations of prosperity: CIO-level investment management, trust and estate planning, and family governance built around a family's values, not just its balance sheet.",
     capabilities: [
       "Strategic wealth advisory",
       "Investment strategy and oversight",
