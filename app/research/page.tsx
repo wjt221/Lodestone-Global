@@ -6,6 +6,7 @@ import { Container } from "@/components/Container";
 import { SectionHeading } from "@/components/SectionHeading";
 import { CTASection } from "@/components/CTASection";
 import { JsonLd } from "@/components/JsonLd";
+import { BuyReportButton } from "@/components/BuyReportButton";
 import { breadcrumbJsonLd, surveyDatasetJsonLd } from "@/lib/seo";
 import { reportEditions, latestEdition, surveyHighlights } from "@/lib/reports";
 
@@ -101,14 +102,10 @@ export default function ResearchPage() {
               </div>
               <div className="flex items-center gap-6">
                 <span className="font-serif text-xl text-navy">{latestEdition.price}</span>
-                <a
-                  href={latestEdition.purchaseUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-primary"
-                >
-                  Purchase
-                </a>
+                <BuyReportButton
+                  slug={latestEdition.slug}
+                  fallbackUrl={latestEdition.purchaseUrl}
+                />
               </div>
             </div>
 

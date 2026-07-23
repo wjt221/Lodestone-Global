@@ -9,6 +9,8 @@ const STORE = "https://www.lodestoneglobal.com/product-page";
 export interface ReportEdition {
   year: string;
   price: string;
+  /** Price in the smallest currency unit (cents), for Stripe checkout. */
+  amountCents: number;
   slug: string;
   /** Store product page (interim purchase route while on Wix). */
   purchaseUrl: string;
@@ -24,9 +26,11 @@ function edition(
   slug: string,
   stripePriceId?: string,
 ): ReportEdition {
+  const amountCents = Number(price.replace(/[^0-9]/g, "")) * 100;
   return {
     year,
     price,
+    amountCents,
     slug,
     purchaseUrl: `${STORE}/${slug}`,
     stripePriceId,
