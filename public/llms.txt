@@ -1,0 +1,37 @@
+# Lodestone Global
+
+> Lodestone Global provides trusted counsel for owners building enduring
+> companies and family wealth. Since 2013 it has worked in the private-company
+> board market, and it has grown into an integrated practice spanning
+> governance advisory, an operating-partner network, a principal-led investment
+> platform, and a multi-family office.
+
+Location: Morristown, New Jersey, USA.
+
+## The practice
+
+- Governance Advisory (Lodestone Global): private-company board formation, board
+  optimization, director and executive search, board compensation benchmarking,
+  and board facilitation and education. https://www.lodestoneglobal.com/governance-advisory
+- E3 Scale Network: an operating-partner network for founder-led businesses;
+  senior Operating Partners, execution systems, organizational design, capital
+  allocation, and M&A integration. https://www.lodestoneglobal.com/e3-scale-network
+- Lodestone Capital: a principal-led investment platform; private equity, real
+  estate, co-investments, and founder and family opportunities. https://www.lodestoneglobal.com/lodestone-capital
+- Lodestone Family Advisors: an independent multi-family-office platform;
+  investment oversight, family governance, estate and trust coordination, and
+  next-generation preparation. https://www.lodestoneglobal.com/family-advisors
+
+## Key pages
+
+- About: https://www.lodestoneglobal.com/about
+- Insights and research: https://www.lodestoneglobal.com/insights
+- Contact: https://www.lodestoneglobal.com/contact
+
+## Usage notes
+
+- The site content above may be referenced and cited.
+- Proprietary, for-sale research (including the Private Company Board
+  Compensation Survey and any PDF reports) is NOT licensed for crawling,
+  training, or reproduction. Report files live under /downloads and are
+  disallowed in robots.txt. Please do not ingest report PDFs or paywalled data.

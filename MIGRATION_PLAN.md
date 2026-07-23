@@ -155,13 +155,17 @@ What does **not** move cleanly (plan manually):
 
 ## 7. Email (unaffected by the site move, if done carefully)
 
+- Email is **Google Workspace**, managed in the Google Admin console —
+  independent of Wix. Confirmed. Leaving Wix has **no effect** on mailboxes; the
+  Workspace subscription and admin stay exactly as they are.
 - Mailboxes (`@lodestoneglobal.com`) are controlled by **DNS MX records**, not by
-  the website platform. Moving the site does not require changing email.
-- Confirm where mailboxes are hosted. Wix resells **Google Workspace**; if email
-  was bought "through Wix," it's Google Workspace and can be kept — you move the
-  billing/admin, not the mailboxes.
-- During cutover, change **only** the web records Vercel specifies. Leave `MX`,
-  SPF, DKIM, and DMARC `TXT` records in place so mail keeps flowing.
+  the website platform, so moving the site does not touch email.
+- During cutover, change **only** the web records Vercel specifies (apex `A`,
+  `www` `CNAME`). Leave the Google Workspace `MX` records and the SPF/DKIM/DMARC
+  `TXT` records untouched so mail keeps flowing.
+- If DNS is currently managed inside Wix, move DNS management to your registrar
+  or Cloudflare first (copying the existing Workspace MX/SPF/DKIM/DMARC records
+  exactly), then repoint only the web records. This keeps email uninterrupted.
 - Marketing/automated email (currently Wix) → HubSpot/Beehiiv/Mailchimp. That's a
   tool switch, not an address change.
 
@@ -186,17 +190,30 @@ discoverability, performance, and full control — not dramatic dollar savings.
 
 ---
 
-## 9. Decisions to confirm before we start
+## 9. Decisions — confirmed
 
-1. **Members/subscriptions:** how many active members and paying subscribers are
-   there today? (Determines whether a clean cutover is feasible or whether Wix
-   Studio is the safer path.)
-2. **Payments:** merchant of record (Lemon Squeezy/Paddle, simplest for tax) vs
-   Stripe (lower fees, you own tax)?
-3. **Content editing:** non-dev CMS (Sanity) vs dev-edited MDX?
-4. **AI crawlers:** confirm you want to *allow* GPTBot/ClaudeBot/PerplexityBot/
-   Google-Extended so the firm can be cited in AI answers.
-5. **On-site AI assistant:** in scope for a later phase, or not now?
+1. **Members/subscriptions:** no active members or paying subscribers to
+   preserve → a clean cutover is feasible; no member/subscription migration
+   needed.
+2. **Payments:** **Stripe** (already in use). Use Stripe Checkout for report
+   sales and Stripe Billing if subscriptions are added later; owner handles tax
+   (revisit a merchant of record only if selling into the EU/UK at volume).
+3. **Content editing:** content stays **in-repo** (`lib/content.ts` + MDX) and
+   is edited on request. All copy, capabilities, insights, and leadership are in
+   editable source files — nothing is locked in a proprietary editor. A non-dev
+   CMS (Sanity) can be layered on later if self-serve editing is wanted.
+4. **AI crawlers:** **allowed** for citation (GPTBot, ClaudeBot, PerplexityBot,
+   Google-Extended, etc.), **but** proprietary for-sale research is protected —
+   `robots.txt` disallows `/downloads/` and all `*.pdf`, and `llms.txt` states
+   the report data is not licensed for crawling/training. Implemented now in
+   `app/robots.ts` and `public/llms.txt`.
+5. **On-site AI assistant:** deferred to a later phase.
+
+### Implication for report delivery
+Because AI crawlers are allowed site-wide except the reports, keep every sold
+PDF under `/downloads/` (or behind auth) so the disallow rules cover it. Publish
+free-to-read HTML *summaries* of the research for SEO/LLM visibility, with the
+full PDF gated — visibility without giving away the proprietary data.
 
 ---
 
