@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Section } from "@/components/Section";
@@ -91,21 +92,32 @@ export default function ResearchPage() {
             />
 
             {/* Featured latest */}
-            <div className="flex flex-col gap-5 border-y border-charcoal/20 py-8 sm:flex-row sm:items-center sm:justify-between">
-              <div className="flex flex-col gap-1">
-                <span className="font-sans text-[0.72rem] uppercase tracking-widest2 text-brass">
-                  Current edition
-                </span>
-                <h3 className="font-serif text-2xl font-normal text-navy">
-                  {latestEdition.year} Private Company Board Compensation Survey
-                </h3>
-              </div>
-              <div className="flex items-center gap-6">
-                <span className="font-serif text-xl text-navy">{latestEdition.price}</span>
-                <BuyReportButton
-                  slug={latestEdition.slug}
-                  fallbackUrl={latestEdition.purchaseUrl}
+            <div className="grid grid-cols-1 gap-8 border-y border-charcoal/20 py-8 sm:grid-cols-12 sm:items-center">
+              <div className="sm:col-span-4">
+                <Image
+                  src={latestEdition.coverImage.url}
+                  alt={`${latestEdition.year} Private Company Board Compensation Survey cover`}
+                  width={latestEdition.coverImage.width}
+                  height={latestEdition.coverImage.height}
+                  className="w-full border border-charcoal/10"
                 />
+              </div>
+              <div className="flex flex-col gap-5 sm:col-span-8">
+                <div className="flex flex-col gap-1">
+                  <span className="font-sans text-[0.72rem] uppercase tracking-widest2 text-brass">
+                    Current edition
+                  </span>
+                  <h3 className="font-serif text-2xl font-normal text-navy">
+                    {latestEdition.year} Private Company Board Compensation Survey
+                  </h3>
+                </div>
+                <div className="flex items-center gap-6">
+                  <span className="font-serif text-xl text-navy">{latestEdition.price}</span>
+                  <BuyReportButton
+                    slug={latestEdition.slug}
+                    fallbackUrl={latestEdition.purchaseUrl}
+                  />
+                </div>
               </div>
             </div>
 
@@ -120,7 +132,16 @@ export default function ResearchPage() {
                     key={e.year}
                     className="flex items-center justify-between gap-4 border-t border-charcoal/15 py-4 last:border-b"
                   >
-                    <span className="font-serif text-lg font-normal text-navy">{e.year}</span>
+                    <div className="flex items-center gap-4">
+                      <Image
+                        src={e.coverImage.url}
+                        alt={`${e.year} Private Company Board Compensation Survey cover`}
+                        width={e.coverImage.width}
+                        height={e.coverImage.height}
+                        className="h-14 w-14 border border-charcoal/10 object-cover"
+                      />
+                      <span className="font-serif text-lg font-normal text-navy">{e.year}</span>
+                    </div>
                     <div className="flex items-center gap-6">
                       <span className="font-sans text-[0.9rem] text-charcoal/60">{e.price}</span>
                       <a

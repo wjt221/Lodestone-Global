@@ -107,3 +107,11 @@ be re-verified against the live source before launch.
       Lodestone Capital logo files exist in `/public/logo`. E3 and Family
       Advisors currently render as wordmarks. Supply approved logo files to use
       the real marks.
+- [ ] **Report cover images hosted on Wix's CDN.** `/research` shows the real
+      cover art for all 10 survey editions, pulled from the Wix Stores V1
+      catalog (`lib/reports.ts`), but the images are hotlinked from
+      `static.wixstatic.com` rather than hosted in this repo — the build
+      environment's network policy blocked downloading the binaries. Download
+      the 10 files and move them into `/public/images/reports/` (update
+      `coverImage.url` to local paths) before Wix is decommissioned (Epic F4),
+      since the CDN dependency should not outlive the Wix account.
