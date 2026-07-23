@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Container } from "./Container";
 import { Divider } from "./Divider";
 
@@ -65,8 +66,14 @@ export function Footer() {
           </a>
         </div>
 
-        <div className="mt-16 flex flex-col items-center gap-3 border-t border-ivory/10 pt-8 text-center sm:flex-row sm:justify-between sm:text-left">
-          <span className="font-serif text-[1rem] tracking-[0.02em] text-ivory/75">Lodestone</span>
+        <div className="mt-16 flex flex-col items-center gap-4 border-t border-ivory/10 pt-8 text-center sm:flex-row sm:justify-between sm:text-left">
+          <Image
+            src="/logo/lodestone-global-horizontal-white.png"
+            alt="Lodestone Global"
+            width={320}
+            height={107}
+            className="h-6 w-auto opacity-90"
+          />
           <span className="font-sans text-[0.72rem] uppercase tracking-[0.1em] text-ivory/35">
             &copy; {new Date().getFullYear()} Lodestone Global. All rights reserved.
           </span>

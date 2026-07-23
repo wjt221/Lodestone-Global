@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Container } from "./Container";
 
 const links = [
@@ -11,8 +12,15 @@ export function Header() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-ivory/10 bg-navy/97">
       <Container className="flex h-[4.25rem] items-center justify-between">
-        <a href="/#top" className="font-serif text-[1.05rem] tracking-[0.02em] text-ivory">
-          Lodestone Global
+        <a href="/#top" className="flex items-center">
+          <Image
+            src="/logo/lodestone-global-horizontal-white.png"
+            alt="Lodestone Global"
+            width={320}
+            height={107}
+            priority
+            className="h-8 w-auto"
+          />
         </a>
         <nav aria-label="Primary" className="hidden items-center gap-8 lg:flex">
           {links.map((link) => (
