@@ -118,6 +118,7 @@ export const primaryNav = [
   { href: "/lodestone-capital", label: "Lodestone Capital" },
   { href: "/family-advisors", label: "Family Advisors" },
   { href: "/insights", label: "Insights" },
+  { href: "/research", label: "Research" },
   { href: "/contact", label: "Contact" },
 ];
 
