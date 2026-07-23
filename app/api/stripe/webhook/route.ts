@@ -38,7 +38,7 @@ export async function POST(req: Request) {
 
     if (edition && email) {
       const base = process.env.NEXT_PUBLIC_SITE_URL || SITE_URL;
-      const token = createDownloadToken(edition.slug);
+      const token = createDownloadToken(edition.slug, "paid");
       const url = `${base}/api/download?token=${encodeURIComponent(token)}`;
       try {
         await sendReportDownload(email, edition.year, url);

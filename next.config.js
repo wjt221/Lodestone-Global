@@ -56,6 +56,18 @@ const nextConfig = {
       // Old Wix research/store pages -> Research
       { source: "/reports", destination: "/research", permanent: true },
       { source: "/shop", destination: "/research", permanent: true },
+      // Old Wix store product pages -> new research edition pages
+      // (the current edition is shown inline on /research itself)
+      { source: "/product-page/2026-private-company-board-compensation-survey", destination: "/research", permanent: true },
+      { source: "/product-page/2025-private-company-board-compensation-survey", destination: "/research/2025-private-company-board-compensation-survey", permanent: true },
+      { source: "/product-page/2024-private-company-board-compensation-survey", destination: "/research/2024-private-company-board-compensation-survey", permanent: true },
+      { source: "/product-page/2023-private-company-board-compensation-survey", destination: "/research/2023-private-company-board-compensation-survey", permanent: true },
+      { source: "/product-page/2022-private-company-board-compensation-survey", destination: "/research/2022-private-company-board-compensation-survey", permanent: true },
+      { source: "/product-page/2021-private-company-board-compensation-survey", destination: "/research/2021-private-company-board-compensation-survey", permanent: true },
+      { source: "/product-page/2020-private-company-board-compensation-survey", destination: "/research/2020-private-company-board-compensation-survey", permanent: true },
+      { source: "/product-page/2019-private-company-board-compensation-survey", destination: "/research/2019-private-company-board-compensation-survey", permanent: true },
+      { source: "/product-page/2017-2018-private-company-board-compensation-survey", destination: "/research/2017-2018-private-company-board-compensation-survey", permanent: true },
+      { source: "/product-page/2016-private-company-board-compensation-survey", destination: "/research/2016-private-company-board-compensation-survey", permanent: true },
       // Old Wix entity pages -> new business pages
       { source: "/capital", destination: "/lodestone-capital", permanent: true },
       { source: "/lodestone-family-advisors", destination: "/family-advisors", permanent: true },

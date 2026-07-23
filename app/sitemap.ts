@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/site";
 import { articles } from "@/lib/articles";
+import { reportEditions } from "@/lib/reports";
 
 const routes = [
   "",
@@ -30,5 +31,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...staticEntries, ...articleEntries];
+  const reportEntries = reportEditions.slice(1).map((e) => ({
+    url: `${SITE_URL}/research/${e.slug}`,
+    changeFrequency: "yearly" as const,
+    priority: 0.5,
+  }));
+
+  return [...staticEntries, ...articleEntries, ...reportEntries];
 }

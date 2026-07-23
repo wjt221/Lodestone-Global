@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import Image from "next/image";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -8,8 +9,9 @@ import { SectionHeading } from "@/components/SectionHeading";
 import { CTASection } from "@/components/CTASection";
 import { JsonLd } from "@/components/JsonLd";
 import { BuyReportButton } from "@/components/BuyReportButton";
+import { FreeSampleForm } from "@/components/FreeSampleForm";
 import { breadcrumbJsonLd, surveyDatasetJsonLd } from "@/lib/seo";
-import { reportEditions, latestEdition, surveyHighlights } from "@/lib/reports";
+import { reportEditions, latestEdition, licenseNote, surveyHighlights } from "@/lib/reports";
 
 export const metadata: Metadata = {
   title: "Board Compensation Research",
@@ -105,19 +107,24 @@ export default function ResearchPage() {
               <div className="flex flex-col gap-5 sm:col-span-8">
                 <div className="flex flex-col gap-1">
                   <span className="font-sans text-[0.72rem] uppercase tracking-widest2 text-brass">
-                    Current edition
+                    Current edition · {latestEdition.editionOrdinal} annual
                   </span>
                   <h3 className="font-serif text-2xl font-normal text-navy">
                     {latestEdition.year} Private Company Board Compensation Survey
                   </h3>
                 </div>
-                <div className="flex items-center gap-6">
+                <p className="max-w-xl font-sans text-[0.95rem] leading-relaxed text-charcoal/70">
+                  {latestEdition.description}
+                </p>
+                <div className="flex flex-wrap items-center gap-6">
                   <span className="font-serif text-xl text-navy">{latestEdition.price}</span>
                   <BuyReportButton
                     slug={latestEdition.slug}
                     fallbackUrl={latestEdition.purchaseUrl}
                   />
+                  <FreeSampleForm slug={latestEdition.slug} year={latestEdition.year} />
                 </div>
+                <p className="font-sans text-[0.8rem] leading-relaxed text-charcoal/50">{licenseNote}</p>
               </div>
             </div>
 
@@ -132,7 +139,7 @@ export default function ResearchPage() {
                     key={e.year}
                     className="flex items-center justify-between gap-4 border-t border-charcoal/15 py-4 last:border-b"
                   >
-                    <div className="flex items-center gap-4">
+                    <Link href={`/research/${e.slug}`} className="flex items-center gap-4 hover:opacity-80">
                       <Image
                         src={e.coverImage.url}
                         alt={`${e.year} Private Company Board Compensation Survey cover`}
@@ -141,17 +148,15 @@ export default function ResearchPage() {
                         className="h-14 w-14 border border-charcoal/10 object-cover"
                       />
                       <span className="font-serif text-lg font-normal text-navy">{e.year}</span>
-                    </div>
+                    </Link>
                     <div className="flex items-center gap-6">
                       <span className="font-sans text-[0.9rem] text-charcoal/60">{e.price}</span>
-                      <a
-                        href={e.purchaseUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                      <Link
+                        href={`/research/${e.slug}`}
                         className="font-sans text-[0.78rem] uppercase tracking-[0.08em] text-navy/70 hover:text-brass"
                       >
-                        Purchase ↗
-                      </a>
+                        View report →
+                      </Link>
                     </div>
                   </li>
                 ))}

@@ -8,7 +8,9 @@ configured and tested.
 
 1. **Free version (gated).** Visitor enters name + email, we capture the lead
    (email to Lodestone) and deliver the free PDF (emailed link). Files served
-   from private storage.
+   from private storage. **Built** — `/api/free-report` (see `FreeSampleForm`
+   on `/research` and each `/research/<slug>` page); needs `RESEND_API_KEY` and
+   `DOWNLOAD_SIGNING_SECRET` to go live, and the free PDF uploaded per edition.
 2. **Paid full report.** Stripe Checkout for the edition → on payment, a webhook
    emails the buyer a private, expiring download link, and the PDF is served
    from private storage behind a signed token. Uses the existing Lodestone
@@ -24,9 +26,11 @@ configured and tested.
   streams them only behind a valid signed download token or a completed purchase.
 - **Handoff: Google Drive is fine** as the place to drop the PDFs. Share the
   folder and they can be moved into Blob. (Drive is not used as the live backend.)
-- Files are referenced by `fileKey` in `lib/reports.ts` (e.g.
-  `reports/2026-private-company-board-compensation-survey.pdf`). Both the free
-  and paid PDFs per edition are needed.
+- Files are referenced by `fileKey` (paid, e.g.
+  `reports/2026-private-company-board-compensation-survey.pdf`) and `freeFileKey`
+  (free summary, e.g. `reports/2026-private-company-board-compensation-survey-summary.pdf`)
+  in `lib/reports.ts`. Both the free and paid PDFs per edition are needed —
+  upload each with `scripts/upload-report.mjs`.
 
 ## What to provision (env vars in Vercel)
 

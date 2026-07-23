@@ -25,15 +25,17 @@ export async function GET(req: Request) {
     return NextResponse.json({ error: "Report not found." }, { status: 404 });
   }
 
-  const result = await get(edition.fileKey, { access: "private" });
+  const fileKey = payload.kind === "free" ? edition.freeFileKey : edition.fileKey;
+  const result = await get(fileKey, { access: "private" });
   if (!result || result.statusCode !== 200 || !result.stream) {
     return NextResponse.json({ error: "Report file is unavailable." }, { status: 404 });
   }
 
+  const suffix = payload.kind === "free" ? "-summary" : "";
   return new Response(result.stream, {
     headers: {
       "Content-Type": "application/pdf",
-      "Content-Disposition": `attachment; filename="${edition.year}-private-company-board-compensation-survey.pdf"`,
+      "Content-Disposition": `attachment; filename="${edition.slug}${suffix}.pdf"`,
       "Cache-Control": "private, no-store",
     },
   });

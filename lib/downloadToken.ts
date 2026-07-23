@@ -2,8 +2,12 @@ import crypto from "crypto";
 
 /**
  * Signed, expiring download tokens for gated report delivery. HMAC-SHA256 over
- * "<slug>.<exp>" with DOWNLOAD_SIGNING_SECRET. No dependency, server-only.
+ * "<slug>.<kind>.<exp>" with DOWNLOAD_SIGNING_SECRET. No dependency, server-only.
+ * `kind` distinguishes the free gated summary from the full paid report so one
+ * token mechanism protects both files.
  */
+
+export type DownloadKind = "free" | "paid";
 
 function b64url(input: Buffer | string): string {
   return Buffer.from(input)
@@ -17,15 +21,19 @@ function sign(data: string, secret: string): string {
   return b64url(crypto.createHmac("sha256", secret).update(data).digest());
 }
 
-export function createDownloadToken(slug: string, ttlSeconds = 60 * 60 * 24 * 7): string {
+export function createDownloadToken(
+  slug: string,
+  kind: DownloadKind = "paid",
+  ttlSeconds = 60 * 60 * 24 * 7,
+): string {
   const secret = process.env.DOWNLOAD_SIGNING_SECRET;
   if (!secret) throw new Error("DOWNLOAD_SIGNING_SECRET is not set");
   const exp = Math.floor(Date.now() / 1000) + ttlSeconds;
-  const data = `${slug}.${exp}`;
+  const data = `${slug}.${kind}.${exp}`;
   return `${b64url(data)}.${sign(data, secret)}`;
 }
 
-export function verifyDownloadToken(token: string): { slug: string } | null {
+export function verifyDownloadToken(token: string): { slug: string; kind: DownloadKind } | null {
   const secret = process.env.DOWNLOAD_SIGNING_SECRET;
   if (!secret || !token) return null;
   const parts = token.split(".");
@@ -41,8 +49,10 @@ export function verifyDownloadToken(token: string): { slug: string } | null {
   const a = Buffer.from(providedSig);
   const b = Buffer.from(expectedSig);
   if (a.length !== b.length || !crypto.timingSafeEqual(a, b)) return null;
-  const [slug, expStr] = data.split(".");
+  const [slug, kind, expStr] = data.split(".");
   const exp = Number(expStr);
-  if (!slug || !exp || exp < Math.floor(Date.now() / 1000)) return null;
-  return { slug };
+  if (!slug || (kind !== "free" && kind !== "paid") || !exp || exp < Math.floor(Date.now() / 1000)) {
+    return null;
+  }
+  return { slug, kind };
 }

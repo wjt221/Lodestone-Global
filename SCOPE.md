@@ -40,11 +40,21 @@ Done: A1, B1, B2, A2, B3, C1. Remaining items below are blocked on credentials
 
 ## Epic C — Reports commerce + gated downloads
 - [x] **C1. Research page** — `/research` listing purchasable reports with free
-  public HTML summaries (visibility) and a gated full PDF. ✉️ (report list/prices)
-- [ ] **C2. Stripe Checkout** for report purchase. 🔑 (Stripe keys via env)
-- [ ] **C3. Gated download delivery** under `/downloads` with tokenized access
-  after purchase (Vercel Blob / Cloudflare R2). 🔑
-- [ ] **C4. Fulfillment** — Stripe webhook → email the download link (Resend). 🔑
+  public HTML summaries (visibility) and a gated full PDF. Each prior edition
+  also has its own detail page (`/research/<slug>`) with full description,
+  license terms, and (for 2019) the real table of contents; real cover art
+  pulled from the Wix catalog. ✉️ (report list/prices)
+- [ ] **C2. Stripe Checkout** for report purchase. Built (`/api/checkout`,
+  `/api/stripe/webhook`, `/api/download`); needs Stripe keys + webhook + PDF
+  uploads to go live. 🔑 (Stripe keys via env)
+- [x] **C3. Gated download delivery** under `/api/download` with tokenized
+  access (Vercel Blob), shared by both the free and paid flows via a
+  `kind: free | paid` signed token.
+- [x] **C4. Fulfillment** — Stripe webhook → email the download link (Resend);
+  plus the free-sample flow (`/api/free-report`, `FreeSampleForm`) — name +
+  email, no payment, emails the free summary PDF and notifies the team. 🔑
+  (Resend/Blob/signing-secret keys to go live; free + paid PDFs per edition
+  still need uploading)
 
 ## Epic D — Forms & email
 - [ ] **D1. Wire the contact form** to a real endpoint (serverless route +
