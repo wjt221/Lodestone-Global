@@ -102,7 +102,7 @@ export default function ResearchPage() {
               <div className="flex items-center gap-6">
                 <span className="font-serif text-xl text-navy">{latestEdition.price}</span>
                 <a
-                  href={latestEdition.purchaseUrl}
+                  href={latestEdition.checkoutUrl ?? latestEdition.purchaseUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-primary"

@@ -10,15 +10,29 @@ export interface ReportEdition {
   year: string;
   price: string;
   slug: string;
+  /** Store product page (interim purchase route). */
   purchaseUrl: string;
+  /** Stripe Payment Link, when set, takes precedence over purchaseUrl. */
+  checkoutUrl?: string;
 }
 
-function edition(year: string, price: string, slug: string): ReportEdition {
-  return { year, price, slug, purchaseUrl: `${STORE}/${slug}` };
+function edition(
+  year: string,
+  price: string,
+  slug: string,
+  checkoutUrl?: string,
+): ReportEdition {
+  return { year, price, slug, purchaseUrl: `${STORE}/${slug}`, checkoutUrl };
 }
 
 export const reportEditions: ReportEdition[] = [
-  edition("2026", "$3,000", "2026-private-company-board-compensation-survey"),
+  edition(
+    "2026",
+    "$3,000",
+    "2026-private-company-board-compensation-survey",
+    // Live Stripe Payment Link for the 2026 full report ($3,000).
+    "https://buy.stripe.com/aFa14o3Mc7DV6aV2IE5Rm00",
+  ),
   edition("2025", "$2,750", "2025-private-company-board-compensation-survey"),
   edition("2024", "$2,000", "2024-private-company-board-compensation-survey"),
   edition("2023", "$1,750", "2023-private-company-board-compensation-survey"),
