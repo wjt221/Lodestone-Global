@@ -44,7 +44,7 @@ export function personJsonLd(leader: (typeof leadership)[number]) {
     "@type": "Person",
     name: leader.name,
     jobTitle: leader.role,
-    description: leader.bio,
+    ...(leader.bio ? { description: leader.bio } : {}),
     worksFor: { "@id": `${SITE_URL}/#organization` },
     ...(leader.linkedin ? { sameAs: [leader.linkedin] } : {}),
   };

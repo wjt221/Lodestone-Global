@@ -206,7 +206,7 @@ export function ContactForm() {
 
       <div className="flex flex-col gap-4 pt-2 sm:flex-row sm:items-center">
         <button type="submit" disabled={status === "submitting"} className="btn-primary disabled:opacity-60">
-          {status === "submitting" ? "Sending" : "Start a Conversation"}
+          {status === "submitting" ? "Sending" : "Schedule a Conversation"}
         </button>
         <p className="font-sans text-[0.8rem] leading-relaxed text-charcoal/50">
           Every inquiry is treated as confidential.

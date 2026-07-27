@@ -3,11 +3,19 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Container } from "./Container";
 import { primaryNav, CTA_PRIMARY } from "@/lib/content";
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+
+  function isActive(href: string) {
+    const base = href.split("#")[0];
+    if (base === "/") return pathname === "/";
+    return pathname === base || pathname.startsWith(`${base}/`);
+  }
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -39,15 +47,21 @@ export function Header() {
         </Link>
 
         <nav aria-label="Primary" className="hidden items-center gap-6 xl:flex">
-          {primaryNav.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="font-sans text-[0.78rem] uppercase tracking-[0.08em] text-ivory/70 transition-colors duration-200 hover:text-brass-light"
-            >
-              {link.label}
-            </Link>
-          ))}
+          {primaryNav.map((link) => {
+            const active = isActive(link.href);
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                aria-current={active ? "page" : undefined}
+                className={`font-sans text-[0.78rem] uppercase tracking-[0.08em] transition-colors duration-200 hover:text-brass-light ${
+                  active ? "text-brass-light" : "text-ivory/70"
+                }`}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
         </nav>
 
         <div className="flex items-center gap-3">
@@ -90,16 +104,22 @@ export function Header() {
         >
           <Container className="flex flex-col py-6">
             <nav aria-label="Mobile" className="flex flex-col">
-              {primaryNav.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setOpen(false)}
-                  className="border-b border-ivory/10 py-4 font-sans text-[0.95rem] uppercase tracking-[0.06em] text-ivory/80 transition-colors hover:text-brass-light"
-                >
-                  {link.label}
-                </Link>
-              ))}
+              {primaryNav.map((link) => {
+                const active = isActive(link.href);
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setOpen(false)}
+                    aria-current={active ? "page" : undefined}
+                    className={`border-b border-ivory/10 py-4 font-sans text-[0.95rem] uppercase tracking-[0.06em] transition-colors hover:text-brass-light ${
+                      active ? "text-brass-light" : "text-ivory/80"
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                );
+              })}
             </nav>
             <Link
               href={CTA_PRIMARY.href}

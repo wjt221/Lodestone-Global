@@ -5,9 +5,11 @@ import { Section } from "./Section";
 import { Container } from "./Container";
 import { BackgroundPhoto } from "./BackgroundPhoto";
 import { CTASection } from "./CTASection";
+import { InsightCards } from "./InsightCards";
 import { photos } from "./photos";
 import { JsonLd } from "./JsonLd";
 import { breadcrumbJsonLd, faqJsonLd } from "@/lib/seo";
+import { articleCards } from "@/lib/articles";
 import {
   businesses,
   businessDetail,
@@ -20,6 +22,17 @@ export function BusinessPage({ id }: { id: StageId }) {
   const detail = businessDetail[id];
   const others = businesses.filter((b) => b.id !== id);
   const photo = photos[id];
+  const relatedInsights = (detail.relatedArticleSlugs ?? [])
+    .map((slug) => articleCards.find((a) => a.href === `/insights/${slug}`))
+    .filter((a): a is NonNullable<typeof a> => Boolean(a));
+
+  // Alternate the ecosystem band against whatever section precedes it, so two
+  // same-tone bands never sit next to each other regardless of which optional
+  // sections (FAQ, related insights) render for this practice.
+  const relatedTone: "light" | "parchment" = detail.faq ? "light" : "parchment";
+  const lastTone: "light" | "parchment" =
+    relatedInsights.length > 0 ? relatedTone : detail.faq ? "parchment" : "light";
+  const ecosystemTone: "light" | "parchment" = lastTone === "parchment" ? "light" : "parchment";
 
   const schema: object[] = [
     breadcrumbJsonLd([
@@ -109,9 +122,31 @@ export function BusinessPage({ id }: { id: StageId }) {
           </div>
         </Section>
 
+        {/* HOW AN ENGAGEMENT WORKS */}
+        <Section tone="light">
+          <div className="flex flex-col gap-12">
+            <h2 className="max-w-2xl font-serif text-display-2 font-normal text-navy">
+              How an engagement works
+            </h2>
+            <div className="grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-8">
+              {detail.engagement.map((s) => (
+                <div key={s.title} className="flex flex-col gap-4 border-t border-charcoal/20 pt-6">
+                  <span className="font-sans text-[0.72rem] uppercase tracking-widest2 text-brass">
+                    {s.step}
+                  </span>
+                  <h3 className="font-serif text-xl font-normal text-navy">{s.title}</h3>
+                  <p className="font-sans text-[0.92rem] leading-relaxed text-charcoal/65">
+                    {s.body}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Section>
+
         {/* FAQ */}
         {detail.faq && (
-          <Section tone="light">
+          <Section tone="parchment">
             <div className="flex flex-col gap-10">
               <h2 className="max-w-2xl font-serif text-display-2 font-normal text-navy">
                 Common questions
@@ -137,8 +172,23 @@ export function BusinessPage({ id }: { id: StageId }) {
           </Section>
         )}
 
+        {/* RELATED INSIGHTS */}
+        {relatedInsights.length > 0 && (
+          <Section tone={detail.faq ? "light" : "parchment"}>
+            <div className="flex flex-col gap-10">
+              <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
+                <h2 className="font-serif text-display-2 font-normal text-navy">Related insights</h2>
+                <Link href="/insights" className="btn-text w-fit text-navy">
+                  View all insights
+                </Link>
+              </div>
+              <InsightCards items={relatedInsights} />
+            </div>
+          </Section>
+        )}
+
         {/* REST OF ECOSYSTEM */}
-        <Section tone={detail.faq ? "parchment" : "light"}>
+        <Section tone={ecosystemTone}>
           <div className="flex flex-col gap-10">
             <h2 className="font-sans text-[0.72rem] uppercase tracking-widest2 text-brass">
               Elsewhere in the practice
