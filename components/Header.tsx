@@ -34,19 +34,19 @@ export function Header() {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-ivory/10 bg-navy/95 backdrop-blur-sm">
-      <Container className="flex h-[4.25rem] items-center justify-between gap-6">
-        <Link href="/" className="flex items-center" aria-label="Lodestone Global home">
+      <Container className="flex h-[4.25rem] items-center justify-between gap-4">
+        <Link href="/" className="flex shrink-0 items-center" aria-label="Lodestone Global home">
           <Image
             src="/logo/lodestone-global-horizontal-white.png"
             alt="Lodestone Global"
             width={320}
             height={107}
             priority
-            className="h-7 w-auto md:h-8"
+            className="h-8 w-auto"
           />
         </Link>
 
-        <nav aria-label="Primary" className="hidden items-center gap-6 xl:flex">
+        <nav aria-label="Primary" className="hidden items-center gap-x-6 xl:flex">
           {primaryNav.map((link) => {
             const active = isActive(link.href);
             return (
@@ -54,7 +54,7 @@ export function Header() {
                 key={link.href}
                 href={link.href}
                 aria-current={active ? "page" : undefined}
-                className={`font-sans text-[0.78rem] uppercase tracking-[0.08em] transition-colors duration-200 hover:text-brass-light ${
+                className={`whitespace-nowrap font-sans text-[0.75rem] uppercase tracking-[0.07em] transition-colors duration-200 hover:text-brass-light ${
                   active ? "text-brass-light" : "text-ivory/70"
                 }`}
               >
@@ -64,8 +64,11 @@ export function Header() {
           })}
         </nav>
 
-        <div className="flex items-center gap-3">
-          <Link href={CTA_PRIMARY.href} className="btn-inverse hidden text-[0.7rem] lg:inline-flex">
+        <div className="flex shrink-0 items-center gap-3">
+          <Link
+            href={CTA_PRIMARY.href}
+            className="btn-inverse hidden whitespace-nowrap px-4 py-2.5 text-[0.68rem] tracking-[0.1em] xl:inline-flex"
+          >
             {CTA_PRIMARY.label}
           </Link>
           <button
@@ -116,7 +119,7 @@ export function Header() {
                       active ? "text-brass-light" : "text-ivory/80"
                     }`}
                   >
-                    {link.label}
+                    {link.longLabel ?? link.label}
                   </Link>
                 );
               })}

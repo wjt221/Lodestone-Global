@@ -116,12 +116,16 @@ export function getBusiness(id: StageId): Business {
   return found;
 }
 
-/** Primary navigation, the conventional model requested in the brief. */
-export const primaryNav = [
+/**
+ * Primary navigation. `label` is the concise wordmark used in the header nav so
+ * the row stays on a single line; `longLabel` (where it differs) is the fuller
+ * name used in the mobile menu and anywhere more room is available.
+ */
+export const primaryNav: { href: string; label: string; longLabel?: string }[] = [
   { href: "/about", label: "About" },
-  { href: "/governance-advisory", label: "Governance Advisory" },
-  { href: "/e3-scale-network", label: "E3 Scale Network" },
-  { href: "/lodestone-capital", label: "Lodestone Capital" },
+  { href: "/governance-advisory", label: "Governance", longLabel: "Governance Advisory" },
+  { href: "/e3-scale-network", label: "E3 Scale", longLabel: "E3 Scale Network" },
+  { href: "/lodestone-capital", label: "Capital", longLabel: "Lodestone Capital" },
   { href: "/family-advisors", label: "Family Advisors" },
   { href: "/insights", label: "Insights" },
   { href: "/research", label: "Research" },
