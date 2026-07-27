@@ -124,7 +124,7 @@ export default function AboutPage() {
 
         {/* CTA */}
         <section className="relative overflow-hidden py-24 md:py-28">
-          <BackgroundPhoto src={photos.closing.src} alt={photos.closing.alt} overlayClassName="bg-navy/88" />
+          <BackgroundPhoto src={photos.closing.src} alt={photos.closing.alt} overlayClassName="bg-gradient-to-b from-navy/80 via-navy/90 to-navy" />
           <Container className="relative z-10">
             <CTASection />
           </Container>

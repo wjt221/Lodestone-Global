@@ -21,11 +21,11 @@ const body = Public_Sans({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Lodestone Global | Private Company Governance and Family Business Advisory",
+    default: "Lodestone Global | Governance, Capital, and Family Office Advisory",
     template: "%s | Lodestone Global",
   },
   description:
-    "Lodestone works with entrepreneurial owners and families to strengthen governance, scale their businesses, allocate capital, and steward wealth across generations.",
+    "Lodestone works with private-company principals to strengthen governance, scale the operating business, allocate capital, and steward family wealth across generations.",
   alternates: {
     canonical: "/",
   },
@@ -33,9 +33,9 @@ export const metadata: Metadata = {
     type: "website",
     siteName: SITE_NAME,
     url: SITE_URL,
-    title: "Lodestone Global",
+    title: "Lodestone Global | Governance, Capital, and Family Office Advisory",
     description:
-      "Trusted counsel for owners building enduring companies and family wealth.",
+      "For owners building something meant to outlast them: governance, operating support, capital, and family-office coordination in one relationship.",
   },
   twitter: {
     card: "summary_large_image",

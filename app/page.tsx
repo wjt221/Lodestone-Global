@@ -8,6 +8,7 @@ import { BackgroundPhoto } from "@/components/BackgroundPhoto";
 import { EditorialImage } from "@/components/EditorialImage";
 import { EcosystemList } from "@/components/EcosystemList";
 import { Kicker } from "@/components/Kicker";
+import { PrincipalJourney } from "@/components/PrincipalJourney";
 import { InsightCards } from "@/components/InsightCards";
 import { Leadership } from "@/components/Leadership";
 import { CTASection } from "@/components/CTASection";
@@ -16,7 +17,7 @@ import {
   CTA_PRIMARY,
   CTA_SECONDARY,
   proofPoints,
-  whoWeServe,
+  ownerQuestions,
   howWeWork,
   engagements,
   sectorsServed,
@@ -52,13 +53,14 @@ export default function Home() {
             overlayClassName="bg-gradient-to-r from-navy via-navy/90 to-navy/55"
           />
           <Container className="relative z-10 flex flex-col gap-8 py-20">
-            <Kicker>Overview</Kicker>
+            <Kicker>One principal. One trusted team. Every important decision.</Kicker>
             <h1 className="max-w-4xl font-serif text-display-1 font-semibold text-ivory">
-              Trusted counsel for owners building enduring companies and family wealth.
+              For owners building something meant to outlast them.
             </h1>
             <p className="max-w-2xl font-sans text-lg leading-relaxed text-ivory/80">
-              Lodestone works with entrepreneurial owners and families to strengthen governance,
-              scale their businesses, allocate capital, and steward wealth across generations.
+              Lodestone works alongside private-company principals to strengthen the operating
+              business, build governance and leadership, allocate the capital the company creates,
+              and establish the structures that carry ownership to the next generation.
             </p>
             <div className="mt-4 flex flex-col gap-5 sm:flex-row sm:items-center">
               <Link href={CTA_PRIMARY.href} className="btn-inverse">
@@ -85,12 +87,12 @@ export default function Home() {
           </Container>
         </section>
 
-        {/* 3. WHO WE SERVE */}
+        {/* 3. RECOGNITION — the questions change as ownership grows */}
         <Section tone="light">
           <SectionHeading
             kicker="Who We Serve"
-            title="Businesses and families that have outgrown disconnected advice."
-            description="We work with founders, family enterprises, private-company CEOs, boards, and families whose businesses and wealth have become too complex to manage through disconnected advisors."
+            title="The questions change as ownership grows."
+            description="Most principals arrive with a specific decision in front of them. The right one usually connects to the others, because the business, its capital, and the family rarely move on separate tracks."
           />
           <div className="mt-14 grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
             <EditorialImage
@@ -102,16 +104,18 @@ export default function Home() {
             />
             <div className="lg:col-span-8">
               <p className="mb-6 font-sans text-[0.82rem] uppercase tracking-[0.08em] text-charcoal/45">
-                The moments that typically lead here
+                Questions we are asked to help answer
               </p>
-              <ul className="grid grid-cols-1 gap-x-10 sm:grid-cols-2">
-                {whoWeServe.map((moment, i) => (
+              <ul className="flex flex-col">
+                {ownerQuestions.map((q, i) => (
                   <li
-                    key={moment}
-                    className="flex gap-4 border-t border-charcoal/12 py-4 font-sans text-[0.95rem] leading-relaxed text-charcoal/75"
+                    key={q}
+                    className="flex gap-5 border-t border-charcoal/12 py-5 last:border-b"
                   >
                     <span className="index-number pt-1">0{i + 1}</span>
-                    <span>{moment}</span>
+                    <span className="font-serif text-lg font-normal leading-snug text-navy/85">
+                      {q}
+                    </span>
                   </li>
                 ))}
               </ul>
@@ -119,13 +123,25 @@ export default function Home() {
           </div>
         </Section>
 
-        {/* 4. THE LODESTONE ECOSYSTEM */}
-        <Section id="ecosystem" tone="parchment">
+        {/* 4. THE PRINCIPAL JOURNEY */}
+        <Section tone="parchment">
+          <div className="flex flex-col gap-12">
+            <SectionHeading
+              kicker="The Principal Journey"
+              title="One principal, four changing roles."
+              description="As a company matures, the principal's role shifts, and so does the question that matters most. Lodestone brings the capability that fits each stage while keeping a single relationship intact across all of them."
+            />
+            <PrincipalJourney />
+          </div>
+        </Section>
+
+        {/* 5. THE LODESTONE ECOSYSTEM */}
+        <Section id="ecosystem" tone="light">
           <div className="flex flex-col gap-12">
             <SectionHeading
               kicker="The Ecosystem"
               title="Four capabilities, coordinated as one relationship."
-              description="Govern, scale, compound, and steward. Each is delivered by a dedicated part of the practice, and no client is expected to use all four. Lodestone brings the capability that fits the situation and preserves one trusted relationship as it changes."
+              description="Govern, scale, compound, and steward. Each is delivered by a dedicated part of the practice, and no principal is expected to use all four. Lodestone brings the capability that fits the situation and preserves one trusted relationship as it changes."
             />
             <EcosystemList />
           </div>
@@ -178,9 +194,9 @@ export default function Home() {
         <Section tone="parchment">
           <div className="flex flex-col gap-10">
             <SectionHeading
-              kicker="Selected Client Relationships"
+              kicker="Sectors Served"
               title="Work across privately held industries."
-              description="Lodestone has advised private and family-owned companies across a range of sectors. Client relationships are confidential and identified only with permission."
+              description="Lodestone has advised private and family-owned companies across a range of sectors. Individual relationships are confidential and identified only with permission."
             />
             <ul className="flex flex-wrap items-center gap-y-6 border-y border-charcoal/20 py-2">
               {sectorsServed.map((sector, i) => (
@@ -297,7 +313,7 @@ export default function Home() {
 
         {/* 11. FINAL CTA */}
         <section className="relative overflow-hidden py-24 md:py-32">
-          <BackgroundPhoto src={photos.closing.src} alt={photos.closing.alt} overlayClassName="bg-navy/88" />
+          <BackgroundPhoto src={photos.closing.src} alt={photos.closing.alt} overlayClassName="bg-gradient-to-b from-navy/80 via-navy/90 to-navy" />
           <Container className="relative z-10">
             <CTASection />
           </Container>
