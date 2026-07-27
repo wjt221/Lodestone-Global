@@ -43,7 +43,12 @@ export default function Home() {
       <main id="main">
         {/* 1. HERO */}
         <section className="relative flex min-h-[86vh] flex-col justify-center overflow-hidden pt-[4.25rem] text-ivory">
-          <BackgroundPhoto src={photos.hero.src} alt={photos.hero.alt} priority overlayClassName="bg-navy/82" />
+          <BackgroundPhoto
+            src={photos.hero.src}
+            alt={photos.hero.alt}
+            priority
+            overlayClassName="bg-gradient-to-r from-navy via-navy/90 to-navy/55"
+          />
           <Container className="relative z-10 flex flex-col gap-8 py-20">
             <h1 className="max-w-4xl font-serif text-display-1 font-normal text-ivory">
               Trusted counsel for owners building enduring companies and family wealth.

@@ -22,6 +22,8 @@ export interface Business {
   /** Short role in the ecosystem, one line. */
   role: string;
   href: string;
+  /** One real, specific proof point about this business. */
+  evidence: string;
   /** Plain-English description, one to two sentences. */
   summary: string;
   /** Three to five principal capabilities. */
@@ -39,8 +41,9 @@ export const businesses: Business[] = [
     name: "Lodestone Global",
     role: "Private-company governance and strategic advisory",
     href: "/governance-advisory",
+    evidence: "In the private-company board market since 2013",
     summary:
-      "Lodestone Global helps private and family-owned companies build, optimize, and educate the boards they actually need, and finds the directors and executives to fill them.",
+      "Lodestone Global helps private and family-owned companies build, optimize, and educate the boards they actually need, and finds the directors and executives to fill them. It maintains proprietary board compensation research and a curated database of qualified directors.",
     capabilities: [
       "Board formation",
       "Board optimization",
@@ -56,6 +59,7 @@ export const businesses: Business[] = [
     name: "E3 Scale Network",
     role: "An operating-partner network for founder-led businesses",
     href: "/e3-scale-network",
+    evidence: "For $20M+ founder-led companies. Built on Envision, Execute, Expand",
     summary:
       "E3 pairs founder-led companies with senior Operating Partners who work alongside owners and management to professionalize and scale the business.",
     capabilities: [
@@ -74,8 +78,9 @@ export const businesses: Business[] = [
     name: "Lodestone Capital",
     role: "A principal-led investment platform",
     href: "/lodestone-capital",
+    evidence: "Invests alongside founders and family offices",
     summary:
-      "Lodestone Capital invests alongside founders and family offices, drawing on the governance and executive relationships built across the wider practice.",
+      "Lodestone Capital partners with founder-led and family-owned businesses to support growth, governance, and capital strategy, drawing on the executive relationships built across the wider practice.",
     capabilities: [
       "Private equity",
       "Real estate",
@@ -91,6 +96,7 @@ export const businesses: Business[] = [
     name: "Lodestone Family Advisors",
     role: "An independent multi-family-office platform",
     href: "/family-advisors",
+    evidence: "Single-family-office capability, without building one",
     summary:
       "Lodestone Family Advisors gives entrepreneurial families the capabilities and coordination of a single-family office without having to build every function internally.",
     capabilities: [
