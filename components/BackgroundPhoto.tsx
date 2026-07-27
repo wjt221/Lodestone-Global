@@ -1,4 +1,5 @@
 import Image from "next/image";
+import type { CSSProperties } from "react";
 import { isImageAvailable } from "@/lib/localImage";
 
 /**
@@ -10,7 +11,8 @@ import { isImageAvailable } from "@/lib/localImage";
 export function BackgroundPhoto({
   src,
   alt,
-  overlayClassName = "bg-navy/80",
+  overlayClassName,
+  overlayStyle,
   priority = false,
   sizes = "100vw",
   imageClassName = "",
@@ -18,7 +20,18 @@ export function BackgroundPhoto({
 }: {
   src: string;
   alt: string;
+  /**
+   * Tailwind class for the overlay. Only safe with opacity fractions already
+   * used elsewhere in this codebase (this build silently drops Tailwind
+   * color-opacity utilities it hasn't compiled before, e.g. bg-navy/82 or
+   * bg-navy/33 never generate a CSS rule even though the class is present in
+   * the markup — confirmed reproducible, not fixed by clearing .next). For
+   * any new or precision-sensitive value, use `overlayStyle` instead, which
+   * always renders since it bypasses Tailwind's compiled output entirely.
+   */
   overlayClassName?: string;
+  /** Inline style for the overlay, e.g. { backgroundColor: "rgba(10,27,42,0.78)" } or a custom gradient. Takes precedence over overlayClassName. */
+  overlayStyle?: CSSProperties;
   priority?: boolean;
   sizes?: string;
   imageClassName?: string;
@@ -42,7 +55,11 @@ export function BackgroundPhoto({
           className={`object-cover ${imageClassName}`}
         />
       )}
-      <div className={`absolute inset-0 ${overlayClassName}`} aria-hidden />
+      <div
+        className={`absolute inset-0 ${overlayStyle ? "" : overlayClassName || "bg-navy/80"}`}
+        style={overlayStyle}
+        aria-hidden
+      />
     </>
   );
 }

@@ -60,11 +60,11 @@ export function EcosystemList() {
                 {b.role}
               </p>
             </div>
-            <ul className="flex flex-col border-t border-charcoal/12">
+            <ul className="flex flex-col border-t border-charcoal/10">
               {b.capabilities.map((c) => (
                 <li
                   key={c}
-                  className="border-b border-charcoal/12 py-2.5 font-sans text-[0.85rem] leading-snug text-charcoal/75"
+                  className="border-b border-charcoal/10 py-2.5 font-sans text-[0.85rem] leading-snug text-charcoal/75"
                 >
                   {c}
                 </li>

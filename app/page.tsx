@@ -50,7 +50,10 @@ export default function Home() {
             src={photos.hero.src}
             alt={photos.hero.alt}
             priority
-            overlayClassName="bg-gradient-to-r from-navy via-navy/90 to-navy/78"
+            overlayStyle={{
+              backgroundImage:
+                "linear-gradient(to right, rgba(10,27,42,1) 0%, rgba(10,27,42,0.9) 55%, rgba(10,27,42,0.78) 100%)",
+            }}
           />
           <Container className="relative z-10 flex flex-col gap-8 py-20">
             <Kicker>One principal. One trusted team. Every important decision.</Kicker>
@@ -110,7 +113,7 @@ export default function Home() {
                 {ownerQuestions.map((q, i) => (
                   <li
                     key={q}
-                    className="flex gap-5 border-t border-charcoal/12 py-5 last:border-b"
+                    className="flex gap-5 border-t border-charcoal/10 py-5 last:border-b"
                   >
                     <span className="index-number pt-1">0{i + 1}</span>
                     <span className="font-serif text-lg font-normal leading-snug text-navy/85">
@@ -149,7 +152,7 @@ export default function Home() {
 
         {/* STATEMENT BAND */}
         <section className="relative overflow-hidden py-28 md:py-36">
-          <BackgroundPhoto src={photos.homeStatementBand.src} alt={photos.homeStatementBand.alt} overlayClassName="bg-navy/82" objectPosition="top" />
+          <BackgroundPhoto src={photos.homeStatementBand.src} alt={photos.homeStatementBand.alt} overlayClassName="bg-navy/80" objectPosition="top" />
           <Container className="relative z-10">
             <p className="max-w-3xl font-serif text-display-2 font-normal leading-tight text-ivory">
               We start with the whole picture: the business, the family, the capital, and the
@@ -180,7 +183,7 @@ export default function Home() {
                 {whyPoints.map((point) => (
                   <li
                     key={point}
-                    className="border-t border-charcoal/12 py-5 font-sans text-[0.95rem] leading-relaxed text-charcoal/75"
+                    className="border-t border-charcoal/10 py-5 font-sans text-[0.95rem] leading-relaxed text-charcoal/75"
                   >
                     {point}
                   </li>

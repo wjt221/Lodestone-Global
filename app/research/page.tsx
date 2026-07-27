@@ -71,7 +71,7 @@ export default function ResearchPage() {
                 {surveyHighlights.map((h) => (
                   <li
                     key={h}
-                    className="border-t border-charcoal/12 py-5 font-sans text-[0.95rem] leading-relaxed text-charcoal/75"
+                    className="border-t border-charcoal/10 py-5 font-sans text-[0.95rem] leading-relaxed text-charcoal/75"
                   >
                     {h}
                   </li>

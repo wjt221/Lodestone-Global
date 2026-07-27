@@ -31,7 +31,7 @@ export function PrincipalJourney() {
           <li
             key={s.stage}
             className={`flex flex-col gap-4 py-8 sm:px-6 lg:py-10 ${
-              i > 0 ? "border-t border-charcoal/12 sm:border-t-0 sm:border-l" : "sm:pl-0"
+              i > 0 ? "border-t border-charcoal/10 sm:border-t-0 sm:border-l" : "sm:pl-0"
             } ${i === 2 ? "border-t sm:border-t lg:border-t-0" : ""}`}
           >
             <span className="font-sans text-[0.68rem] uppercase tracking-widest2 text-brass">
