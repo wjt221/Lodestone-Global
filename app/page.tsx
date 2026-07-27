@@ -50,7 +50,7 @@ export default function Home() {
             src={photos.hero.src}
             alt={photos.hero.alt}
             priority
-            overlayClassName="bg-gradient-to-r from-navy via-navy/90 to-navy/55"
+            overlayClassName="bg-gradient-to-r from-navy via-navy/90 to-navy/78"
           />
           <Container className="relative z-10 flex flex-col gap-8 py-20">
             <Kicker>One principal. One trusted team. Every important decision.</Kicker>
