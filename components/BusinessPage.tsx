@@ -6,6 +6,7 @@ import { Container } from "./Container";
 import { BackgroundPhoto } from "./BackgroundPhoto";
 import { CTASection } from "./CTASection";
 import { InsightCards } from "./InsightCards";
+import { PullQuote } from "./PullQuote";
 import { photos } from "./photos";
 import { JsonLd } from "./JsonLd";
 import { breadcrumbJsonLd, faqJsonLd } from "@/lib/seo";
@@ -26,13 +27,23 @@ export function BusinessPage({ id }: { id: StageId }) {
     .map((slug) => articleCards.find((a) => a.href === `/insights/${slug}`))
     .filter((a): a is NonNullable<typeof a> => Boolean(a));
 
-  // Alternate the ecosystem band against whatever section precedes it, so two
-  // same-tone bands never sit next to each other regardless of which optional
-  // sections (FAQ, related insights) render for this practice.
-  const relatedTone: "light" | "parchment" = detail.faq ? "light" : "parchment";
-  const lastTone: "light" | "parchment" =
-    relatedInsights.length > 0 ? relatedTone : detail.faq ? "parchment" : "light";
-  const ecosystemTone: "light" | "parchment" = lastTone === "parchment" ? "light" : "parchment";
+  const hasEvidence = Boolean(
+    detail.evidenceStat || detail.recognition || detail.testimonial,
+  );
+
+  // Alternate the band tones automatically so two same-tone sections never sit
+  // next to each other, regardless of which optional sections (evidence, FAQ,
+  // related insights) render for this practice. Capabilities is parchment and
+  // engagement is light; everything after engagement toggles from there.
+  let prev: "light" | "parchment" = "light"; // engagement section
+  const nextTone = (): "light" | "parchment" => {
+    prev = prev === "light" ? "parchment" : "light";
+    return prev;
+  };
+  const evidenceTone = hasEvidence ? nextTone() : prev;
+  const faqTone = detail.faq ? nextTone() : prev;
+  const relatedTone = relatedInsights.length > 0 ? nextTone() : prev;
+  const ecosystemTone = nextTone();
 
   const schema: object[] = [
     breadcrumbJsonLd([
@@ -144,9 +155,48 @@ export function BusinessPage({ id }: { id: StageId }) {
           </div>
         </Section>
 
+        {/* EVIDENCE */}
+        {hasEvidence && (
+          <Section tone={evidenceTone}>
+            <div className="flex flex-col gap-12">
+              <h2 className="max-w-2xl font-serif text-display-2 font-normal text-navy">
+                Evidence and recognition
+              </h2>
+              {(detail.evidenceStat || detail.recognition) && (
+                <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-16">
+                  {detail.evidenceStat && (
+                    <div className="flex flex-col gap-3 lg:col-span-4">
+                      <span className="font-serif text-display-1 font-normal leading-none text-navy">
+                        {detail.evidenceStat.value}
+                      </span>
+                      <p className="font-sans text-[0.95rem] leading-relaxed text-charcoal/70">
+                        {detail.evidenceStat.label}
+                      </p>
+                      <span className="font-sans text-[0.72rem] uppercase tracking-[0.06em] text-charcoal/45">
+                        Source: {detail.evidenceStat.source}
+                      </span>
+                    </div>
+                  )}
+                  {detail.recognition && (
+                    <p className="max-w-2xl font-sans text-[1.05rem] leading-relaxed text-charcoal/75 lg:col-span-8">
+                      {detail.recognition}
+                    </p>
+                  )}
+                </div>
+              )}
+              {detail.testimonial && (
+                <PullQuote
+                  quote={detail.testimonial.quote}
+                  attribution={detail.testimonial.attribution}
+                />
+              )}
+            </div>
+          </Section>
+        )}
+
         {/* FAQ */}
         {detail.faq && (
-          <Section tone="parchment">
+          <Section tone={faqTone}>
             <div className="flex flex-col gap-10">
               <h2 className="max-w-2xl font-serif text-display-2 font-normal text-navy">
                 Common questions
@@ -174,7 +224,7 @@ export function BusinessPage({ id }: { id: StageId }) {
 
         {/* RELATED INSIGHTS */}
         {relatedInsights.length > 0 && (
-          <Section tone={detail.faq ? "light" : "parchment"}>
+          <Section tone={relatedTone}>
             <div className="flex flex-col gap-10">
               <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
                 <h2 className="font-serif text-display-2 font-normal text-navy">Related insights</h2>

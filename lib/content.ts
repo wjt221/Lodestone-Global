@@ -117,28 +117,48 @@ export function getBusiness(id: StageId): Business {
 }
 
 /**
- * Primary navigation. `label` is the concise wordmark used in the header nav so
- * the row stays on a single line; `longLabel` (where it differs) is the fuller
- * name used in the mobile menu and anywhere more room is available.
+ * Primary navigation. Owner-facing labels map onto the underlying routes:
+ * Board Advisory -> governance, Operating Partners -> E3, Investments ->
+ * Capital, Family Office -> Family Advisors. Insights carries a small submenu.
+ * Contact is reached through the persistent "Schedule a Conversation" button.
  */
-export const primaryNav: { href: string; label: string; longLabel?: string }[] = [
+export interface NavChild {
+  href: string;
+  label: string;
+}
+export interface NavItem {
+  href: string;
+  label: string;
+  children?: NavChild[];
+}
+
+export const primaryNav: NavItem[] = [
   { href: "/about", label: "About" },
-  { href: "/governance-advisory", label: "Governance", longLabel: "Governance Advisory" },
-  { href: "/e3-scale-network", label: "E3 Scale", longLabel: "E3 Scale Network" },
-  { href: "/lodestone-capital", label: "Capital", longLabel: "Lodestone Capital" },
-  { href: "/family-advisors", label: "Family Advisors" },
-  { href: "/insights", label: "Insights" },
-  { href: "/research", label: "Research" },
-  { href: "/contact", label: "Contact" },
+  { href: "/governance-advisory", label: "Board Advisory" },
+  { href: "/e3-scale-network", label: "Operating Partners" },
+  { href: "/lodestone-capital", label: "Investments" },
+  { href: "/family-advisors", label: "Family Office" },
+  {
+    href: "/insights",
+    label: "Insights",
+    children: [
+      { href: "/insights", label: "Articles" },
+      { href: "/research", label: "Board Compensation Reports" },
+      { href: "/case-studies", label: "Case Studies" },
+    ],
+  },
 ];
 
 export const CTA_PRIMARY = { label: "Schedule a Conversation", href: "/contact" };
 export const CTA_SECONDARY = { label: "Explore the Lodestone Ecosystem", href: "/about#ecosystem" };
 
 export const CONTACT = {
-  email: "inquire@lodestoneglobal.com", // NEEDS CONFIRMATION — public inquiry address
+  email: "info@lodestoneglobal.com", // CONFIRMED — public address on lodestoneglobal.com
+  phone: "(973) 397-5355", // CONFIRMED — published on lodestoneglobal.com
+  phoneHref: "tel:+19733975355",
   location: "Morristown, New Jersey",
   linkedin: "https://www.linkedin.com/company/lodestone-global",
+  legalEntity: "Lodestone Global Advisory, LLC", // CONFIRMED — site footer copyright
   founded: 2013, // CONFIRMED across LinkedIn and multiple sources
 };
 
@@ -157,7 +177,8 @@ export const proofPoints: { label: string; detail: string }[] = [
   },
   {
     label: "Director network",
-    detail: "A curated database of experienced director and executive candidates.",
+    detail:
+      "The Qualified Director Database™, a curated network of thousands of experienced directors and executives.",
   },
   {
     label: "One relationship",
@@ -391,6 +412,12 @@ export interface BusinessDetail {
   capabilityGroups: CapabilityGroup[];
   /** How an engagement works: three concrete steps, distinct per practice. */
   engagement: { step: string; title: string; body: string }[];
+  /** A single published evidence figure, with its source, where one exists. */
+  evidenceStat?: { value: string; label: string; source: string };
+  /** A restrained recognition line (published references, no superlatives). */
+  recognition?: string;
+  /** A published client testimonial, used as a pull quote. */
+  testimonial?: { quote: string; attribution: string };
   /** Slugs of related, already-published insights (see lib/articles.ts). */
   relatedArticleSlugs?: string[];
   /** Optional closing note, e.g. how the business fits the wider practice. */
@@ -424,7 +451,7 @@ export const businessDetail: Record<StageId, BusinessDetail> = {
       {
         name: "Director and executive search",
         detail:
-          "Draw on a curated network of experienced directors and executives to fill board seats and leadership roles.",
+          "Draw on the Qualified Director Database™, a curated network of thousands of experienced directors and executives, to fill board seats and leadership roles.",
       },
       {
         name: "Board compensation benchmarking",
@@ -454,6 +481,18 @@ export const businessDetail: Record<StageId, BusinessDetail> = {
         body: "Benchmark director pay, facilitate the board's work, and revisit its composition as the business changes.",
       },
     ],
+    evidenceStat: {
+      value: "90%",
+      label: "of private companies reported increased EBITDA after implementing a board of directors",
+      source: "2026 Private Company Board Compensation Survey",
+    },
+    recognition:
+      "Lodestone's clients have been recognized as Advisory Board of the Year, and its work and research have appeared in Directors & Boards, Private Company Director, Family Business, and Forbes.",
+    testimonial: {
+      quote:
+        "Lodestone Global has been absolutely instrumental in the process of creating an advisory board for my family business. … I am even more convinced than before that we will greatly benefit from the outcome of this process.",
+      attribution: "Jeff Tapick, President & CEO, Martin Preferred Foods",
+    },
     relatedArticleSlugs: [
       "improving-board-performance",
       "attracting-top-board-members",

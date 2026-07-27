@@ -1,11 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Container } from "./Container";
-import { businesses, CONTACT, primaryNav } from "@/lib/content";
+import { businesses, CONTACT } from "@/lib/content";
 
-const company = primaryNav.filter((l) =>
-  ["/about", "/insights", "/contact"].includes(l.href),
-);
+const company = [
+  { href: "/about", label: "About" },
+  { href: "/insights", label: "Insights" },
+  { href: "/case-studies", label: "Case Studies" },
+  { href: "/contact", label: "Contact" },
+];
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -32,6 +35,9 @@ export function Footer() {
               <span>{CONTACT.location}</span>
               <a href={`mailto:${CONTACT.email}`} className="w-fit hover:text-brass-light">
                 {CONTACT.email}
+              </a>
+              <a href={CONTACT.phoneHref} className="w-fit hover:text-brass-light">
+                {CONTACT.phone}
               </a>
               <a
                 href={CONTACT.linkedin}
@@ -94,7 +100,7 @@ export function Footer() {
           </p>
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <span className="font-sans text-[0.72rem] uppercase tracking-[0.08em] text-ivory/40">
-              &copy; {year} Lodestone Global. All rights reserved.
+              &copy; {year} {CONTACT.legalEntity}. All rights reserved.
             </span>
             <span className="font-sans text-[0.72rem] uppercase tracking-[0.08em] text-ivory/40">
               {CONTACT.location}

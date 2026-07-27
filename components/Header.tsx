@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Container } from "./Container";
-import { primaryNav, CTA_PRIMARY } from "@/lib/content";
+import { primaryNav, CTA_PRIMARY, type NavItem } from "@/lib/content";
 
 export function Header() {
   const [open, setOpen] = useState(false);
@@ -15,6 +15,10 @@ export function Header() {
     const base = href.split("#")[0];
     if (base === "/") return pathname === "/";
     return pathname === base || pathname.startsWith(`${base}/`);
+  }
+
+  function isActiveItem(item: NavItem) {
+    return isActive(item.href) || Boolean(item.children?.some((c) => isActive(c.href)));
   }
 
   useEffect(() => {
@@ -46,19 +50,54 @@ export function Header() {
           />
         </Link>
 
-        <nav aria-label="Primary" className="hidden items-center gap-x-6 xl:flex">
-          {primaryNav.map((link) => {
-            const active = isActive(link.href);
+        <nav aria-label="Primary" className="hidden items-center gap-x-7 xl:flex">
+          {primaryNav.map((item) => {
+            const active = isActiveItem(item);
+            const linkClass = `whitespace-nowrap font-sans text-[0.75rem] uppercase tracking-[0.07em] transition-colors duration-200 hover:text-brass-light ${
+              active ? "text-brass-light" : "text-ivory/70"
+            }`;
+
+            if (item.children) {
+              return (
+                <div key={item.href} className="group relative">
+                  <Link
+                    href={item.href}
+                    aria-current={active ? "page" : undefined}
+                    className={`inline-flex items-center gap-1.5 ${linkClass}`}
+                  >
+                    {item.label}
+                    <span aria-hidden className="text-[0.55rem] leading-none">
+                      ▾
+                    </span>
+                  </Link>
+                  <div className="pointer-events-none absolute left-1/2 top-full z-50 -translate-x-1/2 pt-4 opacity-0 transition-opacity duration-150 group-hover:pointer-events-auto group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:opacity-100">
+                    <div className="min-w-[16rem] border border-ivory/10 bg-navy py-2 shadow-2xl">
+                      {item.children.map((child) => (
+                        <Link
+                          key={child.label}
+                          href={child.href}
+                          aria-current={isActive(child.href) ? "page" : undefined}
+                          className={`block whitespace-nowrap px-5 py-2.5 font-sans text-[0.75rem] uppercase tracking-[0.06em] transition-colors hover:text-brass-light ${
+                            isActive(child.href) ? "text-brass-light" : "text-ivory/75"
+                          }`}
+                        >
+                          {child.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              );
+            }
+
             return (
               <Link
-                key={link.href}
-                href={link.href}
+                key={item.href}
+                href={item.href}
                 aria-current={active ? "page" : undefined}
-                className={`whitespace-nowrap font-sans text-[0.75rem] uppercase tracking-[0.07em] transition-colors duration-200 hover:text-brass-light ${
-                  active ? "text-brass-light" : "text-ivory/70"
-                }`}
+                className={linkClass}
               >
-                {link.label}
+                {item.label}
               </Link>
             );
           })}
@@ -103,24 +142,42 @@ export function Header() {
       {open && (
         <div
           id="mobile-nav"
-          className="min-h-[calc(100vh-4.25rem)] border-t border-ivory/10 bg-navy xl:hidden"
+          className="h-[calc(100vh-4.25rem)] overflow-y-auto border-t border-ivory/10 bg-navy xl:hidden"
         >
           <Container className="flex flex-col py-6">
             <nav aria-label="Mobile" className="flex flex-col">
-              {primaryNav.map((link) => {
-                const active = isActive(link.href);
+              {primaryNav.map((item) => {
+                const active = isActiveItem(item);
                 return (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    onClick={() => setOpen(false)}
-                    aria-current={active ? "page" : undefined}
-                    className={`border-b border-ivory/10 py-4 font-sans text-[0.95rem] uppercase tracking-[0.06em] transition-colors hover:text-brass-light ${
-                      active ? "text-brass-light" : "text-ivory/80"
-                    }`}
-                  >
-                    {link.longLabel ?? link.label}
-                  </Link>
+                  <div key={item.href} className="border-b border-ivory/10">
+                    <Link
+                      href={item.href}
+                      onClick={() => setOpen(false)}
+                      aria-current={active ? "page" : undefined}
+                      className={`block py-4 font-sans text-[0.95rem] uppercase tracking-[0.06em] transition-colors hover:text-brass-light ${
+                        active ? "text-brass-light" : "text-ivory/80"
+                      }`}
+                    >
+                      {item.label}
+                    </Link>
+                    {item.children && (
+                      <div className="flex flex-col pb-3 pl-4">
+                        {item.children.map((child) => (
+                          <Link
+                            key={child.label}
+                            href={child.href}
+                            onClick={() => setOpen(false)}
+                            aria-current={isActive(child.href) ? "page" : undefined}
+                            className={`border-l border-ivory/15 py-2.5 pl-4 font-sans text-[0.85rem] tracking-[0.04em] transition-colors hover:text-brass-light ${
+                              isActive(child.href) ? "text-brass-light" : "text-ivory/60"
+                            }`}
+                          >
+                            {child.label}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 );
               })}
             </nav>

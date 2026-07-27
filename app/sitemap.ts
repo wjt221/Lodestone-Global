@@ -12,6 +12,7 @@ const routes = [
   "/family-advisors",
   "/insights",
   "/research",
+  "/case-studies",
   "/contact",
 ];
 
