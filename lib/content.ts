@@ -51,7 +51,7 @@ export const businesses: Business[] = [
       "Board compensation benchmarking",
       "Board facilitation and education",
     ],
-    logo: { src: "/logo/lodestone-global-horizontal-navy.png", width: 472, height: 177 },
+    logo: { src: "/logo/lodestone-global-horizontal-navy.png", width: 1000, height: 287 },
   },
   {
     id: "scale",
@@ -69,7 +69,7 @@ export const businesses: Business[] = [
       "Capital allocation and M&A integration",
       "Technology and AI enablement",
     ],
-    logo: null,
+    logo: { src: "/logo/e3-icon-navy.png", width: 700, height: 497 },
     external: "https://www.e3scale.com",
   },
   {
@@ -88,7 +88,7 @@ export const businesses: Business[] = [
       "Co-investments",
       "Founder and family investment opportunities",
     ],
-    logo: { src: "/logo/lodestone-capital-horizontal-navy.png", width: 503, height: 270 },
+    logo: { src: "/logo/lodestone-capital-horizontal-navy.png", width: 1000, height: 383 },
   },
   {
     id: "steward",
@@ -106,7 +106,7 @@ export const businesses: Business[] = [
       "Risk management and consolidated reporting",
       "Next-generation preparation",
     ],
-    logo: null,
+    logo: { src: "/logo/lodestone-family-advisors-vertical-navy.png", width: 900, height: 446 },
   },
 ];
 

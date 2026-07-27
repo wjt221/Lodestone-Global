@@ -107,10 +107,13 @@ be re-verified against the live source before launch.
       `public/images/lodestone/README.md` for slot names and direction).
 - [ ] **Open Graph share image.** No custom OG image is set. Supply a branded
       1200x630 image for richer link previews.
-- [ ] **E3, Capital, and Family Advisors logos.** Only Lodestone Global and
-      Lodestone Capital logo files exist in `/public/logo`. E3 and Family
-      Advisors currently render as wordmarks. Supply approved logo files to use
-      the real marks.
+- [x] **E3, Capital, and Family Advisors logos.** Real logo files for all four
+      businesses (Global, Capital, Family Advisors, E3) supplied via Google
+      Drive and processed into transparent PNGs in `/public/logo`, wired into
+      `lib/content.ts`. Not currently rendered in the ecosystem section itself
+      (kept as text there for size consistency across four equal columns —
+      the E3/Capital marks don't scale down as legibly as Global's), but
+      available via `business.logo` wherever a per-business mark is wanted.
 - [ ] **Report cover images hosted on Wix's CDN.** `/research` shows the real
       cover art for all 10 survey editions, pulled from the Wix Stores V1
       catalog (`lib/reports.ts`), but the images are hotlinked from
