@@ -1,6 +1,7 @@
 "use client";
 
 import { useId, useState } from "react";
+import { CONTACT } from "@/lib/content";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -16,7 +17,7 @@ const interests = [
  * Accessible contact form with inline validation, a honeypot for spam
  * protection (least intrusive method, no dependency), and clear success and
  * error states. Until a form destination is configured (see CONTENT_NEEDED.md),
- * submission falls back to composing an email to inquire@lodestoneglobal.com so
+ * submission falls back to composing an email to info@lodestoneglobal.com so
  * the control is never a dead end.
  */
 export function ContactForm() {
@@ -90,7 +91,7 @@ export function ContactForm() {
           .filter(Boolean)
           .join("\n"),
       );
-      window.location.href = `mailto:inquire@lodestoneglobal.com?subject=${subject}&body=${body}`;
+      window.location.href = `mailto:${CONTACT.email}?subject=${subject}&body=${body}`;
       setStatus("success");
       form.reset();
     } catch {
@@ -108,8 +109,8 @@ export function ContactForm() {
         <p className="mt-3 max-w-md font-sans text-[0.95rem] leading-relaxed text-charcoal/70">
           Your email client should now be open with your message ready to send. If it did not open,
           you can reach us directly at{" "}
-          <a href="mailto:inquire@lodestoneglobal.com" className="border-b border-navy/40 text-navy">
-            inquire@lodestoneglobal.com
+          <a href={`mailto:${CONTACT.email}`} className="border-b border-navy/40 text-navy">
+            {CONTACT.email}
           </a>
           . A member of the team will respond personally.
         </p>
@@ -197,8 +198,8 @@ export function ContactForm() {
       {status === "error" && (
         <p role="alert" className="font-sans text-[0.85rem] text-red-800">
           Something went wrong. Please email{" "}
-          <a href="mailto:inquire@lodestoneglobal.com" className="border-b border-current">
-            inquire@lodestoneglobal.com
+          <a href={`mailto:${CONTACT.email}`} className="border-b border-current">
+            {CONTACT.email}
           </a>{" "}
           directly.
         </p>

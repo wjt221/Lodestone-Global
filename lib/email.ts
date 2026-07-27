@@ -15,7 +15,7 @@ function client(): Resend {
 }
 
 const FROM = () => process.env.REPORTS_FROM || `${SITE_NAME} <reports@lodestoneglobal.com>`;
-const INBOX = () => process.env.REPORTS_INBOX || "inquire@lodestoneglobal.com";
+const INBOX = () => process.env.REPORTS_INBOX || "info@lodestoneglobal.com";
 
 export async function sendReportDownload(to: string, editionYear: string, url: string) {
   await client().emails.send({

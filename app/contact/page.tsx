@@ -59,6 +59,9 @@ export default function ContactPage() {
                   Office
                 </h2>
                 <p className="font-serif text-lg font-normal text-navy">{CONTACT.location}</p>
+                <a href={CONTACT.phoneHref} className="font-serif text-lg font-normal text-navy hover:text-brass">
+                  {CONTACT.phone}
+                </a>
               </div>
               <div className="flex flex-col gap-2 border-t border-charcoal/15 pt-6">
                 <h2 className="font-sans text-[0.72rem] uppercase tracking-widest2 text-brass">
