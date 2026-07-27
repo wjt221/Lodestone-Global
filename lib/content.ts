@@ -297,6 +297,10 @@ export const leadership: Leader[] = [
 export interface CapabilityGroup {
   name: string;
   detail: string;
+  /** The problem that typically brings a client to this capability. */
+  challenge: string[];
+  /** What Lodestone delivers in response. */
+  value: string[];
 }
 
 export interface BusinessDetail {
@@ -327,26 +331,76 @@ export const businessDetail: Record<StageId, BusinessDetail> = {
         name: "Board formation",
         detail:
           "Define the board's mandate, develop director requirements from the strategy, and attract directors who can advance it.",
+        challenge: [
+          "The board's role was never defined against the company's actual strategy.",
+          "Director searches rely on personal networks rather than a clear set of requirements.",
+          "Owners are unsure what a private-company board should even do.",
+        ],
+        value: [
+          "A board mandate built from the company's strategy, not a generic template.",
+          "Director requirements defined before any search begins.",
+          "Access to a curated network of directors who have run businesses like this one.",
+        ],
       },
       {
         name: "Board optimization",
         detail:
           "Assess and strengthen an existing board, from composition and cadence to the work directors are actually asked to do.",
+        challenge: [
+          "An existing board meets on schedule but adds little strategic value.",
+          "Meeting cadence and agendas have drifted away from what the business needs.",
+          "It is unclear whether the board's composition still matches the company's stage.",
+        ],
+        value: [
+          "An honest assessment of the board's composition, cadence, and actual work.",
+          "A concrete plan to close the gaps, not just a diagnosis.",
+          "Continued involvement until the board operates the way it should.",
+        ],
       },
       {
         name: "Director and executive search",
         detail:
           "Draw on a curated network of experienced directors and executives to fill board seats and leadership roles.",
+        challenge: [
+          "A board seat or executive role needs to be filled with someone the owner can trust.",
+          "General search firms rarely understand private-company or family-owned dynamics.",
+          "Confidentiality matters more than it would for a public search.",
+        ],
+        value: [
+          "A network built specifically around private-company and family-owned governance.",
+          "Candidates matched to the board's mandate, not a generic job description.",
+          "A confidential process suited to closely held companies.",
+        ],
       },
       {
         name: "Board compensation benchmarking",
         detail:
           "Set director pay using proprietary private-company board compensation research, by revenue, industry, size, and structure.",
+        challenge: [
+          "There is no obvious market data for what a private-company director should be paid.",
+          "Public-company compensation surveys do not reflect this company's size or structure.",
+          "Overpaying or underpaying directors both carry real costs.",
+        ],
+        value: [
+          "Proprietary compensation data segmented by revenue, industry, size, and structure.",
+          "Published annually, so the benchmark stays current.",
+          "A defensible basis for what the board is paid, and why.",
+        ],
       },
       {
         name: "Board facilitation and education",
         detail:
           "Facilitate board work and educate directors and owners through seminars and programs built for private companies.",
+        challenge: [
+          "Board meetings run long and rarely reach a real decision.",
+          "New directors do not know what is expected of them at a private company.",
+          "Owners want their board better educated but lack the material to do it.",
+        ],
+        value: [
+          "Facilitation that keeps board time focused on the decisions that matter.",
+          "Seminars and programs built specifically for private-company boards.",
+          "Ongoing education for directors and owners, not a one-time session.",
+        ],
       },
     ],
     faq: [
@@ -387,26 +441,76 @@ export const businessDetail: Record<StageId, BusinessDetail> = {
         name: "Senior Operating Partners",
         detail:
           "Experienced operators who work directly with owners and management teams as the business scales.",
+        challenge: [
+          "The founder is still the bottleneck for most operating decisions.",
+          "The management team has not run a company at this scale before.",
+          "Outside advice tends to come from consultants who have never operated a business.",
+        ],
+        value: [
+          "A senior operator who has built and run companies, working alongside the team.",
+          "Direct involvement in the business, not a report and a recommendation.",
+          "A peer network of other founder-led companies doing the same work.",
+        ],
       },
       {
         name: "Execution systems and cadence",
         detail:
           "Install the management cadence, accountability, and operating rhythm that turn a plan into results.",
+        challenge: [
+          "Strategy is set, but execution consistently falls short.",
+          "There is no regular rhythm for reviewing progress against the plan.",
+          "Accountability is unclear when something does not get done.",
+        ],
+        value: [
+          "A management cadence built for this specific business, not a generic playbook.",
+          "Clear accountability for what gets done and by when.",
+          "A rhythm that turns the plan into ongoing, visible progress.",
+        ],
       },
       {
         name: "Organizational design and leadership",
         detail:
           "Design the organization and develop the leadership team the next stage of growth requires.",
+        challenge: [
+          "The org chart reflects the company's history, not where it is headed.",
+          "Leaders who got the company this far may not be the right ones for the next stage.",
+          "It is unclear who should be hired, promoted, or developed next.",
+        ],
+        value: [
+          "An organizational design built around the next stage of growth.",
+          "A candid view of the leadership team's readiness for what is ahead.",
+          "A development plan for the leaders the business will need.",
+        ],
       },
       {
         name: "Capital allocation and M&A",
         detail:
           "Bring discipline to capital allocation, and to M&A strategy and integration when growth calls for it.",
+        challenge: [
+          "Capital gets allocated by instinct rather than a clear framework.",
+          "An acquisition target has been identified, but there is no integration plan.",
+          "Growth ambitions have outpaced the discipline behind capital decisions.",
+        ],
+        value: [
+          "A disciplined framework for how capital gets allocated across the business.",
+          "M&A strategy and integration support when growth calls for it.",
+          "Capital decisions tied directly back to the company's strategy.",
+        ],
       },
       {
         name: "Technology and AI enablement",
         detail:
           "Apply technology and AI where they measurably improve how the company operates.",
+        challenge: [
+          "Technology decisions get made ad hoc, without a clear operating case.",
+          "Leadership is unsure where AI would actually help this business.",
+          "New systems get adopted without the process changes to make them work.",
+        ],
+        value: [
+          "Technology and AI applied only where they measurably improve operations.",
+          "Adoption paired with the process changes needed to make it stick.",
+          "An operator's judgment about what is worth building, not a vendor's.",
+        ],
       },
     ],
     note:
@@ -430,23 +534,65 @@ export const businessDetail: Record<StageId, BusinessDetail> = {
       {
         name: "Private equity",
         detail: "Direct and co-investment in private companies, often in services businesses.",
+        challenge: [
+          "An owner needs a capital partner who understands governance, not just a check.",
+          "Standard private equity terms can conflict with a founder's long-term intentions.",
+          "Diligence from an outside investor rarely reflects how the business actually runs.",
+        ],
+        value: [
+          "Capital paired with direct governance and operating relationships.",
+          "Terms structured around the owner's actual objectives.",
+          "Diligence informed by direct experience sitting on boards like this one.",
+        ],
       },
       {
         name: "Real estate",
         detail: "Selective real estate investment alongside experienced operators.",
+        challenge: [
+          "A real estate opportunity needs a partner with genuine operating experience.",
+          "Passive capital alone does not add value to a real estate investment.",
+        ],
+        value: [
+          "Investment alongside operators with direct real estate experience.",
+          "A relationship-led approach rather than a purely financial one.",
+        ],
       },
       {
         name: "Co-investments",
         detail: "Investing alongside family offices and aligned partners on shared opportunities.",
+        challenge: [
+          "A family office wants a co-investment partner it already trusts.",
+          "Shared opportunities require aligned incentives, not just shared capital.",
+        ],
+        value: [
+          "Co-investment with family offices and partners already known through the practice.",
+          "Alignment built on existing governance and operating relationships.",
+        ],
       },
       {
         name: "Founder and family opportunities",
         detail:
           "Investment opportunities created through the practice's founder and family relationships.",
+        challenge: [
+          "The best opportunities often come from relationships, not a deal process.",
+          "Founders and families prefer investors who already understand their business.",
+        ],
+        value: [
+          "Opportunities sourced through existing founder and family relationships.",
+          "An investor already familiar with the company's governance and people.",
+        ],
       },
       {
         name: "Strategic capital allocation",
         detail: "Working with owners on how capital is allocated across the business and beyond it.",
+        challenge: [
+          "Capital allocation decisions are made without a consistent framework.",
+          "It is unclear how business capital and personal or family capital should interact.",
+        ],
+        value: [
+          "A consistent framework for allocating capital across the business.",
+          "Coordination between business capital and the owner's wider objectives.",
+        ],
       },
     ],
     note:
@@ -471,22 +617,62 @@ export const businessDetail: Record<StageId, BusinessDetail> = {
         name: "Strategic wealth advisory and investment oversight",
         detail:
           "Chief-investment-officer-level oversight of investment strategy across the family's assets.",
+        challenge: [
+          "Investment decisions are spread across multiple advisors with no single view.",
+          "There is no one accountable for the family's overall investment strategy.",
+        ],
+        value: [
+          "CIO-level oversight across the family's full set of assets.",
+          "One point of accountability for investment strategy.",
+        ],
       },
       {
         name: "Family governance",
         detail: "Structures and processes that help a family make decisions together over time.",
+        challenge: [
+          "Family decisions get made informally, and it does not scale across generations.",
+          "There is no shared process for resolving disagreements about money or the business.",
+        ],
+        value: [
+          "Governance structures built for how this specific family makes decisions.",
+          "A process that holds up as the family and its wealth grow more complex.",
+        ],
       },
       {
         name: "Estate and trust coordination",
         detail: "Coordinating estate and trust planning with the family's legal and tax advisors.",
+        challenge: [
+          "Estate and trust plans exist but were never coordinated with each other.",
+          "Legal, tax, and investment advisors work independently of one another.",
+        ],
+        value: [
+          "Coordination across the family's legal, tax, and investment advisors.",
+          "Estate and trust planning kept aligned with the family's actual objectives.",
+        ],
       },
       {
         name: "Risk management and reporting",
         detail: "Risk oversight and consolidated visibility across the family's financial picture.",
+        challenge: [
+          "No one has a consolidated view of the family's total financial picture.",
+          "Risk exposure across accounts and entities is not tracked in one place.",
+        ],
+        value: [
+          "Consolidated reporting across the family's full financial picture.",
+          "Ongoing risk oversight rather than a periodic review.",
+        ],
       },
       {
         name: "Next-generation preparation",
         detail: "Preparing the next generation to inherit responsibility, not only assets.",
+        challenge: [
+          "The next generation is set to inherit assets but not the responsibility that comes with them.",
+          "There is no plan for how the next generation gets ready to participate.",
+        ],
+        value: [
+          "A deliberate plan to prepare the next generation for responsibility, not just inheritance.",
+          "Involvement of the next generation before it becomes urgent.",
+        ],
       },
     ],
     note:

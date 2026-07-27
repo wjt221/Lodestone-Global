@@ -5,6 +5,7 @@ import { Footer } from "@/components/Footer";
 import { Section } from "@/components/Section";
 import { Container } from "@/components/Container";
 import { SectionHeading } from "@/components/SectionHeading";
+import { Kicker } from "@/components/Kicker";
 import { BackgroundPhoto } from "@/components/BackgroundPhoto";
 import { EcosystemList } from "@/components/EcosystemList";
 import { Leadership } from "@/components/Leadership";
@@ -45,8 +46,8 @@ export default function AboutPage() {
         <section className="relative overflow-hidden pt-[4.25rem] text-ivory">
           <BackgroundPhoto src={photos.credibility.src} alt={photos.credibility.alt} priority overlayClassName="bg-navy/85" />
           <Container className="relative z-10 flex flex-col gap-6 py-24 md:py-28">
-            <span className="kicker text-brass-light">About Lodestone</span>
-            <h1 className="max-w-3xl font-serif text-display-1 font-normal text-ivory">
+            <Kicker>About Lodestone</Kicker>
+            <h1 className="max-w-3xl font-serif text-display-1 font-semibold text-ivory">
               One relationship across the decisions that shape a company and a family.
             </h1>
             <p className="max-w-2xl font-sans text-lg leading-relaxed text-ivory/80">

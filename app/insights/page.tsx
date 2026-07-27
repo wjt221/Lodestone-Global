@@ -4,6 +4,7 @@ import { Footer } from "@/components/Footer";
 import { Section } from "@/components/Section";
 import { Container } from "@/components/Container";
 import { BackgroundPhoto } from "@/components/BackgroundPhoto";
+import { Kicker } from "@/components/Kicker";
 import { InsightCards } from "@/components/InsightCards";
 import { CTASection } from "@/components/CTASection";
 import { photos } from "@/components/photos";
@@ -41,8 +42,8 @@ export default function InsightsPage() {
       <main id="main">
         <section className="bg-navy pt-[4.25rem] text-ivory">
           <Container className="flex flex-col gap-6 py-24 md:py-28">
-            <span className="kicker text-brass-light">Insights</span>
-            <h1 className="max-w-3xl font-serif text-display-1 font-normal text-ivory">
+            <Kicker>Insights</Kicker>
+            <h1 className="max-w-3xl font-serif text-display-1 font-semibold text-ivory">
               Research and perspective from the private-company boardroom.
             </h1>
             <p className="max-w-2xl font-sans text-lg leading-relaxed text-ivory/75">

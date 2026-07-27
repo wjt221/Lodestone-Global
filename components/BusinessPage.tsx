@@ -4,6 +4,8 @@ import { Footer } from "./Footer";
 import { Section } from "./Section";
 import { Container } from "./Container";
 import { BackgroundPhoto } from "./BackgroundPhoto";
+import { Kicker } from "./Kicker";
+import { CapabilityStepper } from "./CapabilityStepper";
 import { CTASection } from "./CTASection";
 import { photos } from "./photos";
 import { JsonLd } from "./JsonLd";
@@ -38,8 +40,8 @@ export function BusinessPage({ id }: { id: StageId }) {
         <section className="relative overflow-hidden pt-[4.25rem] text-ivory">
           <BackgroundPhoto src={photo.src} alt={photo.alt} priority overlayClassName="bg-navy/85" />
           <Container className="relative z-10 flex flex-col gap-6 py-24 md:py-28">
-            <span className="kicker text-brass-light">{detail.eyebrow}</span>
-            <h1 className="max-w-3xl font-serif text-display-1 font-normal text-ivory">
+            <Kicker>{detail.eyebrow}</Kicker>
+            <h1 className="max-w-3xl font-serif text-display-1 font-semibold text-ivory">
               {detail.heading}
             </h1>
             <p className="max-w-2xl font-sans text-lg leading-relaxed text-ivory/80">{detail.intro}</p>
@@ -80,27 +82,10 @@ export function BusinessPage({ id }: { id: StageId }) {
         {/* CAPABILITIES */}
         <Section tone="parchment">
           <div className="flex flex-col gap-12">
-            <h2 className="max-w-2xl font-serif text-display-2 font-normal text-navy">
+            <h2 className="max-w-2xl font-serif text-display-2 font-semibold text-navy">
               What we do
             </h2>
-            <div className="flex flex-col">
-              {detail.capabilityGroups.map((group, i) => (
-                <div
-                  key={group.name}
-                  className={`grid grid-cols-1 gap-4 border-t border-charcoal/15 py-8 md:grid-cols-12 md:gap-8 ${
-                    i === detail.capabilityGroups.length - 1 ? "border-b" : ""
-                  }`}
-                >
-                  <div className="flex items-baseline gap-4 md:col-span-5">
-                    <span className="index-number">0{i + 1}</span>
-                    <h3 className="font-serif text-xl font-normal text-navy">{group.name}</h3>
-                  </div>
-                  <p className="font-sans text-[0.95rem] leading-relaxed text-charcoal/70 md:col-span-7">
-                    {group.detail}
-                  </p>
-                </div>
-              ))}
-            </div>
+            <CapabilityStepper items={detail.capabilityGroups} />
             {detail.note && (
               <p className="max-w-2xl font-sans text-[0.8rem] leading-relaxed text-charcoal/45">
                 {detail.note}
@@ -113,7 +98,7 @@ export function BusinessPage({ id }: { id: StageId }) {
         {detail.faq && (
           <Section tone="light">
             <div className="flex flex-col gap-10">
-              <h2 className="max-w-2xl font-serif text-display-2 font-normal text-navy">
+              <h2 className="max-w-2xl font-serif text-display-2 font-semibold text-navy">
                 Common questions
               </h2>
               <dl className="flex flex-col">

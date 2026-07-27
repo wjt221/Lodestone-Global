@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Section } from "@/components/Section";
+import { Kicker } from "@/components/Kicker";
 import { CONTACT } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -38,8 +39,8 @@ export default function PrivacyPage() {
         <section className="bg-navy pt-[4.25rem] text-ivory">
           <div className="mx-auto w-full max-w-container px-6 md:px-10 lg:px-16">
             <div className="flex flex-col gap-4 py-16 md:py-20">
-              <span className="kicker text-brass-light">Privacy</span>
-              <h1 className="font-serif text-display-2 font-normal text-ivory">Privacy statement</h1>
+              <Kicker>Privacy</Kicker>
+              <h1 className="font-serif text-display-2 font-semibold text-ivory">Privacy statement</h1>
             </div>
           </div>
         </section>

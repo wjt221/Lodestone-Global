@@ -27,8 +27,8 @@ const config: Config = {
         sans: ["var(--font-body)", "Helvetica Neue", "Arial", "sans-serif"],
       },
       fontSize: {
-        "display-1": ["clamp(2.5rem, 4.6vw, 4.5rem)", { lineHeight: "1.1", letterSpacing: "-0.005em" }],
-        "display-2": ["clamp(2rem, 3.2vw, 3rem)", { lineHeight: "1.15", letterSpacing: "-0.005em" }],
+        "display-1": ["clamp(2.75rem, 5.8vw, 5.75rem)", { lineHeight: "0.98", letterSpacing: "-0.015em" }],
+        "display-2": ["clamp(2.1rem, 3.6vw, 3.25rem)", { lineHeight: "1.05", letterSpacing: "-0.01em" }],
         "display-3": ["clamp(1.5rem, 2.2vw, 2.1rem)", { lineHeight: "1.25", letterSpacing: "0" }],
       },
       maxWidth: {

@@ -82,7 +82,7 @@ export default async function ArticlePage({
                 {formattedDate} · {article.minutesToRead} min read
               </span>
             </div>
-            <h1 className="max-w-3xl font-serif text-display-2 font-normal text-ivory">
+            <h1 className="max-w-3xl font-serif text-display-2 font-semibold text-ivory">
               {article.title}
             </h1>
           </Container>

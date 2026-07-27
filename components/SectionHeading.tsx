@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { Kicker } from "./Kicker";
 
 export function SectionHeading({
   index,
@@ -20,7 +21,6 @@ export function SectionHeading({
   const titleColor = tone === "dark" ? "text-ivory" : "text-navy";
   const descColor = tone === "dark" ? "text-ivory/65" : "text-charcoal/65";
   const ruleColor = tone === "dark" ? "border-ivory/20" : "border-charcoal/15";
-  const kickerColor = tone === "dark" ? "text-brass-light" : "text-navy/70";
   const alignment = align === "center" ? "text-center items-center mx-auto" : "text-left";
   const Heading = headingLevel;
 
@@ -30,10 +30,10 @@ export function SectionHeading({
         <div className={`flex items-center gap-3 ${align === "center" ? "" : ""}`}>
           {index && <span className={`index-number ${tone === "dark" ? "text-stone" : ""}`}>{index}</span>}
           {index && kicker && <span className={`h-px w-6 ${ruleColor} border-t`} />}
-          {kicker && <span className={`kicker ${kickerColor}`}>{kicker}</span>}
+          {kicker && <Kicker tone={tone}>{kicker}</Kicker>}
         </div>
       )}
-      <Heading className={`font-serif text-display-2 font-normal ${titleColor}`}>{title}</Heading>
+      <Heading className={`font-serif text-display-2 font-semibold ${titleColor}`}>{title}</Heading>
       {description && (
         <p className={`font-sans text-[1.05rem] leading-relaxed ${descColor}`}>{description}</p>
       )}

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Section } from "@/components/Section";
+import { Kicker } from "@/components/Kicker";
 import { ContactForm } from "@/components/ContactForm";
 import { CONTACT } from "@/lib/content";
 
@@ -25,8 +26,8 @@ export default function ContactPage() {
         <section className="bg-navy pt-[4.25rem] text-ivory">
           <div className="mx-auto w-full max-w-container px-6 md:px-10 lg:px-16">
             <div className="flex flex-col gap-6 py-20 md:py-24">
-              <span className="kicker text-brass-light">Contact</span>
-              <h1 className="max-w-3xl font-serif text-display-1 font-normal text-ivory">
+              <Kicker>Contact</Kicker>
+              <h1 className="max-w-3xl font-serif text-display-1 font-semibold text-ivory">
                 Begin with the decision in front of you.
               </h1>
               <p className="max-w-2xl font-sans text-lg leading-relaxed text-ivory/75">

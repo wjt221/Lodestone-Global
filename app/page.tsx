@@ -6,6 +6,7 @@ import { Container } from "@/components/Container";
 import { SectionHeading } from "@/components/SectionHeading";
 import { BackgroundPhoto } from "@/components/BackgroundPhoto";
 import { EcosystemList } from "@/components/EcosystemList";
+import { Kicker } from "@/components/Kicker";
 import { InsightCards } from "@/components/InsightCards";
 import { Leadership } from "@/components/Leadership";
 import { CTASection } from "@/components/CTASection";
@@ -45,7 +46,8 @@ export default function Home() {
         <section className="relative flex min-h-[86vh] flex-col justify-center overflow-hidden pt-[4.25rem] text-ivory">
           <BackgroundPhoto src={photos.hero.src} alt={photos.hero.alt} priority overlayClassName="bg-navy/82" />
           <Container className="relative z-10 flex flex-col gap-8 py-20">
-            <h1 className="max-w-4xl font-serif text-display-1 font-normal text-ivory">
+            <Kicker>Overview</Kicker>
+            <h1 className="max-w-4xl font-serif text-display-1 font-semibold text-ivory">
               Trusted counsel for owners building enduring companies and family wealth.
             </h1>
             <p className="max-w-2xl font-sans text-lg leading-relaxed text-ivory/80">
@@ -151,11 +153,13 @@ export default function Home() {
               title="Work across privately held industries."
               description="Lodestone has advised private and family-owned companies across a range of sectors. Client relationships are confidential and identified only with permission."
             />
-            <ul className="grid grid-cols-2 gap-x-8 gap-y-5 sm:grid-cols-3">
-              {sectorsServed.map((sector) => (
+            <ul className="flex flex-wrap items-center gap-y-6 border-y border-charcoal/20 py-2">
+              {sectorsServed.map((sector, i) => (
                 <li
                   key={sector}
-                  className="border-t border-charcoal/15 pt-4 font-serif text-lg font-normal text-navy"
+                  className={`px-6 font-serif text-base font-normal text-navy first:pl-0 ${
+                    i < sectorsServed.length - 1 ? "border-r border-charcoal/20" : ""
+                  }`}
                 >
                   {sector}
                 </li>
