@@ -13,13 +13,17 @@ be re-verified against the live source before launch.
 
 ## Leadership
 
-- [ ] **Full team roster.** Only William Tenenbaum (Founder and Managing
-      Partner) and Marissa Levin (Chief Client Officer) are published, because
-      they are the only individuals with a confirmed name, role, and bio.
-      Add remaining team members from the live `/team` page (e.g. a name seen
-      in one snippet, "Tyler Errickson, Partner at Lodestone Capital," is
-      unconfirmed and was not published).
-- [ ] **Approved biographies.** Confirm/replace the two published bios with
+- [ ] **Full team roster.** Published entries: William Tenenbaum (Founder and
+      Managing Partner), Ken Munkacy (Advisory Board Member), and Marissa Levin
+      (Chief Client Officer). Add remaining team members from the live `/team`
+      page (e.g. a name seen in one snippet, "Tyler Errickson, Partner at
+      Lodestone Capital," is unconfirmed and was not published).
+- [ ] **Ken Munkacy biography.** Ken Munkacy is published with name and role
+      only; no bio was available in the repo, so the entry renders a neutral
+      monogram and hides the bio field rather than inventing career history
+      (see the `BIO PENDING APPROVAL` comment in `lib/content.ts`). Supply his
+      approved biography.
+- [ ] **Approved biographies.** Confirm/replace the published bios with
       final approved copy. The published bios deliberately omit unverified
       specifics (e.g. the "22% annualized alpha" figure and a named prior
       employer's AUM) — add back only if approved.

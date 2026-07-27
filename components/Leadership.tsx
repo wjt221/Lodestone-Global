@@ -38,9 +38,11 @@ export function Leadership({ full = false }: { full?: boolean }) {
                 <span className="font-sans text-[0.8rem] uppercase tracking-[0.08em] text-brass">
                   {person.role}
                 </span>
-                <p className="mt-1 font-sans text-[0.92rem] leading-relaxed text-charcoal/70">
-                  {person.bio}
-                </p>
+                {person.bio && (
+                  <p className="mt-1 font-sans text-[0.92rem] leading-relaxed text-charcoal/70">
+                    {person.bio}
+                  </p>
+                )}
                 {person.linkedin && (
                   <a
                     href={person.linkedin}

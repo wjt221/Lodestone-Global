@@ -128,7 +128,7 @@ export const primaryNav = [
   { href: "/contact", label: "Contact" },
 ];
 
-export const CTA_PRIMARY = { label: "Start a Conversation", href: "/contact" };
+export const CTA_PRIMARY = { label: "Schedule a Conversation", href: "/contact" };
 export const CTA_SECONDARY = { label: "Explore the Lodestone Ecosystem", href: "/about#ecosystem" };
 
 export const CONTACT = {
@@ -171,6 +171,67 @@ export const whoWeServe: string[] = [
   "Family wealth requires greater coordination",
   "The next generation must be prepared",
 ];
+
+/**
+ * Recognition section. The questions a principal starts asking as ownership
+ * grows, written so the right reader recognizes their own situation. Editorial,
+ * not an icon grid.
+ */
+export const ownerQuestions: string[] = [
+  "How do I build a company that no longer depends entirely on me?",
+  "What should the board do now that the business is more complex?",
+  "Where should the capital the company produces go next?",
+  "How do we organize investments, advisors, and family decisions?",
+  "What must be in place before ownership passes to the next generation?",
+];
+
+/**
+ * The Principal Journey: how a principal's role, defining question, and the
+ * Lodestone capability that matters most all change as ownership matures.
+ * A progression, not four generic columns. Outcomes are kept understated and
+ * listed together rather than shown as floating decorative words.
+ */
+export interface JourneyStage {
+  stage: string;
+  role: string;
+  question: string;
+  capability: { label: string; href: string };
+  outcome: string;
+}
+
+export const principalJourney: JourneyStage[] = [
+  {
+    stage: "Operator",
+    role: "Build a company that can execute without every decision returning to the founder.",
+    question: "How do I build a company that no longer depends entirely on me?",
+    capability: { label: "E3 Scale Network", href: "/e3-scale-network" },
+    outcome: "Freedom",
+  },
+  {
+    stage: "Owner",
+    role: "Direct the company through governance, leadership, and disciplined capital allocation.",
+    question: "What should the board do now that the business is more complex?",
+    capability: { label: "Governance Advisory", href: "/governance-advisory" },
+    outcome: "Optionality",
+  },
+  {
+    stage: "Investor",
+    role: "Deploy the capital the company produces across operating and non-operating assets.",
+    question: "Where should the capital the company produces go next?",
+    capability: { label: "Lodestone Capital", href: "/lodestone-capital" },
+    outcome: "Time",
+  },
+  {
+    stage: "Steward",
+    role: "Prepare the structures, people, and next generation that will carry ownership forward.",
+    question: "What must be in place before ownership passes to the next generation?",
+    capability: { label: "Family Advisors", href: "/family-advisors" },
+    outcome: "Continuity",
+  },
+];
+
+/** Understated outcomes of the full journey, listed together, not floated. */
+export const journeyOutcomes = ["Freedom", "Optionality", "Time", "Continuity", "Purpose"];
 
 /** How we work: three steps, no decorative icons. */
 export const howWeWork: { step: string; title: string; body: string }[] = [
@@ -277,7 +338,13 @@ export const researchCard: Insight = {
 export interface Leader {
   name: string;
   role: string;
-  bio: string;
+  /**
+   * Approved biography. Optional: an entry with a confirmed name and role but
+   * no approved bio yet renders name, role, and a neutral monogram, and hides
+   * the bio field rather than exposing placeholder copy (see brief). Supply
+   * approved copy for any entry left without a bio.
+   */
+  bio?: string;
   linkedin?: string; // NEEDS CONFIRMATION before enabling
   photo?: string;
 }
@@ -287,6 +354,13 @@ export const leadership: Leader[] = [
     name: "William Tenenbaum",
     role: "Founder and Managing Partner",
     bio: "William Tenenbaum founded Lodestone Global to help private companies build, optimize, and educate high-performing boards. He brings more than two decades of investing and governance experience across private companies, family enterprises, and the public markets, including work as a portfolio manager at a fundamental hedge fund. He studied at NYU Stern and is an active member of YPO.",
+  },
+  {
+    name: "Ken Munkacy",
+    role: "Advisory Board Member",
+    // BIO PENDING APPROVAL — supply Ken Munkacy's approved biography. Until then
+    // this entry renders name, role, and a neutral monogram only; no invented
+    // career history is shown (see CONTENT_NEEDED.md).
   },
   {
     name: "Marissa Levin",
@@ -311,6 +385,10 @@ export interface BusinessDetail {
   intro: string;
   overview: string[];
   capabilityGroups: CapabilityGroup[];
+  /** How an engagement works: three concrete steps, distinct per practice. */
+  engagement: { step: string; title: string; body: string }[];
+  /** Slugs of related, already-published insights (see lib/articles.ts). */
+  relatedArticleSlugs?: string[];
   /** Optional closing note, e.g. how the business fits the wider practice. */
   note?: string;
   /** Optional FAQ, rendered as content and as FAQPage structured data. */
@@ -354,6 +432,28 @@ export const businessDetail: Record<StageId, BusinessDetail> = {
         detail:
           "Facilitate board work and educate directors and owners through seminars and programs built for private companies.",
       },
+    ],
+    engagement: [
+      {
+        step: "01",
+        title: "Define the mandate",
+        body: "Start from the owner's strategy and define what the board actually needs to accomplish, before any search begins.",
+      },
+      {
+        step: "02",
+        title: "Recruit the right directors",
+        body: "Draw on the network to find directors chosen for the work the company needs done, not for a title.",
+      },
+      {
+        step: "03",
+        title: "Keep the board effective",
+        body: "Benchmark director pay, facilitate the board's work, and revisit its composition as the business changes.",
+      },
+    ],
+    relatedArticleSlugs: [
+      "improving-board-performance",
+      "attracting-top-board-members",
+      "advisory-board-readiness",
     ],
     faq: [
       {
@@ -415,6 +515,23 @@ export const businessDetail: Record<StageId, BusinessDetail> = {
           "Apply technology and AI where they measurably improve how the company operates.",
       },
     ],
+    engagement: [
+      {
+        step: "Envision",
+        title: "Set the plan",
+        body: "Work with the owner and management to set the operating priorities and the case for the next stage of growth.",
+      },
+      {
+        step: "Execute",
+        title: "Install the operating system",
+        body: "Put the management cadence, accountability, and organizational design in place that turn the plan into results.",
+      },
+      {
+        step: "Expand",
+        title: "Scale beyond the founder",
+        body: "Develop leadership, bring discipline to capital allocation, and pursue M&A as the company grows.",
+      },
+    ],
     note:
       "E3 operates its own platform at e3scale.com and works alongside the wider Lodestone practice.",
     meta: {
@@ -455,6 +572,24 @@ export const businessDetail: Record<StageId, BusinessDetail> = {
         detail: "Working with owners on how capital is allocated across the business and beyond it.",
       },
     ],
+    engagement: [
+      {
+        step: "01",
+        title: "Understand the mandate",
+        body: "Begin with what the owner is trying to achieve across the business and the capital it produces.",
+      },
+      {
+        step: "02",
+        title: "Invest with discipline",
+        body: "Evaluate opportunities using direct operating knowledge and relationships built through the wider practice.",
+      },
+      {
+        step: "03",
+        title: "Stay aligned",
+        body: "Invest alongside owners and family offices, with incentives that match theirs over the long term.",
+      },
+    ],
+    relatedArticleSlugs: ["lodestone-capital-blulabs-investment"],
     note:
       "Nothing here is an offer to sell or a solicitation to buy any security. Investing involves risk, including possible loss of principal.",
     meta: {
@@ -493,6 +628,23 @@ export const businessDetail: Record<StageId, BusinessDetail> = {
       {
         name: "Next-generation preparation",
         detail: "Preparing the next generation to inherit responsibility, not only assets.",
+      },
+    ],
+    engagement: [
+      {
+        step: "01",
+        title: "Map the whole picture",
+        body: "Take stock of investments, entities, advisors, and the family's own objectives in one place.",
+      },
+      {
+        step: "02",
+        title: "Coordinate the advisors",
+        body: "Align investment oversight, estate and tax planning, and governance so the work moves in one direction.",
+      },
+      {
+        step: "03",
+        title: "Prepare what comes next",
+        body: "Establish family governance and prepare the next generation to inherit responsibility, not only assets.",
       },
     ],
     note:
