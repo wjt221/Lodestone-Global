@@ -101,8 +101,15 @@ be re-verified against the live source before launch.
 
 ## Media / assets
 
-- [ ] **Documentary photography.** The hero and section backgrounds currently
-      use durable Unsplash URLs (configured in `next.config.js`). Replace with
+- [ ] **Documentary photography.** The hero and section backgrounds use
+      Unsplash URLs (`components/photos.ts`), reworked to eliminate the same
+      image repeating across unrelated pages (was: one image reused on 7
+      pages) and to fill two previously-unused entries. IMPORTANT: this
+      sandbox cannot fetch or preview external images (confirmed 403 on both
+      direct HTTP and WebFetch for images.unsplash.com), so every URL in that
+      file was selected from training knowledge, not visually verified —
+      check the live site against each entry's alt text (which states the
+      intended subject) and swap anything that doesn't match. Replace with
       approved, licensed Lodestone photography where possible (see
       `public/images/lodestone/README.md` for slot names and direction).
 - [ ] **Open Graph share image.** No custom OG image is set. Supply a branded

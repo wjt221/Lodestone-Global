@@ -13,6 +13,7 @@ export function EditorialImage({
   sizes = "(min-width: 1024px) 40vw, 100vw",
   priority = false,
   className = "",
+  objectPosition = "center",
 }: {
   src: string;
   alt: string;
@@ -20,12 +21,22 @@ export function EditorialImage({
   sizes?: string;
   priority?: boolean;
   className?: string;
+  /** CSS object-position, for photos whose focal point isn't centered. */
+  objectPosition?: string;
 }) {
   const available = isImageAvailable(src);
   return (
     <figure className={`relative overflow-hidden bg-parchment ${aspect} ${className}`}>
       {available ? (
-        <Image src={src} alt={alt} fill sizes={sizes} priority={priority} className="object-cover" />
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          sizes={sizes}
+          priority={priority}
+          style={{ objectPosition }}
+          className="object-cover"
+        />
       ) : (
         <div
           className="absolute inset-0 bg-gradient-to-br from-navy/10 via-parchment to-stone-light/40"

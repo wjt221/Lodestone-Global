@@ -44,7 +44,7 @@ export default function AboutPage() {
       <main id="main">
         {/* MASTHEAD */}
         <section className="relative overflow-hidden pt-[4.25rem] text-ivory">
-          <BackgroundPhoto src={photos.credibility.src} alt={photos.credibility.alt} priority overlayClassName="bg-navy/85" />
+          <BackgroundPhoto src={photos.aboutMasthead.src} alt={photos.aboutMasthead.alt} priority overlayClassName="bg-navy/85" />
           <Container className="relative z-10 flex flex-col gap-6 py-24 md:py-28">
             <Kicker>About Lodestone</Kicker>
             <h1 className="max-w-3xl font-serif text-display-1 font-semibold text-ivory">
@@ -124,7 +124,7 @@ export default function AboutPage() {
 
         {/* CTA */}
         <section className="relative overflow-hidden py-24 md:py-28">
-          <BackgroundPhoto src={photos.closing.src} alt={photos.closing.alt} overlayClassName="bg-gradient-to-b from-navy/80 via-navy/90 to-navy" />
+          <BackgroundPhoto src={photos.closing.src} alt={photos.closing.alt} overlayClassName="bg-gradient-to-b from-navy/80 via-navy/90 to-navy" objectPosition="top" />
           <Container className="relative z-10">
             <CTASection />
           </Container>

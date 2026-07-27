@@ -14,6 +14,7 @@ export function BackgroundPhoto({
   priority = false,
   sizes = "100vw",
   imageClassName = "",
+  objectPosition = "center",
 }: {
   src: string;
   alt: string;
@@ -21,6 +22,8 @@ export function BackgroundPhoto({
   priority?: boolean;
   sizes?: string;
   imageClassName?: string;
+  /** CSS object-position, for photos whose focal point isn't centered (e.g. architecture shots cropped tall on mobile). */
+  objectPosition?: string;
 }) {
   const available = isImageAvailable(src);
 
@@ -35,6 +38,7 @@ export function BackgroundPhoto({
           fill
           priority={priority}
           sizes={sizes}
+          style={{ objectPosition }}
           className={`object-cover ${imageClassName}`}
         />
       )}

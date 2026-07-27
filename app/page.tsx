@@ -96,8 +96,8 @@ export default function Home() {
           />
           <div className="mt-14 grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
             <EditorialImage
-              src={photos.credibility.src}
-              alt={photos.credibility.alt}
+              src={photos.homeQuestions.src}
+              alt={photos.homeQuestions.alt}
               aspect="aspect-[4/5]"
               sizes="(min-width: 1024px) 33vw, 100vw"
               className="lg:col-span-4"
@@ -149,7 +149,7 @@ export default function Home() {
 
         {/* STATEMENT BAND */}
         <section className="relative overflow-hidden py-28 md:py-36">
-          <BackgroundPhoto src={photos.govern.src} alt={photos.govern.alt} overlayClassName="bg-navy/82" />
+          <BackgroundPhoto src={photos.homeStatementBand.src} alt={photos.homeStatementBand.alt} overlayClassName="bg-navy/82" objectPosition="top" />
           <Container className="relative z-10">
             <p className="max-w-3xl font-serif text-display-2 font-normal leading-tight text-ivory">
               We start with the whole picture: the business, the family, the capital, and the
@@ -168,8 +168,8 @@ export default function Home() {
                 description="Our perspective comes from forming and sitting on boards, running companies, and investing capital, not from a framework. That is what lets one team coordinate decisions across the business, its capital, and the family."
               />
               <EditorialImage
-                src={photos.scale.src}
-                alt={photos.scale.alt}
+                src={photos.homeWhyLodestone.src}
+                alt={photos.homeWhyLodestone.alt}
                 aspect="aspect-[3/2]"
                 sizes="(min-width: 1024px) 40vw, 100vw"
                 className="hidden lg:block"
@@ -313,7 +313,7 @@ export default function Home() {
 
         {/* 11. FINAL CTA */}
         <section className="relative overflow-hidden py-24 md:py-32">
-          <BackgroundPhoto src={photos.closing.src} alt={photos.closing.alt} overlayClassName="bg-gradient-to-b from-navy/80 via-navy/90 to-navy" />
+          <BackgroundPhoto src={photos.closing.src} alt={photos.closing.alt} overlayClassName="bg-gradient-to-b from-navy/80 via-navy/90 to-navy" objectPosition="top" />
           <Container className="relative z-10">
             <CTASection />
           </Container>

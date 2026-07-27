@@ -58,7 +58,7 @@ export default function InsightsPage() {
         </Section>
 
         <section className="relative overflow-hidden py-24 md:py-28">
-          <BackgroundPhoto src={photos.closing.src} alt={photos.closing.alt} overlayClassName="bg-gradient-to-b from-navy/80 via-navy/90 to-navy" />
+          <BackgroundPhoto src={photos.closing.src} alt={photos.closing.alt} overlayClassName="bg-gradient-to-b from-navy/80 via-navy/90 to-navy" objectPosition="top" />
           <Container className="relative z-10">
             <CTASection
               title="Ask about the research."

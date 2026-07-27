@@ -9,7 +9,7 @@ import { CapabilityStepper } from "./CapabilityStepper";
 import { CTASection } from "./CTASection";
 import { InsightCards } from "./InsightCards";
 import { PullQuote } from "./PullQuote";
-import { photos } from "./photos";
+import { photos, businessClosingPhotos } from "./photos";
 import { JsonLd } from "./JsonLd";
 import { breadcrumbJsonLd, faqJsonLd } from "@/lib/seo";
 import { articleCards } from "@/lib/articles";
@@ -25,6 +25,7 @@ export function BusinessPage({ id }: { id: StageId }) {
   const detail = businessDetail[id];
   const others = businesses.filter((b) => b.id !== id);
   const photo = photos[id];
+  const closingPhoto = businessClosingPhotos[id];
   const relatedInsights = (detail.relatedArticleSlugs ?? [])
     .map((slug) => articleCards.find((a) => a.href === `/insights/${slug}`))
     .filter((a): a is NonNullable<typeof a> => Boolean(a));
@@ -252,7 +253,12 @@ export function BusinessPage({ id }: { id: StageId }) {
 
         {/* CTA */}
         <section className="relative overflow-hidden py-24 md:py-28">
-          <BackgroundPhoto src={photos.closing.src} alt={photos.closing.alt} overlayClassName="bg-gradient-to-b from-navy/80 via-navy/90 to-navy" />
+          <BackgroundPhoto
+            src={closingPhoto.src}
+            alt={closingPhoto.alt}
+            overlayClassName="bg-gradient-to-b from-navy/80 via-navy/90 to-navy"
+            objectPosition={"objectPosition" in closingPhoto ? closingPhoto.objectPosition : "center"}
+          />
           <Container className="relative z-10">
             <CTASection
               title="Start with the decision in front of you."

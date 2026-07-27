@@ -43,8 +43,8 @@ export default function CaseStudiesPage() {
         {/* MASTHEAD */}
         <section className="relative overflow-hidden pt-[4.25rem] text-ivory">
           <BackgroundPhoto
-            src={photos.govern.src}
-            alt={photos.govern.alt}
+            src={photos.caseStudiesMasthead.src}
+            alt={photos.caseStudiesMasthead.alt}
             priority
             overlayClassName="bg-navy/85"
           />
