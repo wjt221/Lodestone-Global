@@ -12,12 +12,12 @@ export function PrincipalJourney() {
   return (
     <div className="flex flex-col gap-12">
       {/* Signature arc */}
-      <p className="font-serif text-display-3 font-normal leading-tight text-navy">
+      <p className="flex flex-wrap items-baseline gap-x-3 gap-y-1 font-serif text-display-3 font-normal leading-tight text-navy">
         {principalJourney.map((s, i) => (
-          <span key={s.stage}>
+          <span key={s.stage} className="flex items-baseline gap-x-3">
             {s.stage}
             {i < principalJourney.length - 1 && (
-              <span className="mx-3 text-brass" aria-hidden>
+              <span className="text-brass" aria-hidden>
                 →
               </span>
             )}
