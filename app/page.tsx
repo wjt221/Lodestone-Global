@@ -5,6 +5,7 @@ import { Section } from "@/components/Section";
 import { Container } from "@/components/Container";
 import { SectionHeading } from "@/components/SectionHeading";
 import { BackgroundPhoto } from "@/components/BackgroundPhoto";
+import { EditorialImage } from "@/components/EditorialImage";
 import { EcosystemList } from "@/components/EcosystemList";
 import { InsightCards } from "@/components/InsightCards";
 import { Leadership } from "@/components/Leadership";
@@ -84,15 +85,20 @@ export default function Home() {
 
         {/* 3. WHO WE SERVE */}
         <Section tone="light">
-          <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
-            <div className="lg:col-span-5">
-              <SectionHeading
-                kicker="Who We Serve"
-                title="Businesses and families that have outgrown disconnected advice."
-                description="We work with founders, family enterprises, private-company CEOs, boards, and families whose businesses and wealth have become too complex to manage through disconnected advisors."
-              />
-            </div>
-            <div className="lg:col-span-7">
+          <SectionHeading
+            kicker="Who We Serve"
+            title="Businesses and families that have outgrown disconnected advice."
+            description="We work with founders, family enterprises, private-company CEOs, boards, and families whose businesses and wealth have become too complex to manage through disconnected advisors."
+          />
+          <div className="mt-14 grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
+            <EditorialImage
+              src={photos.credibility.src}
+              alt={photos.credibility.alt}
+              aspect="aspect-[4/5]"
+              sizes="(min-width: 1024px) 33vw, 100vw"
+              className="lg:col-span-4"
+            />
+            <div className="lg:col-span-8">
               <p className="mb-6 font-sans text-[0.82rem] uppercase tracking-[0.08em] text-charcoal/45">
                 The moments that typically lead here
               </p>
@@ -123,14 +129,32 @@ export default function Home() {
           </div>
         </Section>
 
+        {/* STATEMENT BAND */}
+        <section className="relative overflow-hidden py-28 md:py-36">
+          <BackgroundPhoto src={photos.govern.src} alt={photos.govern.alt} overlayClassName="bg-navy/82" />
+          <Container className="relative z-10">
+            <p className="max-w-3xl font-serif text-display-2 font-normal leading-tight text-ivory">
+              We start with the whole picture: the business, the family, the capital, and the
+              objectives. Not the assignment in front of us.
+            </p>
+          </Container>
+        </section>
+
         {/* 5. WHY LODESTONE */}
         <Section tone="light">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
-            <div className="lg:col-span-5">
+            <div className="flex flex-col gap-10 lg:col-span-5">
               <SectionHeading
                 kicker="Why Lodestone"
                 title="Built in the boardroom, not the classroom."
                 description="Our perspective comes from forming and sitting on boards, running companies, and investing capital, not from a framework. That is what lets one team coordinate decisions across the business, its capital, and the family."
+              />
+              <EditorialImage
+                src={photos.scale.src}
+                alt={photos.scale.alt}
+                aspect="aspect-[3/2]"
+                sizes="(min-width: 1024px) 40vw, 100vw"
+                className="hidden lg:block"
               />
             </div>
             <div className="lg:col-span-7">
