@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { businesses } from "@/lib/content";
 
@@ -42,8 +43,20 @@ export function EcosystemList() {
         {businesses.map((b) => (
           <div key={b.id} className="flex flex-col gap-5">
             <div>
-              <span className="font-serif text-lg font-normal text-navy">{b.name}</span>
-              <p className="mt-2 font-sans text-[0.8rem] leading-relaxed text-charcoal/55">
+              {b.logo ? (
+                <div className="flex h-11 items-start">
+                  <Image
+                    src={b.logo.src}
+                    alt={`${b.name} logo`}
+                    width={b.logo.width}
+                    height={b.logo.height}
+                    className="h-full w-auto object-contain object-left"
+                  />
+                </div>
+              ) : (
+                <span className="font-serif text-lg font-normal text-navy">{b.name}</span>
+              )}
+              <p className="mt-3 font-sans text-[0.8rem] leading-relaxed text-charcoal/55">
                 {b.role}
               </p>
             </div>
