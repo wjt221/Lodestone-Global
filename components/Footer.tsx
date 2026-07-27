@@ -15,14 +15,16 @@ export function Footer() {
       <Container className="py-16 md:py-20">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-12">
           {/* Brand + contact */}
-          <div className="flex flex-col gap-6 md:col-span-4">
-            <Image
-              src="/logo/lodestone-global-horizontal-white.png"
-              alt="Lodestone Global"
-              width={320}
-              height={107}
-              className="h-8 w-auto"
-            />
+          <div className="flex flex-col items-start gap-6 md:col-span-4">
+            <Link href="/" aria-label="Lodestone Global home">
+              <Image
+                src="/logo/lodestone-global-horizontal-white.png"
+                alt="Lodestone Global"
+                width={320}
+                height={107}
+                className="h-9 w-auto"
+              />
+            </Link>
             <p className="max-w-xs font-sans text-[0.9rem] leading-relaxed text-ivory/60">
               Trusted counsel for owners building enduring companies and family wealth.
             </p>
