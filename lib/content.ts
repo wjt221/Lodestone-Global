@@ -668,6 +668,24 @@ export const businessDetail: Record<StageId, BusinessDetail> = {
         body: "Develop leadership, bring discipline to capital allocation, and pursue M&A as the company grows.",
       },
     ],
+    faq: [
+      {
+        q: "How is an Operating Partner different from a consultant?",
+        a: "An Operating Partner has built and run companies. They work inside the business alongside the owner and management team on the decisions that determine whether it scales, rather than delivering a report and a recommendation from outside it.",
+      },
+      {
+        q: "What do Envision, Execute and Expand actually mean?",
+        a: "Envision sets the operating priorities and the case for the next stage of growth with the owner and management. Execute installs the management cadence, accountability and organizational design that turn that plan into results. Expand develops leadership, brings discipline to capital allocation, and pursues M&A as the company grows.",
+      },
+      {
+        q: "What size company is E3 Scale Network built for?",
+        a: "Founder-led and private companies at the point where the founder has become the bottleneck for most operating decisions, and where the management team has not previously run a business at the scale now required.",
+      },
+      {
+        q: "How does E3 relate to the board work Lodestone Global does?",
+        a: "Governance sets the direction and the accountability; E3 works with management on executing against it. A board often surfaces the operating gaps an Operating Partner is then brought in to close.",
+      },
+    ],
     note:
       "E3 operates its own platform at e3scale.com and works alongside the wider Lodestone practice.",
     meta: {
@@ -750,6 +768,30 @@ export const businessDetail: Record<StageId, BusinessDetail> = {
         ],
       },
     ],
+    // Published by Lodestone Capital on 2026-05-27. Both figures come from the
+    // firm's own announcement, carried on the site today at
+    // /insights/lodestone-capital-blulabs-investment. No performance or return
+    // figure is stated: none is published, and none should be added without approval.
+    evidenceStat: {
+      value: "$7M",
+      label:
+        "investment led in Blulabs, valuing the global supply chain platform at $160 million pre-money",
+      source: "Lodestone Capital announcement, May 2026",
+    },
+    faq: [
+      {
+        q: "What does governance-driven investing mean in practice?",
+        a: "Capital is one part of it. The other is the governance and operating insight that comes from having built and served on boards of private companies. That combination shapes which opportunities are seen, how they are assessed, and what happens after the investment is made.",
+      },
+      {
+        q: "Who does Lodestone Capital invest alongside?",
+        a: "Family offices and board clients, across private equity, private credit and real estate.",
+      },
+      {
+        q: "How does this relate to the board advisory practice?",
+        a: "Many relationships begin with governance work. That proximity to founder-led and family-owned businesses is where the perspective, and often the opportunity, comes from.",
+      },
+    ],
     engagement: [
       {
         step: "01",
@@ -776,6 +818,13 @@ export const businessDetail: Record<StageId, BusinessDetail> = {
         "Lodestone Capital is a principal-led investment platform pursuing private equity, real estate, co-investments, and founder-led opportunities alongside family offices.",
     },
   },
+  // DELIBERATELY THIN -- NOT AN OVERSIGHT.
+  // The other three practices now carry proof sections (evidenceStat, faq,
+  // testimonial). Family Advisors does not, because "family office", "multi-family
+  // office" and adviser terminology carry regulatory weight, and a claim or FAQ here
+  // could imply a service or a registration status that has not been confirmed.
+  // Needs: compliance review, then an approved evidence line and FAQ.
+  // See docs/design-realness-plan.md in the Wix repo.
   steward: {
     eyebrow: "Steward",
     heading: "The capabilities of a single-family office, without building one.",
