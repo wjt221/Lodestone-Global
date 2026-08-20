@@ -361,12 +361,28 @@ export type LeaderOrg = StageId;
  * their business with no title, rather than publishing a guess. Same principle
  * as the optional `bio` below.
  */
+/**
+ * How a person relates to a business. This is not cosmetic: it decides whether
+ * the markup says `worksFor` (employment) or `affiliation`, and asserting
+ * employment that does not exist is the kind of mismatch search engines
+ * cross-check against LinkedIn.
+ *
+ *   staff    employed by that business
+ *   advisor  advises it, not employed by it
+ *   affiliate  employed by another firm, delivering a capability into the
+ *              ecosystem (see `Leader.employer`)
+ *
+ * Note: "affiliate", not "partner". "Partner" is also a seniority title here
+ * (Sam Tenenbaum is a Partner at Lodestone Global and is staff), so reusing the
+ * word for the relationship would make the data ambiguous to read.
+ */
+export type LeaderRelationship = "staff" | "advisor" | "affiliate";
+
 export interface LeaderRole {
   org: LeaderOrg;
   title?: string;
-  /** Advisors are not staff. Rendered in a separate group, and schema uses
-   *  `affiliation` rather than `worksFor`, which would imply employment. */
-  advisor?: boolean;
+  /** Defaults to "staff" when omitted. */
+  relationship?: LeaderRelationship;
 }
 
 export interface Leader {
@@ -381,6 +397,11 @@ export interface Leader {
   bio?: string;
   linkedin?: string; // NEEDS CONFIRMATION before enabling
   photo?: string;
+  /**
+   * Actual employer, for people whose relationship is "affiliate". Omitted until
+   * the exact legal name is confirmed: a wrong employer is worse than none.
+   */
+  employer?: string;
 }
 
 /** Display names and order for the leadership groupings. */
@@ -398,13 +419,21 @@ export const leadership: Leader[] = [
   // ---- Lodestone Global ----
   {
     name: "William Tenenbaum",
-    roles: [{ org: "govern", title: "Founder and Managing Partner" }],
+    // Holds a role in all four businesses. Only the Lodestone Global title is
+    // confirmed; the other three render under their business without a title
+    // until supplied. NEEDS CONFIRMATION — titles at E3, Capital and LFA.
+    roles: [
+      { org: "govern", title: "Founder and Managing Partner" },
+      { org: "scale" },
+      { org: "compound" },
+      { org: "steward" },
+    ],
     bio: "William Tenenbaum founded Lodestone Global to help private companies build, optimize, and educate high-performing boards. He brings more than two decades of investing and governance experience across private companies, family enterprises, and the public markets, including work as a portfolio manager at a fundamental hedge fund. He studied at NYU Stern and is an active member of YPO.",
   },
   {
     name: "Sam Tenenbaum",
-    // NEEDS CONFIRMATION — title. Renders name and business only until supplied.
-    roles: [{ org: "govern" }],
+    // "Partner" is the seniority title. Relationship is staff, not "affiliate".
+    roles: [{ org: "govern", title: "Partner" }],
   },
   {
     name: "Marissa Levin",
@@ -414,17 +443,17 @@ export const leadership: Leader[] = [
   },
   {
     name: "Ken Munkacy",
-    roles: [{ org: "govern", title: "Advisor", advisor: true }],
+    roles: [{ org: "govern", title: "Advisor", relationship: "advisor" }],
     // BIO PENDING APPROVAL — no invented career history is shown.
   },
   {
     name: "Lynn Clarke",
-    roles: [{ org: "govern", title: "Advisor", advisor: true }],
+    roles: [{ org: "govern", title: "Advisor", relationship: "advisor" }],
     // BIO PENDING APPROVAL
   },
   {
     name: "Ryan Niles",
-    roles: [{ org: "govern", title: "Advisor", advisor: true }],
+    roles: [{ org: "govern", title: "Advisor", relationship: "advisor" }],
     // BIO PENDING APPROVAL
   },
 
@@ -452,14 +481,12 @@ export const leadership: Leader[] = [
   },
   {
     name: "Carolina Morales",
-    // NEEDS CONFIRMATION — given as "PM". Not expanded, because Program,
-    // Product, Project and Portfolio Manager are all plausible and all different.
-    roles: [{ org: "scale" }],
+    roles: [{ org: "scale", title: "Project Manager and Executive Assistant" }],
   },
   {
     name: "Andy Friere",
     // NEEDS CONFIRMATION — spelling. "Freire" is the more common form.
-    roles: [{ org: "scale", title: "Advisor", advisor: true }],
+    roles: [{ org: "scale", title: "Advisor", relationship: "advisor" }],
   },
 
   // ---- Lodestone Capital ----
@@ -475,8 +502,12 @@ export const leadership: Leader[] = [
   },
   {
     name: "Bill van Pelt",
-    // NEEDS CONFIRMATION — capitalisation of "van Pelt".
-    roles: [{ org: "steward", title: "Head of Trust and Estate" }],
+    // Employed by Midcontinent, partnering into the ecosystem through trust and
+    // estate. NOT LFA staff: `worksFor: Lodestone Family Advisors` would be false.
+    // NEEDS CONFIRMATION — exact legal name of the Midcontinent entity, and the
+    // capitalisation of "van Pelt". `employer` stays unset until the name is
+    // confirmed, so no employer is asserted rather than the wrong one.
+    roles: [{ org: "steward", title: "Head of Trust and Estate", relationship: "affiliate" }],
   },
   {
     name: "Booker Brancheau",
@@ -484,17 +515,28 @@ export const leadership: Leader[] = [
   },
   {
     name: "Eva Creixell",
-    roles: [{ org: "steward", title: "Associate" }],
+    // Midcontinent, partnering through trust and estate. See Bill van Pelt above.
+    roles: [{ org: "steward", title: "Associate", relationship: "affiliate" }],
   },
 ];
 
-/** Leaders at one business, staff first, advisors last. */
+const RELATIONSHIP_ORDER: Record<LeaderRelationship, number> = {
+  staff: 0,
+  affiliate: 1,
+  advisor: 2,
+};
+
+function relationshipRank(role: LeaderRole): number {
+  return RELATIONSHIP_ORDER[role.relationship ?? "staff"];
+}
+
+/** Leaders at one business: staff first, then affiliates, then advisors. */
 export function leadershipByOrg(org: LeaderOrg): { leader: Leader; role: LeaderRole }[] {
   return leadership
     .flatMap((leader) =>
       leader.roles.filter((r) => r.org === org).map((role) => ({ leader, role })),
     )
-    .sort((a, b) => Number(a.role.advisor ?? false) - Number(b.role.advisor ?? false));
+    .sort((a, b) => relationshipRank(a.role) - relationshipRank(b.role));
 }
 
 /**

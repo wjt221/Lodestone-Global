@@ -57,6 +57,15 @@ export function Leadership({ full = false }: { full?: boolean }) {
                           {role.title}
                         </span>
                       )}
+                      {role.relationship === "affiliate" && (
+                        // Affiliates are employed elsewhere. Say so, rather than
+                        // letting the grouping imply they are staff here.
+                        <span className="font-sans text-[0.78rem] italic text-charcoal/55">
+                          {person.employer
+                            ? `In partnership with ${person.employer}`
+                            : "Partner firm"}
+                        </span>
+                      )}
                       {person.bio && (
                         <p className="mt-1 font-sans text-[0.92rem] leading-relaxed text-charcoal/70">
                           {person.bio}

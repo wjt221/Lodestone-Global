@@ -39,10 +39,12 @@ export function websiteJsonLd() {
 }
 
 export function personJsonLd(leader: (typeof leadership)[number]) {
-  // Advisors are affiliated, not employed. `worksFor` would assert employment,
-  // which for a non-staff advisor is simply false and is the kind of mismatch
-  // search engines cross-check against LinkedIn.
-  const staffRoles = leader.roles.filter((r) => !r.advisor);
+  // Only staff get `worksFor`. Advisors are not employed, and affiliates are
+  // employed by another firm entirely, so asserting employment by a Lodestone
+  // business would be false for both, and is exactly the mismatch search engines
+  // cross-check against LinkedIn.
+  const staffRoles = leader.roles.filter((r) => (r.relationship ?? "staff") === "staff");
+  const otherRoles = leader.roles.filter((r) => (r.relationship ?? "staff") !== "staff");
   const orgRef = (org: (typeof leader.roles)[number]["org"]) => {
     const b = businesses.find((x) => x.id === org);
     return b
@@ -57,9 +59,14 @@ export function personJsonLd(leader: (typeof leadership)[number]) {
     name: leader.name,
     ...(titles.length ? { jobTitle: titles } : {}),
     ...(leader.bio ? { description: leader.bio } : {}),
-    ...(staffRoles.length
-      ? { worksFor: staffRoles.map((r) => orgRef(r.org)) }
-      : { affiliation: leader.roles.map((r) => orgRef(r.org)) }),
+    // An affiliate's real employer goes in worksFor when its legal name is
+    // confirmed; until then no employer is asserted rather than the wrong one.
+    ...(leader.employer
+      ? { worksFor: [{ "@type": "Organization" as const, name: leader.employer }] }
+      : staffRoles.length
+        ? { worksFor: staffRoles.map((r) => orgRef(r.org)) }
+        : {}),
+    ...(otherRoles.length ? { affiliation: otherRoles.map((r) => orgRef(r.org)) } : {}),
     ...(leader.linkedin ? { sameAs: [leader.linkedin] } : {}),
   };
 }
