@@ -480,7 +480,10 @@ export const leadership: Leader[] = [
     // regulated designation, and it is the one title on this page a
     // family-office prospect may check against the firm's regulatory filings.
     roles: [
-      { org: "scale", title: "Head of Operating Partners" },
+      {
+        org: "scale",
+        title: "Head of Operating Partners, E3 · COO and Chief Compliance Officer, LFA",
+      },
       { org: "steward", title: "Chief Operating Officer and Chief Compliance Officer" },
     ],
   },
@@ -539,12 +542,24 @@ function relationshipRank(role: LeaderRole): number {
   return RELATIONSHIP_ORDER[role.relationship ?? "staff"];
 }
 
-/** Leaders at one business: staff first, then affiliates, then advisors. */
-export function leadershipByOrg(org: LeaderOrg): { leader: Leader; role: LeaderRole }[] {
+/**
+ * Leaders listed under one business, each person appearing EXACTLY ONCE across
+ * the whole page, under their primary business (their first role).
+ *
+ * Someone who spans businesses is not repeated: a person shown four times with
+ * the same biography under four headings reads as padding, not as breadth. The
+ * span is carried by `alsoAt` instead, as one quiet line on their single entry.
+ */
+export function leadershipByOrg(
+  org: LeaderOrg,
+): { leader: Leader; role: LeaderRole; alsoAt: string[] }[] {
   return leadership
-    .flatMap((leader) =>
-      leader.roles.filter((r) => r.org === org).map((role) => ({ leader, role })),
-    )
+    .filter((leader) => leader.roles[0]?.org === org)
+    .map((leader) => ({
+      leader,
+      role: leader.roles[0],
+      alsoAt: leader.roles.slice(1).map((r) => leaderOrgLabel[r.org]),
+    }))
     .sort((a, b) => relationshipRank(a.role) - relationshipRank(b.role));
 }
 

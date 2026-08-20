@@ -1,99 +1,53 @@
-import Image from "next/image";
-import {
-  leadershipByOrg,
-  leaderOrgLabel,
-  leaderOrgOrder,
-} from "@/lib/content";
-import { isImageAvailable } from "@/lib/localImage";
+import { leadershipByOrg, leaderOrgLabel, leaderOrgOrder } from "@/lib/content";
 
-function initials(name: string) {
-  return name
-    .split(" ")
-    .map((part) => part[0])
-    .slice(0, 2)
-    .join("");
-}
-
-export function Leadership({ full = false }: { full?: boolean }) {
+/**
+ * Typographic roster, not an avatar grid.
+ *
+ * There is no leadership photography yet. Sixteen boxes containing initials read
+ * as unfinished placeholders, so until real portraits exist this renders as a
+ * masthead: names set in the serif, grouped by business. Restraint reads as
+ * deliberate where empty avatar frames read as missing content.
+ *
+ * When headshots arrive, reintroduce the portrait here rather than the monogram.
+ */
+export function Leadership() {
   return (
-    <div className="flex flex-col gap-10">
+    <div className="flex flex-col gap-14">
       {leaderOrgOrder.map((org) => {
         const members = leadershipByOrg(org);
         if (members.length === 0) return null;
         return (
-          <section key={org} className="flex flex-col gap-7">
-            <h3 className="font-sans text-[0.8rem] uppercase tracking-[0.12em] text-brass">
+          <section key={org} className="flex flex-col gap-6">
+            <h3 className="font-sans text-[0.72rem] uppercase tracking-[0.16em] text-brass">
               {leaderOrgLabel[org]}
             </h3>
-            <div className="grid grid-cols-1 gap-10 md:grid-cols-2">
-              {members.map(({ leader: person, role }) => {
-                const hasPhoto = person.photo && isImageAvailable(person.photo);
-                return (
-                  <article
-                    key={`${person.name}-${org}`}
-                    className="flex flex-col gap-5 sm:flex-row sm:gap-7"
-                  >
-                    <div className="h-28 w-28 shrink-0 overflow-hidden border border-charcoal/15 bg-parchment">
-                      {hasPhoto ? (
-                        <Image
-                          src={person.photo as string}
-                          alt={`Portrait of ${person.name}`}
-                          width={224}
-                          height={224}
-                          className="h-full w-full object-cover"
-                        />
-                      ) : (
-                        <div className="flex h-full w-full items-center justify-center" aria-hidden>
-                          <span className="font-serif text-2xl text-navy/70">
-                            {initials(person.name)}
-                          </span>
-                        </div>
-                      )}
-                    </div>
-                    <div className="flex flex-col gap-2">
-                      <h4 className="font-serif text-xl font-normal text-navy">{person.name}</h4>
-                      {role.title && (
-                        <span className="font-sans text-[0.8rem] uppercase tracking-[0.08em] text-brass">
-                          {role.title}
-                        </span>
-                      )}
-                      {role.relationship === "affiliate" && (
-                        // Affiliates are employed elsewhere. Say so, rather than
-                        // letting the grouping imply they are staff here.
-                        <span className="font-sans text-[0.78rem] italic text-charcoal/55">
-                          {person.employer
-                            ? `In partnership with ${person.employer}`
-                            : "Partner firm"}
-                        </span>
-                      )}
-                      {person.bio && (
-                        <p className="mt-1 font-sans text-[0.92rem] leading-relaxed text-charcoal/70">
-                          {person.bio}
-                        </p>
-                      )}
-                      {person.linkedin && (
-                        <a
-                          href={person.linkedin}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="mt-1 w-fit font-sans text-[0.8rem] uppercase tracking-[0.08em] text-navy/70 hover:text-brass"
-                        >
-                          LinkedIn
-                        </a>
-                      )}
-                    </div>
-                  </article>
-                );
-              })}
-            </div>
+            <ul className="grid grid-cols-1 gap-x-12 gap-y-7 border-t border-charcoal/15 pt-7 sm:grid-cols-2 lg:grid-cols-3">
+              {members.map(({ leader, role, alsoAt }) => (
+                <li key={leader.name} className="flex flex-col gap-1">
+                  <span className="font-serif text-[1.15rem] leading-snug text-navy">
+                    {leader.name}
+                  </span>
+                  {role.title && (
+                    <span className="font-sans text-[0.78rem] leading-relaxed text-charcoal/65">
+                      {role.title}
+                    </span>
+                  )}
+                  {alsoAt.length > 0 && (
+                    <span className="font-sans text-[0.75rem] italic leading-relaxed text-charcoal/45">
+                      Also across {alsoAt.join(", ")}
+                    </span>
+                  )}
+                  {role.relationship === "affiliate" && (
+                    <span className="font-sans text-[0.75rem] italic leading-relaxed text-charcoal/45">
+                      {leader.employer ? `In partnership with ${leader.employer}` : "Partner firm"}
+                    </span>
+                  )}
+                </li>
+              ))}
+            </ul>
           </section>
         );
       })}
-      {!full && (
-        <p className="font-sans text-[0.85rem] text-charcoal/50">
-          Additional principals and advisors support each part of the practice.
-        </p>
-      )}
     </div>
   );
 }

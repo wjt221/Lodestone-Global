@@ -118,7 +118,7 @@ export default function AboutPage() {
               title="The people behind the relationship."
               description="Lodestone is led by principals with direct governance, operating, and investing experience."
             />
-            <Leadership full />
+            <Leadership />
           </div>
         </Section>
 
