@@ -357,9 +357,18 @@ export type LeaderOrg = StageId;
  * where that is genuinely true (Andrew Halliday holds roles at both E3 and
  * Lodestone Family Advisors).
  *
- * `title` is optional on purpose: an unconfirmed title renders the person under
- * their business with no title, rather than publishing a guess. Same principle
- * as the optional `bio` below.
+ * `title` is optional on purpose, and serves two different needs.
+ *
+ * 1. Accuracy: an unconfirmed title renders the person under their business
+ *    with no title, rather than publishing a guess.
+ * 2. Editorial restraint: the team page does not need every role spelled out.
+ *    Dropping a title is a one-line edit here and costs nothing, because the
+ *    markup simply carries less. Publishing a WRONG title is the only version
+ *    that causes harm, so sparse is always the safe direction to trim toward.
+ *
+ * Keep titles where they carry weight for a buyer: principals, heads of a
+ * practice, and regulated designations. Junior and support roles can be name
+ * plus business only.
  */
 /**
  * How a person relates to a business. This is not cosmetic: it decides whether
@@ -466,13 +475,13 @@ export const leadership: Leader[] = [
     name: "Andrew Halliday",
     // Genuinely spans two businesses. This is the kind of thing the grouped,
     // labelled team page shows well and an unlabelled list would hide.
-    // NEEDS CONFIRMATION — "CCO" was given alongside COO for the LFA role and is
-    // deliberately NOT published: Chief Compliance Officer is a regulated
-    // designation for an advisory firm and must not be guessed. Confirm which
-    // it is, and whether the COO/CCO role is LFA-specific or group-level.
+    // CCO confirmed as Chief Compliance Officer (William, 2026-08-20). Worth
+    // keeping accurate rather than trimming: for an advisory firm it is a
+    // regulated designation, and it is the one title on this page a
+    // family-office prospect may check against the firm's regulatory filings.
     roles: [
       { org: "scale", title: "Head of Operating Partners" },
-      { org: "steward", title: "Chief Operating Officer" },
+      { org: "steward", title: "Chief Operating Officer and Chief Compliance Officer" },
     ],
   },
   {
