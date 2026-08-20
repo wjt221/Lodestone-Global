@@ -1,5 +1,5 @@
 import { SITE_URL, SITE_NAME } from "./site";
-import { CONTACT, leadership } from "./content";
+import { CONTACT, leadership, businesses } from "./content";
 
 /** Absolute URL for a site-relative path. */
 export function abs(path: string) {
@@ -39,13 +39,27 @@ export function websiteJsonLd() {
 }
 
 export function personJsonLd(leader: (typeof leadership)[number]) {
+  // Advisors are affiliated, not employed. `worksFor` would assert employment,
+  // which for a non-staff advisor is simply false and is the kind of mismatch
+  // search engines cross-check against LinkedIn.
+  const staffRoles = leader.roles.filter((r) => !r.advisor);
+  const orgRef = (org: (typeof leader.roles)[number]["org"]) => {
+    const b = businesses.find((x) => x.id === org);
+    return b
+      ? { "@type": "Organization" as const, name: b.name, url: b.external ?? abs(b.href) }
+      : { "@id": `${SITE_URL}/#organization` };
+  };
+  const titles = leader.roles.map((r) => r.title).filter(Boolean) as string[];
+
   return {
     "@context": "https://schema.org",
     "@type": "Person",
     name: leader.name,
-    jobTitle: leader.role,
+    ...(titles.length ? { jobTitle: titles } : {}),
     ...(leader.bio ? { description: leader.bio } : {}),
-    worksFor: { "@id": `${SITE_URL}/#organization` },
+    ...(staffRoles.length
+      ? { worksFor: staffRoles.map((r) => orgRef(r.org)) }
+      : { affiliation: leader.roles.map((r) => orgRef(r.org)) }),
     ...(leader.linkedin ? { sameAs: [leader.linkedin] } : {}),
   };
 }

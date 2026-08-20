@@ -349,9 +349,29 @@ export const researchCard: Insight = {
  * staged stock photo. Additional team members to be added from the live roster
  * (see CONTENT_NEEDED.md).
  */
+/** Leaders are grouped by business, reusing the same ids as `businesses`. */
+export type LeaderOrg = StageId;
+
+/**
+ * One person's role at one business. A person spans more than one entry only
+ * where that is genuinely true (Andrew Halliday holds roles at both E3 and
+ * Lodestone Family Advisors).
+ *
+ * `title` is optional on purpose: an unconfirmed title renders the person under
+ * their business with no title, rather than publishing a guess. Same principle
+ * as the optional `bio` below.
+ */
+export interface LeaderRole {
+  org: LeaderOrg;
+  title?: string;
+  /** Advisors are not staff. Rendered in a separate group, and schema uses
+   *  `affiliation` rather than `worksFor`, which would imply employment. */
+  advisor?: boolean;
+}
+
 export interface Leader {
   name: string;
-  role: string;
+  roles: LeaderRole[];
   /**
    * Approved biography. Optional: an entry with a confirmed name and role but
    * no approved bio yet renders name, role, and a neutral monogram, and hides
@@ -363,25 +383,119 @@ export interface Leader {
   photo?: string;
 }
 
+/** Display names and order for the leadership groupings. */
+export const leaderOrgLabel: Record<LeaderOrg, string> = {
+  govern: "Lodestone Global",
+  scale: "E3 Scale Network",
+  compound: "Lodestone Capital",
+  steward: "Lodestone Family Advisors",
+};
+
+export const leaderOrgOrder: LeaderOrg[] = ["govern", "scale", "compound", "steward"];
+
+
 export const leadership: Leader[] = [
+  // ---- Lodestone Global ----
   {
     name: "William Tenenbaum",
-    role: "Founder and Managing Partner",
+    roles: [{ org: "govern", title: "Founder and Managing Partner" }],
     bio: "William Tenenbaum founded Lodestone Global to help private companies build, optimize, and educate high-performing boards. He brings more than two decades of investing and governance experience across private companies, family enterprises, and the public markets, including work as a portfolio manager at a fundamental hedge fund. He studied at NYU Stern and is an active member of YPO.",
   },
   {
-    name: "Ken Munkacy",
-    role: "Advisory Board Member",
-    // BIO PENDING APPROVAL — supply Ken Munkacy's approved biography. Until then
-    // this entry renders name, role, and a neutral monogram only; no invented
-    // career history is shown (see CONTENT_NEEDED.md).
+    name: "Sam Tenenbaum",
+    // NEEDS CONFIRMATION — title. Renders name and business only until supplied.
+    roles: [{ org: "govern" }],
   },
   {
     name: "Marissa Levin",
-    role: "Chief Client Officer",
+    // NEEDS CONFIRMATION — is Chief Client Officer still current?
+    roles: [{ org: "govern", title: "Chief Client Officer" }],
     bio: "Marissa Levin serves Lodestone in a consultative capacity as Chief Client Officer. A long-time entrepreneur, speaker, and growth strategist, she is the author of Built to SCALE, on how companies create durable growth through effective advisory boards, and brings deep experience in leadership development and company culture.",
   },
+  {
+    name: "Ken Munkacy",
+    roles: [{ org: "govern", title: "Advisor", advisor: true }],
+    // BIO PENDING APPROVAL — no invented career history is shown.
+  },
+  {
+    name: "Lynn Clarke",
+    roles: [{ org: "govern", title: "Advisor", advisor: true }],
+    // BIO PENDING APPROVAL
+  },
+  {
+    name: "Ryan Niles",
+    roles: [{ org: "govern", title: "Advisor", advisor: true }],
+    // BIO PENDING APPROVAL
+  },
+
+  // ---- E3 Scale Network ----
+  {
+    name: "Adam Eiseman",
+    roles: [{ org: "scale", title: "President" }],
+  },
+  {
+    name: "Andrew Halliday",
+    // Genuinely spans two businesses. This is the kind of thing the grouped,
+    // labelled team page shows well and an unlabelled list would hide.
+    // NEEDS CONFIRMATION — "CCO" was given alongside COO for the LFA role and is
+    // deliberately NOT published: Chief Compliance Officer is a regulated
+    // designation for an advisory firm and must not be guessed. Confirm which
+    // it is, and whether the COO/CCO role is LFA-specific or group-level.
+    roles: [
+      { org: "scale", title: "Head of Operating Partners" },
+      { org: "steward", title: "Chief Operating Officer" },
+    ],
+  },
+  {
+    name: "Dan Levin",
+    roles: [{ org: "scale", title: "Head of Membership" }],
+  },
+  {
+    name: "Carolina Morales",
+    // NEEDS CONFIRMATION — given as "PM". Not expanded, because Program,
+    // Product, Project and Portfolio Manager are all plausible and all different.
+    roles: [{ org: "scale" }],
+  },
+  {
+    name: "Andy Friere",
+    // NEEDS CONFIRMATION — spelling. "Freire" is the more common form.
+    roles: [{ org: "scale", title: "Advisor", advisor: true }],
+  },
+
+  // ---- Lodestone Capital ----
+  {
+    name: "Tyler Errickson",
+    roles: [{ org: "compound", title: "Chief Investment Officer" }],
+  },
+
+  // ---- Lodestone Family Advisors ----
+  {
+    name: "Alex Harris",
+    roles: [{ org: "steward", title: "President and Chief Investment Officer" }],
+  },
+  {
+    name: "Bill van Pelt",
+    // NEEDS CONFIRMATION — capitalisation of "van Pelt".
+    roles: [{ org: "steward", title: "Head of Trust and Estate" }],
+  },
+  {
+    name: "Booker Brancheau",
+    roles: [{ org: "steward", title: "Senior Associate" }],
+  },
+  {
+    name: "Eva Creixell",
+    roles: [{ org: "steward", title: "Associate" }],
+  },
 ];
+
+/** Leaders at one business, staff first, advisors last. */
+export function leadershipByOrg(org: LeaderOrg): { leader: Leader; role: LeaderRole }[] {
+  return leadership
+    .flatMap((leader) =>
+      leader.roles.filter((r) => r.org === org).map((role) => ({ leader, role })),
+    )
+    .sort((a, b) => Number(a.role.advisor ?? false) - Number(b.role.advisor ?? false));
+}
 
 /**
  * Extended detail for each dedicated business page. Overview prose, a set of
