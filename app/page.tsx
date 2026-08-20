@@ -5,6 +5,7 @@ import { Section } from "@/components/Section";
 import { Container } from "@/components/Container";
 import { SectionHeading } from "@/components/SectionHeading";
 import { ProofBand } from "@/components/ProofBand";
+import { BoardDoors } from "@/components/BoardDoors";
 import { BackgroundPhoto } from "@/components/BackgroundPhoto";
 import { EditorialImage } from "@/components/EditorialImage";
 import { EcosystemList } from "@/components/EcosystemList";
@@ -85,15 +86,20 @@ export default function Home() {
               actually needs, then find the directors to fill it.
             </p>
             <div className="mt-4 flex flex-col gap-5 sm:flex-row sm:items-center">
-              <Link href={CTA_PRIMARY.href} className="btn-inverse">
-                {CTA_PRIMARY.label}
+              <Link href="/contact" className="btn-inverse">
+                Discuss your board
               </Link>
-              <Link href={CTA_SECONDARY.href} className="btn-text text-ivory/80 hover:text-ivory">
-                {CTA_SECONDARY.label}
+              <Link
+                href="/governance-advisory"
+                className="btn-text text-ivory/80 hover:text-ivory"
+              >
+                How we build boards
               </Link>
             </div>
           </Container>
         </section>
+
+        <BoardDoors />
 
         {/* 2. CREDIBILITY STRIP */}
         <section className="border-b border-charcoal/10 bg-ivory">

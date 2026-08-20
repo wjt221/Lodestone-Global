@@ -1,5 +1,6 @@
 "use client";
 
+import { slugifyCapability } from "@/lib/slug";
 import { useState } from "react";
 
 export interface CapabilityStepItem {
@@ -26,7 +27,7 @@ export function CapabilityStepper({ items }: { items: CapabilityStepItem[] }) {
           {items.map((item, i) => {
             const isActive = i === active;
             return (
-              <li key={item.name}>
+              <li key={item.name} id={slugifyCapability(item.name)} className="scroll-mt-28">
                 <button
                   type="button"
                   onClick={() => setActive(i)}
