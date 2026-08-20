@@ -65,15 +65,24 @@ export default function Home() {
               "Award-winning boards" is exact, not puffery: the awards belong to
               clients' boards (Private Company Board of the Year), not to the firm.
               Do not restate it as an award the firm won.
+
+              The compensation survey is deliberately NOT in this subhead. It is a
+              credential, not the offer, and leading with it makes the research
+              sound like the business. It belongs on /research and in ProofBand.
+
+              The "38 countries and 50 industries" figures are likewise absent:
+              they describe the survey's RESPONDENTS, not Lodestone's client base.
+              In a hero they read as the firm's operating reach, which is a claim
+              nobody has made. ProofBand states them where they are labelled as
+              survey data.
             */}
             <Kicker>Lodestone Global · High-performing board experts</Kicker>
             <h1 className="max-w-4xl font-serif text-display-1 font-semibold text-ivory">
               We build, facilitate, optimize and educate award-winning boards.
             </h1>
             <p className="max-w-2xl font-sans text-lg leading-relaxed text-ivory/80">
-              Board advisory for private, family-owned and founder-led companies, in 38 countries
-              and 50 industries. Publishers of the Private Company Board Compensation Survey, in
-              print every year since 2016.
+              For private, family-owned and founder-led companies. We design the board a business
+              actually needs, then find the directors to fill it.
             </p>
             <div className="mt-4 flex flex-col gap-5 sm:flex-row sm:items-center">
               <Link href={CTA_PRIMARY.href} className="btn-inverse">
