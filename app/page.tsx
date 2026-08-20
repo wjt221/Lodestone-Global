@@ -55,14 +55,25 @@ export default function Home() {
             }}
           />
           <Container className="relative z-10 flex flex-col gap-8 py-20">
-            <Kicker>One principal. One trusted team. Every important decision.</Kicker>
+            {/*
+              Hero copy carried over from the long-running Lodestone Global site.
+              The verbs lead because they are concrete and because they are the
+              language buyers actually search: build a board, board facilitation,
+              board optimization, board education. The previous headline read well
+              but contained no term anyone looks for.
+
+              "Award-winning boards" is exact, not puffery: the awards belong to
+              clients' boards (Private Company Board of the Year), not to the firm.
+              Do not restate it as an award the firm won.
+            */}
+            <Kicker>Lodestone Global · High-performing board experts</Kicker>
             <h1 className="max-w-4xl font-serif text-display-1 font-semibold text-ivory">
-              For owners building something meant to outlast them.
+              We build, facilitate, optimize and educate award-winning boards.
             </h1>
             <p className="max-w-2xl font-sans text-lg leading-relaxed text-ivory/80">
-              Lodestone works alongside private-company principals to strengthen the operating
-              business, build governance and leadership, allocate the capital the company creates,
-              and establish the structures that carry ownership to the next generation.
+              Board advisory for private, family-owned and founder-led companies, in 38 countries
+              and 50 industries. Publishers of the Private Company Board Compensation Survey, in
+              print every year since 2016.
             </p>
             <div className="mt-4 flex flex-col gap-5 sm:flex-row sm:items-center">
               <Link href={CTA_PRIMARY.href} className="btn-inverse">
