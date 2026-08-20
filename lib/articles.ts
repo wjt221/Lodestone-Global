@@ -12,6 +12,23 @@ export interface ArticleMeta {
   minutesToRead: number;
   /** Original Wix URL(s), for the redirect map. */
   legacyPaths: string[];
+  /**
+   * The post's own cover image, still served from the Wix media CDN.
+   *
+   * These are Lodestone's real images, not stock. Each one is the cover Wix
+   * already had attached to that exact post, so the subject cannot be mismatched
+   * the way a hand-picked stock photo can. `static.wixstatic.com` is already an
+   * allowed remote host in next.config.js.
+   *
+   * Long term these should be pulled into the repo and served locally, so the
+   * site does not depend on the old Wix account staying alive.
+   */
+  image?: { src: string; width: number; height: number };
+}
+
+/** Build a Wix media URL from the file id stored on a blog post's coverImage. */
+function wixMedia(fileId: string) {
+  return `https://static.wixstatic.com/media/${fileId}`;
 }
 
 /**
@@ -32,6 +49,7 @@ export const articles: ArticleMeta[] = [
     legacyPaths: [
       "/post/lodestone-capital-leads-7-million-investment-in-blulabs-to-expand-global-supply-chain-platform",
     ],
+    image: { src: wixMedia("c3325c_821cf3e028ac45eb9703f0c1e371080f~mv2.jpg"), width: 3400, height: 2460 },
   },
   {
     slug: "improving-board-performance",
@@ -44,6 +62,7 @@ export const articles: ArticleMeta[] = [
     legacyPaths: [
       "/post/how-to-improve-your-board-s-performance-best-practices-and-strategies",
     ],
+    image: { src: wixMedia("c3325c_8f1b722a1ece41c4b3dbc9f0f7819209~mv2.jpg"), width: 2400, height: 1600 },
   },
   {
     slug: "board-diversity-and-performance",
@@ -54,6 +73,7 @@ export const articles: ArticleMeta[] = [
       "What the research says about the link between board diversity and company performance, and where private-company boards stand today.",
     minutesToRead: 3,
     legacyPaths: ["/post/is-diversity-on-boards-critical-for-success"],
+    image: { src: wixMedia("c3325c_5a52d1d161144ef08343d4f455b281d4~mv2.jpg"), width: 1650, height: 1101 },
   },
   {
     slug: "attracting-top-board-members",
@@ -66,6 +86,7 @@ export const articles: ArticleMeta[] = [
     legacyPaths: [
       "/post/get-the-best-of-the-best-strategies-for-attracting-top-board-members",
     ],
+    image: { src: wixMedia("c3325c_b5764d3d3ab74d8eb67b21c9fdfb13e0~mv2.jpg"), width: 5184, height: 3456 },
   },
   {
     slug: "advisory-board-readiness",
@@ -78,6 +99,7 @@ export const articles: ArticleMeta[] = [
     legacyPaths: [
       "/post/are-you-ready-for-a-high-performance-advisory-board-key-indicators-and-steps-for-success",
     ],
+    image: { src: wixMedia("c3325c_71c8693f8123400db077bef593537cbd~mv2.jpg"), width: 5000, height: 3324 },
   },
 ];
 

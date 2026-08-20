@@ -4,6 +4,7 @@ import { Footer } from "@/components/Footer";
 import { Section } from "@/components/Section";
 import { Container } from "@/components/Container";
 import { SectionHeading } from "@/components/SectionHeading";
+import { ProofBand } from "@/components/ProofBand";
 import { BackgroundPhoto } from "@/components/BackgroundPhoto";
 import { EditorialImage } from "@/components/EditorialImage";
 import { EcosystemList } from "@/components/EcosystemList";
@@ -18,9 +19,7 @@ import {
   CTA_SECONDARY,
   proofPoints,
   ownerQuestions,
-  howWeWork,
   engagements,
-  sectorsServed,
   researchCard,
 } from "@/lib/content";
 import { JsonLd } from "@/components/JsonLd";
@@ -193,44 +192,7 @@ export default function Home() {
           </div>
         </Section>
 
-        {/* 6. SELECTED CLIENT RELATIONSHIPS -> sectors served */}
-        <Section tone="parchment">
-          <div className="flex flex-col gap-10">
-            <SectionHeading
-              kicker="Sectors Served"
-              title="Work across privately held industries."
-              description="Lodestone has advised private and family-owned companies across a range of sectors. Individual relationships are confidential and identified only with permission."
-            />
-            <ul className="flex flex-wrap items-center gap-y-6 border-y border-charcoal/20 py-2">
-              {sectorsServed.map((sector, i) => (
-                <li
-                  key={sector}
-                  className={`px-6 font-serif text-base font-normal text-navy first:pl-0 ${
-                    i < sectorsServed.length - 1 ? "border-r border-charcoal/20" : ""
-                  }`}
-                >
-                  {sector}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </Section>
-
-        {/* 7. HOW WE WORK */}
-        <Section tone="light">
-          <div className="flex flex-col gap-12">
-            <SectionHeading kicker="How We Work" title="One team, carried forward." />
-            <div className="grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-8">
-              {howWeWork.map((s) => (
-                <div key={s.step} className="flex flex-col gap-4 border-t border-charcoal/20 pt-6">
-                  <span className="index-number">{s.step}</span>
-                  <h3 className="font-serif text-xl font-normal text-navy">{s.title}</h3>
-                  <p className="font-sans text-[0.92rem] leading-relaxed text-charcoal/65">{s.body}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </Section>
+        <ProofBand />
 
         {/* 8. REPRESENTATIVE ENGAGEMENTS */}
         <Section tone="parchment">
