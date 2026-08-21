@@ -71,6 +71,53 @@ export function personJsonLd(leader: (typeof leadership)[number]) {
   };
 }
 
+/**
+ * A Lodestone practice described as a Service, with its capabilities as an
+ * OfferCatalog. The four businesses each have a distinct provider: the board
+ * business is Lodestone Global itself (the #organization node), the others are
+ * named subsidiaries. areaServed is kept to the United States -- the firm is
+ * NJ-based and serves US private companies; the survey's 38-country reach
+ * describes respondents, not this service's operating area, so it is not
+ * asserted here.
+ */
+export function serviceJsonLd(business: {
+  id: string;
+  name: string;
+  href: string;
+  role: string;
+  summary: string;
+  capabilities: string[];
+  external?: string;
+}) {
+  const provider =
+    business.id === "govern"
+      ? { "@id": `${SITE_URL}/#organization` }
+      : {
+          "@type": "Organization" as const,
+          name: business.name,
+          url: business.external ?? abs(business.href),
+        };
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: business.name,
+    serviceType: business.role,
+    description: business.summary,
+    provider,
+    areaServed: { "@type": "Country", name: "United States" },
+    url: business.external ?? abs(business.href),
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: `${business.name} capabilities`,
+      itemListElement: business.capabilities.map((c) => ({
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: c },
+      })),
+    },
+  };
+}
+
 export function breadcrumbJsonLd(items: { name: string; path: string }[]) {
   return {
     "@context": "https://schema.org",
@@ -134,6 +181,15 @@ export function surveyDatasetJsonLd() {
       "board pay benchmarking",
     ],
     spatialCoverage: "United States and international",
+    // Ten editions have been published, 2016 through 2026 (confirmed).
+    temporalCoverage: "2016/2026",
+    variableMeasured: [
+      "Director cash retainer",
+      "Director equity compensation",
+      "Board meeting fees",
+      "Committee and chair compensation",
+      "Total director compensation",
+    ],
     isAccessibleForFree: false,
     url: `${SITE_URL}/insights`,
   };
