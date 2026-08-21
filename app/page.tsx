@@ -19,7 +19,6 @@ import {
   CTA_PRIMARY,
   CTA_SECONDARY,
   proofPoints,
-  ownerQuestions,
   engagements,
   researchCard,
 } from "@/lib/content";
@@ -45,17 +44,30 @@ export default function Home() {
       <Header />
       <main id="main">
         {/* 1. HERO */}
-        <section className="relative flex min-h-[86vh] flex-col justify-center overflow-hidden pt-[4.25rem] text-ivory">
+        {/*
+          A real Lodestone boardroom sits behind the headline. The previous
+          hero painted a blindly-chosen Unsplash image under an overlay that
+          was fully opaque on the left and never below 0.78 on the right, so
+          the photo was invisible at every breakpoint. This one is licensed
+          Lodestone photography and the overlay is a left-to-right gradient
+          that stays dark behind the copy (0.94) and opens up to 0.55 on the
+          right, so the room actually reads -- a board, for a firm that builds
+          boards. Height stays tightened from 86vh so the first row of
+          BoardDoors ("Where owners usually start") clears the fold on a
+          1440x900 laptop.
+        */}
+        <section className="relative flex min-h-[58vh] flex-col justify-center overflow-hidden pt-[4.25rem] text-ivory">
           <BackgroundPhoto
             src={photos.hero.src}
             alt={photos.hero.alt}
             priority
+            objectPosition="center right"
             overlayStyle={{
               backgroundImage:
-                "linear-gradient(to right, rgba(10,27,42,1) 0%, rgba(10,27,42,0.9) 55%, rgba(10,27,42,0.78) 100%)",
+                "linear-gradient(to right, rgba(10,27,42,0.94) 0%, rgba(10,27,42,0.86) 42%, rgba(10,27,42,0.55) 100%)",
             }}
           />
-          <Container className="relative z-10 flex flex-col gap-8 py-20">
+          <Container className="relative z-10 flex flex-col gap-6 py-16">
             {/*
               Hero copy carried over from the long-running Lodestone Global site.
               The verbs lead because they are concrete and because they are the
@@ -85,7 +97,7 @@ export default function Home() {
               For private, family-owned and founder-led companies. We design the board a business
               actually needs, then find the directors to fill it.
             </p>
-            <div className="mt-4 flex flex-col gap-5 sm:flex-row sm:items-center">
+            <div className="mt-2 flex flex-col gap-5 sm:flex-row sm:items-center">
               <Link href="/contact" className="btn-inverse">
                 Discuss your board
               </Link>
@@ -115,45 +127,24 @@ export default function Home() {
           </Container>
         </section>
 
-        {/* 3. RECOGNITION — the questions change as ownership grows */}
-        <Section tone="light" density="tight">
-          <SectionHeading
-            title="The questions change as ownership grows."
-            description="Most principals arrive with a specific decision in front of them. The right one usually connects to the others, because the business, its capital, and the family rarely move on separate tracks."
-          />
-          <div className="mt-14 grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
-            <EditorialImage
-              src={photos.homeQuestions.src}
-              alt={photos.homeQuestions.alt}
-              aspect="aspect-[4/5]"
-              sizes="(min-width: 1024px) 33vw, 100vw"
-              className="lg:col-span-4"
-            />
-            <div className="lg:col-span-8">
-              <ul className="flex flex-col">
-                {ownerQuestions.map((q, i) => (
-                  <li
-                    key={q}
-                    className="flex gap-5 border-t border-charcoal/10 py-5 last:border-b"
-                  >
-                    <span className="index-number pt-1">0{i + 1}</span>
-                    <span className="font-serif text-lg font-normal leading-snug text-navy/85">
-                      {q}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </Section>
-
-        {/* 4. THE PRINCIPAL JOURNEY */}
-        <Section tone="parchment" density="normal">
+        {/*
+          3. THE PRINCIPAL JOURNEY
+          Merged from two sections that covered the same ground. "The questions
+          change as ownership grows" presented a numbered list of owner
+          questions; "One principal, four changing roles" then presented the
+          Principal Journey stepper -- whose per-stage question field is very
+          nearly the same list, shown a second time. One section now carries
+          both ideas: the stronger "questions change" framing as the heading,
+          and the journey stepper (role -> question -> capability, per stage) as
+          the body. This removes a full screen, ends the duplicate questions,
+          and drops one blindly chosen stock photo.
+        */}
+        <Section tone="parchment">
           <div className="flex flex-col gap-12">
             <SectionHeading
               kicker="The Principal Journey"
-              title="One principal, four changing roles."
-              description="As a company matures, the principal's role shifts, and so does the question that matters most. Lodestone brings the capability that fits each stage while keeping a single relationship intact across all of them."
+              title="The questions change as ownership grows."
+              description="Most principals arrive with a single decision in front of them, but the role itself shifts as the company matures -- operator, owner, investor, steward -- and so does the question that matters most. Lodestone brings the capability that fits each stage while keeping one relationship intact across all of them."
             />
             <PrincipalJourney />
           </div>

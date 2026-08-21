@@ -1,47 +1,35 @@
+import Link from "next/link";
 import { Container } from "./Container";
 
 /**
- * A deliberate break in the page rhythm.
+ * The research credential, stated as a fact with context rather than as three
+ * floating numbers.
  *
- * Every other section on the homepage is eyebrow, serif headline, then columns of
- * small text. Repeated eleven times that uniformity is what makes a page read as
- * generated rather than edited. This band does the opposite: three figures at
- * display scale, no headline, no body copy.
- *
- * Every figure is published by Lodestone and checkable. Nothing here is rounded
- * up, inferred, or illustrative.
+ * The previous version set 782 / 38 / 2016–2026 at display scale on their own.
+ * That read as a templated stats band, and worse, those figures describe the
+ * survey's RESPONDENTS, not Lodestone's client base -- shown as hero numbers
+ * they implied a reach nobody has claimed. Here the same verified figures sit
+ * inside a sentence that names what the survey is and why it matters, and links
+ * to the research itself.
  */
-const FIGURES = [
-  {
-    value: "782",
-    label: "companies in the 2023 Private Company Board Compensation Survey",
-  },
-  {
-    value: "38",
-    label: "countries and 50 industries represented in the data",
-  },
-  {
-    value: "2016–2026",
-    label: "an unbroken run of annual survey editions",
-  },
-];
-
 export function ProofBand() {
   return (
-    <section className="bg-navy py-20 text-ivory md:py-24">
+    <section className="bg-navy py-24 text-ivory md:py-28">
       <Container>
-        <dl className="grid grid-cols-1 gap-12 sm:grid-cols-3 sm:gap-8">
-          {FIGURES.map((f) => (
-            <div key={f.value} className="flex flex-col gap-3">
-              <dt className="font-serif text-[3.25rem] leading-none text-ivory md:text-[4rem]">
-                {f.value}
-              </dt>
-              <dd className="max-w-[22ch] font-sans text-[0.9rem] leading-relaxed text-ivory/65">
-                {f.label}
-              </dd>
-            </div>
-          ))}
-        </dl>
+        <div className="max-w-3xl">
+          <p className="font-serif text-display-3 font-normal leading-tight text-ivory">
+            For a decade we have published the benchmark private companies use to
+            decide what to pay their directors.
+          </p>
+          <p className="mt-8 max-w-xl font-sans text-[1.02rem] leading-relaxed text-ivory/70">
+            The Private Company Board Compensation Survey is now in its tenth edition.
+            The 2023 study drew on 782 companies across 50 industries and 38 countries —
+            the reference owners turn to when they set board pay.
+          </p>
+          <Link href="/research" className="btn-inverse mt-10">
+            Explore the research
+          </Link>
+        </div>
       </Container>
     </section>
   );

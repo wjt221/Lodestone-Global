@@ -11,7 +11,7 @@ import { InsightCards } from "./InsightCards";
 import { PullQuote } from "./PullQuote";
 import { photos, businessClosingPhotos } from "./photos";
 import { JsonLd } from "./JsonLd";
-import { breadcrumbJsonLd, faqJsonLd } from "@/lib/seo";
+import { breadcrumbJsonLd, faqJsonLd, serviceJsonLd } from "@/lib/seo";
 import { articleCards } from "@/lib/articles";
 import {
   businesses,
@@ -53,6 +53,7 @@ export function BusinessPage({ id }: { id: StageId }) {
       { name: "Home", path: "/" },
       { name: business.name, path: business.href },
     ]),
+    serviceJsonLd(business),
   ];
   if (detail.faq) schema.push(faqJsonLd(detail.faq));
 

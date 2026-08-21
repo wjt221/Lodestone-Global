@@ -133,8 +133,33 @@ export interface NavItem {
 }
 
 export const primaryNav: NavItem[] = [
-  { href: "/about", label: "About" },
-  { href: "/governance-advisory", label: "Board Advisory" },
+  // Board Advisory leads and is the only business carrying a submenu. Board
+  // work is why most visitors arrive (they search "build a board", "board
+  // compensation"), yet it previously sat as one of five equal, flat items.
+  // Placing it first and exposing its five capabilities gives the core
+  // offering the structural weight the traffic reflects; the anchors match the
+  // capability sections on /governance-advisory and the doors on the homepage.
+  {
+    href: "/governance-advisory",
+    label: "Board Advisory",
+    children: [
+      { href: "/governance-advisory", label: "Overview" },
+      { href: "/governance-advisory#board-formation", label: "Board formation" },
+      { href: "/governance-advisory#board-optimization", label: "Board optimization" },
+      {
+        href: "/governance-advisory#board-facilitation-and-education",
+        label: "Facilitation & education",
+      },
+      {
+        href: "/governance-advisory#director-and-executive-search",
+        label: "Director & executive search",
+      },
+      {
+        href: "/governance-advisory#board-compensation-benchmarking",
+        label: "Compensation benchmarking",
+      },
+    ],
+  },
   { href: "/e3-scale-network", label: "Operating Partners" },
   { href: "/lodestone-capital", label: "Investments" },
   { href: "/family-advisors", label: "Family Office" },
@@ -147,6 +172,7 @@ export const primaryNav: NavItem[] = [
       { href: "/case-studies", label: "Case Studies" },
     ],
   },
+  { href: "/about", label: "About" },
 ];
 
 export const CTA_PRIMARY = { label: "Schedule a Conversation", href: "/contact" };
