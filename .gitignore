@@ -6,3 +6,7 @@ out
 *.tsbuildinfo
 next-env.d.ts
 public-exports
+
+# local screenshot scratch
+shot.js
+hover.js

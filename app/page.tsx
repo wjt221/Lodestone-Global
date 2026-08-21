@@ -45,17 +45,25 @@ export default function Home() {
       <Header />
       <main id="main">
         {/* 1. HERO */}
-        <section className="relative flex min-h-[86vh] flex-col justify-center overflow-hidden pt-[4.25rem] text-ivory">
-          <BackgroundPhoto
-            src={photos.hero.src}
-            alt={photos.hero.alt}
-            priority
-            overlayStyle={{
-              backgroundImage:
-                "linear-gradient(to right, rgba(10,27,42,1) 0%, rgba(10,27,42,0.9) 55%, rgba(10,27,42,0.78) 100%)",
-            }}
-          />
-          <Container className="relative z-10 flex flex-col gap-8 py-20">
+        {/*
+          No photograph here. The previous hero painted an Unsplash image
+          under a gradient that was fully opaque on the left and never below
+          0.78 on the right, so the photo was invisible at every breakpoint --
+          it only cost an LCP image and a blindly-chosen stock shot. The field
+          is now a plain navy gradient: faster, and honestly what the section
+          always looked like. Height is tightened from 86vh so the first row of
+          BoardDoors ("Where owners usually start") clears the fold on a
+          1440x900 laptop -- the doors are the concrete next step and should be
+          visible without scrolling.
+        */}
+        <section
+          className="relative flex min-h-[58vh] flex-col justify-center overflow-hidden pt-[4.25rem] text-ivory"
+          style={{
+            backgroundImage:
+              "linear-gradient(135deg, #0d2334 0%, #0a1b2a 55%, #081521 100%)",
+          }}
+        >
+          <Container className="relative z-10 flex flex-col gap-6 py-16">
             {/*
               Hero copy carried over from the long-running Lodestone Global site.
               The verbs lead because they are concrete and because they are the
@@ -85,7 +93,7 @@ export default function Home() {
               For private, family-owned and founder-led companies. We design the board a business
               actually needs, then find the directors to fill it.
             </p>
-            <div className="mt-4 flex flex-col gap-5 sm:flex-row sm:items-center">
+            <div className="mt-2 flex flex-col gap-5 sm:flex-row sm:items-center">
               <Link href="/contact" className="btn-inverse">
                 Discuss your board
               </Link>
