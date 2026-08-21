@@ -1,62 +1,74 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { Section } from "@/components/Section";
 import { Container } from "@/components/Container";
-import { SectionHeading } from "@/components/SectionHeading";
-import { ProofBand } from "@/components/ProofBand";
-import { BoardDoors } from "@/components/BoardDoors";
 import { BackgroundPhoto } from "@/components/BackgroundPhoto";
-import { EditorialImage } from "@/components/EditorialImage";
-import { EcosystemList } from "@/components/EcosystemList";
-import { Kicker } from "@/components/Kicker";
-import { PrincipalJourney } from "@/components/PrincipalJourney";
-import { InsightCards } from "@/components/InsightCards";
 import { Leadership } from "@/components/Leadership";
-import { CTASection } from "@/components/CTASection";
 import { photos } from "@/components/photos";
-import {
-  CTA_PRIMARY,
-  CTA_SECONDARY,
-  proofPoints,
-  engagements,
-  researchCard,
-} from "@/lib/content";
 import { JsonLd } from "@/components/JsonLd";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
-import { articleCards } from "@/lib/articles";
+import { articles, articleCards } from "@/lib/articles";
+import { researchCard } from "@/lib/content";
 
-const homeInsights = [researchCard, ...articleCards];
+/*
+  Homepage, rebuilt for hierarchy rather than coverage.
 
-const whyPoints = [
-  "Deep specialization in private-company governance since 2013",
-  "Proprietary private-company board compensation research",
-  "An established director and executive network",
-  "Direct operating and investment experience",
-  "Long-term relationships with entrepreneurial owners",
-  "The ability to coordinate business, capital, and family decisions",
+  The previous page ran twelve near-identical modules (brass eyebrow, serif
+  headline, columns of small text under thin rules) and gave every item equal
+  weight. That uniform rhythm is what read as machine-made. This version is
+  seven sections, most content sitting directly on the page rather than in
+  cards, with three deliberate dark moments (hero, proof, close) and light
+  space between them -- no alternating panels, no stat cards, no giant CTA box.
+*/
+
+// The four capabilities are the four stages of an owner's life. One section,
+// not two: the question that matters changes, and a different part of the
+// practice answers it -- but the relationship stays whole.
+const RELATIONSHIP = [
+  {
+    stage: "Operator",
+    question: "How do I build a company that no longer depends on me?",
+    business: "E3 Scale Network",
+    href: "/e3-scale-network",
+  },
+  {
+    stage: "Owner",
+    question: "What should the board do now the business is more complex?",
+    business: "Lodestone Global",
+    href: "/governance-advisory",
+  },
+  {
+    stage: "Investor",
+    question: "Where should the capital the company produces go next?",
+    business: "Lodestone Capital",
+    href: "/lodestone-capital",
+  },
+  {
+    stage: "Steward",
+    question: "What has to be in place before ownership passes on?",
+    business: "Lodestone Family Advisors",
+    href: "/family-advisors",
+  },
+];
+
+const PROOF = [
+  { value: "356", label: "directors in the Qualified Director Network" },
+  { value: "Since 2013", label: "in the private-company board market" },
+  { value: "2016–2026", label: "ten unbroken editions of the compensation survey" },
 ];
 
 export default function Home() {
+  const featured = articles[0];
+  const moreInsights = [researchCard, articleCards[1], articleCards[2]].filter(Boolean);
+
   return (
     <>
       <JsonLd data={[organizationJsonLd(), websiteJsonLd()]} />
       <Header />
       <main id="main">
-        {/* 1. HERO */}
-        {/*
-          A real Lodestone boardroom sits behind the headline. The previous
-          hero painted a blindly-chosen Unsplash image under an overlay that
-          was fully opaque on the left and never below 0.78 on the right, so
-          the photo was invisible at every breakpoint. This one is licensed
-          Lodestone photography and the overlay is a left-to-right gradient
-          that stays dark behind the copy (0.94) and opens up to 0.55 on the
-          right, so the room actually reads -- a board, for a firm that builds
-          boards. Height stays tightened from 86vh so the first row of
-          BoardDoors ("Where owners usually start") clears the fold on a
-          1440x900 laptop.
-        */}
-        <section className="relative flex min-h-[58vh] flex-col justify-center overflow-hidden pt-[4.25rem] text-ivory">
+        {/* 1 — HERO. Real boardroom, one statement, one action. */}
+        <section className="relative flex min-h-[84vh] flex-col justify-end overflow-hidden pt-[4.25rem] text-ivory">
           <BackgroundPhoto
             src={photos.hero.src}
             alt={photos.hero.alt}
@@ -64,236 +76,196 @@ export default function Home() {
             objectPosition="center right"
             overlayStyle={{
               backgroundImage:
-                "linear-gradient(to right, rgba(10,27,42,0.94) 0%, rgba(10,27,42,0.86) 42%, rgba(10,27,42,0.55) 100%)",
+                "linear-gradient(to right, rgba(10,27,42,0.93) 0%, rgba(10,27,42,0.82) 45%, rgba(10,27,42,0.5) 100%)",
             }}
           />
-          <Container className="relative z-10 flex flex-col gap-6 py-16">
-            {/*
-              Hero copy carried over from the long-running Lodestone Global site.
-              The verbs lead because they are concrete and because they are the
-              language buyers actually search: build a board, board facilitation,
-              board optimization, board education. The previous headline read well
-              but contained no term anyone looks for.
-
-              "Award-winning boards" is exact, not puffery: the awards belong to
-              clients' boards (Private Company Board of the Year), not to the firm.
-              Do not restate it as an award the firm won.
-
-              The compensation survey is deliberately NOT in this subhead. It is a
-              credential, not the offer, and leading with it makes the research
-              sound like the business. It belongs on /research and in ProofBand.
-
-              The "38 countries and 50 industries" figures are likewise absent:
-              they describe the survey's RESPONDENTS, not Lodestone's client base.
-              In a hero they read as the firm's operating reach, which is a claim
-              nobody has made. ProofBand states them where they are labelled as
-              survey data.
-            */}
-            <Kicker>Lodestone Global · High-performing board experts</Kicker>
+          <Container className="relative z-10 pb-20 pt-28">
             <h1 className="max-w-4xl font-serif text-display-1 font-semibold text-ivory">
               We build, facilitate, optimize and educate award-winning boards.
             </h1>
-            <p className="max-w-2xl font-sans text-lg leading-relaxed text-ivory/80">
-              For private, family-owned and founder-led companies. We design the board a business
-              actually needs, then find the directors to fill it.
+            <p className="mt-8 max-w-xl font-sans text-lg leading-relaxed text-ivory/75">
+              For private, family-owned and founder-led companies — the board a business
+              actually needs, and the directors to fill it.
             </p>
-            <div className="mt-2 flex flex-col gap-5 sm:flex-row sm:items-center">
-              <Link href="/contact" className="btn-inverse">
-                Discuss your board
-              </Link>
-              <Link
-                href="/governance-advisory"
-                className="btn-text text-ivory/80 hover:text-ivory"
-              >
-                How we build boards
-              </Link>
+            <Link href="/contact" className="btn-inverse mt-10">
+              Discuss your board
+            </Link>
+          </Container>
+        </section>
+
+        {/* 2 — PROPOSITION. One large statement, almost no supporting UI. The
+            four verbs live in the hero and in the Board Advisory nav; credibility
+            folds in as a single line of prose rather than a strip of cards. */}
+        <section className="bg-ivory py-32 md:py-48">
+          <Container>
+            <div className="max-w-[56rem]">
+              <p className="font-serif text-display-2 font-normal leading-[1.08] text-navy">
+                The board is where ownership, strategy and capital meet. Most private
+                companies build one a decade too late.
+              </p>
+              <p className="mt-10 max-w-xl font-sans text-[1.05rem] leading-relaxed text-charcoal/70">
+                Since 2013 we have formed, optimized and educated the boards behind
+                founder- and family-owned businesses — and published the benchmark for
+                what their directors are paid.
+              </p>
             </div>
           </Container>
         </section>
 
-        <BoardDoors />
-
-        {/* 2. CREDIBILITY STRIP */}
-        <section className="border-b border-charcoal/10 bg-ivory">
-          <Container className="grid grid-cols-1 gap-x-10 gap-y-8 py-14 sm:grid-cols-2 lg:grid-cols-4">
-            {proofPoints.map((p) => (
-              <div key={p.label} className="flex flex-col gap-2 border-t border-charcoal/15 pt-5">
-                <span className="font-sans text-[0.72rem] uppercase tracking-widest2 text-brass">
-                  {p.label}
-                </span>
-                <p className="font-sans text-[0.9rem] leading-relaxed text-charcoal/65">{p.detail}</p>
+        {/* 3 — ONE RELATIONSHIP. Journey and ecosystem, merged into four
+            typographic rows: stage, its question, the business that answers it. */}
+        <section className="bg-parchment py-28 md:py-36">
+          <Container>
+            <div className="grid grid-cols-1 gap-y-14 lg:grid-cols-12 lg:gap-x-16">
+              <div className="lg:col-span-4">
+                <h2 className="font-serif text-display-3 font-normal leading-tight text-navy">
+                  One relationship, as the company changes.
+                </h2>
+                <p className="mt-6 max-w-sm font-sans text-[0.98rem] leading-relaxed text-charcoal/65">
+                  The question that matters most shifts as a business matures. Lodestone
+                  brings the capability each stage needs and keeps a single relationship
+                  across all of them.
+                </p>
               </div>
-            ))}
-          </Container>
-        </section>
-
-        {/*
-          3. THE PRINCIPAL JOURNEY
-          Merged from two sections that covered the same ground. "The questions
-          change as ownership grows" presented a numbered list of owner
-          questions; "One principal, four changing roles" then presented the
-          Principal Journey stepper -- whose per-stage question field is very
-          nearly the same list, shown a second time. One section now carries
-          both ideas: the stronger "questions change" framing as the heading,
-          and the journey stepper (role -> question -> capability, per stage) as
-          the body. This removes a full screen, ends the duplicate questions,
-          and drops one blindly chosen stock photo.
-        */}
-        <Section tone="parchment">
-          <div className="flex flex-col gap-12">
-            <SectionHeading
-              kicker="The Principal Journey"
-              title="The questions change as ownership grows."
-              description="Most principals arrive with a single decision in front of them, but the role itself shifts as the company matures -- operator, owner, investor, steward -- and so does the question that matters most. Lodestone brings the capability that fits each stage while keeping one relationship intact across all of them."
-            />
-            <PrincipalJourney />
-          </div>
-        </Section>
-
-        {/* 5. THE LODESTONE ECOSYSTEM */}
-        <Section id="ecosystem" tone="light">
-          <div className="flex flex-col gap-12">
-            <SectionHeading
-              kicker="The Ecosystem"
-              title="Four capabilities, coordinated as one relationship."
-              description="Govern, scale, compound, and steward. Each is delivered by a dedicated part of the practice, and no principal is expected to use all four. Lodestone brings the capability that fits the situation and preserves one trusted relationship as it changes."
-            />
-            <EcosystemList />
-          </div>
-        </Section>
-
-        {/* STATEMENT BAND */}
-        <section className="relative overflow-hidden py-28 md:py-36">
-          <BackgroundPhoto src={photos.homeStatementBand.src} alt={photos.homeStatementBand.alt} overlayClassName="bg-navy/80" objectPosition="top" />
-          <Container className="relative z-10">
-            <p className="max-w-3xl font-serif text-display-2 font-normal leading-tight text-ivory">
-              We start with the whole picture: the business, the family, the capital, and the
-              objectives. Not the assignment in front of us.
-            </p>
-          </Container>
-        </section>
-
-        {/* 5. WHY LODESTONE */}
-        <Section tone="light">
-          <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
-            <div className="flex flex-col gap-10 lg:col-span-5">
-              <SectionHeading
-                kicker="Why Lodestone"
-                title="Built in the boardroom, not the classroom."
-                description="Our perspective comes from forming and sitting on boards, running companies, and investing capital, not from a framework. That is what lets one team coordinate decisions across the business, its capital, and the family."
-              />
-              <EditorialImage
-                src={photos.homeWhyLodestone.src}
-                alt={photos.homeWhyLodestone.alt}
-                aspect="aspect-[3/2]"
-                sizes="(min-width: 1024px) 40vw, 100vw"
-                className="hidden lg:block"
-              />
-            </div>
-            <div className="lg:col-span-7">
-              <ul className="grid grid-cols-1 gap-x-12 sm:grid-cols-2">
-                {whyPoints.map((point) => (
+              <ol className="lg:col-span-8">
+                {RELATIONSHIP.map((r) => (
                   <li
-                    key={point}
-                    className="border-t border-charcoal/10 py-5 font-sans text-[0.95rem] leading-relaxed text-charcoal/75"
+                    key={r.stage}
+                    className="grid grid-cols-1 gap-x-8 gap-y-3 border-t border-charcoal/15 py-8 last:border-b sm:grid-cols-12 sm:items-baseline"
                   >
-                    {point}
+                    <span className="font-serif text-2xl leading-none text-navy sm:col-span-3">
+                      {r.stage}
+                    </span>
+                    <p className="font-serif text-lg font-normal leading-snug text-navy/80 sm:col-span-6">
+                      {r.question}
+                    </p>
+                    <Link
+                      href={r.href}
+                      className="font-sans text-[0.72rem] uppercase tracking-[0.08em] text-navy/60 transition-colors hover:text-brass sm:col-span-3 sm:text-right"
+                    >
+                      {r.business}
+                    </Link>
                   </li>
                 ))}
-              </ul>
+              </ol>
             </div>
-          </div>
-        </Section>
+          </Container>
+        </section>
 
-        <ProofBand />
-
-        {/* 8. REPRESENTATIVE ENGAGEMENTS */}
-        <Section tone="parchment">
-          <div className="flex flex-col gap-12">
-            <SectionHeading
-              kicker="Representative Engagements"
-              title="What this looks like in practice."
-              description="Some examples are published; others are representative, with details combined or anonymized to protect confidentiality."
-            />
-            <div className="flex flex-col">
-              {engagements.map((e, i) => (
-                <div
-                  key={e.situation}
-                  className={`grid grid-cols-1 gap-6 border-t border-charcoal/15 py-10 md:grid-cols-12 md:gap-8 ${
-                    i === engagements.length - 1 ? "border-b" : ""
-                  }`}
-                >
-                  <div className="md:col-span-3">
-                    <span className="font-sans text-[0.72rem] uppercase tracking-widest2 text-brass">
-                      {e.sector}
-                    </span>
-                  </div>
-                  <div className="flex flex-col gap-5 md:col-span-9 lg:grid lg:grid-cols-3 lg:gap-8">
-                    <div className="flex flex-col gap-1.5">
-                      <span className="font-sans text-[0.72rem] uppercase tracking-[0.06em] text-charcoal/45">
-                        Situation
-                      </span>
-                      <p className="font-sans text-[0.92rem] leading-relaxed text-charcoal/75">
-                        {e.situation}
-                      </p>
-                    </div>
-                    <div className="flex flex-col gap-1.5">
-                      <span className="font-sans text-[0.72rem] uppercase tracking-[0.06em] text-charcoal/45">
-                        Mandate
-                      </span>
-                      <p className="font-sans text-[0.92rem] leading-relaxed text-charcoal/75">
-                        {e.mandate}
-                      </p>
-                    </div>
-                    <div className="flex flex-col gap-1.5">
-                      <span className="font-sans text-[0.72rem] uppercase tracking-[0.06em] text-charcoal/45">
-                        Work completed
-                      </span>
-                      <p className="font-sans text-[0.92rem] leading-relaxed text-charcoal/75">
-                        {e.work}
-                      </p>
-                    </div>
-                  </div>
+        {/* 4 — PROOF. Three published figures at display scale. No cards. */}
+        <section className="bg-navy py-24 text-ivory md:py-28">
+          <Container>
+            <dl className="grid grid-cols-1 gap-14 sm:grid-cols-3 sm:gap-10">
+              {PROOF.map((f) => (
+                <div key={f.value} className="flex flex-col gap-3">
+                  <dt className="font-serif text-[3.25rem] leading-none text-ivory md:text-[3.75rem]">
+                    {f.value}
+                  </dt>
+                  <dd className="max-w-[24ch] font-sans text-[0.9rem] leading-relaxed text-ivory/60">
+                    {f.label}
+                  </dd>
                 </div>
               ))}
+            </dl>
+          </Container>
+        </section>
+
+        {/* 5 — THE FIRM. One statement, then the roster. */}
+        <section className="bg-ivory py-28 md:py-36">
+          <Container>
+            <div className="max-w-3xl">
+              <h2 className="font-serif text-display-2 font-normal leading-[1.08] text-navy">
+                Built in the boardroom, not the classroom.
+              </h2>
+              <p className="mt-8 max-w-xl font-sans text-[1.05rem] leading-relaxed text-charcoal/70">
+                Our perspective comes from forming and sitting on boards, running
+                companies and investing capital — not from a framework. One team
+                coordinates the business, its capital and the family.
+              </p>
             </div>
-          </div>
-        </Section>
+            <div className="mt-20">
+              <Leadership />
+            </div>
+          </Container>
+        </section>
 
-        {/* 9. LEADERSHIP */}
-        <Section tone="light">
-          <div className="flex flex-col gap-12">
-            <SectionHeading
-              kicker="Leadership"
-              title="The people behind the relationship."
-              description="Lodestone is led by principals with direct governance, operating, and investing experience."
-            />
-            <Leadership />
-          </div>
-        </Section>
-
-        {/* 10. INSIGHTS */}
-        <Section tone="parchment">
-          <div className="flex flex-col gap-12">
-            <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
-              <SectionHeading
-                kicker="Insights"
-                title="Research and perspective."
-                description="Proprietary research and practical guidance on private-company governance."
-              />
-              <Link href="/insights" className="btn-text w-fit text-navy">
-                View all insights
+        {/* 6 — INSIGHTS. One featured piece with its photograph; the rest as a
+            short reading list, not a grid of equal cards. */}
+        <section className="bg-parchment py-28 md:py-36">
+          <Container>
+            <div className="flex items-end justify-between gap-6">
+              <h2 className="font-serif text-display-3 font-normal text-navy">
+                Research and perspective.
+              </h2>
+              <Link
+                href="/insights"
+                className="shrink-0 font-sans text-[0.72rem] uppercase tracking-[0.08em] text-navy/70 transition-colors hover:text-brass"
+              >
+                All insights →
               </Link>
             </div>
-            <InsightCards items={homeInsights} limit={3} />
-          </div>
-        </Section>
 
-        {/* 11. FINAL CTA */}
-        <section className="relative overflow-hidden py-24 md:py-32">
-          <BackgroundPhoto src={photos.closing.src} alt={photos.closing.alt} overlayClassName="bg-gradient-to-b from-navy/80 via-navy/90 to-navy" objectPosition="top" />
-          <Container className="relative z-10">
-            <CTASection />
+            {featured && (
+              <Link
+                href={`/insights/${featured.slug}`}
+                className="group mt-14 grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-14"
+              >
+                {featured.image && (
+                  <div className="relative aspect-[4/3] overflow-hidden lg:col-span-7">
+                    <Image
+                      src={featured.image.src}
+                      alt={featured.title}
+                      fill
+                      sizes="(min-width: 1024px) 55vw, 100vw"
+                      className="object-cover transition-transform duration-700 ease-editorial group-hover:scale-[1.03]"
+                    />
+                  </div>
+                )}
+                <div className="flex flex-col justify-center lg:col-span-5">
+                  <span className="font-sans text-[0.72rem] uppercase tracking-[0.1em] text-brass">
+                    {featured.category}
+                  </span>
+                  <h3 className="mt-4 font-serif text-display-3 font-normal leading-tight text-navy group-hover:text-brass">
+                    {featured.title}
+                  </h3>
+                  <p className="mt-5 max-w-md font-sans text-[0.98rem] leading-relaxed text-charcoal/65">
+                    {featured.summary}
+                  </p>
+                </div>
+              </Link>
+            )}
+
+            <ul className="mt-16 border-t border-charcoal/15">
+              {moreInsights.map((item) => (
+                <li key={item!.title}>
+                  <Link
+                    href={item!.href}
+                    className="group grid grid-cols-1 gap-x-8 gap-y-1 border-b border-charcoal/15 py-6 sm:grid-cols-12 sm:items-baseline"
+                  >
+                    <span className="font-sans text-[0.72rem] uppercase tracking-[0.1em] text-brass sm:col-span-3">
+                      {item!.category}
+                    </span>
+                    <span className="font-serif text-lg font-normal leading-snug text-navy transition-colors group-hover:text-brass sm:col-span-9">
+                      {item!.title}
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </Container>
+        </section>
+
+        {/* 7 — CLOSE. One line, one action. */}
+        <section className="bg-navy py-28 text-ivory md:py-36">
+          <Container>
+            <div className="max-w-3xl">
+              <h2 className="font-serif text-display-2 font-normal leading-[1.08] text-ivory">
+                Start with the decision in front of you.
+              </h2>
+              <Link href="/contact" className="btn-inverse mt-10">
+                Schedule a conversation
+              </Link>
+            </div>
           </Container>
         </section>
       </main>
