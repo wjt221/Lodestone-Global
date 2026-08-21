@@ -35,7 +35,7 @@ export function PrincipalJourney() {
             } ${i === 2 ? "border-t sm:border-t lg:border-t-0" : ""}`}
           >
             <span className="font-sans text-[0.68rem] uppercase tracking-widest2 text-brass">
-              0{i + 1} · {s.stage}
+              {s.stage}
             </span>
             <p className="font-sans text-[0.95rem] leading-relaxed text-charcoal/75">{s.role}</p>
             <p className="mt-1 font-serif text-[1.05rem] font-normal leading-snug text-navy/85">
@@ -43,7 +43,7 @@ export function PrincipalJourney() {
             </p>
             <Link
               href={s.capability.href}
-              className="mt-auto pt-2 font-sans text-[0.75rem] uppercase tracking-[0.08em] text-navy/70 transition-colors hover:text-brass"
+              className="mt-auto pt-2 font-sans text-[0.9rem] text-navy/75 underline decoration-charcoal/25 underline-offset-4 transition-colors hover:text-brass"
             >
               {s.capability.label} →
             </Link>
@@ -53,7 +53,7 @@ export function PrincipalJourney() {
 
       {/* Understated outcomes */}
       <div className="flex flex-col gap-3 border-t border-charcoal/15 pt-6 sm:flex-row sm:items-baseline sm:gap-6">
-        <span className="font-sans text-[0.72rem] uppercase tracking-[0.08em] text-charcoal/45">
+        <span className="font-sans text-[0.85rem] text-charcoal/55">
           What the journey is for
         </span>
         <p className="font-serif text-lg font-normal text-navy/80">

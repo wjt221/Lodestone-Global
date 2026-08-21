@@ -25,7 +25,7 @@ export function EcosystemList() {
               className="h-2 w-2 rounded-full bg-brass"
             />
             <span className="font-sans text-[0.68rem] uppercase tracking-widest2 text-brass">
-              0{i + 1} · {b.stage}
+              {b.stage}
             </span>
             <span className="font-serif text-[1.05rem] leading-snug text-navy">{b.name}</span>
             {i < businesses.length - 1 && (
@@ -72,7 +72,7 @@ export function EcosystemList() {
             </ul>
             <Link
               href={b.href}
-              className="mt-auto w-fit font-sans text-[0.75rem] uppercase tracking-[0.08em] text-navy/70 transition-colors hover:text-brass"
+              className="mt-auto w-fit font-sans text-[0.9rem] text-navy/75 underline decoration-charcoal/25 underline-offset-4 transition-colors hover:text-brass"
             >
               Explore {b.name} →
             </Link>

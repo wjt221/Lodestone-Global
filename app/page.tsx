@@ -116,9 +116,8 @@ export default function Home() {
         </section>
 
         {/* 3. RECOGNITION — the questions change as ownership grows */}
-        <Section tone="light">
+        <Section tone="light" density="tight">
           <SectionHeading
-            kicker="Who We Serve"
             title="The questions change as ownership grows."
             description="Most principals arrive with a specific decision in front of them. The right one usually connects to the others, because the business, its capital, and the family rarely move on separate tracks."
           />
@@ -131,9 +130,6 @@ export default function Home() {
               className="lg:col-span-4"
             />
             <div className="lg:col-span-8">
-              <p className="mb-6 font-sans text-[0.82rem] uppercase tracking-[0.08em] text-charcoal/45">
-                Questions we are asked to help answer
-              </p>
               <ul className="flex flex-col">
                 {ownerQuestions.map((q, i) => (
                   <li
@@ -152,7 +148,7 @@ export default function Home() {
         </Section>
 
         {/* 4. THE PRINCIPAL JOURNEY */}
-        <Section tone="parchment">
+        <Section tone="parchment" density="normal">
           <div className="flex flex-col gap-12">
             <SectionHeading
               kicker="The Principal Journey"
@@ -164,11 +160,10 @@ export default function Home() {
         </Section>
 
         {/* 5. THE LODESTONE ECOSYSTEM */}
-        <Section id="ecosystem" tone="light">
+        <Section id="ecosystem" tone="light" density="generous">
           <div className="flex flex-col gap-12">
             <SectionHeading
-              kicker="The Ecosystem"
-              title="Four capabilities, coordinated as one relationship."
+                title="Four capabilities, coordinated as one relationship."
               description="Govern, scale, compound, and steward. Each is delivered by a dedicated part of the practice, and no principal is expected to use all four. Lodestone brings the capability that fits the situation and preserves one trusted relationship as it changes."
             />
             <EcosystemList />
@@ -191,8 +186,7 @@ export default function Home() {
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="flex flex-col gap-10 lg:col-span-5">
               <SectionHeading
-                kicker="Why Lodestone"
-                title="Built in the boardroom, not the classroom."
+                  title="Built in the boardroom, not the classroom."
                 description="Our perspective comes from forming and sitting on boards, running companies, and investing capital, not from a framework. That is what lets one team coordinate decisions across the business, its capital, and the family."
               />
               <EditorialImage
@@ -221,7 +215,7 @@ export default function Home() {
         <ProofBand />
 
         {/* 8. REPRESENTATIVE ENGAGEMENTS */}
-        <Section tone="parchment">
+        <Section tone="parchment" density="normal">
           <div className="flex flex-col gap-12">
             <SectionHeading
               kicker="Representative Engagements"
@@ -243,7 +237,7 @@ export default function Home() {
                   </div>
                   <div className="flex flex-col gap-5 md:col-span-9 lg:grid lg:grid-cols-3 lg:gap-8">
                     <div className="flex flex-col gap-1.5">
-                      <span className="font-sans text-[0.72rem] uppercase tracking-[0.06em] text-charcoal/45">
+                      <span className="font-sans text-[0.8rem] font-medium text-charcoal/55">
                         Situation
                       </span>
                       <p className="font-sans text-[0.92rem] leading-relaxed text-charcoal/75">
@@ -251,7 +245,7 @@ export default function Home() {
                       </p>
                     </div>
                     <div className="flex flex-col gap-1.5">
-                      <span className="font-sans text-[0.72rem] uppercase tracking-[0.06em] text-charcoal/45">
+                      <span className="font-sans text-[0.8rem] font-medium text-charcoal/55">
                         Mandate
                       </span>
                       <p className="font-sans text-[0.92rem] leading-relaxed text-charcoal/75">
@@ -259,7 +253,7 @@ export default function Home() {
                       </p>
                     </div>
                     <div className="flex flex-col gap-1.5">
-                      <span className="font-sans text-[0.72rem] uppercase tracking-[0.06em] text-charcoal/45">
+                      <span className="font-sans text-[0.8rem] font-medium text-charcoal/55">
                         Work completed
                       </span>
                       <p className="font-sans text-[0.92rem] leading-relaxed text-charcoal/75">
@@ -277,8 +271,7 @@ export default function Home() {
         <Section tone="light">
           <div className="flex flex-col gap-12">
             <SectionHeading
-              kicker="Leadership"
-              title="The people behind the relationship."
+                title="The people behind the relationship."
               description="Lodestone is led by principals with direct governance, operating, and investing experience."
             />
             <Leadership />
@@ -286,11 +279,10 @@ export default function Home() {
         </Section>
 
         {/* 10. INSIGHTS */}
-        <Section tone="parchment">
+        <Section tone="parchment" density="normal">
           <div className="flex flex-col gap-12">
             <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
               <SectionHeading
-                kicker="Insights"
                 title="Research and perspective."
                 description="Proprietary research and practical guidance on private-company governance."
               />
