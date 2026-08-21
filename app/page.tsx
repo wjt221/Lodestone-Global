@@ -19,7 +19,6 @@ import {
   CTA_PRIMARY,
   CTA_SECONDARY,
   proofPoints,
-  ownerQuestions,
   engagements,
   researchCard,
 } from "@/lib/content";
@@ -123,49 +122,24 @@ export default function Home() {
           </Container>
         </section>
 
-        {/* 3. RECOGNITION — the questions change as ownership grows */}
-        <Section tone="light">
-          <SectionHeading
-            kicker="Who We Serve"
-            title="The questions change as ownership grows."
-            description="Most principals arrive with a specific decision in front of them. The right one usually connects to the others, because the business, its capital, and the family rarely move on separate tracks."
-          />
-          <div className="mt-14 grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
-            <EditorialImage
-              src={photos.homeQuestions.src}
-              alt={photos.homeQuestions.alt}
-              aspect="aspect-[4/5]"
-              sizes="(min-width: 1024px) 33vw, 100vw"
-              className="lg:col-span-4"
-            />
-            <div className="lg:col-span-8">
-              <p className="mb-6 font-sans text-[0.82rem] uppercase tracking-[0.08em] text-charcoal/45">
-                Questions we are asked to help answer
-              </p>
-              <ul className="flex flex-col">
-                {ownerQuestions.map((q, i) => (
-                  <li
-                    key={q}
-                    className="flex gap-5 border-t border-charcoal/10 py-5 last:border-b"
-                  >
-                    <span className="index-number pt-1">0{i + 1}</span>
-                    <span className="font-serif text-lg font-normal leading-snug text-navy/85">
-                      {q}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </Section>
-
-        {/* 4. THE PRINCIPAL JOURNEY */}
+        {/*
+          3. THE PRINCIPAL JOURNEY
+          Merged from two sections that covered the same ground. "The questions
+          change as ownership grows" presented a numbered list of owner
+          questions; "One principal, four changing roles" then presented the
+          Principal Journey stepper -- whose per-stage question field is very
+          nearly the same list, shown a second time. One section now carries
+          both ideas: the stronger "questions change" framing as the heading,
+          and the journey stepper (role -> question -> capability, per stage) as
+          the body. This removes a full screen, ends the duplicate questions,
+          and drops one blindly chosen stock photo.
+        */}
         <Section tone="parchment">
           <div className="flex flex-col gap-12">
             <SectionHeading
               kicker="The Principal Journey"
-              title="One principal, four changing roles."
-              description="As a company matures, the principal's role shifts, and so does the question that matters most. Lodestone brings the capability that fits each stage while keeping a single relationship intact across all of them."
+              title="The questions change as ownership grows."
+              description="Most principals arrive with a single decision in front of them, but the role itself shifts as the company matures -- operator, owner, investor, steward -- and so does the question that matters most. Lodestone brings the capability that fits each stage while keeping one relationship intact across all of them."
             />
             <PrincipalJourney />
           </div>
