@@ -3,7 +3,6 @@ import Image from "next/image";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Container } from "@/components/Container";
-import { BackgroundPhoto } from "@/components/BackgroundPhoto";
 import { Leadership } from "@/components/Leadership";
 import { photos } from "@/components/photos";
 import { JsonLd } from "@/components/JsonLd";
@@ -12,19 +11,27 @@ import { articles, articleCards } from "@/lib/articles";
 import { researchCard } from "@/lib/content";
 
 /*
-  Homepage, rebuilt for hierarchy rather than coverage.
+  Homepage as an editorial monograph.
 
-  The previous page ran twelve near-identical modules (brass eyebrow, serif
-  headline, columns of small text under thin rules) and gave every item equal
-  weight. That uniform rhythm is what read as machine-made. This version is
-  seven sections, most content sitting directly on the page rather than in
-  cards, with three deliberate dark moments (hero, proof, close) and light
-  space between them -- no alternating panels, no stat cards, no giant CTA box.
+  The prior versions -- old and "lightened" -- shared one skeleton: full-width
+  bands stacked vertically, content centred in a container, a left-aligned serif
+  headline each time. Trimming sections made it emptier, not different.
+
+  This rebuild changes the composition itself. A numbered rail runs down the
+  left as a spine (01-05); the body is offset into the right-hand columns, so
+  the page reads as an asymmetric grid rather than a stack of centred blocks.
+  A full-bleed photograph breaks the container at the midpoint, the hero
+  headline overlaps the image on an ivory slab, and the display type is much
+  larger. Three chapters of prose, two image breaks, one roster, one close.
 */
 
-// The four capabilities are the four stages of an owner's life. One section,
-// not two: the question that matters changes, and a different part of the
-// practice answers it -- but the relationship stays whole.
+const CHAPTERS = [
+  {
+    n: "02",
+    label: "The relationship",
+  },
+];
+
 const RELATIONSHIP = [
   {
     stage: "Operator",
@@ -54,9 +61,23 @@ const RELATIONSHIP = [
 
 const PROOF = [
   { value: "356", label: "directors in the Qualified Director Network" },
-  { value: "Since 2013", label: "in the private-company board market" },
+  { value: "2013", label: "in the private-company board market since" },
   { value: "2016–2026", label: "ten unbroken editions of the compensation survey" },
 ];
+
+/** A chapter number set as a spine in the left margin. */
+function Rail({ n, label }: { n: string; label: string }) {
+  return (
+    <div className="flex items-baseline gap-4 lg:flex-col lg:items-start lg:gap-3">
+      <span className="font-serif text-[2.5rem] leading-none text-brass/70 lg:text-[3.5rem]">
+        {n}
+      </span>
+      <span className="font-sans text-[0.68rem] uppercase tracking-widest2 text-charcoal/45">
+        {label}
+      </span>
+    </div>
+  );
+}
 
 export default function Home() {
   const featured = articles[0];
@@ -67,199 +88,272 @@ export default function Home() {
       <JsonLd data={[organizationJsonLd(), websiteJsonLd()]} />
       <Header />
       <main id="main">
-        {/* 1 — HERO. Real boardroom, one statement, one action. */}
-        <section className="relative flex min-h-[84vh] flex-col justify-end overflow-hidden pt-[4.25rem] text-ivory">
-          <BackgroundPhoto
-            src={photos.hero.src}
-            alt={photos.hero.alt}
-            priority
-            objectPosition="center right"
-            overlayStyle={{
-              backgroundImage:
-                "linear-gradient(to right, rgba(10,27,42,0.93) 0%, rgba(10,27,42,0.82) 45%, rgba(10,27,42,0.5) 100%)",
-            }}
-          />
-          <Container className="relative z-10 pb-20 pt-28">
-            <h1 className="max-w-4xl font-serif text-display-1 font-semibold text-ivory">
-              We build, facilitate, optimize and educate award-winning boards.
-            </h1>
-            <p className="mt-8 max-w-xl font-sans text-lg leading-relaxed text-ivory/75">
-              For private, family-owned and founder-led companies — the board a business
-              actually needs, and the directors to fill it.
-            </p>
-            <Link href="/contact" className="btn-inverse mt-10">
-              Discuss your board
-            </Link>
-          </Container>
-        </section>
+        {/* HERO — full-bleed boardroom with a meta rule; the headline lives on an
+            ivory slab below that overlaps up into the image. */}
+        <section className="relative">
+          <div className="relative h-[62vh] min-h-[420px] w-full overflow-hidden md:h-[74vh]">
+            <Image
+              src={photos.hero.src}
+              alt={photos.hero.alt}
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover"
+              style={{ objectPosition: "center right" }}
+            />
+            <div
+              className="absolute inset-0"
+              style={{
+                backgroundImage:
+                  "linear-gradient(to top, rgba(10,27,42,0.55) 0%, rgba(10,27,42,0.25) 45%, rgba(10,27,42,0.35) 100%)",
+              }}
+              aria-hidden
+            />
+            <Container className="relative flex h-full flex-col justify-start pt-[6.5rem]">
+              <div className="flex items-center gap-4 text-ivory/80">
+                <span className="font-sans text-[0.68rem] uppercase tracking-widest2">
+                  Lodestone Global
+                </span>
+                <span className="h-px w-10 bg-ivory/40" aria-hidden />
+                <span className="font-sans text-[0.68rem] uppercase tracking-[0.12em]">
+                  Private-company boards since 2013
+                </span>
+              </div>
+            </Container>
+          </div>
 
-        {/* 2 — PROPOSITION. One large statement, almost no supporting UI. The
-            four verbs live in the hero and in the Board Advisory nav; credibility
-            folds in as a single line of prose rather than a strip of cards. */}
-        <section className="bg-ivory py-32 md:py-48">
+          {/* Overlapping headline slab */}
           <Container>
-            <div className="max-w-[56rem]">
-              <p className="font-serif text-display-2 font-normal leading-[1.08] text-navy">
-                The board is where ownership, strategy and capital meet. Most private
-                companies build one a decade too late.
-              </p>
-              <p className="mt-10 max-w-xl font-sans text-[1.05rem] leading-relaxed text-charcoal/70">
-                Since 2013 we have formed, optimized and educated the boards behind
-                founder- and family-owned businesses — and published the benchmark for
-                what their directors are paid.
-              </p>
+            <div className="relative z-10 -mt-16 max-w-[62rem] bg-ivory pr-6 pt-10 md:-mt-24 md:pr-16 md:pt-14">
+              <h1 className="font-serif text-[clamp(2.6rem,6.4vw,6.25rem)] font-semibold leading-[0.97] tracking-[-0.015em] text-navy">
+                We build, facilitate, optimize and educate award-winning boards.
+              </h1>
+              <div className="mt-8 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+                <p className="max-w-md font-sans text-lg leading-relaxed text-charcoal/70">
+                  For private, family-owned and founder-led companies — the board a
+                  business actually needs, and the directors to fill it.
+                </p>
+                <Link href="/contact" className="btn-primary shrink-0">
+                  Discuss your board
+                </Link>
+              </div>
             </div>
           </Container>
         </section>
 
-        {/* 3 — ONE RELATIONSHIP. Journey and ecosystem, merged into four
-            typographic rows: stage, its question, the business that answers it. */}
-        <section className="bg-parchment py-28 md:py-36">
+        {/* 01 — THE PROPOSITION. Offset into the right columns; the rail carries
+            the number. One large statement, deep whitespace. */}
+        <section className="bg-ivory pb-28 pt-24 md:pb-40 md:pt-32">
           <Container>
-            <div className="grid grid-cols-1 gap-y-14 lg:grid-cols-12 lg:gap-x-16">
-              <div className="lg:col-span-4">
-                <h2 className="font-serif text-display-3 font-normal leading-tight text-navy">
-                  One relationship, as the company changes.
-                </h2>
-                <p className="mt-6 max-w-sm font-sans text-[0.98rem] leading-relaxed text-charcoal/65">
-                  The question that matters most shifts as a business matures. Lodestone
-                  brings the capability each stage needs and keeps a single relationship
-                  across all of them.
+            <div className="grid grid-cols-12 gap-y-10 lg:gap-x-8">
+              <div className="col-span-12 lg:col-span-2">
+                <Rail n="01" label="The board" />
+              </div>
+              <div className="col-span-12 lg:col-span-9 lg:col-start-4">
+                <p className="font-serif text-[clamp(1.9rem,3.4vw,3.1rem)] font-normal leading-[1.1] tracking-[-0.01em] text-navy">
+                  The board is where ownership, strategy and capital meet. Most private
+                  companies build one a decade too late.
+                </p>
+                <p className="mt-10 max-w-lg font-sans text-[1.05rem] leading-relaxed text-charcoal/65">
+                  Since 2013 we have formed, optimized and educated the boards behind
+                  founder- and family-owned businesses — and published the benchmark for
+                  what their directors are paid.
                 </p>
               </div>
-              <ol className="lg:col-span-8">
-                {RELATIONSHIP.map((r) => (
-                  <li
-                    key={r.stage}
-                    className="grid grid-cols-1 gap-x-8 gap-y-3 border-t border-charcoal/15 py-8 last:border-b sm:grid-cols-12 sm:items-baseline"
-                  >
-                    <span className="font-serif text-2xl leading-none text-navy sm:col-span-3">
-                      {r.stage}
-                    </span>
-                    <p className="font-serif text-lg font-normal leading-snug text-navy/80 sm:col-span-6">
-                      {r.question}
-                    </p>
-                    <Link
-                      href={r.href}
-                      className="font-sans text-[0.72rem] uppercase tracking-[0.08em] text-navy/60 transition-colors hover:text-brass sm:col-span-3 sm:text-right"
-                    >
-                      {r.business}
-                    </Link>
-                  </li>
-                ))}
-              </ol>
             </div>
           </Container>
         </section>
 
-        {/* 4 — PROOF. Three published figures at display scale. No cards. */}
+        {/* IMAGE BREAK — full-bleed, edge to edge, with one line held at the foot. */}
+        <section className="relative h-[52vh] min-h-[340px] w-full overflow-hidden md:h-[68vh]">
+          <Image
+            src={photos.homeStatementBand.src}
+            alt={photos.homeStatementBand.alt}
+            fill
+            sizes="100vw"
+            className="object-cover"
+            style={{ objectPosition: "center" }}
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage:
+                "linear-gradient(to top, rgba(10,27,42,0.85) 0%, rgba(10,27,42,0.25) 55%, rgba(10,27,42,0.15) 100%)",
+            }}
+            aria-hidden
+          />
+          <Container className="absolute inset-x-0 bottom-0 pb-14 md:pb-20">
+            <p className="max-w-3xl font-serif text-[clamp(1.6rem,3vw,2.75rem)] font-normal leading-tight text-ivory">
+              We start with the whole picture — the business, the family, the capital —
+              not the assignment in front of us.
+            </p>
+          </Container>
+        </section>
+
+        {/* 02 — THE RELATIONSHIP. Journey + ecosystem, one offset list. */}
+        <section className="bg-ivory py-24 md:py-32">
+          <Container>
+            <div className="grid grid-cols-12 gap-y-12 lg:gap-x-8">
+              <div className="col-span-12 lg:col-span-2">
+                <Rail n={CHAPTERS[0].n} label={CHAPTERS[0].label} />
+              </div>
+              <div className="col-span-12 lg:col-span-9 lg:col-start-4">
+                <h2 className="max-w-xl font-serif text-[clamp(1.8rem,3vw,2.75rem)] font-normal leading-[1.1] text-navy">
+                  One relationship, as the company changes.
+                </h2>
+                <ol className="mt-14">
+                  {RELATIONSHIP.map((r, i) => (
+                    <li
+                      key={r.stage}
+                      className="grid grid-cols-1 gap-x-8 gap-y-2 border-t border-charcoal/15 py-7 last:border-b sm:grid-cols-12 sm:items-baseline"
+                    >
+                      <span className="font-sans text-[0.7rem] uppercase tracking-widest2 text-brass sm:col-span-1">
+                        0{i + 1}
+                      </span>
+                      <span className="font-serif text-2xl leading-none text-navy sm:col-span-3">
+                        {r.stage}
+                      </span>
+                      <p className="font-serif text-lg font-normal leading-snug text-navy/75 sm:col-span-5">
+                        {r.question}
+                      </p>
+                      <Link
+                        href={r.href}
+                        className="font-sans text-[0.72rem] uppercase tracking-[0.08em] text-navy/55 transition-colors hover:text-brass sm:col-span-3 sm:text-right"
+                      >
+                        {r.business}
+                      </Link>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            </div>
+          </Container>
+        </section>
+
+        {/* PROOF — dark break, three figures pinned to the right of a large label. */}
         <section className="bg-navy py-24 text-ivory md:py-28">
           <Container>
-            <dl className="grid grid-cols-1 gap-14 sm:grid-cols-3 sm:gap-10">
-              {PROOF.map((f) => (
-                <div key={f.value} className="flex flex-col gap-3">
-                  <dt className="font-serif text-[3.25rem] leading-none text-ivory md:text-[3.75rem]">
-                    {f.value}
-                  </dt>
-                  <dd className="max-w-[24ch] font-sans text-[0.9rem] leading-relaxed text-ivory/60">
-                    {f.label}
-                  </dd>
-                </div>
-              ))}
-            </dl>
+            <div className="grid grid-cols-12 items-baseline gap-y-12 lg:gap-x-8">
+              <div className="col-span-12 lg:col-span-2">
+                <Rail n="03" label="Evidence" />
+              </div>
+              <dl className="col-span-12 grid grid-cols-1 gap-12 sm:grid-cols-3 lg:col-span-9 lg:col-start-4">
+                {PROOF.map((f) => (
+                  <div key={f.value} className="flex flex-col gap-3">
+                    <dt className="font-serif text-[clamp(2.75rem,4vw,3.75rem)] leading-none text-ivory">
+                      {f.value}
+                    </dt>
+                    <dd className="max-w-[24ch] font-sans text-[0.9rem] leading-relaxed text-ivory/55">
+                      {f.label}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
           </Container>
         </section>
 
-        {/* 5 — THE FIRM. One statement, then the roster. */}
-        <section className="bg-ivory py-28 md:py-36">
+        {/* 04 — THE FIRM. Statement offset, roster full measure below. */}
+        <section className="bg-ivory py-24 md:py-32">
           <Container>
-            <div className="max-w-3xl">
-              <h2 className="font-serif text-display-2 font-normal leading-[1.08] text-navy">
-                Built in the boardroom, not the classroom.
-              </h2>
-              <p className="mt-8 max-w-xl font-sans text-[1.05rem] leading-relaxed text-charcoal/70">
-                Our perspective comes from forming and sitting on boards, running
-                companies and investing capital — not from a framework. One team
-                coordinates the business, its capital and the family.
-              </p>
+            <div className="grid grid-cols-12 gap-y-10 lg:gap-x-8">
+              <div className="col-span-12 lg:col-span-2">
+                <Rail n="04" label="The firm" />
+              </div>
+              <div className="col-span-12 lg:col-span-9 lg:col-start-4">
+                <h2 className="max-w-2xl font-serif text-[clamp(1.9rem,3.4vw,3.1rem)] font-normal leading-[1.1] text-navy">
+                  Built in the boardroom, not the classroom.
+                </h2>
+                <p className="mt-8 max-w-lg font-sans text-[1.05rem] leading-relaxed text-charcoal/65">
+                  Our perspective comes from forming and sitting on boards, running
+                  companies and investing capital — not from a framework. One team
+                  coordinates the business, its capital and the family.
+                </p>
+              </div>
             </div>
-            <div className="mt-20">
+            <div className="mt-20 lg:pl-[calc(25%+2rem)]">
               <Leadership />
             </div>
           </Container>
         </section>
 
-        {/* 6 — INSIGHTS. One featured piece with its photograph; the rest as a
-            short reading list, not a grid of equal cards. */}
-        <section className="bg-parchment py-28 md:py-36">
+        {/* 05 — INSIGHTS. One featured piece, then a short reading list. */}
+        <section className="bg-ivory pb-28 pt-4 md:pb-36">
           <Container>
-            <div className="flex items-end justify-between gap-6">
-              <h2 className="font-serif text-display-3 font-normal text-navy">
-                Research and perspective.
-              </h2>
-              <Link
-                href="/insights"
-                className="shrink-0 font-sans text-[0.72rem] uppercase tracking-[0.08em] text-navy/70 transition-colors hover:text-brass"
-              >
-                All insights →
-              </Link>
-            </div>
-
-            {featured && (
-              <Link
-                href={`/insights/${featured.slug}`}
-                className="group mt-14 grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-14"
-              >
-                {featured.image && (
-                  <div className="relative aspect-[4/3] overflow-hidden lg:col-span-7">
-                    <Image
-                      src={featured.image.src}
-                      alt={featured.title}
-                      fill
-                      sizes="(min-width: 1024px) 55vw, 100vw"
-                      className="object-cover transition-transform duration-700 ease-editorial group-hover:scale-[1.03]"
-                    />
-                  </div>
-                )}
-                <div className="flex flex-col justify-center lg:col-span-5">
-                  <span className="font-sans text-[0.72rem] uppercase tracking-[0.1em] text-brass">
-                    {featured.category}
-                  </span>
-                  <h3 className="mt-4 font-serif text-display-3 font-normal leading-tight text-navy group-hover:text-brass">
-                    {featured.title}
-                  </h3>
-                  <p className="mt-5 max-w-md font-sans text-[0.98rem] leading-relaxed text-charcoal/65">
-                    {featured.summary}
-                  </p>
-                </div>
-              </Link>
-            )}
-
-            <ul className="mt-16 border-t border-charcoal/15">
-              {moreInsights.map((item) => (
-                <li key={item!.title}>
+            <div className="grid grid-cols-12 gap-y-12 lg:gap-x-8">
+              <div className="col-span-12 lg:col-span-2">
+                <Rail n="05" label="Writing" />
+              </div>
+              <div className="col-span-12 lg:col-span-9 lg:col-start-4">
+                <div className="flex items-end justify-between gap-6">
+                  <h2 className="font-serif text-[clamp(1.8rem,3vw,2.75rem)] font-normal text-navy">
+                    Research &amp; perspective.
+                  </h2>
                   <Link
-                    href={item!.href}
-                    className="group grid grid-cols-1 gap-x-8 gap-y-1 border-b border-charcoal/15 py-6 sm:grid-cols-12 sm:items-baseline"
+                    href="/insights"
+                    className="shrink-0 font-sans text-[0.72rem] uppercase tracking-[0.08em] text-navy/60 transition-colors hover:text-brass"
                   >
-                    <span className="font-sans text-[0.72rem] uppercase tracking-[0.1em] text-brass sm:col-span-3">
-                      {item!.category}
-                    </span>
-                    <span className="font-serif text-lg font-normal leading-snug text-navy transition-colors group-hover:text-brass sm:col-span-9">
-                      {item!.title}
-                    </span>
+                    All insights →
                   </Link>
-                </li>
-              ))}
-            </ul>
+                </div>
+
+                {featured && (
+                  <Link
+                    href={`/insights/${featured.slug}`}
+                    className="group mt-12 grid grid-cols-1 gap-8 md:grid-cols-12 md:gap-12"
+                  >
+                    {featured.image && (
+                      <div className="relative aspect-[3/2] overflow-hidden md:col-span-7">
+                        <Image
+                          src={featured.image.src}
+                          alt={featured.title}
+                          fill
+                          sizes="(min-width: 768px) 45vw, 100vw"
+                          className="object-cover transition-transform duration-700 ease-editorial group-hover:scale-[1.03]"
+                        />
+                      </div>
+                    )}
+                    <div className="flex flex-col justify-center md:col-span-5">
+                      <span className="font-sans text-[0.72rem] uppercase tracking-[0.1em] text-brass">
+                        {featured.category}
+                      </span>
+                      <h3 className="mt-4 font-serif text-2xl font-normal leading-tight text-navy group-hover:text-brass md:text-[1.75rem]">
+                        {featured.title}
+                      </h3>
+                      <p className="mt-4 max-w-md font-sans text-[0.95rem] leading-relaxed text-charcoal/60">
+                        {featured.summary}
+                      </p>
+                    </div>
+                  </Link>
+                )}
+
+                <ul className="mt-14 border-t border-charcoal/15">
+                  {moreInsights.map((item) => (
+                    <li key={item!.title}>
+                      <Link
+                        href={item!.href}
+                        className="group grid grid-cols-1 gap-x-8 gap-y-1 border-b border-charcoal/15 py-5 sm:grid-cols-12 sm:items-baseline"
+                      >
+                        <span className="font-sans text-[0.72rem] uppercase tracking-[0.1em] text-brass sm:col-span-3">
+                          {item!.category}
+                        </span>
+                        <span className="font-serif text-lg font-normal leading-snug text-navy transition-colors group-hover:text-brass sm:col-span-9">
+                          {item!.title}
+                        </span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
           </Container>
         </section>
 
-        {/* 7 — CLOSE. One line, one action. */}
-        <section className="bg-navy py-28 text-ivory md:py-36">
+        {/* CLOSE — a dark full measure, one line, one action, a final rule. */}
+        <section className="bg-navy py-24 text-ivory md:py-32">
           <Container>
-            <div className="max-w-3xl">
-              <h2 className="font-serif text-display-2 font-normal leading-[1.08] text-ivory">
+            <div className="border-t border-ivory/20 pt-12">
+              <h2 className="max-w-2xl font-serif text-[clamp(2rem,3.6vw,3.5rem)] font-normal leading-[1.08] text-ivory">
                 Start with the decision in front of you.
               </h2>
               <Link href="/contact" className="btn-inverse mt-10">
