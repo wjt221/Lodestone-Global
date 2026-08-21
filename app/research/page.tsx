@@ -77,7 +77,7 @@ export default function ResearchPage() {
                   </li>
                 ))}
               </ul>
-              <p className="mt-8 max-w-xl font-sans text-[0.9rem] leading-relaxed text-charcoal/55">
+              <p className="mt-8 max-w-xl font-sans text-[0.9rem] leading-relaxed text-charcoal/80">
                 The full data set is proprietary and available for purchase. Summary findings are
                 published from time to time in Insights.
               </p>
@@ -107,7 +107,7 @@ export default function ResearchPage() {
               </div>
               <div className="flex flex-col gap-5 sm:col-span-8">
                 <div className="flex flex-col gap-1">
-                  <span className="font-sans text-[0.72rem] uppercase tracking-widest2 text-brass">
+                  <span className="font-sans text-[0.72rem] uppercase tracking-widest2 text-brass-ink">
                     Current edition · {latestEdition.editionOrdinal} annual
                   </span>
                   <h3 className="font-serif text-2xl font-normal text-navy">
@@ -125,13 +125,13 @@ export default function ResearchPage() {
                   />
                   <FreeSampleForm slug={latestEdition.slug} year={latestEdition.year} />
                 </div>
-                <p className="font-sans text-[0.8rem] leading-relaxed text-charcoal/50">{licenseNote}</p>
+                <p className="font-sans text-[0.8rem] leading-relaxed text-charcoal/80">{licenseNote}</p>
               </div>
             </div>
 
             {/* Archive */}
             <div>
-              <p className="mb-4 font-sans text-[0.72rem] uppercase tracking-[0.08em] text-charcoal/45">
+              <p className="mb-4 font-sans text-[0.72rem] uppercase tracking-[0.08em] text-charcoal/80">
                 Prior editions
               </p>
               <ul className="flex flex-col">
@@ -151,10 +151,10 @@ export default function ResearchPage() {
                       <span className="font-serif text-lg font-normal text-navy">{e.year}</span>
                     </Link>
                     <div className="flex items-center gap-6">
-                      <span className="font-sans text-[0.9rem] text-charcoal/60">{e.price}</span>
+                      <span className="font-sans text-[0.9rem] text-charcoal/80">{e.price}</span>
                       <Link
                         href={`/research/${e.slug}`}
-                        className="font-sans text-[0.78rem] uppercase tracking-[0.08em] text-navy/70 hover:text-brass"
+                        className="font-sans text-[0.78rem] uppercase tracking-[0.08em] text-navy/70 hover:text-brass-ink"
                       >
                         View report →
                       </Link>

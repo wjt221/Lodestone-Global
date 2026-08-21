@@ -33,7 +33,7 @@ export function CapabilityStepper({ items }: { items: CapabilityStepItem[] }) {
                   onClick={() => setActive(i)}
                   aria-current={isActive ? "true" : undefined}
                   className={`flex w-full items-start gap-4 border-b border-charcoal/15 py-5 text-left transition-colors duration-200 ${
-                    isActive ? "" : "opacity-60 hover:opacity-100"
+                    isActive ? "" : "opacity-85 hover:opacity-100"
                   }`}
                 >
                   <span
@@ -44,7 +44,7 @@ export function CapabilityStepper({ items }: { items: CapabilityStepItem[] }) {
                   />
                   <span className="flex flex-col gap-1.5">
                     <span className="font-serif text-lg font-normal text-navy">{item.name}</span>
-                    <span className="font-sans text-[0.88rem] leading-relaxed text-charcoal/60">
+                    <span className="font-sans text-[0.88rem] leading-relaxed text-charcoal/80">
                       {item.detail}
                     </span>
                   </span>
@@ -57,7 +57,7 @@ export function CapabilityStepper({ items }: { items: CapabilityStepItem[] }) {
 
       <div className="grid grid-cols-1 gap-8 border-t border-charcoal/15 pt-8 sm:grid-cols-2 lg:col-span-8 lg:border-t-0 lg:pt-0">
         <div className="flex flex-col gap-4">
-          <span className="font-sans text-[0.72rem] uppercase tracking-widest2 text-charcoal/45">
+          <span className="font-sans text-[0.72rem] uppercase tracking-widest2 text-charcoal/80">
             The challenge
           </span>
           <ul className="flex flex-col gap-3.5">
@@ -72,7 +72,7 @@ export function CapabilityStepper({ items }: { items: CapabilityStepItem[] }) {
           </ul>
         </div>
         <div className="flex flex-col gap-4">
-          <span className="font-sans text-[0.72rem] uppercase tracking-widest2 text-brass">
+          <span className="font-sans text-[0.72rem] uppercase tracking-widest2 text-brass-ink">
             How Lodestone helps
           </span>
           <ul className="flex flex-col gap-3.5">

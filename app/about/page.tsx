@@ -103,7 +103,7 @@ export default function AboutPage() {
                 <div key={s.step} className="flex flex-col gap-4 border-t border-charcoal/20 pt-6">
                   <span className="index-number">{s.step}</span>
                   <h3 className="font-serif text-xl font-normal text-navy">{s.title}</h3>
-                  <p className="font-sans text-[0.92rem] leading-relaxed text-charcoal/65">{s.body}</p>
+                  <p className="font-sans text-[0.92rem] leading-relaxed text-charcoal/80">{s.body}</p>
                 </div>
               ))}
             </div>

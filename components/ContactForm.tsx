@@ -154,7 +154,7 @@ export function ContactForm() {
           autoComplete="organization"
         />
         <div className="flex flex-col gap-2">
-          <label htmlFor={interestId} className="font-sans text-[0.8rem] uppercase tracking-[0.08em] text-charcoal/60">
+          <label htmlFor={interestId} className="font-sans text-[0.8rem] uppercase tracking-[0.08em] text-charcoal/80">
             Area of interest
           </label>
           <select
@@ -176,8 +176,8 @@ export function ContactForm() {
       </div>
 
       <div className="flex flex-col gap-2">
-        <label htmlFor={messageId} className="font-sans text-[0.8rem] uppercase tracking-[0.08em] text-charcoal/60">
-          What are you working on? <span className="text-brass">*</span>
+        <label htmlFor={messageId} className="font-sans text-[0.8rem] uppercase tracking-[0.08em] text-charcoal/80">
+          What are you working on? <span className="text-brass-ink">*</span>
         </label>
         <textarea
           id={messageId}
@@ -209,7 +209,7 @@ export function ContactForm() {
         <button type="submit" disabled={status === "submitting"} className="btn-primary disabled:opacity-60">
           {status === "submitting" ? "Sending" : "Schedule a Conversation"}
         </button>
-        <p className="font-sans text-[0.8rem] leading-relaxed text-charcoal/50">
+        <p className="font-sans text-[0.8rem] leading-relaxed text-charcoal/80">
           Every inquiry is treated as confidential.
         </p>
       </div>
@@ -236,8 +236,8 @@ function Field({
 }) {
   return (
     <div className="flex flex-col gap-2">
-      <label htmlFor={id} className="font-sans text-[0.8rem] uppercase tracking-[0.08em] text-charcoal/60">
-        {label} {required && <span className="text-brass">*</span>}
+      <label htmlFor={id} className="font-sans text-[0.8rem] uppercase tracking-[0.08em] text-charcoal/80">
+        {label} {required && <span className="text-brass-ink">*</span>}
       </label>
       <input
         id={id}

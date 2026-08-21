@@ -78,16 +78,16 @@ export default function CaseStudiesPage() {
                   }`}
                 >
                   <div className="flex flex-col gap-2 md:col-span-3">
-                    <span className="font-sans text-[0.72rem] uppercase tracking-widest2 text-brass">
+                    <span className="font-sans text-[0.72rem] uppercase tracking-widest2 text-brass-ink">
                       {e.sector}
                     </span>
-                    <span className="font-sans text-[0.72rem] uppercase tracking-[0.06em] text-charcoal/40">
+                    <span className="font-sans text-[0.72rem] uppercase tracking-[0.06em] text-charcoal/80">
                       {e.named ? "Published with permission" : "Details anonymized"}
                     </span>
                   </div>
                   <div className="flex flex-col gap-5 md:col-span-9 lg:grid lg:grid-cols-3 lg:gap-8">
                     <div className="flex flex-col gap-1.5">
-                      <span className="font-sans text-[0.72rem] uppercase tracking-[0.06em] text-charcoal/45">
+                      <span className="font-sans text-[0.72rem] uppercase tracking-[0.06em] text-charcoal/80">
                         Situation
                       </span>
                       <p className="font-sans text-[0.92rem] leading-relaxed text-charcoal/75">
@@ -95,7 +95,7 @@ export default function CaseStudiesPage() {
                       </p>
                     </div>
                     <div className="flex flex-col gap-1.5">
-                      <span className="font-sans text-[0.72rem] uppercase tracking-[0.06em] text-charcoal/45">
+                      <span className="font-sans text-[0.72rem] uppercase tracking-[0.06em] text-charcoal/80">
                         Mandate
                       </span>
                       <p className="font-sans text-[0.92rem] leading-relaxed text-charcoal/75">
@@ -103,7 +103,7 @@ export default function CaseStudiesPage() {
                       </p>
                     </div>
                     <div className="flex flex-col gap-1.5">
-                      <span className="font-sans text-[0.72rem] uppercase tracking-[0.06em] text-charcoal/45">
+                      <span className="font-sans text-[0.72rem] uppercase tracking-[0.06em] text-charcoal/80">
                         Work and outcome
                       </span>
                       <p className="font-sans text-[0.92rem] leading-relaxed text-charcoal/75">
@@ -126,7 +126,7 @@ export default function CaseStudiesPage() {
 
         {/* DISCLOSURE */}
         <Section tone="light">
-          <p className="max-w-3xl font-sans text-[0.8rem] leading-relaxed text-charcoal/50">
+          <p className="max-w-3xl font-sans text-[0.8rem] leading-relaxed text-charcoal/80">
             Named references are published with the client&rsquo;s permission. Other engagements are
             described in general terms, with identifying details omitted or combined, to protect
             client confidentiality. Outcomes described are specific to those engagements and are not

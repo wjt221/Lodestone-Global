@@ -92,17 +92,17 @@ export function Footer() {
         </div>
 
         <div className="mt-16 flex flex-col gap-6 border-t border-ivory/10 pt-8">
-          <p className="max-w-3xl font-sans text-[0.72rem] leading-relaxed text-ivory/35">
+          <p className="max-w-3xl font-sans text-[0.72rem] leading-relaxed text-ivory/65">
             Lodestone Family Advisors provides advisory services; Lodestone Capital pursues investment
             activities. Nothing on this site is an offer to sell or a solicitation to buy any security,
             or investment, legal, or tax advice. Investing involves risk, including possible loss of
             principal.
           </p>
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <span className="font-sans text-[0.72rem] uppercase tracking-[0.08em] text-ivory/40">
+            <span className="font-sans text-[0.72rem] uppercase tracking-[0.08em] text-ivory/65">
               &copy; {year} {CONTACT.legalEntity}. All rights reserved.
             </span>
-            <span className="font-sans text-[0.72rem] uppercase tracking-[0.08em] text-ivory/40">
+            <span className="font-sans text-[0.72rem] uppercase tracking-[0.08em] text-ivory/65">
               {CONTACT.location}
             </span>
           </div>

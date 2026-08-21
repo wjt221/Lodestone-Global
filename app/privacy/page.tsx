@@ -53,7 +53,7 @@ export default function PrivacyPage() {
                 <p className="font-sans text-[0.98rem] leading-relaxed text-charcoal/75">{s.body}</p>
               </div>
             ))}
-            <p className="font-sans text-[0.9rem] leading-relaxed text-charcoal/60">
+            <p className="font-sans text-[0.9rem] leading-relaxed text-charcoal/80">
               Questions about this statement can be directed to{" "}
               <a href={`mailto:${CONTACT.email}`} className="border-b border-navy/40 text-navy">
                 {CONTACT.email}

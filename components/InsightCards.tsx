@@ -8,18 +8,18 @@ function Card({ item }: { item: Insight }) {
   const inner = (
     <>
       <div className="flex items-center justify-between gap-4">
-        <span className="font-sans text-[0.72rem] uppercase tracking-[0.1em] text-brass">
+        <span className="font-sans text-[0.72rem] uppercase tracking-[0.1em] text-brass-ink">
           {item.category}
         </span>
         {item.date && (
-          <span className="font-sans text-[0.75rem] text-charcoal/45">{item.date}</span>
+          <span className="font-sans text-[0.75rem] text-charcoal/80">{item.date}</span>
         )}
       </div>
-      <h3 className="font-serif text-xl font-normal leading-snug text-navy group-hover:text-brass">
+      <h3 className="font-serif text-xl font-normal leading-snug text-navy group-hover:text-brass-ink">
         {item.title}
       </h3>
-      <p className="font-sans text-[0.9rem] leading-relaxed text-charcoal/65">{item.summary}</p>
-      <span className="mt-1 font-sans text-[0.9rem] text-navy/75 underline decoration-charcoal/25 underline-offset-4 group-hover:text-brass">
+      <p className="font-sans text-[0.9rem] leading-relaxed text-charcoal/80">{item.summary}</p>
+      <span className="mt-1 font-sans text-[0.9rem] text-navy/75 underline decoration-charcoal/25 underline-offset-4 group-hover:text-brass-ink">
         {item.cta}
         {external ? " ↗" : " →"}
       </span>

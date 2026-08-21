@@ -8,7 +8,7 @@ export function PullQuote({ quote, attribution }: { quote: string; attribution: 
       <blockquote className="font-serif text-display-3 font-normal leading-snug text-navy">
         {quote}
       </blockquote>
-      <figcaption className="font-sans text-[0.78rem] uppercase tracking-[0.08em] text-charcoal/55">
+      <figcaption className="font-sans text-[0.78rem] uppercase tracking-[0.08em] text-charcoal/80">
         {attribution}
       </figcaption>
     </figure>

@@ -17,7 +17,7 @@ export function PrincipalJourney() {
           <span key={s.stage} className="flex items-baseline gap-x-3">
             {s.stage}
             {i < principalJourney.length - 1 && (
-              <span className="text-brass" aria-hidden>
+              <span className="text-brass-ink" aria-hidden>
                 →
               </span>
             )}
@@ -34,7 +34,7 @@ export function PrincipalJourney() {
               i > 0 ? "border-t border-charcoal/10 sm:border-t-0 sm:border-l" : "sm:pl-0"
             } ${i === 2 ? "border-t sm:border-t lg:border-t-0" : ""}`}
           >
-            <span className="font-sans text-[0.68rem] uppercase tracking-widest2 text-brass">
+            <span className="font-sans text-[0.68rem] uppercase tracking-widest2 text-brass-ink">
               {s.stage}
             </span>
             <p className="font-sans text-[0.95rem] leading-relaxed text-charcoal/75">{s.role}</p>
@@ -43,7 +43,7 @@ export function PrincipalJourney() {
             </p>
             <Link
               href={s.capability.href}
-              className="mt-auto pt-2 font-sans text-[0.9rem] text-navy/75 underline decoration-charcoal/25 underline-offset-4 transition-colors hover:text-brass"
+              className="mt-auto pt-2 font-sans text-[0.9rem] text-navy/75 underline decoration-charcoal/25 underline-offset-4 transition-colors hover:text-brass-ink"
             >
               {s.capability.label} →
             </Link>
@@ -53,7 +53,7 @@ export function PrincipalJourney() {
 
       {/* Understated outcomes */}
       <div className="flex flex-col gap-3 border-t border-charcoal/15 pt-6 sm:flex-row sm:items-baseline sm:gap-6">
-        <span className="font-sans text-[0.85rem] text-charcoal/55">
+        <span className="font-sans text-[0.85rem] text-charcoal/80">
           What the journey is for
         </span>
         <p className="font-serif text-lg font-normal text-navy/80">

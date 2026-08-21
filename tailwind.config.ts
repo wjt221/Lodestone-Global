@@ -19,7 +19,11 @@ const config: Config = {
         stone: "#9C9488",
         "stone-light": "#D7D2C6",
         charcoal: "#25282A",
+        // brass reads well on navy (6.47:1) and fails badly on ivory and
+        // parchment (2.47 and 2.14). brass-ink is the light-ground counterpart:
+        // 6.11 and 5.30. Use brass on dark, brass-ink on light. Never the reverse.
         brass: "#B79A5B",
+        "brass-ink": "#6E5A26",
         "brass-light": "#D2BF91",
       },
       fontFamily: {

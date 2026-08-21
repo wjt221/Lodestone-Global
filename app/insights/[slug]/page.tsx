@@ -93,7 +93,7 @@ export default async function ArticlePage({
             className="article-prose max-w-prose"
             dangerouslySetInnerHTML={{ __html: html }}
           />
-          <p className="mt-12 max-w-prose border-t border-charcoal/15 pt-6 font-sans text-[0.8rem] text-charcoal/45">
+          <p className="mt-12 max-w-prose border-t border-charcoal/15 pt-6 font-sans text-[0.8rem] text-charcoal/80">
             Published by Lodestone Global.
           </p>
         </Section>

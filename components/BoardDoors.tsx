@@ -42,7 +42,7 @@ export function BoardDoors() {
   return (
     <section className="border-b border-charcoal/10 bg-ivory">
       <Container className="py-16 md:py-20">
-        <h2 className="font-sans text-[0.72rem] uppercase tracking-[0.16em] text-brass">
+        <h2 className="font-sans text-[0.72rem] uppercase tracking-[0.16em] text-brass-ink">
           Where owners usually start
         </h2>
         <ul className="mt-10 grid grid-cols-1 gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
@@ -52,13 +52,13 @@ export function BoardDoors() {
                 href={`/governance-advisory#${slugifyCapability(d.capability)}`}
                 className="group flex flex-col gap-3"
               >
-                <span className="font-serif text-[1.6rem] leading-none text-navy group-hover:text-brass">
+                <span className="font-serif text-[1.6rem] leading-none text-navy group-hover:text-brass-ink">
                   {d.verb}
                 </span>
                 <span className="font-sans text-[0.9rem] leading-relaxed text-charcoal/70">
                   {d.line}
                 </span>
-                <span className="mt-1 font-sans text-[0.9rem] text-navy/75 underline decoration-charcoal/25 underline-offset-4 group-hover:text-brass">
+                <span className="mt-1 font-sans text-[0.9rem] text-navy/75 underline decoration-charcoal/25 underline-offset-4 group-hover:text-brass-ink">
                   {d.capability} →
                 </span>
               </Link>

@@ -118,10 +118,10 @@ export default function Home() {
           <Container className="grid grid-cols-1 gap-x-10 gap-y-8 py-14 sm:grid-cols-2 lg:grid-cols-4">
             {proofPoints.map((p) => (
               <div key={p.label} className="flex flex-col gap-2 border-t border-charcoal/15 pt-5">
-                <span className="font-sans text-[0.72rem] uppercase tracking-widest2 text-brass">
+                <span className="font-sans text-[0.72rem] uppercase tracking-widest2 text-brass-ink">
                   {p.label}
                 </span>
-                <p className="font-sans text-[0.9rem] leading-relaxed text-charcoal/65">{p.detail}</p>
+                <p className="font-sans text-[0.9rem] leading-relaxed text-charcoal/80">{p.detail}</p>
               </div>
             ))}
           </Container>
@@ -222,13 +222,13 @@ export default function Home() {
                   }`}
                 >
                   <div className="md:col-span-3">
-                    <span className="font-sans text-[0.72rem] uppercase tracking-widest2 text-brass">
+                    <span className="font-sans text-[0.72rem] uppercase tracking-widest2 text-brass-ink">
                       {e.sector}
                     </span>
                   </div>
                   <div className="flex flex-col gap-5 md:col-span-9 lg:grid lg:grid-cols-3 lg:gap-8">
                     <div className="flex flex-col gap-1.5">
-                      <span className="font-sans text-[0.8rem] font-medium text-charcoal/55">
+                      <span className="font-sans text-[0.8rem] font-medium text-charcoal/80">
                         Situation
                       </span>
                       <p className="font-sans text-[0.92rem] leading-relaxed text-charcoal/75">
@@ -236,7 +236,7 @@ export default function Home() {
                       </p>
                     </div>
                     <div className="flex flex-col gap-1.5">
-                      <span className="font-sans text-[0.8rem] font-medium text-charcoal/55">
+                      <span className="font-sans text-[0.8rem] font-medium text-charcoal/80">
                         Mandate
                       </span>
                       <p className="font-sans text-[0.92rem] leading-relaxed text-charcoal/75">
@@ -244,7 +244,7 @@ export default function Home() {
                       </p>
                     </div>
                     <div className="flex flex-col gap-1.5">
-                      <span className="font-sans text-[0.8rem] font-medium text-charcoal/55">
+                      <span className="font-sans text-[0.8rem] font-medium text-charcoal/80">
                         Work completed
                       </span>
                       <p className="font-sans text-[0.92rem] leading-relaxed text-charcoal/75">

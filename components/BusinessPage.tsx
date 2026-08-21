@@ -88,10 +88,10 @@ export function BusinessPage({ id }: { id: StageId }) {
         <Section tone="light">
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-4">
-              <p className="font-sans text-[0.72rem] uppercase tracking-widest2 text-brass">
+              <p className="font-sans text-[0.72rem] uppercase tracking-widest2 text-brass-ink">
                 {business.name}
               </p>
-              <p className="mt-3 font-sans text-[0.9rem] uppercase tracking-[0.06em] text-charcoal/50">
+              <p className="mt-3 font-sans text-[0.9rem] uppercase tracking-[0.06em] text-charcoal/80">
                 {business.role}
               </p>
             </div>
@@ -113,7 +113,7 @@ export function BusinessPage({ id }: { id: StageId }) {
             </h2>
             <CapabilityStepper items={detail.capabilityGroups} />
             {detail.note && (
-              <p className="max-w-2xl font-sans text-[0.8rem] leading-relaxed text-charcoal/45">
+              <p className="max-w-2xl font-sans text-[0.8rem] leading-relaxed text-charcoal/80">
                 {detail.note}
               </p>
             )}
@@ -129,11 +129,11 @@ export function BusinessPage({ id }: { id: StageId }) {
             <div className="grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-8">
               {detail.engagement.map((s) => (
                 <div key={s.title} className="flex flex-col gap-4 border-t border-charcoal/20 pt-6">
-                  <span className="font-sans text-[0.72rem] uppercase tracking-widest2 text-brass">
+                  <span className="font-sans text-[0.72rem] uppercase tracking-widest2 text-brass-ink">
                     {s.step}
                   </span>
                   <h3 className="font-serif text-xl font-normal text-navy">{s.title}</h3>
-                  <p className="font-sans text-[0.92rem] leading-relaxed text-charcoal/65">
+                  <p className="font-sans text-[0.92rem] leading-relaxed text-charcoal/80">
                     {s.body}
                   </p>
                 </div>
@@ -159,7 +159,7 @@ export function BusinessPage({ id }: { id: StageId }) {
                       <p className="font-sans text-[0.95rem] leading-relaxed text-charcoal/70">
                         {detail.evidenceStat.label}
                       </p>
-                      <span className="font-sans text-[0.72rem] uppercase tracking-[0.06em] text-charcoal/45">
+                      <span className="font-sans text-[0.72rem] uppercase tracking-[0.06em] text-charcoal/80">
                         Source: {detail.evidenceStat.source}
                       </span>
                     </div>
@@ -227,7 +227,7 @@ export function BusinessPage({ id }: { id: StageId }) {
         {/* REST OF ECOSYSTEM */}
         <Section tone={ecosystemTone}>
           <div className="flex flex-col gap-10">
-            <h2 className="font-sans text-[0.72rem] uppercase tracking-widest2 text-brass">
+            <h2 className="font-sans text-[0.72rem] uppercase tracking-widest2 text-brass-ink">
               Elsewhere in the practice
             </h2>
             <div className="grid grid-cols-1 gap-x-10 gap-y-8 sm:grid-cols-3">
@@ -237,13 +237,13 @@ export function BusinessPage({ id }: { id: StageId }) {
                   href={b.href}
                   className="group flex flex-col gap-2 border-t border-charcoal/15 pt-6"
                 >
-                  <span className="font-sans text-[0.72rem] uppercase tracking-[0.08em] text-charcoal/45">
+                  <span className="font-sans text-[0.72rem] uppercase tracking-[0.08em] text-charcoal/80">
                     {b.stage}
                   </span>
-                  <span className="font-serif text-lg font-normal text-navy group-hover:text-brass">
+                  <span className="font-serif text-lg font-normal text-navy group-hover:text-brass-ink">
                     {b.name}
                   </span>
-                  <span className="font-sans text-[0.85rem] leading-relaxed text-charcoal/60">
+                  <span className="font-sans text-[0.85rem] leading-relaxed text-charcoal/80">
                     {b.role}
                   </span>
                 </Link>

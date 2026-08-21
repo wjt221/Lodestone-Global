@@ -29,7 +29,7 @@ export function SectionHeading({
   headingLevel?: "h2" | "h3";
 }) {
   const titleColor = tone === "dark" ? "text-ivory" : "text-navy";
-  const descColor = tone === "dark" ? "text-ivory/65" : "text-charcoal/65";
+  const descColor = tone === "dark" ? "text-ivory/65" : "text-charcoal/80";
   const alignment = align === "center" ? "text-center items-center mx-auto" : "text-left";
   const measure = width === "wide" ? "max-w-4xl" : "max-w-2xl";
   const scale = size === "lg" ? "text-display-2" : "text-display-3";

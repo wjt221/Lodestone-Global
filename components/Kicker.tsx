@@ -19,7 +19,7 @@ export function Kicker({
   children: ReactNode;
   tone?: "light" | "dark";
 }) {
-  const color = tone === "dark" ? "text-brass-light" : "text-navy/55";
+  const color = tone === "dark" ? "text-brass-light" : "text-navy/75";
   return (
     <span className={`font-sans text-[0.7rem] uppercase tracking-widest2 ${color}`}>
       {children}

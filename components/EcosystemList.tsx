@@ -24,7 +24,7 @@ export function EcosystemList() {
               aria-hidden="true"
               className="h-2 w-2 rounded-full bg-brass"
             />
-            <span className="font-sans text-[0.68rem] uppercase tracking-widest2 text-brass">
+            <span className="font-sans text-[0.68rem] uppercase tracking-widest2 text-brass-ink">
               {b.stage}
             </span>
             <span className="font-serif text-[1.05rem] leading-snug text-navy">{b.name}</span>
@@ -56,7 +56,7 @@ export function EcosystemList() {
               ) : (
                 <span className="font-serif text-lg font-normal text-navy">{b.name}</span>
               )}
-              <p className="mt-3 font-sans text-[0.8rem] leading-relaxed text-charcoal/55">
+              <p className="mt-3 font-sans text-[0.8rem] leading-relaxed text-charcoal/80">
                 {b.role}
               </p>
             </div>
@@ -72,7 +72,7 @@ export function EcosystemList() {
             </ul>
             <Link
               href={b.href}
-              className="mt-auto w-fit font-sans text-[0.9rem] text-navy/75 underline decoration-charcoal/25 underline-offset-4 transition-colors hover:text-brass"
+              className="mt-auto w-fit font-sans text-[0.9rem] text-navy/75 underline decoration-charcoal/25 underline-offset-4 transition-colors hover:text-brass-ink"
             >
               Explore {b.name} →
             </Link>

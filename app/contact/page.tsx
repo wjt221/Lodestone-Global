@@ -45,34 +45,34 @@ export default function ContactPage() {
             </div>
             <aside className="flex flex-col gap-8 lg:col-span-4 lg:col-start-9">
               <div className="flex flex-col gap-2 border-t border-charcoal/15 pt-6">
-                <h2 className="font-sans text-[0.72rem] uppercase tracking-widest2 text-brass">
+                <h2 className="font-sans text-[0.72rem] uppercase tracking-widest2 text-brass-ink">
                   Email
                 </h2>
                 <a
                   href={`mailto:${CONTACT.email}`}
-                  className="font-serif text-lg font-normal text-navy hover:text-brass"
+                  className="font-serif text-lg font-normal text-navy hover:text-brass-ink"
                 >
                   {CONTACT.email}
                 </a>
               </div>
               <div className="flex flex-col gap-2 border-t border-charcoal/15 pt-6">
-                <h2 className="font-sans text-[0.72rem] uppercase tracking-widest2 text-brass">
+                <h2 className="font-sans text-[0.72rem] uppercase tracking-widest2 text-brass-ink">
                   Office
                 </h2>
                 <p className="font-serif text-lg font-normal text-navy">{CONTACT.location}</p>
-                <a href={CONTACT.phoneHref} className="font-serif text-lg font-normal text-navy hover:text-brass">
+                <a href={CONTACT.phoneHref} className="font-serif text-lg font-normal text-navy hover:text-brass-ink">
                   {CONTACT.phone}
                 </a>
               </div>
               <div className="flex flex-col gap-2 border-t border-charcoal/15 pt-6">
-                <h2 className="font-sans text-[0.72rem] uppercase tracking-widest2 text-brass">
+                <h2 className="font-sans text-[0.72rem] uppercase tracking-widest2 text-brass-ink">
                   LinkedIn
                 </h2>
                 <a
                   href={CONTACT.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-serif text-lg font-normal text-navy hover:text-brass"
+                  className="font-serif text-lg font-normal text-navy hover:text-brass-ink"
                 >
                   Lodestone Global
                 </a>

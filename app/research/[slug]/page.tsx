@@ -88,7 +88,7 @@ export default async function ReportEditionPage({
             </div>
             <div className="flex flex-col gap-8 lg:col-span-7">
               <div className="flex flex-col gap-1">
-                <span className="font-sans text-[0.72rem] uppercase tracking-widest2 text-brass">
+                <span className="font-sans text-[0.72rem] uppercase tracking-widest2 text-brass-ink">
                   {edition.editionOrdinal} annual edition
                 </span>
                 <p className="font-serif text-2xl font-normal text-navy">{edition.price}</p>
@@ -101,7 +101,7 @@ export default async function ReportEditionPage({
 
               {edition.tableOfContents && (
                 <div>
-                  <p className="mb-3 font-sans text-[0.72rem] uppercase tracking-[0.08em] text-charcoal/45">
+                  <p className="mb-3 font-sans text-[0.72rem] uppercase tracking-[0.08em] text-charcoal/80">
                     Table of contents
                   </p>
                   <ul className="grid grid-cols-1 gap-x-8 gap-y-2 sm:grid-cols-2">
@@ -117,7 +117,7 @@ export default async function ReportEditionPage({
                 </div>
               )}
 
-              <p className="font-sans text-[0.85rem] leading-relaxed text-charcoal/55">{licenseNote}</p>
+              <p className="font-sans text-[0.85rem] leading-relaxed text-charcoal/80">{licenseNote}</p>
             </div>
           </div>
         </Section>
