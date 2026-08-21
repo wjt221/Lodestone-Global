@@ -5,27 +5,30 @@
  * exception: a shared "legacy" motif that bookends the three general-purpose
  * pages (home, about, insights) as a recurring editorial device.
  *
- * NOTE ON PROVENANCE: this environment cannot fetch or preview external
- * images (confirmed: both direct HTTP and WebFetch return policy-level 403s
- * for images.unsplash.com), so every URL below was selected from training
- * knowledge of Unsplash's catalog, not visually verified. Treat the alt text
- * as a specification of intended subject matter and check the live site;
- * swap any image that doesn't match what its alt text and page context call
- * for. Replacing all of this with licensed Lodestone photography remains the
- * long-term goal (see CONTENT_NEEDED.md).
+ * NOTE ON PROVENANCE: entries under /images/lodestone/ are real, licensed
+ * Lodestone photography, pulled from the firm's Wix media export and
+ * visually reviewed before use (hero, govern, compound, homeStatementBand,
+ * closing). The remaining https://images.unsplash.com/... entries are
+ * stock placeholders selected from training knowledge of Unsplash's catalog
+ * and NOT visually verified -- this environment cannot fetch them (policy
+ * 403s on images.unsplash.com). Treat their alt text as a spec of intended
+ * subject matter, and replace them with licensed Lodestone photography as it
+ * becomes available (the Wix export also holds industrial/operating and
+ * family/continuity candidates for scale, steward and homeWhyLodestone;
+ * see CONTENT_NEEDED.md and docs/).
  */
 export const photos = {
   hero: {
-    src: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=2400&q=85",
-    alt: "A founder in unguarded conversation with a senior advisor across a table, mid-discussion rather than posed",
+    src: "/images/lodestone/hero-boardroom.jpg",
+    alt: "A private-company boardroom between meetings, table and chairs set for a working session",
   },
   homeQuestions: {
     src: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1600&q=85",
     alt: "Two executives in a focused one-on-one conversation, leaning in rather than facing the camera",
   },
   homeStatementBand: {
-    src: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=2400&q=85",
-    alt: "The interior of a well-built commercial structure, columns and light suggesting scale and permanence",
+    src: "/images/lodestone/statement-architecture.jpg",
+    alt: "Commercial towers seen from below, converging lines suggesting scale and permanence",
   },
   homeWhyLodestone: {
     src: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1800&q=85",
@@ -36,16 +39,16 @@ export const photos = {
     alt: "Leaders of a private company in an unposed working conversation",
   },
   govern: {
-    src: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=2400&q=85",
-    alt: "A boardroom table between meetings, papers and chairs suggesting recent serious use rather than a staged set",
+    src: "/images/lodestone/govern-boardroom.jpg",
+    alt: "A bright, spare meeting room set for a board session, chairs drawn to a long table",
   },
   scale: {
     src: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=2400&q=85",
     alt: "A wide view of an industrial manufacturing floor with operating equipment and visible activity",
   },
   compound: {
-    src: "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=2400&q=85",
-    alt: "Documents and materials laid out during a capital allocation discussion, not a trading screen",
+    src: "/images/lodestone/capital-blulabs.jpg",
+    alt: "A Lodestone Capital portfolio company: a founder- and family-led supply chain and manufacturing business",
   },
   steward: {
     src: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=2400&q=85",
@@ -64,8 +67,8 @@ export const photos = {
     alt: "Portrait of a Lodestone leader",
   },
   closing: {
-    src: "https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=2400&q=85",
-    alt: "A stone architectural facade, representing permanence and legacy",
+    src: "/images/lodestone/closing-skyline.jpg",
+    alt: "A city skyline at dusk, representing permanence and legacy",
   },
 } as const;
 

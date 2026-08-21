@@ -45,23 +45,28 @@ export default function Home() {
       <main id="main">
         {/* 1. HERO */}
         {/*
-          No photograph here. The previous hero painted an Unsplash image
-          under a gradient that was fully opaque on the left and never below
-          0.78 on the right, so the photo was invisible at every breakpoint --
-          it only cost an LCP image and a blindly-chosen stock shot. The field
-          is now a plain navy gradient: faster, and honestly what the section
-          always looked like. Height is tightened from 86vh so the first row of
+          A real Lodestone boardroom sits behind the headline. The previous
+          hero painted a blindly-chosen Unsplash image under an overlay that
+          was fully opaque on the left and never below 0.78 on the right, so
+          the photo was invisible at every breakpoint. This one is licensed
+          Lodestone photography and the overlay is a left-to-right gradient
+          that stays dark behind the copy (0.94) and opens up to 0.55 on the
+          right, so the room actually reads -- a board, for a firm that builds
+          boards. Height stays tightened from 86vh so the first row of
           BoardDoors ("Where owners usually start") clears the fold on a
-          1440x900 laptop -- the doors are the concrete next step and should be
-          visible without scrolling.
+          1440x900 laptop.
         */}
-        <section
-          className="relative flex min-h-[58vh] flex-col justify-center overflow-hidden pt-[4.25rem] text-ivory"
-          style={{
-            backgroundImage:
-              "linear-gradient(135deg, #0d2334 0%, #0a1b2a 55%, #081521 100%)",
-          }}
-        >
+        <section className="relative flex min-h-[58vh] flex-col justify-center overflow-hidden pt-[4.25rem] text-ivory">
+          <BackgroundPhoto
+            src={photos.hero.src}
+            alt={photos.hero.alt}
+            priority
+            objectPosition="center right"
+            overlayStyle={{
+              backgroundImage:
+                "linear-gradient(to right, rgba(10,27,42,0.94) 0%, rgba(10,27,42,0.86) 42%, rgba(10,27,42,0.55) 100%)",
+            }}
+          />
           <Container className="relative z-10 flex flex-col gap-6 py-16">
             {/*
               Hero copy carried over from the long-running Lodestone Global site.

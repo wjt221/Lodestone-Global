@@ -10,3 +10,5 @@ public-exports
 # local screenshot scratch
 shot.js
 hover.js
+multi.js
+qc.js

@@ -49,7 +49,7 @@ export const articles: ArticleMeta[] = [
     legacyPaths: [
       "/post/lodestone-capital-leads-7-million-investment-in-blulabs-to-expand-global-supply-chain-platform",
     ],
-    image: { src: wixMedia("c3325c_821cf3e028ac45eb9703f0c1e371080f~mv2.jpg"), width: 3400, height: 2460 },
+    image: { src: "/images/lodestone/insight-blulabs.jpg", width: 1600, height: 1158 },
   },
   {
     slug: "improving-board-performance",
