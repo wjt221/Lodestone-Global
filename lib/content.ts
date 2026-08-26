@@ -610,12 +610,11 @@ function relationshipRank(role: LeaderRole): number {
  * exist is the mismatch search engines cross-check against LinkedIn. What
  * changed is what the page shows, not what the site claims.
  *
- * Order is by relationship, not alphabetical: staff, then advisors, then people
- * employed by a partner firm. Within each the source order is preserved, which
- * keeps principals near the top. `relationship` is still surfaced for
- * affiliates, because "Partner firm" says someone is not Lodestone staff --
- * that is a factual disclosure, not a statement about which business they work
- * for.
+ * Order is by relationship, not alphabetical: staff, then people employed by a
+ * partner firm, then advisors. Within each the source order is preserved, which
+ * keeps principals near the top. `relationship` only sorts the list now -- the
+ * page shows name and title and nothing else, so nothing there says who is
+ * employed where.
  */
 export function leadershipRoster(): { leader: Leader; role: LeaderRole }[] {
   return leadership

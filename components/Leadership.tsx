@@ -18,35 +18,14 @@ import { leadershipRoster } from "@/lib/content";
  * clean roster reads as a masthead. Adding a `photo` to any entry in
  * lib/content.ts moves that person into the portrait row automatically; once
  * most of the team has one, collapse the two into a single grid.
+ *
+ * Name and title only. The "Partner firm" note that used to sit under the two
+ * people employed by another firm was removed at Lodestone's request, along
+ * with the business headings -- the team reads as one group, with nothing on
+ * the page about who is employed where. The `relationship` data still exists
+ * and still drives both the roster order and the `worksFor` / `affiliation` in
+ * personJsonLd, so the site's structured claims stay accurate.
  */
-function Meta({
-  role,
-  employer,
-}: {
-  role: { title?: string; relationship?: string };
-  employer?: string;
-}) {
-  return (
-    <>
-      {role.title && (
-        <span className="font-sans text-[0.8rem] leading-relaxed text-charcoal/80">
-          {role.title}
-        </span>
-      )}
-      {/*
-        Kept deliberately. "Partner firm" says this person is not Lodestone
-        staff, which is a factual disclosure the rest of the site is careful
-        about -- it does not say which Lodestone business anyone works for.
-      */}
-      {role.relationship === "affiliate" && (
-        <span className="font-sans text-[0.75rem] italic leading-relaxed text-charcoal/70">
-          {employer ? `In partnership with ${employer}` : "Partner firm"}
-        </span>
-      )}
-    </>
-  );
-}
-
 export function Leadership() {
   const roster = leadershipRoster();
   const withPortrait = roster.filter((m) => m.leader.photo);
@@ -70,7 +49,11 @@ export function Leadership() {
                 <span className="font-serif text-[1.15rem] leading-snug text-navy">
                   {leader.name}
                 </span>
-                <Meta role={role} employer={leader.employer} />
+                {role.title && (
+                  <span className="font-sans text-[0.8rem] leading-relaxed text-charcoal/80">
+                    {role.title}
+                  </span>
+                )}
               </div>
             </li>
           ))}
@@ -84,7 +67,11 @@ export function Leadership() {
               <span className="font-serif text-[1.15rem] leading-snug text-navy">
                 {leader.name}
               </span>
-              <Meta role={role} employer={leader.employer} />
+              {role.title && (
+                <span className="font-sans text-[0.8rem] leading-relaxed text-charcoal/80">
+                  {role.title}
+                </span>
+              )}
             </li>
           ))}
         </ul>
