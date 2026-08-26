@@ -19,8 +19,14 @@ import { latestEdition } from "./reports";
  * see CONTENT_NEEDED.md). Already an allowed remote host in next.config.js.
  * Move these into /public before Wix is decommissioned.
  *
- * Portraits are requested through Wix's `fill` transform with `al_t` (align
- * top) so a head is never cropped out of a portrait-ratio frame.
+ * Portraits are requested through Wix's `fill` transform at 4:5. Alignment is
+ * `al_c` (centre) rather than `al_t` (top): the frame is now an arch, so the
+ * top corners are cut away and a head pushed hard against the top edge loses
+ * its crown to the curve. Centre leaves headroom under the apex.
+ *
+ * These crops have not been eyeballed -- this environment cannot fetch
+ * static.wixstatic.com (see CONTENT_NEEDED.md) -- so check them on a preview
+ * and adjust the `al_` value per person if any of the three sits badly.
  */
 const WIX_MEDIA = "https://static.wixstatic.com/media";
 
@@ -480,7 +486,7 @@ export const leadership: Leader[] = [
       { org: "compound" },
       { org: "steward" },
     ],
-    photo: `${WIX_MEDIA}/c3325c_5e6e1d60117749728698bfbe2bbeb52e~mv2.jpg/v1/fill/w_800,h_1000,al_t,q_85/portrait.jpg`,
+    photo: `${WIX_MEDIA}/c3325c_5e6e1d60117749728698bfbe2bbeb52e~mv2.jpg/v1/fill/w_800,h_1000,al_c,q_85/portrait.jpg`,
     bio: "William Tenenbaum founded Lodestone Global to help private companies build, optimize, and educate high-performing boards. He brings more than two decades of investing and governance experience across private companies, family enterprises, and the public markets, including work as a portfolio manager at a fundamental hedge fund. He studied at NYU Stern and is an active member of YPO.",
   },
   {
@@ -492,7 +498,7 @@ export const leadership: Leader[] = [
     name: "Marissa Levin",
     // NEEDS CONFIRMATION — is Chief Client Officer still current?
     roles: [{ org: "govern", title: "Chief Client Officer" }],
-    photo: `${WIX_MEDIA}/c3325c_5505a5a2e8184b52a4c79c8b7d2380db~mv2.jpg/v1/fill/w_800,h_1000,al_t,q_85/portrait.jpg`,
+    photo: `${WIX_MEDIA}/c3325c_5505a5a2e8184b52a4c79c8b7d2380db~mv2.jpg/v1/fill/w_800,h_1000,al_c,q_85/portrait.jpg`,
     bio: "Marissa Levin serves Lodestone in a consultative capacity as Chief Client Officer. A long-time entrepreneur, speaker, and growth strategist, she is the author of Built to SCALE, on how companies create durable growth through effective advisory boards, and brings deep experience in leadership development and company culture.",
   },
   {
@@ -508,7 +514,7 @@ export const leadership: Leader[] = [
   {
     name: "Ryan Niles",
     roles: [{ org: "govern", title: "Advisor", relationship: "advisor" }],
-    photo: `${WIX_MEDIA}/c3325c_b5b6cab6e4cb4e14bbfb5ac5b11876e3~mv2.jpg/v1/fill/w_800,h_1000,al_t,q_85/portrait.jpg`,
+    photo: `${WIX_MEDIA}/c3325c_b5b6cab6e4cb4e14bbfb5ac5b11876e3~mv2.jpg/v1/fill/w_800,h_1000,al_c,q_85/portrait.jpg`,
     // BIO PENDING APPROVAL
   },
 

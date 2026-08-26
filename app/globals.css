@@ -126,6 +126,46 @@
     );
   }
 
+  /*
+   * Team portraits.
+   *
+   * An arch rather than a plain rectangle. The site's recurring motif is
+   * architectural -- the skyline and the tower shots that bookend the
+   * pages -- and an arched frame picks that up, where a hard 4:5 box reads as
+   * a stock headshot grid.
+   *
+   * The tonal treatment is not decoration. The portraits come from different
+   * shoots with different lighting and backgrounds, and shown raw they look
+   * like separate photos pasted next to each other. A light desaturation
+   * pulls them into one set; hovering restores the photograph.
+   *
+   * Authored CSS with literal values, like the rest of this layer, because
+   * this project's Tailwind pipeline silently drops utilities it has not
+   * compiled before.
+   */
+  .portrait-frame {
+    /*
+     * Elliptical radii in percentages, so the arch keeps its proportions at
+     * any cell width -- four across on a desktop, two on a phone. A fixed rem
+     * radius flattens into a rounded corner as the frame grows.
+     */
+    border-radius: 50% 50% 2px 2px / 34% 34% 2px 2px;
+  }
+  .portrait-frame img {
+    filter: grayscale(0.4) contrast(1.03);
+    transition:
+      filter 700ms cubic-bezier(0.4, 0, 0.2, 1),
+      transform 700ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .group:hover .portrait-frame img {
+    filter: grayscale(0) contrast(1);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .portrait-frame img {
+      transition: none;
+    }
+  }
+
   /* Form fields, with a focus ring that actually renders. */
   .field {
     @apply border border-charcoal/20 bg-ivory font-sans text-charcoal;

@@ -11,7 +11,6 @@ import { EcosystemList } from "@/components/EcosystemList";
 import { Kicker } from "@/components/Kicker";
 import { PrincipalJourney } from "@/components/PrincipalJourney";
 import { InsightCards } from "@/components/InsightCards";
-import { Leadership } from "@/components/Leadership";
 import { Reveal } from "@/components/Reveal";
 import { CTASection } from "@/components/CTASection";
 import { photos } from "@/components/photos";
@@ -294,20 +293,15 @@ export default function Home() {
           </div>
         </Section>
 
-        {/* 9. LEADERSHIP */}
-        <Section tone="light">
-          <div className="flex flex-col gap-12">
-            <SectionHeading
-                title="The people behind the relationship."
-              layout="split"
-              description="Lodestone is led by principals with direct governance, operating, and investing experience."
-            />
-            <Reveal><Leadership /></Reveal>
-          </div>
-        </Section>
+        {/*
+          INSIGHTS
 
-        {/* 10. INSIGHTS */}
-        <Section tone="parchment" density="normal">
+          Light, not parchment. The team section used to sit between this and
+          the parchment engagements band and carried the tone change; with the
+          team now only on /about, leaving this parchment would put two
+          identical grounds back to back.
+        */}
+        <Section tone="light" density="normal">
           <div className="flex flex-col gap-12">
             <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
               <SectionHeading

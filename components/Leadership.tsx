@@ -33,20 +33,42 @@ export function Leadership() {
 
   return (
     <div className="flex flex-col gap-12">
+      {/*
+        Three or fewer portraits sit three across so they fill the row and
+        carry some scale; a fourth tips it to a four-column grid. Fixing it at
+        four left a visible hole where the fourth face is not yet supplied.
+      */}
       {withPortrait.length > 0 && (
-        <ul className="grid grid-cols-2 gap-x-6 gap-y-10 sm:gap-x-8 lg:grid-cols-4">
-          {withPortrait.map(({ leader, role }) => (
-            <li key={leader.name} className="group flex flex-col gap-4">
+        <ul
+          className={`grid grid-cols-2 gap-x-6 gap-y-12 sm:gap-x-8 ${
+            withPortrait.length > 3 ? "lg:grid-cols-4" : "lg:grid-cols-3"
+          }`}
+        >
+          {withPortrait.map(({ leader, role }, i) => (
+            <li
+              key={leader.name}
+              /*
+                Every second portrait drops half a step. A row of arches all
+                landing on the same baseline is still a band; staggered, the
+                row reads as a composition and the eye moves along it.
+              */
+              className={`group flex flex-col gap-5 ${i % 2 === 1 ? "lg:mt-14" : ""}`}
+            >
               <SafePhoto
                 src={leader.photo as string}
                 aspect="aspect-[4/5]"
                 sizes="(min-width: 1024px) 22vw, 45vw"
                 objectPosition="center top"
                 onFail="collapse"
+                className="portrait-frame"
                 imageClassName="group-hover:scale-[1.03]"
               />
-              <div className="flex flex-col gap-1">
-                <span className="font-serif text-[1.15rem] leading-snug text-navy">
+              <div className="flex flex-col gap-1.5">
+                <span
+                  aria-hidden
+                  className="block h-px w-8 bg-brass-ink/50 transition-all duration-500 ease-editorial group-hover:w-14"
+                />
+                <span className="mt-1 font-serif text-[1.15rem] leading-snug text-navy">
                   {leader.name}
                 </span>
                 {role.title && (
