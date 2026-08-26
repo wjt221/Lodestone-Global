@@ -143,13 +143,43 @@
    * this project's Tailwind pipeline silently drops utilities it has not
    * compiled before.
    */
+  /*
+   * Placeholder tile for anyone whose photograph has not been supplied yet.
+   *
+   * The site's own compass mark on navy, rather than an empty frame or a
+   * monogram: it reads as a deliberate brand tile instead of missing content,
+   * which matters when most of the team is still waiting on photography.
+   *
+   * The mark ships as navy on transparent (public/logo/lodestone-global-icon.png)
+   * and would vanish on a navy ground, so it is inverted to white and held
+   * well back at half opacity -- repeated a dozen times across the roster, a
+   * bright compass would shout. Filters are used rather than a second asset so
+   * there is only ever one compass file to keep in sync.
+   */
+  .compass-tile {
+    background-color: #0A1B2A;
+  }
+  /*
+   * Listed at three specificities on purpose. The tile is used both on its own
+   * and nested inside .portrait-frame as that frame's failure fallback, and
+   * `.portrait-frame img` sets a grayscale filter at equal specificity -- so
+   * without the longer selectors the compass would inherit the photographic
+   * treatment instead of being inverted, and disappear into the navy.
+   */
+  .compass-tile img,
+  .portrait-frame .compass-tile img,
+  .group:hover .portrait-frame .compass-tile img {
+    filter: brightness(0) invert(1);
+    opacity: 0.5;
+  }
+
   .portrait-frame {
     /*
      * Elliptical radii in percentages, so the arch keeps its proportions at
      * any cell width -- four across on a desktop, two on a phone. A fixed rem
      * radius flattens into a rounded corner as the frame grows.
      */
-    border-radius: 50% 50% 2px 2px / 34% 34% 2px 2px;
+    border-radius: 50% 50% 2px 2px / 27% 27% 2px 2px;
   }
   .portrait-frame img {
     filter: grayscale(0.4) contrast(1.03);
@@ -160,6 +190,7 @@
   .group:hover .portrait-frame img {
     filter: grayscale(0) contrast(1);
   }
+
   @media (prefers-reduced-motion: reduce) {
     .portrait-frame img {
       transition: none;

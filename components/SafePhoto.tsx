@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 
 /**
  * A photo that degrades on its own when the file can't be fetched.
@@ -34,6 +34,7 @@ export function SafePhoto({
   sizes,
   aspect,
   onFail = "tone",
+  fallback,
   objectPosition = "center",
   className = "",
   imageClassName = "",
@@ -55,6 +56,12 @@ export function SafePhoto({
    */
   aspect: string;
   onFail?: "collapse" | "tone";
+  /**
+   * Rendered inside the frame when the fetch fails, instead of the tone panel.
+   * Server components may pass an element here -- it is serialized like any
+   * other prop.
+   */
+  fallback?: ReactNode;
   objectPosition?: string;
   className?: string;
   imageClassName?: string;
@@ -66,10 +73,7 @@ export function SafePhoto({
   return (
     <div className={`relative overflow-hidden bg-parchment ${aspect} ${className}`}>
       {failed ? (
-        <div
-          aria-hidden
-          className="photo-fallback absolute inset-0"
-        />
+        fallback ?? <div aria-hidden className="photo-fallback absolute inset-0" />
       ) : (
         <Image
           src={src}
