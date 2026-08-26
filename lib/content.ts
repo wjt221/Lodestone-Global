@@ -466,16 +466,6 @@ export interface Leader {
   employer?: string;
 }
 
-/** Display names and order for the leadership groupings. */
-export const leaderOrgLabel: Record<LeaderOrg, string> = {
-  govern: "Lodestone Global",
-  scale: "E3 Scale Network",
-  compound: "Lodestone Capital",
-  steward: "Lodestone Family Advisors",
-};
-
-export const leaderOrgOrder: LeaderOrg[] = ["govern", "scale", "compound", "steward"];
-
 
 export const leadership: Leader[] = [
   // ---- Lodestone Global ----
@@ -537,8 +527,15 @@ export const leadership: Leader[] = [
     // family-office prospect may check against the firm's regulatory filings.
     roles: [
       {
+        // Entity tags ("E3", "LFA") deliberately dropped from the displayed
+        // title: the team is shown as one group, without saying who sits in
+        // which company. The Chief Compliance Officer designation stays -- for
+        // an advisory firm it is regulated, and it is the one title on this
+        // page a family-office prospect may check against the firm's
+        // regulatory filings. The org is still carried in the role data below
+        // for structured data.
         org: "scale",
-        title: "Head of Operating Partners, E3 · COO and Chief Compliance Officer, LFA",
+        title: "Head of Operating Partners · COO and Chief Compliance Officer",
       },
       { org: "steward", title: "Chief Operating Officer and Chief Compliance Officer" },
     ],
@@ -599,23 +596,30 @@ function relationshipRank(role: LeaderRole): number {
 }
 
 /**
- * Leaders listed under one business, each person appearing EXACTLY ONCE across
- * the whole page, under their primary business (their first role).
+ * The whole team as one roster, each person appearing exactly once.
  *
- * Someone who spans businesses is not repeated: a person shown four times with
- * the same biography under four headings reads as padding, not as breadth. The
- * span is carried by `alsoAt` instead, as one quiet line on their single entry.
+ * This used to return leaders grouped under a business heading, with a quiet
+ * "Also across ..." line for anyone who spans several. Lodestone asked for the
+ * opposite: one full team, with no indication of which company anyone sits in.
+ * So the grouping, the business headings and the span line are all gone from
+ * the page.
+ *
+ * The `roles` data behind it is untouched, and still carries each person's real
+ * org and relationship. That is deliberate -- personJsonLd reads it to emit an
+ * accurate `worksFor` / `affiliation`, and asserting employment that does not
+ * exist is the mismatch search engines cross-check against LinkedIn. What
+ * changed is what the page shows, not what the site claims.
+ *
+ * Order is by relationship, not alphabetical: staff, then advisors, then people
+ * employed by a partner firm. Within each the source order is preserved, which
+ * keeps principals near the top. `relationship` is still surfaced for
+ * affiliates, because "Partner firm" says someone is not Lodestone staff --
+ * that is a factual disclosure, not a statement about which business they work
+ * for.
  */
-export function leadershipByOrg(
-  org: LeaderOrg,
-): { leader: Leader; role: LeaderRole; alsoAt: string[] }[] {
+export function leadershipRoster(): { leader: Leader; role: LeaderRole }[] {
   return leadership
-    .filter((leader) => leader.roles[0]?.org === org)
-    .map((leader) => ({
-      leader,
-      role: leader.roles[0],
-      alsoAt: leader.roles.slice(1).map((r) => leaderOrgLabel[r.org]),
-    }))
+    .map((leader) => ({ leader, role: leader.roles[0] }))
     .sort((a, b) => relationshipRank(a.role) - relationshipRank(b.role));
 }
 
