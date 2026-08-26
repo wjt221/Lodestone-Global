@@ -32,7 +32,7 @@ export function SafePhoto({
   src,
   alt = "",
   sizes,
-  frameClassName,
+  aspect,
   onFail = "tone",
   objectPosition = "center",
   className = "",
@@ -41,12 +41,19 @@ export function SafePhoto({
   src: string;
   alt?: string;
   sizes: string;
+
   /**
-   * Sizing classes for the frame the photo fills. Usually an aspect ratio
-   * (`aspect-[4/5]`); pass `absolute inset-0` to fill a positioned parent that
-   * already establishes the shape.
+   * Aspect-ratio class for the frame the photo fills, e.g. `aspect-[4/5]`.
+   *
+   * It must be an aspect ratio, not positioning: the frame is the containing
+   * block for a `fill` image and so is always `relative`. Passing
+   * `absolute inset-0` to stretch it inside some other positioned parent
+   * collapses it to zero height, because `.absolute` and `.relative` have
+   * equal specificity and Tailwind's source order decides the winner. If an
+   * overlay needs to sit on top of the photo, wrap this in a `relative`
+   * element and position the overlay against that instead.
    */
-  frameClassName: string;
+  aspect: string;
   onFail?: "collapse" | "tone";
   objectPosition?: string;
   className?: string;
@@ -57,11 +64,11 @@ export function SafePhoto({
   if (failed && onFail === "collapse") return null;
 
   return (
-    <div className={`relative overflow-hidden bg-parchment ${frameClassName} ${className}`}>
+    <div className={`relative overflow-hidden bg-parchment ${aspect} ${className}`}>
       {failed ? (
         <div
           aria-hidden
-          className="absolute inset-0 bg-gradient-to-br from-navy/12 via-parchment to-stone-light/50"
+          className="photo-fallback absolute inset-0"
         />
       ) : (
         <Image

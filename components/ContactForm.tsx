@@ -161,7 +161,7 @@ export function ContactForm() {
             id={interestId}
             name="interest"
             defaultValue=""
-            className="border border-charcoal/20 bg-ivory px-4 py-3 font-sans text-[0.95rem] text-charcoal focus:border-navy focus:outline-none focus-visible:ring-2 focus-visible:ring-navy/40"
+            className="field px-4 py-3 text-[0.95rem]"
           >
             <option value="" disabled>
               Select one
@@ -186,7 +186,7 @@ export function ContactForm() {
           required
           aria-invalid={errors.message ? "true" : undefined}
           aria-describedby={errors.message ? `${messageId}-error` : undefined}
-          className="border border-charcoal/20 bg-ivory px-4 py-3 font-sans text-[0.95rem] leading-relaxed text-charcoal focus:border-navy focus:outline-none focus-visible:ring-2 focus-visible:ring-navy/40"
+          className="field px-4 py-3 text-[0.95rem] leading-relaxed"
         />
         {errors.message && (
           <p id={`${messageId}-error`} className="font-sans text-[0.8rem] text-red-800">
@@ -247,7 +247,7 @@ function Field({
         autoComplete={autoComplete}
         aria-invalid={error ? "true" : undefined}
         aria-describedby={error ? `${id}-error` : undefined}
-        className="border border-charcoal/20 bg-ivory px-4 py-3 font-sans text-[0.95rem] text-charcoal focus:border-navy focus:outline-none focus-visible:ring-2 focus-visible:ring-navy/40"
+        className="field px-4 py-3 text-[0.95rem]"
       />
       {error && (
         <p id={`${id}-error`} className="font-sans text-[0.8rem] text-red-800">

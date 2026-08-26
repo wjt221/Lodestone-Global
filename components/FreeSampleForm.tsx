@@ -89,7 +89,7 @@ export function FreeSampleForm({ slug, year }: { slug: string; year: string }) {
             name="name"
             type="text"
             autoComplete="name"
-            className="border border-charcoal/20 bg-ivory px-3 py-2 font-sans text-[0.9rem] text-charcoal focus:border-navy focus:outline-none focus-visible:ring-2 focus-visible:ring-navy/40"
+            className="field px-3 py-2 text-[0.9rem]"
           />
         </div>
         <div className="flex flex-col gap-1">
@@ -103,7 +103,7 @@ export function FreeSampleForm({ slug, year }: { slug: string; year: string }) {
             required
             autoComplete="email"
             aria-invalid={error ? "true" : undefined}
-            className="border border-charcoal/20 bg-ivory px-3 py-2 font-sans text-[0.9rem] text-charcoal focus:border-navy focus:outline-none focus-visible:ring-2 focus-visible:ring-navy/40"
+            className="field px-3 py-2 text-[0.9rem]"
           />
         </div>
       </div>

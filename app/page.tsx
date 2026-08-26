@@ -125,7 +125,7 @@ export default function Home() {
               kicker="The Principal Journey"
               title="The questions change as ownership grows."
               layout="split"
-              description="Most principals arrive with a single decision in front of them, but the role itself shifts as the company matures -- operator, owner, investor, steward -- and so does the question that matters most. Lodestone brings the capability that fits each stage while keeping one relationship intact across all of them."
+              description="Most principals arrive with a single decision in front of them, but the role itself shifts as the company matures—operator, owner, investor, steward—and so does the question that matters most. Lodestone brings the capability that fits each stage while keeping one relationship intact across all of them."
             />
             <Reveal><PrincipalJourney /></Reveal>
           </div>

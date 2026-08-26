@@ -69,7 +69,7 @@ export function Leadership() {
                   <li key={leader.name} className="group flex flex-col gap-4">
                     <SafePhoto
                       src={leader.photo as string}
-                      frameClassName="aspect-[4/5]"
+                      aspect="aspect-[4/5]"
                       sizes="(min-width: 1024px) 22vw, 45vw"
                       objectPosition="center top"
                       onFail="collapse"

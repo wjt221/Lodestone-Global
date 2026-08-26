@@ -91,6 +91,54 @@
     @apply btn border-b border-current pb-0.5;
   }
 
+  /*
+   * Written as plain declarations, not @apply, on purpose.
+   *
+   * This project's Tailwind pipeline silently drops brand color/opacity
+   * utilities it has not compiled before -- the class lands in the markup and
+   * no rule is ever generated (see BackgroundPhoto for the history). Three
+   * styles were dead that way: `decoration-brass-ink` on card hover, the
+   * `from-navy/12` tone panel behind a missing photo, and `ring-navy/40`,
+   * which meant every form field on the site had an invisible focus ring.
+   *
+   * Anything below is authored CSS with literal color values, so it cannot be
+   * dropped. Audit new utilities against the compiled stylesheet before
+   * relying on them.
+   */
+
+  /* Card and door links: the whole card is the hover target. */
+  .card-link {
+    @apply underline underline-offset-4 transition-colors duration-200;
+    text-decoration-color: rgba(37, 40, 42, 0.25);
+  }
+  .group:hover .card-link {
+    color: #6E5A26;
+    text-decoration-color: #6E5A26;
+  }
+
+  /* Tone panel standing in for a photograph that could not be fetched. */
+  .photo-fallback {
+    background-image: linear-gradient(
+      to bottom right,
+      rgba(10, 27, 42, 0.12),
+      #E9E5DC 55%,
+      rgba(215, 210, 198, 0.5)
+    );
+  }
+
+  /* Form fields, with a focus ring that actually renders. */
+  .field {
+    @apply border border-charcoal/20 bg-ivory font-sans text-charcoal;
+  }
+  .field:focus {
+    border-color: #0A1B2A;
+    outline: none;
+  }
+  .field:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(10, 27, 42, 0.4);
+  }
+
   /* Article body typography (no Tailwind typography plugin dependency). */
   .article-prose {
     @apply font-sans text-[1.02rem] leading-relaxed text-charcoal/80;

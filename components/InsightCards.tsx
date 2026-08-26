@@ -29,24 +29,24 @@ function CardMedia({
   const available = src ? isImageAvailable(src) : false;
 
   return (
-    <div className={`relative w-full overflow-hidden bg-parchment ${aspect}`}>
+    <div className="relative w-full">
       {available && src ? (
         <SafePhoto
           src={src}
-          frameClassName="absolute inset-0"
+          aspect={aspect}
           sizes={sizes}
           imageClassName="group-hover:scale-[1.04]"
         />
       ) : (
         <div
           aria-hidden
-          className="absolute inset-0 bg-gradient-to-br from-navy/12 via-parchment to-stone-light/50"
+          className={`photo-fallback w-full ${aspect}`}
         />
       )}
       {/* Keeps the category legible over a light photo without dimming the whole frame. */}
       <div
         aria-hidden
-        className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-navy/45 to-transparent"
+        className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-navy/45 to-transparent"
       />
       <span className="absolute left-4 top-4 font-sans text-[0.68rem] uppercase tracking-widest2 text-ivory">
         {item.category}
@@ -86,7 +86,7 @@ function Card({ item, feature = false }: { item: Insight; feature?: boolean }) {
           {item.summary}
         </p>
         <div className="mt-1 flex items-baseline gap-4">
-          <span className="font-sans text-[0.85rem] text-navy underline decoration-charcoal/25 underline-offset-4 transition-colors group-hover:decoration-brass-ink group-hover:text-brass-ink">
+          <span className="font-sans text-[0.85rem] text-navy card-link">
             {item.cta}
             {external ? " ↗" : " →"}
           </span>

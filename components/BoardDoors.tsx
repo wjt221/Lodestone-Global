@@ -73,7 +73,7 @@ export function BoardDoors() {
                   <span className="font-sans text-[0.9rem] leading-relaxed text-charcoal/70">
                     {d.line}
                   </span>
-                  <span className="mt-auto pt-3 font-sans text-[0.85rem] text-navy/75 underline decoration-charcoal/25 underline-offset-4 transition-colors group-hover:decoration-brass-ink group-hover:text-brass-ink">
+                  <span className="mt-auto pt-3 font-sans text-[0.85rem] text-navy/75 card-link">
                     {d.capability} →
                   </span>
                 </Link>
