@@ -16,19 +16,28 @@ export function ProofBand() {
   return (
     <section className="bg-navy py-24 text-ivory md:py-28">
       <Container>
-        <div className="max-w-3xl">
-          <p className="font-serif text-display-3 font-normal leading-tight text-ivory">
+        {/*
+          Two columns, not one narrow one. The claim and its evidence used to
+          stack inside max-w-3xl against half a screen of empty navy, which on
+          a band this dark read as a slide with nothing on the right. Setting
+          the evidence beside the claim uses the full measure and lets the
+          statement run larger.
+        */}
+        <div className="grid grid-cols-1 gap-x-16 gap-y-8 lg:grid-cols-12">
+          <p className="font-serif text-display-2 font-normal leading-tight text-ivory lg:col-span-6">
             For a decade we have published the benchmark private companies use to
             decide what to pay their directors.
           </p>
-          <p className="mt-8 max-w-xl font-sans text-[1.02rem] leading-relaxed text-ivory/70">
-            The Private Company Board Compensation Survey is now in its tenth edition.
-            The 2023 study drew on 782 companies across 50 industries and 38 countries —
-            the reference owners turn to when they set board pay.
-          </p>
-          <Link href="/research" className="btn-inverse mt-10">
-            Explore the research
-          </Link>
+          <div className="flex flex-col items-start gap-8 lg:col-span-5 lg:col-start-8 lg:pt-2">
+            <p className="font-sans text-[1.02rem] leading-relaxed text-ivory/70">
+              The Private Company Board Compensation Survey is now in its tenth edition.
+              The 2023 study drew on 782 companies across 50 industries and 38 countries —
+              the reference owners turn to when they set board pay.
+            </p>
+            <Link href="/research" className="btn-inverse">
+              Explore the research
+            </Link>
+          </div>
         </div>
       </Container>
     </section>

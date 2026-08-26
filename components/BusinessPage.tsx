@@ -9,6 +9,7 @@ import { CapabilityStepper } from "./CapabilityStepper";
 import { CTASection } from "./CTASection";
 import { InsightCards } from "./InsightCards";
 import { PullQuote } from "./PullQuote";
+import { Reveal } from "./Reveal";
 import { photos, businessClosingPhotos } from "./photos";
 import { JsonLd } from "./JsonLd";
 import { breadcrumbJsonLd, faqJsonLd, serviceJsonLd } from "@/lib/seo";
@@ -111,7 +112,9 @@ export function BusinessPage({ id }: { id: StageId }) {
             <h2 className="max-w-2xl font-serif text-display-2 font-semibold text-navy">
               What we do
             </h2>
-            <CapabilityStepper items={detail.capabilityGroups} />
+            <Reveal>
+              <CapabilityStepper items={detail.capabilityGroups} />
+            </Reveal>
             {detail.note && (
               <p className="max-w-2xl font-sans text-[0.8rem] leading-relaxed text-charcoal/80">
                 {detail.note}
@@ -219,7 +222,9 @@ export function BusinessPage({ id }: { id: StageId }) {
                   View all insights
                 </Link>
               </div>
+              <Reveal>
               <InsightCards items={relatedInsights} />
+            </Reveal>
             </div>
           </Section>
         )}

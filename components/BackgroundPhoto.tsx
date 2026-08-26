@@ -19,6 +19,7 @@ export function BackgroundPhoto({
   objectPosition = "center",
 }: {
   src: string;
+  /** Written spec of the photo's subject. Not rendered -- see the note below. */
   alt: string;
   /**
    * Tailwind class for the overlay. Only safe with opacity fractions already
@@ -47,7 +48,16 @@ export function BackgroundPhoto({
       {available && (
         <Image
           src={src}
-          alt={alt}
+          // Decorative. A full-bleed background always sits behind a heading
+          // that already says what the section is, so an assistive-tech user
+          // hearing "A family walking together outdoors, understated rather
+          // than sentimental" before the headline gets noise, not content.
+          // `alt` stays on the prop because photos.ts uses it as the written
+          // spec of each slot's intended subject; it is documentation, not
+          // page copy. Empty alt also means a fetch failure degrades to the
+          // solid navy base below rather than sprawling that sentence across
+          // the band.
+          alt=""
           fill
           priority={priority}
           sizes={sizes}

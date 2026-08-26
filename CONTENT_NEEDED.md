@@ -29,9 +29,17 @@ be re-verified against the live source before launch.
       employer's AUM) — add back only if approved.
 - [ ] **Founder framing.** Confirm how Bernie Tenenbaum's historical role is
       described relative to William Tenenbaum, if at all.
-- [ ] **Headshots.** No leadership photography exists in the repo. Entries
-      currently render a monogram. Supply portraits (see naming in
-      `public/images/lodestone/README.md`).
+- [ ] **Headshots.** Three portraits are now live, hotlinked from Lodestone's
+      own Wix media library and matched by filename: William Tenenbaum
+      (`WT Headshot 2.jpg`), Marissa Levin (`Marissa Levin.jpg`) and Ryan
+      Niles (`Niles.JPG`). Everyone else still renders as a name in the
+      roster. Three more likely portraits are in the same library but their
+      filenames do not identify a person, so they were left unwired rather
+      than guessed: `Headshot.jpg` (2048x1968), `Tyler.jpg` (800x800, likely
+      Tyler Errickson, Lodestone Capital), `Photo.JPG` (2024x1115),
+      `Photo.JPG` (1775x1177) and `jeffrey-tappick.jpg` (560x400). Confirm
+      who each one is and they can be wired in a one-line edit per person
+      (`photo` on the entry in `lib/content.ts`).
 - [ ] **LinkedIn URLs** per person (the `linkedin` field is left unset until
       confirmed).
 
@@ -112,6 +120,25 @@ be re-verified against the live source before launch.
       intended subject) and swap anything that doesn't match. Replace with
       approved, licensed Lodestone photography where possible (see
       `public/images/lodestone/README.md` for slot names and direction).
+- [ ] **Verify the remaining stock slots against the Wix library.** The Wix
+      Media Manager holds 77 images, listed via the Media Manager REST API.
+      Alongside the report covers and blog art, these are candidates for the
+      slots in `components/photos.ts` that are still Unsplash:
+
+      | File | Size | Likely subject |
+      |---|---|---|
+      | `YPO-NUQUL-170110-23.jpg` | 5616x3744 | A real Lodestone/YPO session |
+      | `Family_Board_page-YPOTaipei.jpg` | 1180x1565 | Family board, YPO Taipei |
+      | `8.jpg` | 4000x2662 | Unlabelled event photography |
+      | `1.JPG` / `2.JPG` / `3.JPG` / `4.JPG` | ~1400x1050 | An event set |
+      | `PAG.JPG`, `Photo.JPG` | ~2000x1100 | Unlabelled |
+
+      None of these were wired in, because this environment's network policy
+      blocks `static.wixstatic.com` (and the live site, and the Vercel
+      preview) at the egress proxy, so their contents could not be seen. A
+      filename like `22.jpg` is not enough to put an image on a page. Anyone
+      who can open the Media Manager can match them to slots in minutes;
+      until then the alt text in `photos.ts` states the intended subject.
 - [ ] **Open Graph share image.** No custom OG image is set. Supply a branded
       1200x630 image for richer link previews.
 - [x] **E3, Capital, and Family Advisors logos.** Real logo files for all four
