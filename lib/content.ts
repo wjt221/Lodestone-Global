@@ -11,6 +11,19 @@
  * and should be re-verified against the live pages before final publication.
  */
 
+import { latestEdition } from "./reports";
+
+/**
+ * Lodestone's own Wix media CDN, still the host for assets this build cannot
+ * pull down locally (the sandbox network policy blocks static.wixstatic.com;
+ * see CONTENT_NEEDED.md). Already an allowed remote host in next.config.js.
+ * Move these into /public before Wix is decommissioned.
+ *
+ * Portraits are requested through Wix's `fill` transform with `al_t` (align
+ * top) so a head is never cropped out of a portrait-ratio frame.
+ */
+const WIX_MEDIA = "https://static.wixstatic.com/media";
+
 export type StageId = "govern" | "scale" | "compound" | "steward";
 
 export interface Business {
@@ -351,6 +364,15 @@ export interface Insight {
   href: string;
   cta: string;
   external?: boolean;
+  /**
+   * Card artwork. Every migrated article already carried its own Wix cover
+   * image and every survey edition its own designed cover, but nothing outside
+   * /research ever rendered them -- the listings were headline-and-paragraph
+   * only, which is most of why the insights rows read as flat. These are
+   * Lodestone's own images, so the subject can't be mismatched the way a
+   * hand-picked stock photo can.
+   */
+  image?: { src: string; width: number; height: number };
 }
 
 /**
@@ -366,6 +388,11 @@ export const researchCard: Insight = {
     "One of the most comprehensive studies of how private companies compensate their directors, with data by revenue, industry, company size, and structure, across the United States and internationally.",
   href: "/research",
   cta: "View the research",
+  image: {
+    src: latestEdition.coverImage.url,
+    width: latestEdition.coverImage.width,
+    height: latestEdition.coverImage.height,
+  },
 };
 
 /**
@@ -463,6 +490,7 @@ export const leadership: Leader[] = [
       { org: "compound" },
       { org: "steward" },
     ],
+    photo: `${WIX_MEDIA}/c3325c_5e6e1d60117749728698bfbe2bbeb52e~mv2.jpg/v1/fill/w_800,h_1000,al_t,q_85/portrait.jpg`,
     bio: "William Tenenbaum founded Lodestone Global to help private companies build, optimize, and educate high-performing boards. He brings more than two decades of investing and governance experience across private companies, family enterprises, and the public markets, including work as a portfolio manager at a fundamental hedge fund. He studied at NYU Stern and is an active member of YPO.",
   },
   {
@@ -474,6 +502,7 @@ export const leadership: Leader[] = [
     name: "Marissa Levin",
     // NEEDS CONFIRMATION — is Chief Client Officer still current?
     roles: [{ org: "govern", title: "Chief Client Officer" }],
+    photo: `${WIX_MEDIA}/c3325c_5505a5a2e8184b52a4c79c8b7d2380db~mv2.jpg/v1/fill/w_800,h_1000,al_t,q_85/portrait.jpg`,
     bio: "Marissa Levin serves Lodestone in a consultative capacity as Chief Client Officer. A long-time entrepreneur, speaker, and growth strategist, she is the author of Built to SCALE, on how companies create durable growth through effective advisory boards, and brings deep experience in leadership development and company culture.",
   },
   {
@@ -489,6 +518,7 @@ export const leadership: Leader[] = [
   {
     name: "Ryan Niles",
     roles: [{ org: "govern", title: "Advisor", relationship: "advisor" }],
+    photo: `${WIX_MEDIA}/c3325c_b5b6cab6e4cb4e14bbfb5ac5b11876e3~mv2.jpg/v1/fill/w_800,h_1000,al_t,q_85/portrait.jpg`,
     // BIO PENDING APPROVAL
   },
 

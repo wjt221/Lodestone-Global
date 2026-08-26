@@ -7,21 +7,15 @@ import { SectionHeading } from "@/components/SectionHeading";
 import { ProofBand } from "@/components/ProofBand";
 import { BoardDoors } from "@/components/BoardDoors";
 import { BackgroundPhoto } from "@/components/BackgroundPhoto";
-import { EditorialImage } from "@/components/EditorialImage";
 import { EcosystemList } from "@/components/EcosystemList";
 import { Kicker } from "@/components/Kicker";
 import { PrincipalJourney } from "@/components/PrincipalJourney";
 import { InsightCards } from "@/components/InsightCards";
 import { Leadership } from "@/components/Leadership";
+import { Reveal } from "@/components/Reveal";
 import { CTASection } from "@/components/CTASection";
 import { photos } from "@/components/photos";
-import {
-  CTA_PRIMARY,
-  CTA_SECONDARY,
-  proofPoints,
-  engagements,
-  researchCard,
-} from "@/lib/content";
+import { engagements, researchCard } from "@/lib/content";
 import { JsonLd } from "@/components/JsonLd";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 import { articleCards } from "@/lib/articles";
@@ -113,20 +107,6 @@ export default function Home() {
 
         <BoardDoors />
 
-        {/* 2. CREDIBILITY STRIP */}
-        <section className="border-b border-charcoal/10 bg-ivory">
-          <Container className="grid grid-cols-1 gap-x-10 gap-y-8 py-14 sm:grid-cols-2 lg:grid-cols-4">
-            {proofPoints.map((p) => (
-              <div key={p.label} className="flex flex-col gap-2 border-t border-charcoal/15 pt-5">
-                <span className="font-sans text-[0.72rem] uppercase tracking-widest2 text-brass-ink">
-                  {p.label}
-                </span>
-                <p className="font-sans text-[0.9rem] leading-relaxed text-charcoal/80">{p.detail}</p>
-              </div>
-            ))}
-          </Container>
-        </section>
-
         {/*
           3. THE PRINCIPAL JOURNEY
           Merged from two sections that covered the same ground. "The questions
@@ -144,59 +124,104 @@ export default function Home() {
             <SectionHeading
               kicker="The Principal Journey"
               title="The questions change as ownership grows."
+              layout="split"
               description="Most principals arrive with a single decision in front of them, but the role itself shifts as the company matures -- operator, owner, investor, steward -- and so does the question that matters most. Lodestone brings the capability that fits each stage while keeping one relationship intact across all of them."
             />
-            <PrincipalJourney />
+            <Reveal><PrincipalJourney /></Reveal>
           </div>
         </Section>
 
-        {/* 5. THE LODESTONE ECOSYSTEM */}
-        <Section id="ecosystem" tone="light" density="generous">
-          <div className="flex flex-col gap-12">
-            <SectionHeading
-                title="Four capabilities, coordinated as one relationship."
-              description="Govern, scale, compound, and steward. Each is delivered by a dedicated part of the practice, and no principal is expected to use all four. Lodestone brings the capability that fits the situation and preserves one trusted relationship as it changes."
-            />
-            <EcosystemList />
-          </div>
-        </Section>
+        {/*
+          STATEMENT BAND
 
-        {/* STATEMENT BAND */}
-        <section className="relative overflow-hidden py-28 md:py-36">
-          <BackgroundPhoto src={photos.homeStatementBand.src} alt={photos.homeStatementBand.alt} overlayClassName="bg-navy/80" objectPosition="top" />
+          Moved up from below the ecosystem section. Photography previously did
+          not reappear until roughly 4,000px past the hero, so the entire middle
+          of the page was unbroken text on two alternating tints. Here it lands
+          one section after the hero and gives the scroll a second image early.
+
+          The overlay is a diagonal gradient rather than a flat navy/80: the
+          copy sits in the dark corner at 0.92 while the far side opens to 0.45,
+          so the architecture actually reads as a photograph instead of a navy
+          rectangle. Set inline, not as a Tailwind opacity class -- this build
+          silently drops color-opacity utilities it has not compiled before (see
+          BackgroundPhoto).
+        */}
+        <section className="relative overflow-hidden py-32 md:py-44">
+          <BackgroundPhoto
+            src={photos.homeStatementBand.src}
+            alt={photos.homeStatementBand.alt}
+            objectPosition="top"
+            overlayStyle={{
+              backgroundImage:
+                "linear-gradient(115deg, rgba(10,27,42,0.92) 0%, rgba(10,27,42,0.78) 45%, rgba(10,27,42,0.45) 100%)",
+            }}
+          />
           <Container className="relative z-10">
-            <p className="max-w-3xl font-serif text-display-2 font-normal leading-tight text-ivory">
-              We start with the whole picture: the business, the family, the capital, and the
-              objectives. Not the assignment in front of us.
-            </p>
+            <Reveal>
+              <p className="max-w-3xl font-serif text-display-2 font-normal leading-tight text-ivory">
+                We start with the whole picture: the business, the family, the capital, and the
+                objectives. Not the assignment in front of us.
+              </p>
+              <span aria-hidden className="mt-10 block h-px w-24 bg-brass" />
+            </Reveal>
           </Container>
         </section>
 
-        {/* 5. WHY LODESTONE */}
-        <Section tone="light">
-          <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
-            <div className="flex flex-col gap-10 lg:col-span-5">
-              <SectionHeading
+        {/* 5. THE LODESTONE ECOSYSTEM */}
+        <Section id="ecosystem" tone="light">
+          <div className="flex flex-col gap-12">
+            <SectionHeading
+              title="Four capabilities, coordinated as one relationship."
+              layout="split"
+              description="Govern, scale, compound, and steward. Each is delivered by a dedicated part of the practice, and no principal is expected to use all four. Lodestone brings the capability that fits the situation and preserves one trusted relationship as it changes."
+            />
+            <Reveal><EcosystemList /></Reveal>
+          </div>
+        </Section>
+
+        {/*
+          5. WHY LODESTONE
+
+          Previously a heading beside a flat two-column list of six equal
+          bullets, with a blindly-chosen stock photo underneath that this build
+          cannot fetch -- so it rendered as an empty panel with alt text
+          showing. The photo slot is gone rather than refilled with more stock:
+          there is no real Lodestone image for it yet (see CONTENT_NEEDED.md),
+          and an honest typographic block beats a placeholder.
+
+          What replaces it is hierarchy. The claim is set as a pull quote at
+          display scale, and the six credentials sit in a sticky-headed list
+          where each one is a full row with a brass rule rather than a bullet in
+          a two-up grid. The section now reads as an argument with a spine,
+          which is what the surrounding four-column grids were failing to do.
+        */}
+        <Section tone="light" density="generous">
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-20">
+            <div className="lg:col-span-5">
+              <div className="lg:sticky lg:top-32 flex flex-col gap-8">
+                <SectionHeading
                   title="Built in the boardroom, not the classroom."
-                description="Our perspective comes from forming and sitting on boards, running companies, and investing capital, not from a framework. That is what lets one team coordinate decisions across the business, its capital, and the family."
-              />
-              <EditorialImage
-                src={photos.homeWhyLodestone.src}
-                alt={photos.homeWhyLodestone.alt}
-                aspect="aspect-[3/2]"
-                sizes="(min-width: 1024px) 40vw, 100vw"
-                className="hidden lg:block"
-              />
+                  description="Our perspective comes from forming and sitting on boards, running companies, and investing capital, not from a framework. That is what lets one team coordinate decisions across the business, its capital, and the family."
+                />
+                <Link href="/about" className="btn-text w-fit text-navy">
+                  About the firm
+                </Link>
+              </div>
             </div>
             <div className="lg:col-span-7">
-              <ul className="grid grid-cols-1 gap-x-12 sm:grid-cols-2">
-                {whyPoints.map((point) => (
-                  <li
-                    key={point}
-                    className="border-t border-charcoal/10 py-5 font-sans text-[0.95rem] leading-relaxed text-charcoal/75"
-                  >
-                    {point}
-                  </li>
+              <ul className="flex flex-col">
+                {whyPoints.map((point, i) => (
+                  <Reveal key={point} delay={i * 60}>
+                    <li className="group flex items-baseline gap-6 border-t border-charcoal/15 py-6">
+                      <span
+                        aria-hidden
+                        className="mt-2 h-px w-6 shrink-0 bg-brass-ink/50 transition-all duration-500 ease-editorial group-hover:w-10"
+                      />
+                      <span className="font-serif text-[1.15rem] leading-snug text-navy">
+                        {point}
+                      </span>
+                    </li>
+                  </Reveal>
                 ))}
               </ul>
             </div>
@@ -211,48 +236,59 @@ export default function Home() {
             <SectionHeading
               kicker="Representative Engagements"
               title="What this looks like in practice."
+              layout="split"
               description="Some examples are published; others are representative, with details combined or anonymized to protect confidentiality."
             />
+            {/*
+              Each engagement leads with its situation, set in the serif at
+              reading scale, because that is the line a visitor recognizes
+              themselves in. Mandate and work sit beneath it as a two-column
+              footnote.
+
+              Previously all three fields were equal-width columns of the same
+              0.92rem grey sans, under three identically weighted labels -- a
+              data table with nothing to catch the eye, and the flattest block
+              on the page. Same facts, same order, same confidentiality
+              framing; only the emphasis has changed.
+            */}
             <div className="flex flex-col">
               {engagements.map((e, i) => (
-                <div
-                  key={e.situation}
-                  className={`grid grid-cols-1 gap-6 border-t border-charcoal/15 py-10 md:grid-cols-12 md:gap-8 ${
-                    i === engagements.length - 1 ? "border-b" : ""
-                  }`}
-                >
-                  <div className="md:col-span-3">
-                    <span className="font-sans text-[0.72rem] uppercase tracking-widest2 text-brass-ink">
-                      {e.sector}
-                    </span>
-                  </div>
-                  <div className="flex flex-col gap-5 md:col-span-9 lg:grid lg:grid-cols-3 lg:gap-8">
-                    <div className="flex flex-col gap-1.5">
-                      <span className="font-sans text-[0.8rem] font-medium text-charcoal/80">
-                        Situation
+                <Reveal key={e.situation} delay={i * 60}>
+                  <article
+                    className={`grid grid-cols-1 gap-y-6 border-t border-charcoal/15 py-12 md:grid-cols-12 md:gap-x-10 ${
+                      i === engagements.length - 1 ? "border-b" : ""
+                    }`}
+                  >
+                    <div className="md:col-span-3">
+                      <span className="font-sans text-[0.72rem] uppercase tracking-widest2 text-brass-ink">
+                        {e.sector}
                       </span>
-                      <p className="font-sans text-[0.92rem] leading-relaxed text-charcoal/75">
+                    </div>
+                    <div className="flex flex-col gap-7 md:col-span-9">
+                      <p className="max-w-2xl font-serif text-[1.35rem] leading-snug text-navy">
                         {e.situation}
                       </p>
+                      <div className="grid grid-cols-1 gap-x-10 gap-y-6 sm:grid-cols-2">
+                        <div className="flex flex-col gap-1.5">
+                          <span className="font-sans text-[0.7rem] uppercase tracking-[0.12em] text-charcoal/70">
+                            Mandate
+                          </span>
+                          <p className="font-sans text-[0.92rem] leading-relaxed text-charcoal/80">
+                            {e.mandate}
+                          </p>
+                        </div>
+                        <div className="flex flex-col gap-1.5">
+                          <span className="font-sans text-[0.7rem] uppercase tracking-[0.12em] text-charcoal/70">
+                            Work completed
+                          </span>
+                          <p className="font-sans text-[0.92rem] leading-relaxed text-charcoal/80">
+                            {e.work}
+                          </p>
+                        </div>
+                      </div>
                     </div>
-                    <div className="flex flex-col gap-1.5">
-                      <span className="font-sans text-[0.8rem] font-medium text-charcoal/80">
-                        Mandate
-                      </span>
-                      <p className="font-sans text-[0.92rem] leading-relaxed text-charcoal/75">
-                        {e.mandate}
-                      </p>
-                    </div>
-                    <div className="flex flex-col gap-1.5">
-                      <span className="font-sans text-[0.8rem] font-medium text-charcoal/80">
-                        Work completed
-                      </span>
-                      <p className="font-sans text-[0.92rem] leading-relaxed text-charcoal/75">
-                        {e.work}
-                      </p>
-                    </div>
-                  </div>
-                </div>
+                  </article>
+                </Reveal>
               ))}
             </div>
           </div>
@@ -263,9 +299,10 @@ export default function Home() {
           <div className="flex flex-col gap-12">
             <SectionHeading
                 title="The people behind the relationship."
+              layout="split"
               description="Lodestone is led by principals with direct governance, operating, and investing experience."
             />
-            <Leadership />
+            <Reveal><Leadership /></Reveal>
           </div>
         </Section>
 
@@ -281,7 +318,9 @@ export default function Home() {
                 View all insights
               </Link>
             </div>
-            <InsightCards items={homeInsights} limit={3} />
+            <Reveal>
+              <InsightCards items={homeInsights} limit={3} />
+            </Reveal>
           </div>
         </Section>
 

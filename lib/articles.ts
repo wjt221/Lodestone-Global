@@ -136,4 +136,5 @@ export const articleCards: Insight[] = articles.map((a) => ({
   summary: a.summary,
   href: `/insights/${a.slug}`,
   cta: "Read more",
+  image: a.image,
 }));
