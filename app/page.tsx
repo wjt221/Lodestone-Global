@@ -48,10 +48,10 @@ const process = [
 ];
 
 const ecosystem = [
-  { stage: "Operator", name: "E3 Scale Network", role: "Build a business that can scale beyond you.", desc: "Work with experienced operating partners to strengthen management, improve execution and accelerate enterprise value creation.", href: "https://e3-ii1imy8q0-wjt221s-projects.vercel.app", action: "Explore E3 Scale Network" },
-  { stage: "Owner", name: "Lodestone Global", role: "Build a board that makes your business more valuable.", desc: "Bring independent expertise and accountability into the boardroom. Focus management on strategy, capital allocation and the decisions that drive long-term value.", href: "#board-advisory", action: "Explore board advisory" },
-  { stage: "Investor", name: "Lodestone Capital", role: "Put capital to work as an owner.", desc: "Pursue selective private investment opportunities alongside aligned founders, families and experienced operators.", href: "/lodestone-capital", action: "Explore Lodestone Capital" },
-  { stage: "Steward", name: "Lodestone Family Advisors", role: "Turn business success into enduring family wealth.", desc: "Coordinate family wealth, investment strategy and governance with a long-term perspective across generations.", href: "https://lfa-xi.vercel.app", action: "Explore Family Advisors" },
+  { stage: "Govern", name: "Lodestone Global", role: "Get the board and strategy right.", desc: "Build a high-performing board around the owner's objectives. Establish the strategy, leadership priorities and governance needed to create long-term enterprise value.", href: "#board-advisory", action: "Explore board advisory" },
+  { stage: "Scale", name: "E3 Scale Network", role: "Turn strategy into performance.", desc: "Work with experienced operating partners to drive management accountability, improve execution and scale the business beyond its dependence on the owner.", href: "https://e3-ii1imy8q0-wjt221s-projects.vercel.app", action: "Explore E3 Scale Network" },
+  { stage: "Compound", name: "Lodestone Capital", role: "Move from operator to investor.", desc: "With a business that can operate without your daily involvement, focus on capital allocation and selective investment opportunities to compound wealth over time.", href: "/lodestone-capital", action: "Explore Lodestone Capital" },
+  { stage: "Steward", name: "Lodestone Family Advisors", role: "Pass on wealth with purpose.", desc: "Build a professionally managed family office. Coordinate investments, family governance and tax-efficient wealth transfer planning to prepare the next generation.", href: "https://lfa-xi.vercel.app", action: "Explore Family Advisors" },
 ];
 
 function Arrow() { return <span aria-hidden="true" className="inline-block transition-transform group-hover:translate-x-1">↗</span>; }
@@ -83,27 +83,27 @@ export default function Home() {
           <div className="mx-auto max-w-[1440px] px-6 py-16 md:px-12 md:py-20 lg:px-16">
             <div className="grid items-end gap-6 lg:grid-cols-[1.1fr_.9fr] lg:gap-20">
               <div><p className="mb-5 text-sm font-medium text-[#526478]">The Lodestone ecosystem</p><h2 className="text-[clamp(2.8rem,5.6vw,5.6rem)] font-normal leading-[.98] tracking-[-.06em]">From operator<br className="hidden sm:block"/> to steward.</h2></div>
-              <p className="max-w-xl text-lg leading-relaxed text-[#526478]">As your business grows, your responsibilities evolve. From running the company to governing it, investing capital and stewarding family wealth. Our four businesses support you across these roles.</p>
+              <p className="max-w-xl text-lg leading-relaxed text-[#526478]">The journey begins with a board and a strategy. With the right operating partners, that strategy becomes a business that can thrive without you in the day-to-day. You gain the freedom to invest, compound capital and ultimately pass on your wealth to the next generation.</p>
             </div>
             <div className="relative mt-12 border-y border-[#d5dde5]">
               <div aria-hidden="true" className="absolute left-0 right-0 top-[31px] hidden h-px bg-gradient-to-r from-[#bccddd] via-[#456a88] to-[#10243a] lg:block"/>
               <ol className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
                 {ecosystem.map((item,i)=><li key={item.stage} className="group relative border-b border-[#d5dde5] last:border-b-0 sm:even:border-l lg:border-b-0 lg:border-l lg:first:border-l-0">
-                  <Link href={item.href} className={`relative flex min-h-[280px] h-full flex-col px-5 pb-7 pt-7 transition-colors md:px-6 ${item.stage==="Owner"?"bg-[#eef3f7] hover:bg-[#e1eaf2]":"hover:bg-[#f5f8fa]"}`}>
+                  <Link href={item.href} className={`relative flex min-h-[355px] h-full flex-col px-5 pb-7 pt-7 transition-colors md:px-6 ${item.stage==="Govern"?"bg-[#eef3f7] hover:bg-[#e1eaf2]":"hover:bg-[#f5f8fa]"}`}>
                     <div className="relative flex items-center justify-between gap-4">
-                      <span className={`relative z-10 flex h-10 w-10 items-center justify-center rounded-full border border-[#a5b9cb] text-sm font-medium ${item.stage==="Owner"?"bg-[#10243a] text-white":"bg-white text-[#526478]"}`}>0{i+1}</span>
+                      <span className={`relative z-10 flex h-10 w-10 items-center justify-center rounded-full border border-[#a5b9cb] text-sm font-medium ${item.stage==="Govern"?"bg-[#10243a] text-white":"bg-white text-[#526478]"}`}>0{i+1}</span>
                       <span className="text-2xl text-[#526478] transition-transform group-hover:translate-x-1" aria-hidden="true">↗</span>
                     </div>
                     <p className="mt-6 text-[clamp(1.6rem,2.8vw,2.65rem)] font-normal tracking-[-.04em]">{item.stage}</p>
                     <h3 className="mt-2 text-base font-semibold">{item.name}</h3>
-                    <p className="mt-4 text-base leading-relaxed text-[#526478]">{item.role}</p>
-                    {item.stage==="Owner"&&<span className="mt-4 text-sm font-medium text-[#10243a]">You are here · Board advisory</span>}
+                    <p className="mt-4 text-base font-medium leading-snug text-[#10243a]">{item.role}</p><p className="mt-3 text-base leading-relaxed text-[#526478]">{item.desc}</p>
+                    {item.stage==="Govern"&&<span className="mt-4 text-sm font-medium text-[#10243a]">Start here · Board advisory</span>}
                     <span className="mt-auto pt-5 text-sm font-medium underline decoration-[#a5b9cb] underline-offset-4">{item.action}</span>
                   </Link>
                 </li>)}
               </ol>
             </div>
-            <p className="mt-5 max-w-3xl text-sm leading-relaxed text-[#526478]">These are complementary roles, not fixed stages. Owners often occupy several at the same time.</p>
+            <p className="mt-5 max-w-3xl text-sm leading-relaxed text-[#526478]">The journey is different for every owner. Each business can support you independently or work alongside the others as your needs evolve.</p>
           </div>
         </section>
         <section id="board-advisory" className="bg-[#eef3f7]">
