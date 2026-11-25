@@ -1,8 +1,32 @@
 "use client";
-import { useRef, useState } from "react";
+import { useState } from "react";
 
 // Client names: live Lodestone homepage. Logo artwork: visually identified marks from company, university, supplier or press sources. Do not substitute client photographs. Preview only; obtain approved artwork, permission, and local copies before production. Null means no verified logo artwork yet.
 const clients: [string, string | null][] = [
+  [
+    "Unilever",
+    "https://www.unilever.com/content-images/92ui5egz/production/9e0f37eccb1de8026371739d059bdf8ecd04c3a0-1920x1080.jpg?auto=format&w=600"
+  ],
+  [
+    "Ben & Jerry's",
+    "https://imageproxy.wolt.com/assets/69149c082d5740aaaa59a1d9"
+  ],
+  [
+    "Innovative Construction Solutions",
+    "https://gemini-images.s3.amazonaws.com/logo/12049689.png"
+  ],
+  [
+    "Aggregate Resource Industries",
+    "https://images.squarespace-cdn.com/content/v1/556e478ae4b0efb9f31e762b/1433291103733-HEQS4K65M6WJ9CFPTDNP/just%2BTRiangle%2Bb-w.png"
+  ],
+  [
+    "Site Impact",
+    "https://cdn.prod.website-files.com/69de69f9f87b522550dc6def/69df5b7526ef01224738f186_main%20logo.svg"
+  ],
+  [
+    "Parry Labs",
+    "https://www.airandspaceforces.com/app/uploads/2023/01/Parry_Labs.png"
+  ],
   [
     "National Society of Leadership and Success",
     "https://www.wtamu.edu/_files/images/student-life/OSEL/nsls/NSLS_Seal_Color_300dpi.png"
@@ -49,7 +73,7 @@ const clients: [string, string | null][] = [
   ],
   [
     "Strategic Financial Solutions",
-    null
+    "https://s3.amazonaws.com/stratfs/our-brands/sfs-stratfs-logo-sm.png"
   ],
   [
     "Micro-Tech",
@@ -65,26 +89,23 @@ const clients: [string, string | null][] = [
   ]
 ];
 
-function ClientLogo({name,file}:{name:string;file:string | null}){
+function ClientLogo({name,file,duplicate=false}:{name:string;file:string | null;duplicate?:boolean}){
  const [failed,setFailed]=useState(false);
- return <li className="flex h-[86px] w-[170px] shrink-0 snap-start items-center justify-center px-4 sm:w-[195px]">
- {(failed || !file)?<span className="text-center text-base font-medium leading-tight text-[#526478]">{name}</span>:<img src={file} alt={name} loading="lazy" onError={()=>setFailed(true)} className="max-h-[70px] w-full object-contain grayscale transition duration-200 hover:grayscale-0" />}
+ return <li className="flex h-[104px] w-[180px] shrink-0 items-center justify-center px-6 md:h-[116px] md:w-[215px] md:px-8">
+ {failed || !file?<span className="text-center text-base font-medium leading-tight text-[#526478]">{name}</span>:<img src={file} alt={duplicate?"":name} decoding="async" onError={()=>setFailed(true)} className="max-h-[76px] w-full object-contain grayscale transition duration-300 hover:grayscale-0" />}
  </li>;
 }
-
 export function ClientLogoBar(){
- const rail=useRef<HTMLUListElement>(null);
- function slide(direction:number){
- const el=rail.current;if(!el)return;
- const end=el.scrollWidth-el.clientWidth;
- const next=el.scrollLeft+direction*Math.max(180,el.clientWidth*.72);
- el.scrollTo({left:next>end+10?0:next<0?end:next,behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"});
- }
- return <section aria-label="Selected current and past clients" className="border-b border-[#d5dde5] bg-white">
- <div className="mx-auto max-w-[1440px] px-6 py-8 md:px-12 lg:px-16">
- <div className="mb-3 flex items-center justify-between gap-5"><p className="text-sm font-medium text-[#526478]">Selected current and past clients</p><div className="flex gap-2"><button type="button" aria-label="Previous client logos" onClick={()=>slide(-1)} className="grid h-11 w-11 place-items-center border border-[#d5dde5] text-xl hover:bg-[#e8eff5]">←</button><button type="button" aria-label="Next client logos" onClick={()=>slide(1)} className="grid h-11 w-11 place-items-center border border-[#d5dde5] text-xl hover:bg-[#e8eff5]">→</button></div></div>
- <ul ref={rail} tabIndex={0} aria-label="Scroll through client logos" className="flex snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain pb-2 [scrollbar-width:thin]">{clients.map(([name,file])=><ClientLogo key={name} name={name} file={file}/>)}</ul>
- </div></section>;
+ const [paused,setPaused]=useState(false);
+ return <section aria-label="Selected current and past clients" className="relative w-full border-b border-[#d5dde5] bg-white">
+ <style>{`@keyframes lg-client-loop{from{transform:translateX(0)}to{transform:translateX(-50%)}} .lg-client-track{display:flex;width:max-content;animation:lg-client-loop 82s linear infinite;will-change:transform} .lg-client-viewport:hover .lg-client-track,.lg-client-viewport:focus-within .lg-client-track,.lg-client-track[data-paused=true]{animation-play-state:paused} .lg-client-viewport{overflow:hidden;mask-image:linear-gradient(to right,transparent,#000 2.5%,#000 97.5%,transparent)} @media(prefers-reduced-motion:reduce){.lg-client-track{animation:none;will-change:auto;display:block;width:100%}.lg-client-viewport{mask-image:none}.lg-client-original{flex-wrap:wrap;justify-content:center}.lg-client-copy,.lg-client-pause{display:none!important}}`}</style>
+ <div className="lg-client-viewport w-full py-5">
+ <div className="lg-client-track" data-paused={paused}>
+ <ul className="lg-client-original flex shrink-0">{clients.map(([name,file])=><ClientLogo key={name} name={name} file={file}/>)}</ul>
+ <ul aria-hidden="true" className="lg-client-copy flex shrink-0">{clients.map(([name,file])=><ClientLogo key={name} name={name} file={file} duplicate/>)}</ul>
+ </div></div>
+ <button type="button" onClick={()=>setPaused(x=>!x)} aria-label={paused?"Resume client logo animation":"Pause client logo animation"} className="lg-client-pause absolute bottom-1 right-3 flex h-8 min-w-8 items-center justify-center rounded bg-white/95 px-2 text-xs text-[#526478] opacity-0 shadow-sm focus:opacity-100 hover:opacity-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#10243a]">{paused?"Play":"Pause"}</button>
+ </section>;
 }
 
 const quotes=[
