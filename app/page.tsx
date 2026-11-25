@@ -17,9 +17,9 @@ export const metadata: Metadata = {
 };
 
 const services = [
-  { title: "Build a board", desc: "Define the board’s mandate and composition, then recruit the independent directors to fill it.", href: "/governance-advisory" },
-  { title: "Strengthen your board", desc: "Evaluate effectiveness, clarify priorities and improve how the board works.", href: "/governance-advisory" },
-  { title: "Find independent directors", desc: "Bring the right operating experience and perspectives to the boardroom.", href: "/governance-advisory" },
+  { title: "Build a board", desc: "Define the board’s mandate and composition, then recruit the independent directors to fill it.", href: "/governance-advisory#board-formation" },
+  { title: "Strengthen your board", desc: "Evaluate effectiveness, clarify priorities and improve how the board works.", href: "/governance-advisory#board-optimization" },
+  { title: "Find independent directors", desc: "Bring the right operating experience and perspectives to the boardroom.", href: "/governance-advisory#director-and-executive-search" },
   { title: "Board compensation", desc: "Set director pay using research on the private-company market.", href: "/research" },
 ];
 // Editorial adaptation of the five board benefits on the live Wix homepage.
