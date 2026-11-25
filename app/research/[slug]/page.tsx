@@ -91,7 +91,7 @@ export default async function ReportEditionPage({
                 <span className="font-sans text-[0.72rem] uppercase tracking-widest2 text-brass-ink">
                   {edition.editionOrdinal} annual edition
                 </span>
-                <p className="font-serif text-2xl font-normal text-navy">{edition.price}</p>
+                <p className="text-base text-charcoal/80">Current pricing at checkout</p>
               </div>
 
               <div className="flex flex-wrap items-center gap-6">
