@@ -86,7 +86,7 @@ export default function ResearchPage() {
         </Section>
 
         {/* EDITIONS */}
-        <Section tone="parchment">
+        <Section tone="parchment" id="editions">
           <div className="flex flex-col gap-10">
             <SectionHeading
               kicker="Editions"
@@ -118,7 +118,7 @@ export default function ResearchPage() {
                   {latestEdition.description}
                 </p>
                 <div className="flex flex-wrap items-center gap-6">
-                  <span className="font-serif text-xl text-navy">{latestEdition.price}</span>
+                  <span className="text-base text-charcoal/80">Current pricing at checkout</span>
                   <BuyReportButton
                     slug={latestEdition.slug}
                     fallbackUrl={latestEdition.purchaseUrl}
@@ -138,7 +138,7 @@ export default function ResearchPage() {
                 {reportEditions.slice(1).map((e) => (
                   <li
                     key={e.year}
-                    className="flex items-center justify-between gap-4 border-t border-charcoal/15 py-4 last:border-b"
+                    className="flex flex-wrap items-center justify-between gap-4 border-t border-charcoal/15 py-5 last:border-b"
                   >
                     <Link href={`/research/${e.slug}`} className="flex items-center gap-4 hover:opacity-80">
                       <Image
@@ -146,15 +146,15 @@ export default function ResearchPage() {
                         alt={`${e.year} Private Company Board Compensation Survey cover`}
                         width={e.coverImage.width}
                         height={e.coverImage.height}
-                        className="h-14 w-14 border border-charcoal/10 object-cover"
+                        className="h-20 w-20 bg-white object-contain"
                       />
-                      <span className="font-serif text-lg font-normal text-navy">{e.year}</span>
+                      <span className="text-xl font-medium text-navy">{e.year}</span>
                     </Link>
                     <div className="flex items-center gap-6">
-                      <span className="font-sans text-[0.9rem] text-charcoal/80">{e.price}</span>
+                      
                       <Link
                         href={`/research/${e.slug}`}
-                        className="font-sans text-[0.78rem] uppercase tracking-[0.08em] text-navy/70 hover:text-brass-ink"
+                        className="inline-flex min-h-[44px] items-center text-base font-medium text-navy hover:text-brass-ink"
                       >
                         View report →
                       </Link>
