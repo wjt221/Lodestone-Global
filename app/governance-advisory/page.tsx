@@ -1,18 +1,31 @@
 import type { Metadata } from "next";
-import { BusinessPage } from "@/components/BusinessPage";
+import Link from "next/link";
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
+import { BackgroundPhoto } from "@/components/BackgroundPhoto";
+import { photos } from "@/components/photos";
 import { businessDetail } from "@/lib/content";
+import { slugifyCapability } from "@/lib/slug";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbJsonLd } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: businessDetail.govern.meta.title,
-  description: businessDetail.govern.meta.description,
-  alternates: { canonical: "/governance-advisory" },
-  openGraph: {
-    title: businessDetail.govern.meta.title,
-    description: businessDetail.govern.meta.description,
-    url: "/governance-advisory",
-  },
-};
-
-export default function Page() {
-  return <BusinessPage id="govern" />;
+export const metadata: Metadata = {title:"Private Company Board Advisory",description:businessDetail.govern.meta.description,alternates:{canonical:"/governance-advisory"}};
+const stages=[
+["Strategic review","Understand the owners' ambitions, business strategy and what a board must accomplish.","Owner and management interviews"],
+["Board design","Set the mandate, composition and criteria for independent directors before searching.","Lodestone Global Matrix™"],
+["Board development","Prepare the prospectus, assess candidates and introduce qualified individuals for the owner's decision.","Qualified Director Database™"],
+["First meeting","Onboard directors, agree priorities and facilitate the first substantive meeting.","Board onboarding and agenda"],
+["Performance review","Evaluate the board and directors, then address gaps in effectiveness over time.","Lodestone Global Feedback Loop™"]
+];
+export default function Page(){
+const detail=businessDetail.govern;
+return <><JsonLd data={breadcrumbJsonLd([{name:"Home",path:"/"},{name:"Board advisory",path:"/governance-advisory"}])}/><Header/><main id="main" className="bg-white pt-[4.25rem] text-[#10243a]">
+<section className="grid bg-[#07192b] text-white lg:grid-cols-[1.1fr_.9fr]">
+<div className="flex min-h-[440px] flex-col justify-center px-6 py-16 md:px-12 lg:px-16 lg:py-24"><p className="mb-7 text-base text-[#b7cadb]">Private company board advisory</p><h1 className="max-w-[720px] text-[clamp(3rem,6vw,6.3rem)] font-normal leading-[.98] tracking-[-.06em]">A board built around your business.</h1><p className="mt-7 max-w-xl text-lg leading-relaxed text-[#d4e1eb]">Independent directors should bring experience you cannot hire internally, help management make better decisions and hold the business to its strategy.</p><Link href="/contact" className="mt-8 w-fit bg-white px-7 py-4 text-lg font-medium text-[#10243a]">Discuss your board ↗</Link></div>
+<div className="relative min-h-[300px] lg:min-h-full"><BackgroundPhoto src={photos.hero.src} alt={photos.hero.alt} priority sizes="(min-width:1024px) 45vw,100vw" overlayStyle={{backgroundColor:"rgba(7,25,43,.15)"}}/></div></section>
+<nav aria-label="On this page" className="border-b border-[#d5dde5] bg-[#f5f8fa]"><div className="mx-auto flex max-w-[1440px] flex-wrap gap-x-8 gap-y-3 px-6 py-5 text-base font-medium md:px-12 lg:px-16"><a href="#capabilities">Our services ↓</a><a href="#process">Our process ↓</a><a href="#questions">Common questions ↓</a><Link href="/case-studies">Client outcomes ↗</Link></div></nav>
+<section id="capabilities" className="mx-auto max-w-[1440px] px-6 py-20 md:px-12 lg:px-16"><h2 className="max-w-3xl text-[clamp(2.4rem,4.8vw,4.8rem)] font-normal leading-[1.05] tracking-[-.05em]">What does your board need to do?</h2><p className="mt-5 max-w-2xl text-lg leading-relaxed text-[#526478]">We build new boards, improve existing ones and work with owners on the individual decisions that make a board effective.</p><div className="mt-12 border-t border-[#d5dde5]">{detail.capabilityGroups.map((item,i)=><article key={item.name} id={slugifyCapability(item.name)} className="grid scroll-mt-24 gap-6 border-b border-[#d5dde5] py-9 md:grid-cols-[3rem_.9fr_1.1fr] md:gap-10"><span className="text-base text-[#526478]">0{i+1}</span><div><h3 className="text-3xl font-normal tracking-tight">{item.name}</h3><p className="mt-4 text-base leading-relaxed text-[#526478]">{item.detail}</p></div><div><p className="mb-4 text-sm font-medium text-[#526478]">What we bring</p><ul className="space-y-3 text-base leading-relaxed">{item.value.map(v=><li key={v} className="flex gap-3"><span aria-hidden="true">—</span><span>{v}</span></li>)}</ul>{item.name==="Board compensation benchmarking"&&<Link href="/research" className="mt-5 inline-block border-b border-current pb-1 text-lg font-medium">Explore the research ↗</Link>}</div></article>)}</div></section>
+<section id="process" className="bg-[#e8eff5]"><div className="mx-auto max-w-[1440px] px-6 py-20 md:px-12 lg:px-16"><div className="grid items-end gap-6 lg:grid-cols-2 lg:gap-20"><h2 className="text-[clamp(2.5rem,5vw,5rem)] font-normal leading-[1.04] tracking-[-.05em]">From the first conversation to a working board.</h2><p className="max-w-md text-lg leading-relaxed text-[#526478]">A five-stage process, grounded in your business strategy. The work does not end with an appointment.</p></div><ol className="mt-12 grid gap-x-8 sm:grid-cols-2 lg:grid-cols-5">{stages.map(([title,desc,tool],i)=><li key={title} className="border-t-2 border-[#10243a] py-7"><p className="text-4xl font-normal tracking-tight">0{i+1}</p><h3 className="mt-6 text-2xl font-medium tracking-tight">{title}</h3><p className="mt-4 text-base leading-relaxed text-[#526478]">{desc}</p><p className="mt-5 text-sm font-medium">{tool}</p></li>)}</ol></div></section>
+<section className="bg-[#07192b] text-white"><div className="mx-auto grid max-w-[1440px] items-center gap-10 px-6 py-20 md:px-12 lg:grid-cols-[.75fr_1.25fr] lg:gap-20 lg:px-16"><div><p className="text-[clamp(6rem,12vw,11rem)] leading-none tracking-[-.08em]">90%</p><p className="mt-4 text-xl">of surveyed companies reported higher EBITDA after implementing a board.</p><p className="mt-4 text-sm text-[#b7cadb]">2026 Private Company Board Compensation Survey. Self-reported; not proof of causation.</p></div><div><h2 className="text-[clamp(2.3rem,4.5vw,4rem)] font-normal leading-[1.05] tracking-[-.05em]">Governance should contribute to business performance.</h2><Link href="/case-studies" className="mt-7 inline-flex border-b border-white pb-2 text-lg">See client outcomes ↗</Link></div></div></section>
+<section id="questions" className="mx-auto max-w-[1440px] px-6 py-20 md:px-12 lg:px-16"><h2 className="mb-10 text-[clamp(2.3rem,4vw,4rem)] font-normal tracking-tight">Questions owners ask</h2>{detail.faq?.map(f=><details key={f.q} className="border-t border-[#d5dde5] py-6"><summary className="cursor-pointer text-xl font-medium">{f.q}</summary><p className="mt-4 max-w-3xl text-base leading-relaxed text-[#526478]">{f.a}</p></details>)}<Link href="/contact" className="mt-10 inline-flex bg-[#10243a] px-7 py-4 text-lg font-medium text-white">Discuss your board ↗</Link></section></main><Footer/></>;
 }
