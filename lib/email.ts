@@ -17,8 +17,8 @@ function client(): Resend {
 const FROM = () => process.env.REPORTS_FROM || `${SITE_NAME} <reports@lodestoneglobal.com>`;
 const INBOX = () => process.env.REPORTS_INBOX || "info@lodestoneglobal.com";
 
-export async function sendReportDownload(to: string, editionYear: string, url: string) {
-  await client().emails.send({
+export async function sendReportDownload(to: string, editionYear: string, url: string, idempotencyKey?: string) {
+  const result = await client().emails.send({
     from: FROM(),
     to,
     subject: `Your ${editionYear} Private Company Board Compensation Survey`,
@@ -27,7 +27,8 @@ export async function sendReportDownload(to: string, editionYear: string, url: s
 <p><a href="${url}">Download the report</a></p>
 <p>If you have any questions, reply to this email.</p>
 <p>${SITE_NAME}</p>`,
-  });
+  }, idempotencyKey ? { idempotencyKey } : undefined);
+  if (result.error) throw new Error("Report email was not accepted.");
 }
 
 export async function sendFreeReport(to: string, name: string, url: string) {
