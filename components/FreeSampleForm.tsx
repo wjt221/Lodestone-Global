@@ -20,7 +20,7 @@ export function FreeSampleForm({ slug, year }: { slug: string; year: string }) {
       <button
         type="button"
         onClick={() => setStatus("open")}
-        className="font-sans text-[0.78rem] uppercase tracking-[0.08em] text-navy/70 underline decoration-navy/30 underline-offset-4 hover:text-brass-ink"
+        className="inline-flex min-h-[44px] items-center text-base font-medium text-navy underline decoration-navy/30 underline-offset-4 hover:text-brass-ink"
       >
         Get the free summary
       </button>
@@ -119,7 +119,7 @@ export function FreeSampleForm({ slug, year }: { slug: string; year: string }) {
         <button
           type="button"
           onClick={() => setStatus("closed")}
-          className="font-sans text-[0.78rem] uppercase tracking-[0.06em] text-charcoal/80 hover:text-charcoal"
+          className="inline-flex min-h-[44px] items-center text-base text-charcoal/80 hover:text-charcoal"
         >
           Cancel
         </button>
