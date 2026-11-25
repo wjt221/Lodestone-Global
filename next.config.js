@@ -19,6 +19,9 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      // Preview handoff only. Replace with verified custom domains before launch.
+      { source: "/e3-scale-network", destination: "https://e3-ii1imy8q0-wjt221s-projects.vercel.app", permanent: false },
+      { source: "/family-advisors", destination: "https://lfa-xi.vercel.app", permanent: false },
       { source: "/ecosystem", destination: "/#ecosystem", permanent: true },
       { source: "/ecosystem/govern", destination: "/governance-advisory", permanent: true },
       { source: "/ecosystem/scale", destination: "/e3-scale-network", permanent: true },
