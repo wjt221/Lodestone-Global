@@ -51,9 +51,9 @@ const process = [
 
 const ecosystem = [
   { stage: "Govern", name: "Lodestone Global", role: "Get the board and strategy right.", desc: "Build a high-performing board around the owner's objectives. Establish the strategy, leadership priorities and governance needed to create long-term enterprise value.", href: "#board-advisory", action: "Explore board advisory" },
-  { stage: "Scale", name: "E3 Scale Network", role: "Turn strategy into performance.", desc: "Work with experienced operating partners to drive management accountability, improve execution and scale the business beyond its dependence on the owner.", href: "https://e3-ii1imy8q0-wjt221s-projects.vercel.app", action: "Explore E3 Scale Network" },
+  { stage: "Scale", name: "E3 Scale Network", role: "Turn strategy into performance.", desc: "Work with experienced operating partners to drive management accountability, improve execution and scale the business beyond its dependence on the owner.", href: "/e3-scale-network", action: "Explore E3 Scale Network" },
   { stage: "Compound", name: "Lodestone Capital", role: "Move from operator to investor.", desc: "With a business that can operate without your daily involvement, focus on capital allocation and selective investment opportunities to compound wealth over time.", href: "/lodestone-capital", action: "Explore Lodestone Capital" },
-  { stage: "Steward", name: "Lodestone Family Advisors", role: "Pass on wealth with purpose.", desc: "Build a professionally managed family office. Coordinate investments, family governance and tax-efficient wealth transfer planning to prepare the next generation.", href: "https://lfa-xi.vercel.app", action: "Explore Family Advisors" },
+  { stage: "Steward", name: "Lodestone Family Advisors", role: "Pass on wealth with purpose.", desc: "Build a professionally managed family office. Coordinate investments, family governance and tax-efficient wealth transfer planning to prepare the next generation.", href: "/family-advisors", action: "Explore Family Advisors" },
 ];
 
 function Arrow() { return <span aria-hidden="true" className="inline-block transition-transform group-hover:translate-x-1">↗</span>; }
