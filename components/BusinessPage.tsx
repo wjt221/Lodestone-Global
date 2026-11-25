@@ -4,7 +4,6 @@ import { Footer } from "./Footer";
 import { Section } from "./Section";
 import { Container } from "./Container";
 import { BackgroundPhoto } from "./BackgroundPhoto";
-import { Kicker } from "./Kicker";
 import { CapabilityStepper } from "./CapabilityStepper";
 import { CTASection } from "./CTASection";
 import { InsightCards } from "./InsightCards";
@@ -67,7 +66,7 @@ export function BusinessPage({ id }: { id: StageId }) {
         <section className="relative overflow-hidden pt-[4.25rem] text-ivory">
           <BackgroundPhoto src={photo.src} alt={photo.alt} priority overlayStyle={{ backgroundImage: "linear-gradient(90deg, rgba(7,25,43,.96) 0%, rgba(7,25,43,.79) 50%, rgba(7,25,43,.45) 100%)" }} />
           <Container className="relative z-10 flex min-h-[420px] flex-col justify-end gap-6 py-20 md:min-h-[510px] md:py-24">
-            <Kicker>{detail.eyebrow}</Kicker>
+            
             <h1 className="max-w-4xl font-sans text-display-1 font-normal text-ivory">
               {detail.heading}
             </h1>

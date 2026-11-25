@@ -5,7 +5,6 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Section } from "@/components/Section";
 import { Container } from "@/components/Container";
-import { Kicker } from "@/components/Kicker";
 import { CTASection } from "@/components/CTASection";
 import { JsonLd } from "@/components/JsonLd";
 import { BuyReportButton } from "@/components/BuyReportButton";
@@ -65,7 +64,7 @@ export default async function ReportEditionPage({
       <main id="main">
         <section className="bg-navy pt-[4.25rem] text-ivory">
           <Container className="flex flex-col gap-6 py-20 md:py-24">
-            <Kicker>Proprietary Research</Kicker>
+            
             <h1 className="max-w-3xl font-serif text-display-1 font-semibold text-ivory">
               {edition.year} Private Company Board Compensation Survey
             </h1>

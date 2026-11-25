@@ -6,7 +6,6 @@ import { Footer } from "@/components/Footer";
 import { Section } from "@/components/Section";
 import { Container } from "@/components/Container";
 import { SectionHeading } from "@/components/SectionHeading";
-import { Kicker } from "@/components/Kicker";
 import { CTASection } from "@/components/CTASection";
 import { JsonLd } from "@/components/JsonLd";
 import { BuyReportButton } from "@/components/BuyReportButton";
@@ -43,15 +42,14 @@ export default function ResearchPage() {
       <Header />
       <main id="main">
         {/* MASTHEAD */}
-        <section className="bg-[#e8eff5] pt-[4.25rem] text-[#10243a]"><Container className="grid items-center gap-10 py-16 md:py-24 lg:grid-cols-[1fr_.85fr] lg:gap-20"><div><p className="mb-6 text-base font-medium text-[#526478]">Lodestone Research · {latestEdition.editionOrdinal} annual edition</p><h1 className="text-[clamp(3rem,6vw,6rem)] font-normal leading-[.98] tracking-[-.06em]">Private Company Board Compensation Survey</h1><p className="mt-7 max-w-xl text-lg leading-relaxed text-[#526478]">Know what comparable private companies pay their directors. Benchmark retainers, meeting fees, equity and committee compensation by company size, industry and ownership.</p><div className="mt-8 flex flex-wrap items-center gap-5"><BuyReportButton slug={latestEdition.slug} label="Purchase the 2026 report" className="btn-primary bg-[#10243a] text-white"/><span className="text-xl font-medium">{latestEdition.price}</span></div><Link href="#editions" className="mt-5 inline-flex border-b border-current pb-1 text-base font-medium">Browse previous editions ↓</Link></div><div className="relative overflow-hidden bg-[#07192b] p-8 md:p-12"><p aria-hidden="true" className="absolute right-2 top-0 text-[clamp(5rem,15vw,12rem)] leading-none tracking-[-.08em] text-white/10">{latestEdition.year}</p><Image src={latestEdition.coverImage.url} alt={latestEdition.year+" board compensation survey cover"} width={latestEdition.coverImage.width} height={latestEdition.coverImage.height} priority className="relative mt-14 w-full shadow-2xl"/></div></Container></section>
+        <section className="bg-[#e8eff5] pt-[4.25rem] text-[#10243a]"><Container className="grid items-center gap-10 py-16 md:py-24 lg:grid-cols-[1fr_.85fr] lg:gap-20"><div><h1 className="text-[clamp(3rem,6vw,6rem)] font-normal leading-[.98] tracking-[-.06em]">Private Company Board Compensation Survey</h1><p className="mt-7 max-w-xl text-lg leading-relaxed text-[#526478]">Know what comparable private companies pay their directors. Benchmark retainers, meeting fees, equity and committee compensation by company size, industry and ownership.</p><div className="mt-8 flex flex-wrap items-center gap-5"><BuyReportButton slug={latestEdition.slug} label="Purchase the 2026 report" className="btn-primary bg-[#10243a] text-white"/><span className="text-xl font-medium">{latestEdition.price}</span></div><Link href="#editions" className="mt-5 inline-flex border-b border-current pb-1 text-base font-medium">Browse previous editions ↓</Link></div><div className="relative overflow-hidden bg-[#07192b] p-8 md:p-12"><p aria-hidden="true" className="absolute right-2 top-0 text-[clamp(5rem,15vw,12rem)] leading-none tracking-[-.08em] text-white/10">{latestEdition.year}</p><Image src={latestEdition.coverImage.url} alt={latestEdition.year+" board compensation survey cover"} width={latestEdition.coverImage.width} height={latestEdition.coverImage.height} priority className="relative mt-14 w-full shadow-2xl"/></div></Container></section>
 
         {/* WHAT IT COVERS */}
         <Section tone="light">
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-5">
               <SectionHeading
-                kicker="What it covers"
-                title="Director pay, measured across the private-company market."
+                title="What the survey covers"
               />
             </div>
             <div className="lg:col-span-7">
@@ -77,8 +75,7 @@ export default function ResearchPage() {
         <Section tone="parchment" id="editions">
           <div className="flex flex-col gap-10">
             <SectionHeading
-              kicker="Editions"
-              title="The latest edition, and the archive."
+              title="Survey editions"
               description="The current edition reflects the most recent survey. Prior editions remain available."
             />
 

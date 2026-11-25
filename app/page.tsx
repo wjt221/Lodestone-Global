@@ -35,16 +35,16 @@ const value = [
   { title: "Provide air cover", desc: "Help management navigate difficult decisions, competing shareholder interests and sensitive family or leadership dynamics." },
 ];
 const differentiators = [
-  { title: "The right people, not just the right résumés", desc: "Our Qualified Director Database™ brings together thousands of experienced directors and executives. We assess their expertise and fit against the strategy of your company." },
-  { title: "Partners in the boardroom", desc: "We work alongside owners through board design, recruitment, onboarding and ongoing performance. Our team brings thousands of hours of public- and private-company board experience." },
-  { title: "Decisions informed by data", desc: "Our annual compensation research helps companies compete for the right directors and establish pay appropriate to their market and budget." },
+  { title: "Director expertise and fit", desc: "Our Qualified Director Database™ brings together thousands of experienced directors and executives. We assess their expertise and fit against the strategy of your company." },
+  { title: "Boardroom experience", desc: "We work alongside owners through board design, recruitment, onboarding and ongoing performance. Our team brings thousands of hours of public- and private-company board experience." },
+  { title: "Proprietary research", desc: "Our annual compensation research helps companies compete for the right directors and establish pay appropriate to their market and budget." },
 ];
 const publications = ["Directors & Boards", "Private Company Director", "Family Business", "Forbes"];
 const process = [
-  { title: "Strategic review", desc: "Interview the owners and key decision makers to understand the business, its objectives and whether a board is the right solution.", detail: "Start with the business, not the board seats." },
+  { title: "Strategic review", desc: "Interview the owners and key decision makers to understand the business, its objectives and whether a board is the right solution.", detail: "Owner and management interviews" },
   { title: "Board design", desc: "Define the mandate and the mix of expertise and personal qualities needed in the boardroom.", detail: "Lodestone Global Matrix™" },
   { title: "Board development", desc: "Prepare a company prospectus, identify candidates, assess their fit and introduce the right people. The owner makes the appointment.", detail: "Qualified Director Database™" },
-  { title: "First meeting", desc: "Onboard the directors, establish the agenda and facilitate the first meeting around the company's strategic priorities.", detail: "From recruitment to a working board." },
+  { title: "First meeting", desc: "Onboard the directors, establish the agenda and facilitate the first meeting around the company's strategic priorities.", detail: "Board onboarding and agenda" },
   { title: "Performance review", desc: "Assess director and board effectiveness regularly, and translate the findings into practical improvements.", detail: "Lodestone Global Feedback Loop™" },
 ];
 
@@ -81,22 +81,36 @@ export default function Home() {
         </section>
         <ClientLogoBar />
         <section id="services" className="mx-auto max-w-[1440px] scroll-mt-20 px-6 py-14 md:px-12 md:py-20 lg:px-16">
-          <div className="flex flex-wrap items-end justify-between gap-5"><div><p className="mb-4 text-sm font-medium text-[#526478]">Our products &amp; services</p><h2 className="max-w-4xl text-[clamp(2.5rem,4.5vw,4.6rem)] font-normal leading-[1.03] tracking-[-.05em]">Make your board a competitive advantage.</h2></div><Link href="/governance-advisory" className="group inline-flex min-h-[44px] items-center gap-3 border-b border-[#10243a] pb-2 text-lg font-medium">All board services <Arrow /></Link></div>
+          <div className="flex flex-wrap items-end justify-between gap-5"><div><h2 className="max-w-4xl text-[clamp(2.5rem,4.5vw,4.6rem)] font-normal leading-[1.03] tracking-[-.05em]">Board advisory services</h2></div><Link href="/governance-advisory" className="group inline-flex min-h-[44px] items-center gap-3 border-b border-[#10243a] pb-2 text-lg font-medium">All board services <Arrow /></Link></div>
           <ul className="mt-9 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">{services.map((s,i)=><li key={s.title}><Link href={s.href} className={`group flex h-full min-h-[245px] flex-col border-t-2 border-[#10243a] p-6 transition-colors ${i===0?"bg-[#10243a] text-white hover:bg-[#1d3f59]":"bg-[#eef3f7] hover:bg-[#e1eaf2]"}`}><div className="flex items-center justify-between gap-2"><p className={`text-sm font-medium ${i===0?"text-[#c1cfdd]":"text-[#526478]"}`}>{s.category}</p><span aria-hidden="true" className={`text-sm tabular-nums ${i===0?"text-[#c1cfdd]":"text-[#526478]"}`}>{s.number}</span></div><h3 className="mt-6 text-[clamp(1.5rem,2.35vw,2.25rem)] font-normal leading-tight tracking-[-.035em]">{s.title}</h3><p className={`mb-6 mt-4 text-base leading-relaxed ${i===0?"text-[#dce6ee]":"text-[#526478]"}`}>{s.desc}</p><span className="mt-auto text-2xl"><Arrow /></span></Link></li>)}</ul>
         </section>
 
-        <section id="board-advisory" className="bg-[#eef3f7]">
-          <div className="mx-auto max-w-[1440px] px-6 py-20 md:px-12 md:py-28 lg:px-16">
-            <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_.9fr] lg:gap-20">
-              <div><p className="mb-6 text-sm font-medium text-[#526478]">The business case for a board</p><h2 className="max-w-3xl text-[clamp(2.6rem,5.1vw,5.1rem)] font-normal leading-[1.02] tracking-[-.055em]">The return on a board should be measured in the business.</h2><p className="mt-7 max-w-xl text-lg leading-relaxed text-[#526478]">The right independent directors help owners pursue profitable growth, improve capital allocation, strengthen leadership and prepare the company for its next chapter. The mandate begins with the owner's objectives.</p><Link href="/governance-advisory" className="group mt-7 inline-flex min-h-[44px] items-center gap-3 border-b border-[#10243a] pb-2 text-lg font-medium">What a board can do <Arrow /></Link></div>
-              <div className="border-[#c2d1df] pt-3 lg:border-l lg:pl-14"><p className="text-[clamp(7rem,15vw,13rem)] leading-[.8] tracking-[-.09em] tabular-nums">90<span className="align-top text-[.54em]">%</span></p><p className="mt-8 max-w-lg text-[clamp(1.45rem,2.5vw,2.25rem)] leading-[1.22] tracking-[-.025em]">of surveyed companies reported higher EBITDA after implementing a board.</p><p className="mt-5 max-w-sm text-sm leading-relaxed text-[#526478]">2026 Private Company Board Compensation Survey. Self-reported; not proof of causation or a guarantee of results.</p></div>
+        <section id="board-advisory" className="relative isolate overflow-hidden bg-[#07192b] text-white">
+          <div className="absolute inset-0 -z-10"><BackgroundPhoto src={photos.govern.src} alt="" overlayStyle={{backgroundImage:"linear-gradient(90deg,rgba(7,25,43,.98),rgba(7,25,43,.91) 48%,rgba(7,25,43,.70)),linear-gradient(0deg,rgba(7,25,43,.98),transparent 75%)"}} /></div>
+          <div className="mx-auto max-w-[1440px] px-6 py-16 md:px-12 md:py-24 lg:px-16">
+            <div className="grid items-start gap-12 lg:grid-cols-[.95fr_1.05fr] lg:gap-20">
+              <div className="lg:sticky lg:top-28">
+                <h2 className="max-w-[650px] text-[clamp(2.8rem,5.4vw,5.5rem)] font-normal leading-[1.02] tracking-[-.055em]">High-performing boards drive better business results.</h2>
+                <p className="mt-6 max-w-lg text-lg leading-relaxed text-[#d2e1ed]">Independent directors help owners make better strategic decisions, improve profitability, allocate capital effectively and build stronger management teams.</p>
+                <div className="mt-10 max-w-lg border-t border-white/25 pt-8">
+                  <div className="flex items-end gap-4"><p className="text-[clamp(5.5rem,11vw,10rem)] font-normal leading-[.85] tracking-[-.08em] tabular-nums">90<span className="align-top text-[.55em]">%</span></p><svg viewBox="0 0 100 100" width="82" height="82" className="mb-1 shrink-0" aria-hidden="true"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,.18)" strokeWidth="7"/><circle cx="50" cy="50" r="40" fill="none" stroke="#b9d6e8" strokeWidth="7" strokeDasharray="226.2 251.33" transform="rotate(-90 50 50)" strokeLinecap="butt"/></svg></div>
+                  <p className="mt-5 max-w-md text-[clamp(1.35rem,2.2vw,1.9rem)] leading-[1.25] tracking-[-.02em]">of surveyed companies reported higher EBITDA after implementing a board.</p>
+                  <p className="mt-4 max-w-md text-sm leading-relaxed text-[#c1cfdd]">2026 Private Company Board Compensation Survey. Self-reported; not proof of causation or a guarantee of results.</p>
+                  <Link href="/research" className="group mt-5 inline-flex min-h-[44px] items-center gap-3 border-b border-white/60 pb-2 text-base font-medium">View the research <Arrow /></Link>
+                </div>
+              </div>
+              <div className="overflow-hidden border border-white/20 bg-[#10243a]/90">
+                {value.map((v,i)=><div key={v.title} className="grid grid-cols-[44px_1fr] items-start gap-5 border-b border-white/20 px-6 py-6 last:border-b-0 md:grid-cols-[52px_1fr] md:px-9 md:py-7">
+                  <div className="flex h-11 w-11 items-center justify-center border border-white/30 text-[#c3dbea]" aria-hidden="true"><svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">{i===0?<><rect x="4" y="4" width="16" height="16" rx="2"/><path d="m8 12 3 3 5-6"/></>:i===1?<><path d="M3 20V4M3 20h18M7 15l5-5 4 3 5-7M17 6h4v4"/></>:i===2?<><circle cx="12" cy="5" r="2.5"/><circle cx="5" cy="17" r="2.5"/><circle cx="19" cy="17" r="2.5"/><path d="m10.7 7.2-4.3 7.5m6.9-7.5 4.3 7.5M7.5 17h9"/></>:i===3?<><path d="m12 3 7 3v6c0 4-3 7-7 9-4-2-7-5-7-9V6z"/><path d="m9 12 2 2 4-4"/></>:<><path d="M3 12a9 9 0 0 1 18 0H3zm9 0v6a2 2 0 0 0 4 0M12 3v-1"/></>}</svg></div>
+                  <div><h3 className="text-2xl font-medium leading-tight tracking-[-.025em]">{v.title}</h3><p className="mt-2 max-w-xl text-base leading-relaxed text-[#d2e1ed]">{v.desc}</p></div>
+                </div>)}
+              </div>
             </div>
-            <div className="mt-16 grid gap-x-7 gap-y-7 border-t border-[#c2d1df] pt-9 sm:grid-cols-2 lg:grid-cols-5">{value.map(v=><div key={v.title}><h3 className="text-xl font-medium leading-tight tracking-tight">{v.title}</h3><p className="mt-3 text-base leading-relaxed text-[#526478]">{v.desc}</p></div>)}</div>
           </div>
         </section>
 
         <section id="client-evidence" className="mx-auto max-w-[1440px] px-6 py-20 md:px-12 md:py-28 lg:px-16">
-          <div className="flex flex-wrap items-end justify-between gap-6"><div><p className="mb-5 text-sm font-medium text-[#526478]">Value creation in practice</p><h2 className="max-w-3xl text-[clamp(2.4rem,4.8vw,4.8rem)] font-normal leading-[1.04] tracking-[-.05em]">What the right board can help achieve.</h2></div><Link href="/case-studies" className="group inline-flex min-h-[44px] items-center gap-3 border-b border-[#10243a] pb-2 text-lg font-medium">Explore case studies <Arrow /></Link></div>
+          <div className="flex flex-wrap items-end justify-between gap-6"><div><h2 className="max-w-3xl text-[clamp(2.4rem,4.8vw,4.8rem)] font-normal leading-[1.04] tracking-[-.05em]">Client results</h2></div><Link href="/case-studies" className="group inline-flex min-h-[44px] items-center gap-3 border-b border-[#10243a] pb-2 text-lg font-medium">Explore case studies <Arrow /></Link></div>
           {/* Industry imagery from the original public Wix case studies; illustrative, not verified photographs of the clients' premises. */}
           <div className="mt-12 grid gap-5 lg:grid-cols-[1.15fr_.85fr]">
             <article className="relative isolate flex min-h-[480px] flex-col justify-between overflow-hidden bg-[#07192b] p-8 text-white md:p-12">
@@ -113,10 +127,10 @@ export default function Home() {
           </div><p className="mt-5 text-sm text-[#526478]">Historical client case studies. Other factors contributed to business performance; outcomes vary.</p>
         </section>
 
-        <section className="grid bg-[#07192b] text-white lg:grid-cols-[.95fr_1.05fr]"><div className="relative min-h-[300px] lg:min-h-[580px]"><BackgroundPhoto src={photos.govern.src} alt={photos.govern.alt} sizes="(min-width:1024px) 48vw,100vw" overlayStyle={{backgroundColor:"rgba(7,25,43,.12)"}} /></div><div className="px-6 py-14 md:px-12 md:py-20 lg:px-16"><p className="mb-5 text-sm font-medium text-[#b7cadb]">Why Lodestone Global?</p><h2 className="max-w-xl text-[clamp(2.4rem,4vw,4rem)] font-normal leading-[1.05] tracking-[-.05em]">Board partners, not headhunters.</h2><div className="mt-8 space-y-6">{differentiators.map(d=><div key={d.title}><h3 className="text-xl font-medium">{d.title}</h3><p className="mt-2 max-w-lg text-base leading-relaxed text-[#c1cfdd]">{d.desc}</p></div>)}</div><p className="mt-8 text-sm text-[#b7cadb]">Research and perspectives published in {publications.join(", ")}.</p></div></section>
+        <section className="grid bg-[#07192b] text-white lg:grid-cols-[.95fr_1.05fr]"><div className="relative min-h-[300px] lg:min-h-[580px]"><BackgroundPhoto src={photos.govern.src} alt={photos.govern.alt} sizes="(min-width:1024px) 48vw,100vw" overlayStyle={{backgroundColor:"rgba(7,25,43,.12)"}} /></div><div className="px-6 py-14 md:px-12 md:py-20 lg:px-16"><h2 className="max-w-xl text-[clamp(2.4rem,4vw,4rem)] font-normal leading-[1.05] tracking-[-.05em]">Why Lodestone Global</h2><div className="mt-8 space-y-6">{differentiators.map(d=><div key={d.title}><h3 className="text-xl font-medium">{d.title}</h3><p className="mt-2 max-w-lg text-base leading-relaxed text-[#c1cfdd]">{d.desc}</p></div>)}</div><p className="mt-8 text-sm text-[#b7cadb]">Research and perspectives published in {publications.join(", ")}.</p></div></section>
 
         <section id="process" className="mx-auto max-w-[1440px] px-6 py-20 md:px-12 md:py-28 lg:px-16">
-          <p className="mb-5 text-sm font-medium text-[#526478]">Our board formation methodology</p><h2 className="max-w-4xl text-[clamp(2.5rem,5vw,5rem)] font-normal leading-[1.02] tracking-[-.055em]">Start with the value the board needs to create.</h2><p className="mt-6 max-w-2xl text-lg leading-relaxed text-[#526478]">Work backward from the company's strategy. Define the mandate, recruit against it and evaluate how well the board delivers.</p>
+          <h2 className="max-w-4xl text-[clamp(2.5rem,5vw,5rem)] font-normal leading-[1.02] tracking-[-.055em]">Our board formation process</h2><p className="mt-6 max-w-2xl text-lg leading-relaxed text-[#526478]">Work backward from the company's strategy. Define the mandate, recruit against it and evaluate how well the board delivers.</p>
           <ol className="mt-14 grid gap-x-7 gap-y-9 sm:grid-cols-2 lg:grid-cols-5">{process.map((p,i)=><li key={p.title} className="relative border-t-2 border-[#10243a] pt-6"><span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#10243a] text-base font-medium text-white">{i+1}</span><h3 className="mt-5 text-2xl font-medium leading-tight tracking-tight">{p.title}</h3><p className="mt-3 text-base leading-relaxed text-[#526478]">{p.desc}</p><p className="mt-5 text-sm font-medium">{p.detail}</p></li>)}</ol>
           <Link href="/governance-advisory#process" className="group mt-12 inline-flex min-h-[52px] items-center gap-5 bg-[#10243a] px-7 py-4 text-lg font-medium text-white">Explore the five-stage process <Arrow /></Link>
         </section>
@@ -126,7 +140,7 @@ export default function Home() {
         <section id="ecosystem" className="relative isolate overflow-hidden bg-white text-[#10243a] scroll-mt-24">
           <div className="mx-auto max-w-[1440px] px-6 py-16 md:px-12 md:py-20 lg:px-16">
             <div className="grid items-end gap-6 lg:grid-cols-[1.1fr_.9fr] lg:gap-20">
-              <div><p className="mb-5 text-sm font-medium text-[#526478]">The Lodestone ecosystem</p><h2 className="text-[clamp(2.8rem,5.6vw,5.6rem)] font-normal leading-[.98] tracking-[-.06em]">From operator<br className="hidden sm:block"/> to steward.</h2></div>
+              <div><h2 className="text-[clamp(2.8rem,5.6vw,5.6rem)] font-normal leading-[.98] tracking-[-.06em]">From operator<br className="hidden sm:block"/> to steward.</h2></div>
               <p className="max-w-xl text-lg leading-relaxed text-[#526478]">The journey begins with a board and a strategy. With the right operating partners, that strategy becomes a business that can thrive without you in the day-to-day. You gain the freedom to invest, compound capital and ultimately pass on your wealth to the next generation.</p>
             </div>
             <div className="relative mt-12 border-y border-[#d5dde5]">
@@ -152,7 +166,7 @@ export default function Home() {
         </section>
 
         <section id="insights" className="mx-auto max-w-[1440px] px-6 py-20 md:px-12 md:py-24 lg:px-16">
-          <div className="flex flex-wrap items-end justify-between gap-6"><div><p className="mb-5 text-sm font-medium text-[#526478]">Lodestone Insights</p><h2 className="max-w-4xl text-[clamp(2.6rem,5vw,5rem)] font-normal leading-[1.03] tracking-[-.05em]">Perspectives from the boardroom.</h2><p className="mt-5 max-w-xl text-lg leading-relaxed text-[#526478]">Practical guidance, original research and lessons from building high-performing private-company boards.</p></div><Link href="/insights" className="group inline-flex min-h-[44px] items-center gap-3 border-b border-[#10243a] pb-2 text-lg font-medium">Explore all {articles.length} articles <Arrow /></Link></div>
+          <div className="flex flex-wrap items-end justify-between gap-6"><div><h2 className="max-w-4xl text-[clamp(2.6rem,5vw,5rem)] font-normal leading-[1.03] tracking-[-.05em]">Lodestone Insights</h2><p className="mt-5 max-w-xl text-lg leading-relaxed text-[#526478]">Practical guidance, original research and lessons from building high-performing private-company boards.</p></div><Link href="/insights" className="group inline-flex min-h-[44px] items-center gap-3 border-b border-[#10243a] pb-2 text-lg font-medium">Explore all {articles.length} articles <Arrow /></Link></div>
           <div className="mt-12 grid gap-8 lg:grid-cols-[1.15fr_.85fr] lg:gap-12">
             {["improving-board-performance","advisory-board-readiness","attracting-top-board-members"].map((slug,i)=>{const a=articles.find(p=>p.slug===slug);if(!a)return null;return <Link key={slug} href={"/insights/"+slug} className={`group flex flex-col gap-5 ${i===0?"lg:row-span-2":"border-t border-[#d5dde5] pt-5 sm:grid sm:grid-cols-[.65fr_1fr] lg:pt-0 lg:border-t-0"}`}>
               <div className={`relative overflow-hidden bg-[#e8eff5] ${i===0?"aspect-[16/10]":"aspect-[4/3]"}`}>{a.image&&<Image src={a.image.src} alt="" fill sizes={i===0?"(min-width:1024px) 50vw,100vw":"(min-width:640px) 25vw,100vw"} className="object-cover transition duration-500 motion-safe:group-hover:scale-[1.035]" />}</div><div><p className="text-sm font-medium text-[#526478]">{a.category} · {a.minutesToRead} min read</p><h3 className={`mt-3 font-normal leading-tight tracking-[-.035em] group-hover:underline ${i===0?"text-3xl md:text-4xl":"text-2xl"}`}>{a.title}</h3>{i===0&&<p className="mt-4 max-w-xl text-base leading-relaxed text-[#526478]">{a.summary}</p>}<p className="mt-4 text-base font-medium">Read article <Arrow /></p></div></Link>})}
@@ -162,7 +176,7 @@ export default function Home() {
         <section id="research" className="bg-[#e8eff5]">
           <div className="mx-auto grid max-w-[1440px] items-center gap-10 px-6 py-20 md:px-12 md:py-24 lg:grid-cols-[.9fr_1.1fr] lg:gap-20 lg:px-16">
             <div>
-              <p className="mb-5 text-sm font-medium text-[#526478]">Lodestone research / {latestEdition.editionOrdinal} annual edition</p>
+              
               <h2 className="max-w-xl text-[clamp(2.6rem,4.7vw,4.6rem)] font-normal leading-[1.03] tracking-[-0.05em]">What should you pay your board?</h2>
               <p className="mt-6 max-w-md text-base leading-relaxed text-[#526478]">Benchmark director compensation against private companies by revenue, industry, size and ownership structure.</p>
               <div className="mt-8 flex flex-wrap items-center gap-x-7 gap-y-4">
@@ -178,7 +192,7 @@ export default function Home() {
         </section>
 
         <section className="mx-auto flex max-w-[1440px] flex-col items-start justify-between gap-8 px-6 py-20 md:flex-row md:items-end md:px-12 md:py-24 lg:px-16">
-          <div><p className="mb-5 text-sm text-[#526478]">Start a conversation</p><h2 className="max-w-xl text-[clamp(2.2rem,4vw,4rem)] font-normal leading-[1.06] tracking-[-0.045em]">What could the right board do for your business?</h2></div>
+          <div><h2 className="max-w-xl text-[clamp(2.2rem,4vw,4rem)] font-normal leading-[1.06] tracking-[-0.045em]">Discuss your board</h2></div>
           <div className="flex flex-wrap gap-6">
             <Link href="/contact" className="group inline-flex items-center min-h-[44px] gap-3 border-b border-[#10243a] pb-2 text-lg font-medium">Contact Lodestone <Arrow /></Link>
             <Link href="/insights" className="group inline-flex items-center min-h-[44px] gap-3 border-b border-[#10243a] pb-2 text-lg font-medium">Read our insights <Arrow /></Link>

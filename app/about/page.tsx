@@ -5,7 +5,6 @@ import { Footer } from "@/components/Footer";
 import { Section } from "@/components/Section";
 import { Container } from "@/components/Container";
 import { SectionHeading } from "@/components/SectionHeading";
-import { Kicker } from "@/components/Kicker";
 import { BackgroundPhoto } from "@/components/BackgroundPhoto";
 import { EcosystemList } from "@/components/EcosystemList";
 import { Leadership } from "@/components/Leadership";
@@ -46,9 +45,9 @@ export default function AboutPage() {
         <section className="relative overflow-hidden pt-[4.25rem] text-ivory">
           <BackgroundPhoto src={photos.aboutMasthead.src} alt={photos.aboutMasthead.alt} priority overlayClassName="bg-navy/85" />
           <Container className="relative z-10 flex flex-col gap-6 py-24 md:py-28">
-            <Kicker>About Lodestone</Kicker>
+            
             <h1 className="max-w-3xl font-serif text-display-1 font-semibold text-ivory">
-              One relationship across the decisions that shape a company and a family.
+              About Lodestone Global
             </h1>
             <p className="max-w-2xl font-sans text-lg leading-relaxed text-ivory/80">
               Lodestone began in the boardroom. Since {CONTACT.founded}, the practice has helped
@@ -62,7 +61,7 @@ export default function AboutPage() {
         <Section tone="light">
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-4">
-              <SectionHeading kicker="Positioning" title="Where we started, and why it matters." />
+              <SectionHeading title="Our history" />
             </div>
             <div className="flex flex-col gap-6 lg:col-span-8">
               <p className="max-w-2xl font-sans text-[1.05rem] leading-relaxed text-charcoal/75">
@@ -86,7 +85,6 @@ export default function AboutPage() {
         <Section id="ecosystem" tone="parchment">
           <div className="flex flex-col gap-12">
             <SectionHeading
-              kicker="The Ecosystem"
               title="Govern, scale, compound, steward."
               description="Four capabilities, each delivered by a dedicated part of the practice. No client is expected to use all four. Lodestone brings the capability that fits the situation and keeps one relationship intact as it changes."
             />
@@ -97,7 +95,7 @@ export default function AboutPage() {
         {/* HOW WE WORK */}
         <Section tone="light">
           <div className="flex flex-col gap-12">
-            <SectionHeading kicker="How We Work" title="One team, carried forward." />
+            <SectionHeading title="How we work" />
             <div className="grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-8">
               {howWeWork.map((s) => (
                 <div key={s.step} className="flex flex-col gap-4 border-t border-charcoal/20 pt-6">
@@ -114,8 +112,7 @@ export default function AboutPage() {
         <Section tone="parchment">
           <div className="flex flex-col gap-12">
             <SectionHeading
-              kicker="Leadership"
-              title="The people behind the relationship."
+              title="Our leadership"
               description="Lodestone is led by principals with direct governance, operating, and investing experience."
             />
             <Leadership />

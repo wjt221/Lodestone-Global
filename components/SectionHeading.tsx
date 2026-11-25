@@ -1,5 +1,4 @@
 import { ReactNode } from "react";
-import { Kicker } from "./Kicker";
 
 /**
  * Section heading.
@@ -9,7 +8,6 @@ import { Kicker } from "./Kicker";
  * a long page feel machine-laid: the reader gets no signal about what matters.
  */
 export function SectionHeading({
-  kicker,
   title,
   description,
   tone = "light",
@@ -53,7 +51,7 @@ export function SectionHeading({
     return (
       <div className="grid grid-cols-1 gap-x-16 gap-y-6 lg:grid-cols-12">
         <div className="flex flex-col gap-4 lg:col-span-6">
-          {kicker && <Kicker tone={tone}>{kicker}</Kicker>}
+
           <Heading className={`font-serif ${scale} font-semibold ${titleColor}`}>{title}</Heading>
         </div>
         <p
@@ -67,7 +65,7 @@ export function SectionHeading({
 
   return (
     <div className={`flex ${measure} flex-col gap-4 ${alignment}`}>
-      {kicker && <Kicker tone={tone}>{kicker}</Kicker>}
+
       <Heading className={`font-serif ${scale} font-semibold ${titleColor}`}>{title}</Heading>
       {description && (
         <p className={`font-sans text-[1.05rem] leading-relaxed ${descColor}`}>{description}</p>
