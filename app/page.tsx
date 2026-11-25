@@ -8,13 +8,14 @@ import { BuyReportButton } from "@/components/BuyReportButton";
 import { BackgroundPhoto } from "@/components/BackgroundPhoto";
 import { photos } from "@/components/photos";
 import { latestEdition } from "@/lib/reports";
+import { BOARD_TAGLINE } from "@/lib/site";
 import { articles } from "@/lib/articles";
 import { JsonLd } from "@/components/JsonLd";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: { absolute: "Private Company Board Advisory | Lodestone Global" },
-  description: "High-performing board experts. Lodestone Global builds, facilitates, optimizes and educates private-company boards around the globe to help owners create lasting enterprise value.",
+  description: `${BOARD_TAGLINE} Lodestone Global builds, facilitates, optimizes and educates private-company boards around the globe to help owners create lasting enterprise value.`,
   alternates: { canonical: "/" },
   robots: { index: false, follow: false }, // Remove only at approved production cutover.
 };
@@ -70,7 +71,7 @@ export default function Home() {
           <style>{`@keyframes lodestone-image-in { from { transform: scale(1.035); } to { transform: scale(1); } } @keyframes lodestone-copy-in { from { opacity: .15; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } } @media (prefers-reduced-motion:no-preference) { .lg-hero-copy { animation: lodestone-copy-in .75s ease-out both; } .lg-hero-photo img { animation: lodestone-image-in 1.4s ease-out both; } }`}</style>
           <div className="relative z-10 mx-auto flex min-h-[570px] max-w-[1600px] flex-col justify-end px-6 pb-12 pt-20 md:min-h-[680px] md:px-12 md:pb-16 lg:min-h-[min(740px,82svh)] lg:px-16">
             <div className="lg-hero-copy">
-              <p className="mb-7 text-[clamp(1rem,1.5vw,1.35rem)] font-medium tracking-[.015em] text-[#e0e9f1]">High-Performing Board Experts.</p>
+              <p className="mb-7 text-[clamp(1rem,1.5vw,1.35rem)] font-medium tracking-[.015em] text-[#e0e9f1]">{BOARD_TAGLINE}</p>
               <h1 className="max-w-[1100px] text-[clamp(3.3rem,7.4vw,7.7rem)] font-normal leading-[.95] tracking-[-0.065em]">A better board.<br/>A more valuable business.</h1>
               <div className="mt-12 flex flex-col justify-between gap-8 border-t border-white/30 pt-7 md:flex-row md:items-end">
                 <p className="max-w-[590px] text-lg leading-relaxed text-[#e0e9f1]">We build, facilitate, optimize and educate boards around the globe, helping private and family-owned businesses accelerate growth, strengthen leadership and create lasting enterprise value.</p>

@@ -6,3 +6,6 @@
 export const SITE_URL = "https://www.lodestoneglobal.com";
 
 export const SITE_NAME = "Lodestone Global";
+
+/** Approved brand slogan. Preserve capitalization, hyphen and punctuation. */
+export const BOARD_TAGLINE = "High-Performing Board Experts.";

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Source_Serif_4, Public_Sans } from "next/font/google";
 import "./globals.css";
-import { SITE_URL, SITE_NAME } from "@/lib/site";
+import { SITE_URL, SITE_NAME, BOARD_TAGLINE } from "@/lib/site";
 
 const display = Source_Serif_4({
   subsets: ["latin"],
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     template: "%s | Lodestone Global",
   },
   description:
-    "Lodestone Global helps privately held companies build, recruit for and strengthen their boards. Explore board advisory and compensation research.",
+    `${BOARD_TAGLINE} Lodestone Global helps privately held companies build, recruit for and strengthen their boards. Explore board advisory and compensation research.`,
   alternates: {
     canonical: "/",
   },
