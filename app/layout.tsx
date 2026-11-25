@@ -21,11 +21,11 @@ const body = Public_Sans({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Lodestone Global | Governance, Capital, and Family Office Advisory",
+    default: "Lodestone Global | Private Company Board Advisory",
     template: "%s | Lodestone Global",
   },
   description:
-    "Lodestone works with private-company principals to strengthen governance, scale the operating business, allocate capital, and steward family wealth across generations.",
+    "Lodestone Global helps privately held companies build, recruit for and strengthen their boards. Explore board advisory and compensation research.",
   alternates: {
     canonical: "/",
   },
@@ -33,16 +33,16 @@ export const metadata: Metadata = {
     type: "website",
     siteName: SITE_NAME,
     url: SITE_URL,
-    title: "Lodestone Global | Governance, Capital, and Family Office Advisory",
+    title: "Lodestone Global | Private Company Board Advisory",
     description:
-      "For owners building something meant to outlast them: governance, operating support, capital, and family-office coordination in one relationship.",
+      "Board formation, independent director recruitment, board effectiveness and private-company compensation research.",
   },
   twitter: {
     card: "summary_large_image",
   },
   robots: {
-    index: true,
-    follow: true,
+    index: false,
+    follow: false, // Preview only; change at approved Wix cutover.
   },
 };
 
