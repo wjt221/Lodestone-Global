@@ -12,10 +12,10 @@ export function Footer() {
   return (
     <footer id="footer" className="bg-[#07192b] font-sans text-white">
       <div className="mx-auto max-w-[1440px] px-6 pb-8 pt-16 md:px-12 md:pt-24 lg:px-16">
-        <div className="flex flex-col items-start justify-between gap-8 border-b border-white/20 pb-12 md:flex-row md:items-end">
+        <div className="flex flex-col items-start justify-between gap-8 border-b border-white/20 pb-12 lg:flex-row lg:items-end">
           <div><Link href="/" aria-label="Lodestone Global home"><Image src="/logo/lodestone-global-horizontal-white.png" alt="Lodestone Global" width={320} height={107} className="h-12 w-auto" /></Link>
-          <p className="mt-6 max-w-md text-[clamp(1.8rem,3vw,3.2rem)] font-normal leading-[1.1] tracking-[-.04em]">Build a board that matters.</p></div>
-          <Link href="/contact" className="group inline-flex min-h-[52px] items-center gap-5 bg-white px-7 py-4 text-lg font-medium text-[#10243a] hover:bg-[#dce8f2]">Contact Lodestone <span aria-hidden="true">↗</span></Link>
+          <p className="mt-6 whitespace-nowrap text-[clamp(1rem,2.6vw,2.8rem)] font-normal leading-[1.1] tracking-[-.035em]">High Performance Board Experts</p></div>
+          <Link href="/contact" className="group inline-flex min-h-[52px] shrink-0 items-center gap-5 bg-white px-7 py-4 text-lg font-medium text-[#10243a] hover:bg-[#dce8f2]">Contact Lodestone <span aria-hidden="true">↗</span></Link>
         </div>
         <div className="grid gap-x-10 gap-y-10 py-12 sm:grid-cols-2 lg:grid-cols-4">
           {groups.map(g=><nav key={g.title} aria-label={g.title} className="flex flex-col gap-3"><h2 className="mb-2 text-sm font-medium text-[#a8bdcf]">{g.title}</h2>{g.links.map(l=><Link key={l.label} href={l.href} className="w-fit py-1 text-base text-white/90 hover:text-white hover:underline focus-visible:outline-white">{l.label}{l.href.startsWith("https://") ? " ↗" : ""}</Link>)}</nav>)}
