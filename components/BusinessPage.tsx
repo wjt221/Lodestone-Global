@@ -123,7 +123,7 @@ export function BusinessPage({ id }: { id: StageId }) {
         </Section>
 
         {/* HOW AN ENGAGEMENT WORKS */}
-        <Section tone="light">
+        <Section tone="light" id="engagement">
           <div className="flex flex-col gap-12">
             <h2 className="max-w-2xl font-serif text-display-2 font-normal text-navy">
               How an engagement works
