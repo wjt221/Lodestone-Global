@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Footer } from "@/components/Footer";
+import { Header } from "@/components/Header";
 import { BackgroundPhoto } from "@/components/BackgroundPhoto";
 import { photos } from "@/components/photos";
 import { latestEdition } from "@/lib/reports";
@@ -15,13 +16,6 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false }, // Remove only at approved production cutover.
 };
 
-const nav = [
-  { label: "Board advisory", href: "#board-advisory" },
-  { label: "Our process", href: "#process" },
-  { label: "Research", href: "#research" },
-  { label: "Our work", href: "/case-studies" },
-  { label: "Our ecosystem", href: "#ecosystem" },
-];
 const services = [
   { title: "Build a board", desc: "Define the board’s mandate and composition, then recruit the independent directors to fill it.", href: "/governance-advisory" },
   { title: "Strengthen your board", desc: "Evaluate effectiveness, clarify priorities and improve how the board works.", href: "/governance-advisory" },
@@ -65,24 +59,7 @@ export default function Home() {
   return (
     <div className="bg-white font-sans text-[#10243a]">
       <JsonLd data={[organizationJsonLd(), websiteJsonLd()]} />
-      <header className="relative z-20 border-b border-white/10 bg-[#07192b] text-white">
-        <div className="mx-auto flex max-w-[1600px] items-center justify-between gap-8 px-6 py-6 md:px-12 lg:px-16">
-          <Link href="/" aria-label="Lodestone Global home" className="shrink-0">
-            <Image src="/logo/lodestone-global-horizontal-white.png" alt="Lodestone Global" width={320} height={107} priority className="h-10 w-auto md:h-11" />
-          </Link>
-          <nav aria-label="Primary" className="hidden items-center gap-5 text-base xl:gap-8 xl:text-[17px] lg:flex">
-            {nav.map(n => <Link key={n.label} href={n.href} className="text-white/80 hover:text-white focus-visible:outline-white">{n.label}</Link>)}
-          </nav>
-          <Link href="/contact" className="group hidden min-h-[44px] items-center gap-3 border-b border-white/50 pb-2 text-base font-medium md:inline-flex">Contact <Arrow /></Link>
-          <details className="relative lg:hidden">
-            <summary className="flex min-h-[44px] cursor-pointer list-none items-center gap-2 text-base font-medium">Menu <span aria-hidden="true">+</span></summary>
-            <nav aria-label="Mobile" className="absolute right-0 top-12 z-30 flex w-64 flex-col gap-4 border border-white/20 bg-[#091725] p-6 text-lg shadow-xl">
-              {nav.map(n => <Link key={n.label} href={n.href}>{n.label}</Link>)}
-              <Link href="/contact">Contact</Link>
-            </nav>
-          </details>
-        </div>
-      </header>
+      <Header />
       <main id="main">
         <section className="relative isolate overflow-hidden bg-[#07192b] text-white">
           <div className="lg-hero-photo absolute inset-0">
