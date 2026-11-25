@@ -10,6 +10,7 @@ const links = [
   { label: "Our process", href: "/governance-advisory#process" },
   { label: "Research", href: "/research" },
   { label: "Our work", href: "/case-studies" },
+  { label: "Insights", href: "/insights" },
   { label: "About", href: "/about" },
   { label: "Our ecosystem", href: "/#ecosystem" },
 ];

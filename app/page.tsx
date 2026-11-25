@@ -8,6 +8,7 @@ import { BuyReportButton } from "@/components/BuyReportButton";
 import { BackgroundPhoto } from "@/components/BackgroundPhoto";
 import { photos } from "@/components/photos";
 import { latestEdition } from "@/lib/reports";
+import { articles } from "@/lib/articles";
 import { JsonLd } from "@/components/JsonLd";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 
@@ -147,6 +148,14 @@ export default function Home() {
               </ol>
             </div>
             <p className="mt-5 max-w-3xl text-sm leading-relaxed text-[#526478]">The journey is different for every owner. Each business can support you independently or work alongside the others as your needs evolve.</p>
+          </div>
+        </section>
+
+        <section id="insights" className="mx-auto max-w-[1440px] px-6 py-20 md:px-12 md:py-24 lg:px-16">
+          <div className="flex flex-wrap items-end justify-between gap-6"><div><p className="mb-5 text-sm font-medium text-[#526478]">Lodestone Insights</p><h2 className="max-w-4xl text-[clamp(2.6rem,5vw,5rem)] font-normal leading-[1.03] tracking-[-.05em]">Perspectives from the boardroom.</h2><p className="mt-5 max-w-xl text-lg leading-relaxed text-[#526478]">Practical guidance, original research and lessons from building high-performing private-company boards.</p></div><Link href="/insights" className="group inline-flex min-h-[44px] items-center gap-3 border-b border-[#10243a] pb-2 text-lg font-medium">Explore all {articles.length} articles <Arrow /></Link></div>
+          <div className="mt-12 grid gap-8 lg:grid-cols-[1.15fr_.85fr] lg:gap-12">
+            {["improving-board-performance","advisory-board-readiness","attracting-top-board-members"].map((slug,i)=>{const a=articles.find(p=>p.slug===slug);if(!a)return null;return <Link key={slug} href={"/insights/"+slug} className={`group flex flex-col gap-5 ${i===0?"lg:row-span-2":"border-t border-[#d5dde5] pt-5 sm:grid sm:grid-cols-[.65fr_1fr] lg:pt-0 lg:border-t-0"}`}>
+              <div className={`relative overflow-hidden bg-[#e8eff5] ${i===0?"aspect-[16/10]":"aspect-[4/3]"}`}>{a.image&&<Image src={a.image.src} alt="" fill sizes={i===0?"(min-width:1024px) 50vw,100vw":"(min-width:640px) 25vw,100vw"} className="object-cover transition duration-500 motion-safe:group-hover:scale-[1.035]" />}</div><div><p className="text-sm font-medium text-[#526478]">{a.category} · {a.minutesToRead} min read</p><h3 className={`mt-3 font-normal leading-tight tracking-[-.035em] group-hover:underline ${i===0?"text-3xl md:text-4xl":"text-2xl"}`}>{a.title}</h3>{i===0&&<p className="mt-4 max-w-xl text-base leading-relaxed text-[#526478]">{a.summary}</p>}<p className="mt-4 text-base font-medium">Read article <Arrow /></p></div></Link>})}
           </div>
         </section>
 

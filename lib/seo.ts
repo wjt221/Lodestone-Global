@@ -136,13 +136,18 @@ export function articleJsonLd(a: {
   summary: string;
   date: string;
   slug: string;
+  publishedAt?: string;
+  modifiedAt?: string;
+  image?: {src:string};
 }) {
   return {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     headline: a.title,
     description: a.summary,
-    datePublished: a.date,
+    datePublished: a.publishedAt || a.date,
+    ...(a.modifiedAt ? {dateModified:a.modifiedAt}:{}),
+    ...(a.image ? {image:a.image.src}:{}),
     url: `${SITE_URL}/insights/${a.slug}`,
     mainEntityOfPage: `${SITE_URL}/insights/${a.slug}`,
     author: { "@id": `${SITE_URL}/#organization` },
