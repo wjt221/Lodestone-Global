@@ -40,7 +40,7 @@ export default function Home() {
   return (
     <div className="bg-white font-sans text-[#10243a]">
       <JsonLd data={[organizationJsonLd(), websiteJsonLd()]} />
-      <header className="relative z-20 bg-[#091725] text-white">
+      <header className="relative z-20 border-b border-white/10 bg-[#07192b] text-white">
         <div className="mx-auto flex max-w-[1600px] items-center justify-between gap-8 px-6 py-6 md:px-12 lg:px-16">
           <Link href="/" aria-label="Lodestone Global home" className="shrink-0">
             <Image src="/logo/lodestone-global-horizontal-white.png" alt="Lodestone Global" width={320} height={107} priority className="h-10 w-auto md:h-11" />
@@ -59,81 +59,88 @@ export default function Home() {
         </div>
       </header>
       <main id="main">
-        <section className="relative isolate overflow-hidden bg-[#091725] text-white">
-          <div className="mx-auto grid max-w-[1600px] lg:min-h-[680px] lg:grid-cols-[0.96fr_1.04fr]">
-            <div className="relative z-10 flex flex-col items-start justify-center px-6 pb-16 pt-14 md:px-12 lg:px-16 lg:py-24">
-              <p className="mb-7 text-sm tracking-[0.04em] text-[#bac9d8]">Private company board advisory</p>
-              <h1 className="max-w-[660px] text-[clamp(3rem,5.7vw,6rem)] font-normal leading-[0.99] tracking-[-0.055em]">Build the board your business needs.</h1>
-              <p className="mt-8 max-w-[470px] text-lg leading-relaxed text-[#c1cfdd]">We help private-company owners form effective boards, find exceptional independent directors and make existing boards work better.</p>
-              <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-5">
-                <Link href="#board-advisory" className="group inline-flex items-center gap-4 border-b border-white/70 pb-2 text-sm font-medium">Explore our board services <Arrow /></Link>
-                <Link href="/contact" className="text-sm text-[#c1cfdd] hover:text-white">Discuss your board</Link>
+        <section className="relative isolate overflow-hidden bg-[#07192b] text-white">
+          <div className="absolute inset-0">
+            <BackgroundPhoto src={photos.homeStatementBand.src} alt={photos.homeStatementBand.alt} priority objectPosition="center 44%" imageClassName="motion-safe:animate-[lodestone-image-in_1.4s_ease-out_both]" overlayStyle={{backgroundImage:"linear-gradient(90deg, rgba(5,19,34,.94) 0%, rgba(5,19,34,.79) 39%, rgba(5,19,34,.36) 72%, rgba(5,19,34,.24) 100%), linear-gradient(0deg, rgba(5,19,34,.64), transparent 55%)"}} />
+          </div>
+          <style>{`@keyframes lodestone-image-in { from { transform: scale(1.035); } to { transform: scale(1); } } @keyframes lodestone-copy-in { from { opacity: .15; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } } @media (prefers-reduced-motion:no-preference) { .lg-hero-copy { animation: lodestone-copy-in .75s ease-out both; } .lg-hero-photo img { animation: lodestone-image-in 1.4s ease-out both; } }`}</style>
+          <div className="relative z-10 mx-auto flex min-h-[570px] max-w-[1600px] flex-col justify-end px-6 pb-12 pt-20 md:min-h-[680px] md:px-12 md:pb-16 lg:min-h-[min(740px,82svh)] lg:px-16">
+            <div className="lg-hero-copy">
+              <p className="mb-8 text-sm font-medium text-[#d2e1ed]">Private company board advisory</p>
+              <h1 className="max-w-[1100px] text-[clamp(3.3rem,8.2vw,8.4rem)] font-normal leading-[.95] tracking-[-0.065em]">Build a board<br/>that matters.</h1>
+              <div className="mt-12 flex flex-col justify-between gap-8 border-t border-white/30 pt-7 md:flex-row md:items-end">
+                <p className="max-w-[490px] text-lg leading-relaxed text-[#e0e9f1]">We help owners of private companies find independent directors, build effective boards and get more from the boards they already have.</p>
+                <Link href="#board-advisory" className="group inline-flex w-fit items-center gap-5 bg-white px-6 py-4 text-sm font-medium text-[#10243a] hover:bg-[#dce8f2]">Explore board services <Arrow /></Link>
               </div>
             </div>
-            <div className="relative min-h-[320px] overflow-hidden md:min-h-[460px] lg:min-h-full">
-              <BackgroundPhoto src={photos.hero.src} alt={photos.hero.alt} priority sizes="(min-width: 1024px) 52vw, 100vw" objectPosition="center right" overlayStyle={{backgroundImage:"linear-gradient(90deg, rgba(9,23,37,.22), rgba(9,23,37,.02))"}} />
-            </div>
           </div>
         </section>
-
-        <section id="board-advisory" className="mx-auto max-w-[1440px] px-6 py-20 md:px-12 md:py-28 lg:px-16 lg:py-36">
-          <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-24">
-            <div>
-              <p className="mb-5 text-sm font-medium text-[#526478]">Board advisory</p>
-              <h2 className="max-w-lg text-[clamp(2.3rem,4.2vw,4.3rem)] font-normal leading-[1.04] tracking-[-0.045em]">A board should make the business better.</h2>
-              <p className="mt-6 max-w-md text-base leading-relaxed text-[#526478]">From the first independent director to a fully functioning board, we work with owners and leadership teams at each stage of the process.</p>
-            </div>
-            <ul className="border-t border-[#d5dde5]">
-              {services.map(s => <li key={s.title} className="border-b border-[#d5dde5]">
-                <Link href={s.href} className="group flex items-start justify-between gap-6 py-6 md:py-7">
-                  <div><h3 className="text-xl font-medium tracking-tight md:text-2xl">{s.title}</h3><p className="mt-2 max-w-lg text-sm leading-relaxed text-[#526478]">{s.desc}</p></div>
-                  <span className="mt-1 text-xl"><Arrow /></span>
-                </Link>
-              </li>)}
-            </ul>
+        <div className="border-b border-[#dce3eb] bg-[#f5f8fa]">
+          <div className="mx-auto flex max-w-[1440px] flex-wrap items-center justify-between gap-3 px-6 py-4 md:px-12 lg:px-16">
+            <p className="text-sm text-[#10243a]"><span className="mr-3 font-medium text-[#42617a]">{latestEdition.year} research</span>Private Company Board Compensation Survey</p>
+            <Link href="#research" className="group inline-flex items-center gap-3 text-sm font-medium text-[#10243a]">Discover the report <Arrow /></Link>
           </div>
+        </div>
+
+        <section id="board-advisory" className="mx-auto max-w-[1440px] px-6 py-20 md:px-12 md:py-28 lg:px-16">
+          <div className="mb-14 grid items-end gap-6 lg:grid-cols-[1.2fr_0.8fr] lg:gap-24">
+            <div>
+              <p className="mb-5 text-sm font-medium text-[#526478]">Our expertise</p>
+              <h2 className="max-w-3xl text-[clamp(2.4rem,5.4vw,5.2rem)] font-normal leading-[1.02] tracking-[-0.055em]">What do you need<br className="hidden lg:block"/> from your board?</h2>
+            </div>
+            <p className="max-w-md text-base leading-relaxed text-[#526478]">The right answer depends on your business, its strategy and where you want to take it. Start with the problem you need to solve.</p>
+          </div>
+          <ul className="grid gap-x-12 md:grid-cols-2">
+            {services.map((s,i) => <li key={s.title} className="border-t border-[#d5dde5]">
+              <Link href={s.href} className="group flex min-h-[145px] items-start justify-between gap-4 py-7 transition-colors hover:text-[#315f85]">
+                <span className="pt-1 text-xs tabular-nums text-[#526478]">0{i+1}</span>
+                <div className="flex-1"><h3 className="text-2xl font-normal tracking-[-0.035em] md:text-3xl">{s.title}</h3><p className="mt-3 max-w-[360px] text-sm leading-relaxed text-[#526478]">{s.desc}</p></div>
+                <span className="text-2xl"><Arrow /></span>
+              </Link>
+            </li>)}
+          </ul>
         </section>
 
-        <section id="research" className="bg-[#e9eef3]">
-          <div className="mx-auto grid max-w-[1440px] items-center gap-12 px-6 py-20 md:px-12 md:py-24 lg:grid-cols-[1.05fr_0.95fr] lg:gap-24 lg:px-16">
+        <section id="research" className="bg-[#e8eff5]">
+          <div className="mx-auto grid max-w-[1440px] items-center gap-10 px-6 py-20 md:px-12 md:py-24 lg:grid-cols-[.9fr_1.1fr] lg:gap-20 lg:px-16">
             <div>
-              <p className="mb-5 text-sm font-medium text-[#526478]">Proprietary research · {latestEdition.year}</p>
-              <h2 className="max-w-xl text-[clamp(2.4rem,4vw,4rem)] font-normal leading-[1.05] tracking-[-0.045em]">What should you pay your board?</h2>
-              <p className="mt-6 max-w-lg text-base leading-relaxed text-[#526478]">The {latestEdition.editionOrdinal} annual Private Company Board Compensation Survey benchmarks director pay by company revenue, industry, size and ownership structure.</p>
-              <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-4">
+              <p className="mb-5 text-sm font-medium text-[#526478]">Lodestone research / {latestEdition.editionOrdinal} annual edition</p>
+              <h2 className="max-w-xl text-[clamp(2.6rem,4.7vw,4.6rem)] font-normal leading-[1.03] tracking-[-0.05em]">What should you pay your board?</h2>
+              <p className="mt-6 max-w-md text-base leading-relaxed text-[#526478]">Benchmark director compensation against private companies by revenue, industry, size and ownership structure.</p>
+              <div className="mt-8 flex flex-wrap items-center gap-x-7 gap-y-4">
+                <a href={latestEdition.purchaseUrl} className="group inline-flex items-center gap-3 bg-[#10243a] px-6 py-4 text-sm font-medium text-white">Purchase the report <Arrow /></a>
                 <Link href="/research" className="group inline-flex items-center gap-3 border-b border-[#10243a] pb-2 text-sm font-medium">Explore the research <Arrow /></Link>
-                <a href={latestEdition.purchaseUrl} className="group inline-flex items-center gap-3 bg-[#10243a] px-6 py-3.5 text-sm font-medium text-white">Purchase the report <Arrow /></a>
               </div>
             </div>
-            <div className="relative mx-auto w-full max-w-[540px]">
-              <Image src={latestEdition.coverImage.url} alt={latestEdition.year + " Private Company Board Compensation Survey cover"} width={latestEdition.coverImage.width} height={latestEdition.coverImage.height} sizes="(min-width: 1024px) 40vw, 85vw" className="h-auto w-full object-contain" />
+            <div className="relative isolate flex min-h-[260px] items-center justify-center overflow-hidden bg-[#0e263d] p-8 md:min-h-[410px] md:p-12">
+              <span aria-hidden="true" className="pointer-events-none absolute -right-8 -top-10 select-none text-[clamp(8rem,19vw,19rem)] font-normal leading-none tracking-[-.1em] text-white/10">{latestEdition.year}</span>
+              <Image src={latestEdition.coverImage.url} alt={latestEdition.year + " Private Company Board Compensation Survey cover"} width={latestEdition.coverImage.width} height={latestEdition.coverImage.height} sizes="(min-width: 1024px) 40vw, 85vw" className="relative z-10 h-auto w-full max-w-[540px] object-contain shadow-2xl" />
             </div>
           </div>
         </section>
 
-        <section className="mx-auto grid max-w-[1440px] items-center gap-10 px-6 py-20 md:px-12 md:py-28 lg:grid-cols-[1fr_1fr] lg:gap-20 lg:px-16">
-          <div className="relative min-h-[290px] overflow-hidden bg-[#091725] md:min-h-[420px]">
-            <BackgroundPhoto src={photos.govern.src} alt={photos.govern.alt} sizes="(min-width: 1024px) 45vw, 100vw" overlayStyle={{backgroundColor:"rgba(9,23,37,.03)"}} />
+        <section className="mx-auto max-w-[1440px] px-6 py-20 md:px-12 md:py-28 lg:px-16">
+          <div className="flex flex-wrap items-end justify-between gap-6 border-b border-[#d5dde5] pb-8">
+            <div><p className="mb-5 text-sm font-medium text-[#526478]">Selected work</p><h2 className="text-[clamp(2.4rem,4.8vw,4.8rem)] font-normal leading-[1.04] tracking-[-0.05em]">In the boardroom.</h2></div>
+            <Link href="/case-studies" className="group inline-flex items-center gap-3 border-b border-[#10243a] pb-2 text-sm font-medium">All case studies <Arrow /></Link>
           </div>
-          <div>
-            <p className="mb-5 text-sm font-medium text-[#526478]">Our work</p>
-            <h2 className="text-[clamp(2.2rem,3.6vw,3.6rem)] font-normal leading-[1.07] tracking-[-0.045em]">Experience in the boardroom.</h2>
-            <p className="mt-6 max-w-md text-base leading-relaxed text-[#526478]">See how we have worked with privately held and family-owned businesses to build governance around their priorities.</p>
-            <Link href="/case-studies" className="group mt-8 inline-flex items-center gap-3 border-b border-[#10243a] pb-2 text-sm font-medium">Explore our case studies <Arrow /></Link>
+          <div className="grid gap-8 pt-10 md:grid-cols-[.72fr_1.28fr] lg:gap-24">
+            <div><p className="text-sm text-[#526478]">Family-owned enterprise</p><h3 className="mt-3 text-3xl font-normal tracking-tight">Diesco Group</h3></div>
+            <div><p className="max-w-2xl text-[clamp(1.5rem,2.7vw,2.65rem)] font-normal leading-[1.25] tracking-[-0.035em]">A board organized around the company’s strategy, recognized as Private Company Advisory Board of the Year in 2017.</p><Link href="/case-studies" className="group mt-7 inline-flex items-center gap-3 border-b border-[#10243a] pb-2 text-sm font-medium">See how we work <Arrow /></Link></div>
           </div>
         </section>
 
-        <section id="ecosystem" className="bg-[#091725] text-white">
-          <div className="mx-auto grid max-w-[1440px] gap-14 px-6 py-20 md:px-12 md:py-28 lg:grid-cols-[1fr_1.1fr] lg:gap-24 lg:px-16">
-            <div>
-              <p className="mb-5 text-sm text-[#a8bdcf]">The Lodestone ecosystem</p>
-              <h2 className="max-w-lg text-[clamp(2.5rem,4.3vw,4.2rem)] font-normal leading-[1.04] tracking-[-0.045em]">Beyond the boardroom.</h2>
-              <p className="mt-6 max-w-md text-base leading-relaxed text-[#c1cfdd]">Four businesses with distinct expertise in governance, operating performance, investing and family wealth. Engage the team you need, when you need it.</p>
+        <section id="ecosystem" className="relative isolate overflow-hidden bg-[#07192b] text-white">
+          <Image src="/logo/lodestone-global-icon.png" width={700} height={700} alt="" aria-hidden="true" className="pointer-events-none absolute -bottom-24 -right-32 -z-10 w-[650px] opacity-[0.07] brightness-0 invert" />
+          <div className="mx-auto max-w-[1440px] px-6 py-20 md:px-12 md:py-28 lg:px-16">
+            <div className="mb-14 grid items-end gap-6 lg:grid-cols-[1.1fr_.9fr] lg:gap-24">
+              <div><p className="mb-5 text-sm text-[#a8bdcf]">The Lodestone ecosystem</p><h2 className="max-w-2xl text-[clamp(2.6rem,5.5vw,5.5rem)] font-normal leading-[1.02] tracking-[-0.05em]">Beyond the boardroom.</h2></div>
+              <p className="max-w-md text-base leading-relaxed text-[#c1cfdd]">Our businesses work with owners on the board, the operating company, their investments and their family's wealth. Each has its own expertise.</p>
             </div>
-            <ul className="border-t border-white/20">
-              {ecosystem.map(b => <li key={b.name} className="border-b border-white/20">
-                <Link href={b.href} className="group flex items-center justify-between gap-5 py-6">
-                  <span><span className="block text-lg font-medium md:text-xl">{b.name}</span><span className="mt-1 block text-sm text-[#a8bdcf]">{b.role}</span></span><Arrow />
+            <ul className="grid gap-x-10 sm:grid-cols-2 lg:grid-cols-4">
+              {ecosystem.map(b => <li key={b.name} className="border-t border-white/30">
+                <Link href={b.href} className="group flex min-h-[130px] flex-col items-start gap-3 py-6 hover:text-[#b8d8ef]">
+                  <span className="text-lg font-medium md:text-xl">{b.name}</span><span className="text-sm text-[#a8bdcf]">{b.role}</span><span className="mt-auto"><Arrow /></span>
                 </Link>
               </li>)}
             </ul>
