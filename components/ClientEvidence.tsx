@@ -12,6 +12,18 @@ const clients: [string, string | null][] = [
     "https://imageproxy.wolt.com/assets/69149c082d5740aaaa59a1d9"
   ],
   [
+    "Indiana Farmers Insurance",
+    "https://thorneinsuranceagency.com/wp-content/uploads/indiana-farmers-insurance-logo-268.webp"
+  ],
+  [
+    "Serra Automotive",
+    null
+  ],
+  [
+    "Indium Corporation",
+    "https://eepower.com/uploads/thumbnails/Indium_Corporation_Logo.jpg"
+  ],
+  [
     "Innovative Construction Solutions",
     "https://gemini-images.s3.amazonaws.com/logo/12049689.png"
   ],
