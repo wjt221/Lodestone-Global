@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 // Client names: live Lodestone homepage. Logo artwork: visually identified marks from company, university, supplier or press sources. Do not substitute client photographs. Preview only; obtain approved artwork, permission, and local copies before production. Null means no verified logo artwork yet.
 const clients: [string, string | null][] = [
@@ -140,17 +140,63 @@ export function ClientLogoBar(){
  </section>;
 }
 
-const quotes=[
- {quote:"Lodestone Global has been absolutely instrumental in the process of creating an Advisory Board for my family business.",name:"Jeff Tapick",role:"President & CEO, Martin Preferred Foods (at time of testimonial)"},
- {quote:"The board has driven strategy, demanded accountability, and mentored management team members as they grew into more complex and demanding roles.",name:"Diesco Group",role:"Published client case study"},
+// Client statements transcribed verbatim from the owner's supplied screenshots of the original website.
+// Original roles are retained as shown. Google review excerpts are separately identified;
+// reviewer identities were not available in the retrieved public listing.
+const quotes = [
+ {quote:"Lodestone Global has been absolutely instrumental in the process of creating an Advisory Board for my family business.",name:"Jeff Tapick",role:"President & CEO, Martin Preferred Foods",source:"Client testimonial"},
+ {quote:"I want to thank you and your team for an incredible job at taking the lead in board design, development & my first few meetings. There was a lot of work to be done and you forced me to think about things that I otherwise would not have. The result has been outstanding!",name:"Donn Lux",role:"President & CEO, Luxco",source:"Client testimonial"},
+ {quote:"I've been part of two boards you put together, and in both cases, we had significant impact on the future performance of the company. Your team does a great job!",name:"Ken Munkacy",role:"Senior Managing Director, Kingbird Properties",source:"Client testimonial"},
+ {quote:"Thanks for taking the time to help us think through the future of Zeman and how it relates to the board. Your guidance on strategic issues was invaluable.",name:"Dee Pizer",role:"President, Zeman Homes",source:"Client testimonial"},
+ {quote:"You helped us clarify some key issues in our family business in a way that allowed all of us to show up at Thanksgiving.",name:"Jim Adler",role:"CEO, Myron",source:"Client testimonial"},
+ {quote:"Very holistic, thorough, and personal approach to assembling Advisory Boards.",name:"Google reviewer",role:"Public review excerpt",source:"Google review"},
+ {quote:"The most professional Board Advisory institution I have ever interacted with!",name:"Google reviewer",role:"Public review excerpt",source:"Google review"},
 ];
 
 export function ClientTestimonials(){
  const [active,setActive]=useState(0);
+ const [paused,setPaused]=useState(false);
+ const [hover,setHover]=useState(false);
+ const [focus,setFocus]=useState(false);
+ const [reduced,setReduced]=useState(false);
+ const [visible,setVisible]=useState(false);
+ const sectionRef=useRef<HTMLElement>(null);
  const q=quotes[active];
- return <section aria-label="Client perspectives" className="bg-[#07192b] text-white">
- <div className="mx-auto grid max-w-[1440px] gap-10 px-6 py-16 md:px-12 md:py-24 lg:grid-cols-[.35fr_1fr] lg:gap-20 lg:px-16">
- <div className="flex flex-col items-start justify-between gap-8"><p className="text-base text-[#b7cadb]">In our clients' words</p><div className="flex items-center gap-3"><button type="button" aria-label="Previous testimonial" onClick={()=>setActive((active+quotes.length-1)%quotes.length)} className="grid h-12 w-12 place-items-center border border-white/30 text-xl hover:bg-white/10">←</button><button type="button" aria-label="Next testimonial" onClick={()=>setActive((active+1)%quotes.length)} className="grid h-12 w-12 place-items-center border border-white/30 text-xl hover:bg-white/10">→</button><span className="text-sm tabular-nums text-[#b7cadb]">{active+1} / {quotes.length}</span></div></div>
- <figure aria-live="polite" className="min-h-[240px]"><blockquote className="text-[clamp(1.9rem,4vw,4rem)] font-normal leading-[1.18] tracking-[-.045em]">“{q.quote}”</blockquote><figcaption className="mt-8 text-base"><span className="font-medium">{q.name}</span><span className="mt-1 block text-[#b7cadb]">{q.role}</span></figcaption></figure>
+ useEffect(()=>{
+   const media=window.matchMedia("(prefers-reduced-motion: reduce)");
+   const sync=()=>setReduced(media.matches);
+   sync();media.addEventListener("change",sync);
+   return ()=>media.removeEventListener("change",sync);
+ },[]);
+ useEffect(()=>{
+   const section=sectionRef.current;
+   if(!section)return;
+   if(!("IntersectionObserver" in window)){setVisible(true);return;}
+   const observer=new IntersectionObserver(entries=>setVisible(entries[0].isIntersecting),{threshold:.25});
+   observer.observe(section);
+   return ()=>observer.disconnect();
+ },[]);
+ useEffect(()=>{
+   if(paused||hover||focus||reduced||!visible)return;
+   const duration=Math.max(9500,Math.min(24000,2500+q.quote.split(/\s+/).length*350));
+   const timer=window.setTimeout(()=>setActive(i=>(i+1)%quotes.length),duration);
+   return ()=>window.clearTimeout(timer);
+ },[active,paused,hover,focus,reduced,visible,q.quote]);
+ const manual=(i:number)=>{setPaused(true);setActive((i+quotes.length)%quotes.length);};
+ return <section id="testimonials" ref={sectionRef} aria-label="Client testimonials" aria-roledescription="carousel" onMouseEnter={()=>setHover(true)} onMouseLeave={()=>setHover(false)} onFocusCapture={()=>setFocus(true)} onBlurCapture={e=>{if(!e.currentTarget.contains(e.relatedTarget))setFocus(false);}} className="relative isolate overflow-hidden bg-gradient-to-br from-[#07192b] via-[#10243a] to-[#25475f] text-white">
+ <style>{`@keyframes lg-quote-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}} @media(prefers-reduced-motion:no-preference){.lg-quote-in{animation:lg-quote-in .45s ease-out both}}`}</style>
+ <div className="mx-auto max-w-[1440px] px-6 py-16 md:px-12 md:py-24 lg:px-16">
+ <div className="mb-10 flex flex-wrap items-center justify-between gap-4"><p className="text-base text-[#c1cfdd]">In our clients' words</p><a href="https://www.google.com/maps/search/?api=1&query=Lodestone%20Global&query_place_id=ChIJo9roPpKZw4kRfo36vpyxb9s" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 flex-wrap items-center gap-2 text-sm text-white hover:underline"><span aria-hidden="true" className="tracking-[.16em]">★★★★★</span><span>5.0 · 7 Google reviews</span><span aria-hidden="true">↗</span></a></div>
+ <div className="grid items-start gap-5 lg:grid-cols-[.18fr_1fr] lg:gap-12"><span aria-hidden="true" className="hidden select-none text-[clamp(7rem,14vw,13rem)] leading-[.85] text-[#8facbf]/35 lg:block">“</span>
+ <div className="grid min-h-[330px] md:min-h-[330px] lg:min-h-[365px]">
+ {quotes.map((item,i)=><figure key={i} aria-hidden={i!==active} className={`col-start-1 row-start-1 flex flex-col justify-center ${i===active?"lg-quote-in":"invisible pointer-events-none"}`}>
+ <blockquote className="max-w-5xl text-[clamp(1.65rem,3vw,3rem)] font-normal leading-[1.25] tracking-[-.035em]">“{item.quote}”</blockquote>
+ <figcaption className="mt-8"><p className="text-lg font-medium">{item.name}</p><p className="mt-1 text-base leading-relaxed text-[#c1cfdd]">{item.role}</p><p className="mt-2 text-xs text-[#b7cadb]">{item.source==="Client testimonial"?"Title at time of testimonial":item.source}</p></figcaption>
+ </figure>)}
+ </div></div>
+ <div className="mt-8 flex flex-wrap items-center justify-between gap-4 border-t border-white/20 pt-6">
+ <div className="flex flex-wrap items-center gap-2" role="group" aria-label="Choose a testimonial">{quotes.map((item,i)=><button key={i} type="button" aria-label={"Show testimonial "+(i+1)+" by "+item.name} aria-pressed={i===active} onClick={()=>manual(i)} className="grid h-11 w-11 place-items-center rounded-full hover:bg-white/10"><span className={`block h-2.5 w-2.5 rounded-full ${i===active?"bg-white":"bg-[#8299ad]"}`}/></button>)}</div>
+ <div className="flex items-center gap-2"><span className="mr-2 text-sm tabular-nums text-[#b7cadb]">{active+1} / {quotes.length}</span>{!reduced&&<button type="button" onClick={()=>setPaused(p=>!p)} aria-label={paused?"Resume testimonials":"Pause testimonials"} className="grid h-11 w-11 place-items-center border border-white/30 text-lg hover:bg-white/10">{paused?"▶":"Ⅱ"}</button>}<button type="button" onClick={()=>manual(active-1)} aria-label="Previous testimonial" className="grid h-11 w-11 place-items-center border border-white/30 text-xl hover:bg-white/10">←</button><button type="button" onClick={()=>manual(active+1)} aria-label="Next testimonial" className="grid h-11 w-11 place-items-center border border-white/30 text-xl hover:bg-white/10">→</button></div>
+ </div>
  </div></section>;
 }
