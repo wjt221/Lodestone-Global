@@ -27,11 +27,10 @@ export default function ContactPage() {
             <div className="flex flex-col gap-6 py-20 md:py-24">
               
               <h1 className="max-w-3xl font-serif text-display-1 font-semibold text-ivory">
-                Contact Lodestone Global
+                Contact Lodestone
               </h1>
               <p className="max-w-2xl font-sans text-lg leading-relaxed text-ivory/75">
-                Whether the immediate need is governance, operating support, capital allocation, or
-                family coordination, the first step is a confidential conversation.
+                Tell us what you would like to discuss. Choose the Lodestone business that best fits your needs, or select the ecosystem if you are not sure.
               </p>
             </div>
           </div>
