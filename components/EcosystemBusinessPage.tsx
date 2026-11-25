@@ -12,7 +12,7 @@ export function practiceMetadata(id:PracticeId):Metadata {
 }
 export function EcosystemBusinessPage({id}:{id:PracticeId}){
  const p=practices[id],photo=photos[p.photo];
- return <div className="bg-white text-[#10243a] font-sans"><Header/><main id="main" className="pt-[4.25rem]">
+ return <div className="bg-white text-[#10243a] font-sans"><Header fixed/><main id="main" className="pt-[4.25rem]">
  <section className="relative isolate overflow-hidden bg-[#07192b] text-white">
  <BackgroundPhoto src={photo.src} alt={photo.alt} priority overlayStyle={{backgroundImage:"linear-gradient(90deg, rgba(7,25,43,.96) 0%, rgba(7,25,43,.84) 48%, rgba(7,25,43,.36) 100%)"}}/>
  <div className="relative z-10 mx-auto flex min-h-[520px] max-w-[1440px] flex-col justify-end px-6 py-16 md:px-12 md:py-24 lg:px-16">
@@ -27,6 +27,7 @@ export function EcosystemBusinessPage({id}:{id:PracticeId}){
  <h2 className="text-[clamp(2.1rem,4vw,4rem)] font-normal leading-[1.08] tracking-[-.045em]">{p.problemTitle}</h2><p className="max-w-3xl text-xl leading-relaxed text-[#526478]">{p.problem}</p>
  </section>
  {p.sections.map((s,index)=><section key={s.id} id={s.id} className={"scroll-mt-24 "+(index%2===0?"bg-[#eaf1f5]":"bg-white")}>
+ {(s.id==="operating-partners"||s.id==="family-office")&&<span id="capabilities" className="block scroll-mt-24"/>}{(s.id==="approach"||s.id==="how-we-work")&&<span id="engagement" className="block scroll-mt-24"/>}
  <div className="mx-auto max-w-[1440px] px-6 py-14 md:px-12 md:py-20 lg:px-16">
  <div className="grid gap-6 lg:grid-cols-[.9fr_1.1fr] lg:gap-20"><h2 className="text-[clamp(2rem,3.8vw,3.8rem)] leading-[1.08] tracking-[-.045em]">{s.title}</h2><p className="max-w-3xl text-lg leading-relaxed text-[#526478]">{s.intro}</p></div>
  <div className="mt-10 grid gap-x-12 gap-y-8 md:grid-cols-2">{s.items.map(item=><article key={item.title} className="border-t border-[#a9bac8] pt-5"><h3 className="text-2xl font-medium leading-tight tracking-tight">{item.title}</h3><p className="mt-3 max-w-2xl text-base leading-relaxed text-[#526478]">{item.body}</p>{id==="capital"&&s.id==="announcements"&&<Link href="/insights/lodestone-capital-blulabs-investment" className="mt-4 inline-block font-medium underline underline-offset-4">Read the announcement</Link>}</article>)}</div>
