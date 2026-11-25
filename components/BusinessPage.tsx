@@ -65,10 +65,10 @@ export function BusinessPage({ id }: { id: StageId }) {
       <main id="main">
         {/* MASTHEAD */}
         <section className="relative overflow-hidden pt-[4.25rem] text-ivory">
-          <BackgroundPhoto src={photo.src} alt={photo.alt} priority overlayClassName="bg-navy/85" />
-          <Container className="relative z-10 flex flex-col gap-6 py-24 md:py-28">
+          <BackgroundPhoto src={photo.src} alt={photo.alt} priority overlayStyle={{ backgroundImage: "linear-gradient(90deg, rgba(7,25,43,.96) 0%, rgba(7,25,43,.79) 50%, rgba(7,25,43,.45) 100%)" }} />
+          <Container className="relative z-10 flex min-h-[420px] flex-col justify-end gap-6 py-20 md:min-h-[510px] md:py-24">
             <Kicker>{detail.eyebrow}</Kicker>
-            <h1 className="max-w-3xl font-serif text-display-1 font-semibold text-ivory">
+            <h1 className="max-w-4xl font-sans text-display-1 font-normal text-ivory">
               {detail.heading}
             </h1>
             <p className="max-w-2xl font-sans text-lg leading-relaxed text-ivory/80">{detail.intro}</p>
@@ -107,7 +107,7 @@ export function BusinessPage({ id }: { id: StageId }) {
         </Section>
 
         {/* CAPABILITIES */}
-        <Section tone="parchment">
+        <Section tone="parchment" id="capabilities">
           <div className="flex flex-col gap-12">
             <h2 className="max-w-2xl font-serif text-display-2 font-semibold text-navy">
               What we do
