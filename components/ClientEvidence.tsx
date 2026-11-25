@@ -65,7 +65,7 @@ const clients: [string, string | null][] = [
   ],
   [
     "Symega Food Ingredients",
-    null
+    "https://symega.com/wp-content/uploads/2025/09/Symega-Possibilities-Unlimited-scaled.png"
   ],
   [
     "Whirlwind Technologies",
@@ -104,7 +104,7 @@ export function ClientLogoBar(){
  <ul className="lg-client-original flex shrink-0">{clients.map(([name,file])=><ClientLogo key={name} name={name} file={file}/>)}</ul>
  <ul aria-hidden="true" className="lg-client-copy flex shrink-0">{clients.map(([name,file])=><ClientLogo key={name} name={name} file={file} duplicate/>)}</ul>
  </div></div>
- <button type="button" onClick={()=>setPaused(x=>!x)} aria-label={paused?"Resume client logo animation":"Pause client logo animation"} className="lg-client-pause absolute bottom-1 right-3 flex h-8 min-w-8 items-center justify-center rounded bg-white/95 px-2 text-xs text-[#526478] opacity-0 shadow-sm focus:opacity-100 hover:opacity-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#10243a]">{paused?"Play":"Pause"}</button>
+ <button type="button" onClick={()=>setPaused(x=>!x)} aria-label={paused?"Resume client logo animation":"Pause client logo animation"} className="lg-client-pause absolute bottom-1 right-3 flex h-8 min-w-8 items-center justify-center rounded bg-white/95 px-2 text-xs text-[#526478] shadow-sm opacity-70 hover:opacity-100 focus:opacity-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#10243a]"><span aria-hidden="true">{paused?"▶":"Ⅱ"}</span></button>
  </section>;
 }
 
