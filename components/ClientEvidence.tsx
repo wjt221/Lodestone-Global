@@ -149,8 +149,6 @@ const quotes = [
  {quote:"I've been part of two boards you put together, and in both cases, we had significant impact on the future performance of the company. Your team does a great job!",name:"Ken Munkacy",role:"Senior Managing Director, Kingbird Properties",source:"Client testimonial"},
  {quote:"Thanks for taking the time to help us think through the future of Zeman and how it relates to the board. Your guidance on strategic issues was invaluable.",name:"Dee Pizer",role:"President, Zeman Homes",source:"Client testimonial"},
  {quote:"You helped us clarify some key issues in our family business in a way that allowed all of us to show up at Thanksgiving.",name:"Jim Adler",role:"CEO, Myron",source:"Client testimonial"},
- {quote:"Very holistic, thorough, and personal approach to assembling Advisory Boards.",name:"Google reviewer",role:"Public review excerpt",source:"Google review"},
- {quote:"The most professional Board Advisory institution I have ever interacted with!",name:"Google reviewer",role:"Public review excerpt",source:"Google review"},
 ];
 
 export function ClientTestimonials(){
@@ -177,26 +175,23 @@ export function ClientTestimonials(){
    return ()=>observer.disconnect();
  },[]);
  useEffect(()=>{
-   if(paused||hover||focus||reduced||!visible)return;
-   const duration=Math.max(9500,Math.min(24000,2500+q.quote.split(/\s+/).length*350));
+   if(paused||reduced||!visible)return;
+   const duration=Math.max(7000,Math.min(18000,1800+q.quote.split(/\s+/).length*300));
    const timer=window.setTimeout(()=>setActive(i=>(i+1)%quotes.length),duration);
    return ()=>window.clearTimeout(timer);
  },[active,paused,hover,focus,reduced,visible,q.quote]);
  const manual=(i:number)=>{setPaused(true);setActive((i+quotes.length)%quotes.length);};
  return <section id="testimonials" ref={sectionRef} aria-label="Client testimonials" aria-roledescription="carousel" onMouseEnter={()=>setHover(true)} onMouseLeave={()=>setHover(false)} onFocusCapture={()=>setFocus(true)} onBlurCapture={e=>{if(!e.currentTarget.contains(e.relatedTarget))setFocus(false);}} className="relative isolate overflow-hidden bg-gradient-to-br from-[#07192b] via-[#10243a] to-[#25475f] text-white">
  <style>{`@keyframes lg-quote-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}} @media(prefers-reduced-motion:no-preference){.lg-quote-in{animation:lg-quote-in .45s ease-out both}}`}</style>
- <div className="mx-auto max-w-[1440px] px-6 py-16 md:px-12 md:py-24 lg:px-16">
- <div className="mb-10 flex flex-wrap items-center justify-between gap-4"><p className="text-base text-[#c1cfdd]">In our clients' words</p><a href="https://www.google.com/maps/search/?api=1&query=Lodestone%20Global&query_place_id=ChIJo9roPpKZw4kRfo36vpyxb9s" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 flex-wrap items-center gap-2 text-sm text-white hover:underline"><span aria-hidden="true" className="tracking-[.16em]">★★★★★</span><span>5.0 · 7 Google reviews</span><span aria-hidden="true">↗</span></a></div>
- <div className="grid items-start gap-5 lg:grid-cols-[.18fr_1fr] lg:gap-12"><span aria-hidden="true" className="hidden select-none text-[clamp(7rem,14vw,13rem)] leading-[.85] text-[#8facbf]/35 lg:block">“</span>
- <div className="grid min-h-[330px] md:min-h-[330px] lg:min-h-[365px]">
+ <div className="mx-auto max-w-5xl px-8 py-10 text-center md:px-14 md:py-12">
+ <div className="grid items-center">
  {quotes.map((item,i)=><figure key={i} aria-hidden={i!==active} className={`col-start-1 row-start-1 flex flex-col justify-center ${i===active?"lg-quote-in":"invisible pointer-events-none"}`}>
- <blockquote className="max-w-5xl text-[clamp(1.65rem,3vw,3rem)] font-normal leading-[1.25] tracking-[-.035em]">“{item.quote}”</blockquote>
- <figcaption className="mt-8"><p className="text-lg font-medium">{item.name}</p><p className="mt-1 text-base leading-relaxed text-[#c1cfdd]">{item.role}</p><p className="mt-2 text-xs text-[#b7cadb]">{item.source==="Client testimonial"?"Title at time of testimonial":item.source}</p></figcaption>
+ <blockquote className="mx-auto max-w-4xl text-[clamp(1.2rem,2.1vw,1.85rem)] font-normal leading-[1.45] tracking-[-.02em]">“{item.quote}”</blockquote>
+ <figcaption className="mt-5"><p className="text-base font-medium">{item.name}</p><p className="mt-1 text-base leading-relaxed text-[#c1cfdd]">{item.role}</p></figcaption>
  </figure>)}
- </div></div>
- <div className="mt-8 flex flex-wrap items-center justify-between gap-4 border-t border-white/20 pt-6">
- <div className="flex flex-wrap items-center gap-2" role="group" aria-label="Choose a testimonial">{quotes.map((item,i)=><button key={i} type="button" aria-label={"Show testimonial "+(i+1)+" by "+item.name} aria-pressed={i===active} onClick={()=>manual(i)} className="grid h-11 w-11 place-items-center rounded-full hover:bg-white/10"><span className={`block h-2.5 w-2.5 rounded-full ${i===active?"bg-white":"bg-[#8299ad]"}`}/></button>)}</div>
- <div className="flex items-center gap-2"><span className="mr-2 text-sm tabular-nums text-[#b7cadb]">{active+1} / {quotes.length}</span>{!reduced&&<button type="button" onClick={()=>setPaused(p=>!p)} aria-label={paused?"Resume testimonials":"Pause testimonials"} className="grid h-11 w-11 place-items-center border border-white/30 text-lg hover:bg-white/10">{paused?"▶":"Ⅱ"}</button>}<button type="button" onClick={()=>manual(active-1)} aria-label="Previous testimonial" className="grid h-11 w-11 place-items-center border border-white/30 text-xl hover:bg-white/10">←</button><button type="button" onClick={()=>manual(active+1)} aria-label="Next testimonial" className="grid h-11 w-11 place-items-center border border-white/30 text-xl hover:bg-white/10">→</button></div>
+ </div>
+ <div className="mt-3 flex justify-center">
+ <div className="flex items-center gap-2">{!reduced&&<button type="button" onClick={()=>setPaused(p=>!p)} aria-label={paused?"Resume testimonials":"Pause testimonials"} className="grid h-8 w-8 place-items-center text-sm text-[#a8bdcf] hover:text-white focus-visible:outline focus-visible:outline-white">{paused?"▶":"Ⅱ"}</button>}{reduced&&<button type="button" onClick={()=>setActive(i=>(i+1)%quotes.length)} className="text-sm underline">Next testimonial</button>}</div>
  </div>
  </div></section>;
 }
