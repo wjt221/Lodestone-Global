@@ -7,6 +7,7 @@ const routes = [
   "",
   "/about",
   "/governance-advisory",
+  "/build",
   "/e3-scale-network",
   "/lodestone-capital",
   "/family-advisors",

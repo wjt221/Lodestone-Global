@@ -4,7 +4,7 @@ import { CONTACT } from "@/lib/content";
 import { BOARD_TAGLINE } from "@/lib/site";
 
 const groups = [
-  {title:"Board advisory",links:[{label:"Board services",href:"/governance-advisory"},{label:"Our process",href:"/governance-advisory#process"},{label:"Client case studies",href:"/case-studies"},{label:"Meet our team",href:"/about"}]},
+  {title:"Board advisory",links:[{label:"Board services",href:"/governance-advisory"},{label:"Build your board",href:"/build"},{label:"Our process",href:"/build#process"},{label:"Client case studies",href:"/case-studies"},{label:"Meet our team",href:"/about"}]},
   {title:"Research & insights",links:[{label:"Compensation research",href:"/research"},{label:"Purchase reports",href:"/research#editions"},{label:"Insights",href:"/insights"}]},
   {title:"Our ecosystem",links:[{label:"Lodestone Global",href:"/"},{label:"E3 Scale Network",href:"https://e3-ii1imy8q0-wjt221s-projects.vercel.app"},{label:"Lodestone Family Advisors",href:"https://lfa-xi.vercel.app"},{label:"Lodestone Capital",href:"/lodestone-capital"}]},
 ];

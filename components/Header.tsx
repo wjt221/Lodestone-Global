@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 
 const links = [
   { label: "Board advisory", href: "/governance-advisory" },
-  { label: "Our process", href: "/governance-advisory#process" },
+  { label: "Our process", href: "/build#process" },
   { label: "Research", href: "/research" },
   { label: "Our work", href: "/case-studies" },
   { label: "Insights", href: "/insights" },

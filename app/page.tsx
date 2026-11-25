@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 };
 
 const services = [
-  { title: "Build your board", desc: "Define the right strategy, design the board around it and recruit experienced independent directors who can help deliver it.", href: "/governance-advisory#board-formation", number: "01", category: "Board formation" },
+  { title: "Build your board", desc: "Define the right strategy, design the board around it and recruit experienced independent directors who can help deliver it.", href: "/build", number: "01", category: "Board formation" },
   { title: "Optimize your board", desc: "Evaluate, refresh and strengthen your existing board so it drives performance, accountability and better decisions.", href: "/governance-advisory#board-optimization", number: "02", category: "Board effectiveness" },
   { title: "Compensate your board", desc: "Set the right director compensation with our annual private-company survey and company-specific benchmarking.", href: "/research", number: "03", category: "Research & benchmarking" },
   { title: "Facilitate & educate", desc: "Run more productive meetings, develop your directors and keep the board focused on the work that matters.", href: "/governance-advisory#board-facilitation-and-education", number: "04", category: "Ongoing board support" },
@@ -133,7 +133,7 @@ export default function Home() {
         <section id="process" className="mx-auto max-w-[1440px] px-6 py-20 md:px-12 md:py-28 lg:px-16">
           <h2 className="max-w-4xl text-[clamp(2.5rem,5vw,5rem)] font-normal leading-[1.02] tracking-[-.055em]">Our board formation process</h2><p className="mt-6 max-w-2xl text-lg leading-relaxed text-[#526478]">Work backward from the company's strategy. Define the mandate, recruit against it and evaluate how well the board delivers.</p>
           <ol className="mt-14 grid gap-x-7 gap-y-9 sm:grid-cols-2 lg:grid-cols-5">{process.map((p,i)=><li key={p.title} className="relative border-t-2 border-[#10243a] pt-6"><span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#10243a] text-base font-medium text-white">{i+1}</span><h3 className="mt-5 text-2xl font-medium leading-tight tracking-tight">{p.title}</h3><p className="mt-3 text-base leading-relaxed text-[#526478]">{p.desc}</p><p className="mt-5 text-sm font-medium">{p.detail}</p></li>)}</ol>
-          <Link href="/governance-advisory#process" className="group mt-12 inline-flex min-h-[52px] items-center gap-5 bg-[#10243a] px-7 py-4 text-lg font-medium text-white">Explore the five-stage process <Arrow /></Link>
+          <Link href="/build#process" className="group mt-12 inline-flex min-h-[52px] items-center gap-5 bg-[#10243a] px-7 py-4 text-lg font-medium text-white">Explore the five-stage process <Arrow /></Link>
         </section>
 
         <ClientTestimonials />

@@ -512,7 +512,7 @@ const nextConfig = {
       { source: "/ecosystem/steward", destination: "/family-advisors", permanent: true },
       // Migrated blog posts (old Wix /post/<slug> -> new on-site articles)
       // Old Wix service pages -> Governance Advisory
-      { source: "/build", destination: "/governance-advisory", permanent: true },
+
       { source: "/optimize", destination: "/governance-advisory", permanent: true },
       { source: "/compensate", destination: "/research", permanent: true },
       { source: "/educate", destination: "/governance-advisory", permanent: true },
