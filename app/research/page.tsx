@@ -118,10 +118,9 @@ export default function ResearchPage() {
                   {latestEdition.description}
                 </p>
                 <div className="flex flex-wrap items-center gap-6">
-                  <span className="text-base text-charcoal/80">Current pricing at checkout</span>
+                  <span className="text-2xl font-medium text-[#10243a]">{latestEdition.price}</span>
                   <BuyReportButton
                     slug={latestEdition.slug}
-                    fallbackUrl={latestEdition.purchaseUrl}
                   />
                   <FreeSampleForm slug={latestEdition.slug} year={latestEdition.year} />
                 </div>
@@ -151,7 +150,7 @@ export default function ResearchPage() {
                       <span className="text-xl font-medium text-navy">{e.year}</span>
                     </Link>
                     <div className="flex items-center gap-6">
-                      
+                      <span className="text-base font-medium">{e.price}</span>
                       <Link
                         href={`/research/${e.slug}`}
                         className="inline-flex min-h-[44px] items-center text-base font-medium text-navy hover:text-brass-ink"
