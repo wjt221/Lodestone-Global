@@ -108,12 +108,12 @@ export default function AboutPage() {
           </div>
         </Section>
 
-        {/* LEADERSHIP */}
-        <Section tone="parchment">
+        {/* Single shared ecosystem team roster. */}
+        <Section id="team" tone="parchment">
           <div className="flex flex-col gap-12">
             <SectionHeading
-              title="Our leadership"
-              description="Lodestone is led by principals with direct governance, operating, and investing experience."
+              title="Our team"
+              description="Meet the people across the Lodestone ecosystem, bringing together governance, operating, investment and family office experience."
             />
             <Leadership />
           </div>
