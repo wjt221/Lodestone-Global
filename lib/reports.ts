@@ -85,7 +85,7 @@ const WIX_MEDIA = "https://static.wixstatic.com/media";
 export const reportEditions: ReportEdition[] = [
   edition(
     "2026",
-    "$3,000",
+    "$2,700",
     "2026-private-company-board-compensation-survey",
     { url: `${WIX_MEDIA}/c3325c_aef70d10a13e4e92bf3b16b341ebed5c~mv2.png/v1/fit/w_2818,h_1632,q_90/file.png`, width: 2818, height: 1632 },
     "15th",
@@ -94,7 +94,7 @@ export const reportEditions: ReportEdition[] = [
   ),
   edition(
     "2025",
-    "$2,750",
+    "$2,250",
     "2025-private-company-board-compensation-survey",
     { url: `${WIX_MEDIA}/c3325c_375d598d3a1d4e41bf86f24217638408~mv2.png/v1/fit/w_2581,h_1582,q_90/file.png`, width: 2581, height: 1582 },
     "14th",
