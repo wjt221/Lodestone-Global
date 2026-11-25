@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Section } from "@/components/Section";
@@ -41,25 +42,7 @@ export default function CaseStudiesPage() {
       <Header />
       <main id="main">
         {/* MASTHEAD */}
-        <section className="relative overflow-hidden pt-[4.25rem] text-ivory">
-          <BackgroundPhoto
-            src={photos.caseStudiesMasthead.src}
-            alt={photos.caseStudiesMasthead.alt}
-            priority
-            overlayClassName="bg-navy/85"
-          />
-          <Container className="relative z-10 flex flex-col gap-6 py-24 md:py-28">
-            <span className="kicker text-brass-light">Case Studies</span>
-            <h1 className="max-w-3xl font-serif text-display-1 font-normal text-ivory">
-              What the work looks like in practice.
-            </h1>
-            <p className="max-w-2xl font-sans text-lg leading-relaxed text-ivory/80">
-              A selection of engagements across private and family-owned companies. Some are
-              published with the owner&rsquo;s permission; others are described at an anonymized
-              altitude to protect confidentiality.
-            </p>
-          </Container>
-        </section>
+        <section className="bg-white pt-[4.25rem] text-[#10243a]"><Container className="py-16 md:py-24"><p className="mb-5 text-base text-[#526478]">Client case studies</p><h1 className="max-w-5xl text-[clamp(3.2rem,7vw,7rem)] font-normal leading-[.96] tracking-[-.065em]">The work of a board, measured in business outcomes.</h1><div className="mt-12 grid gap-8 border-t border-[#d5dde5] pt-8 md:grid-cols-2"><p className="max-w-xl text-lg leading-relaxed text-[#526478]">Real examples of how independent expertise can help owners make critical decisions, build management capability and navigate growth.</p><Link href="/contact" className="w-fit self-end border-b border-current pb-2 text-lg font-medium">Talk to us about your business ↗</Link></div></Container></section><section className="bg-[#07192b] text-white"><Container className="grid gap-12 py-16 md:grid-cols-2 md:gap-20"><div><p className="text-base text-[#b7cadb]">Diesco Group</p><p className="mt-3 text-[clamp(4rem,9vw,8rem)] leading-none tracking-[-.07em]">~4×</p><p className="mt-4 text-xl">Historical earnings growth after board formation.</p></div><div><p className="text-base text-[#b7cadb]">Morgan Properties</p><p className="mt-3 text-[clamp(4rem,9vw,8rem)] leading-none tracking-[-.07em]">$2B+</p><p className="mt-4 text-xl">Acquisitions guided by the board in the published case study.</p></div><p className="text-sm text-[#b7cadb] md:col-span-2">Historical client outcomes; other factors contributed to business performance.</p></Container></section>
 
         {/* ENGAGEMENTS */}
         <Section tone="light">
