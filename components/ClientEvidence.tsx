@@ -1,30 +1,74 @@
 "use client";
 import { useRef, useState } from "react";
 
-// Source: published client list on https://www.lodestoneglobal.com/.
-// Temporary preview assets: migrate the original artwork to owned storage before launch.
-const clients = [
-["National Society of Leadership and Success","c3325c_216ff80d7b7f49b7b76d00e5063556f2~mv2.png"],
-["Pacific American Group","c3325c_8769e52b03374270a015538e4fb60d50~mv2.jpg"],
-["Niles Industrial Coatings & Plant Services","c3325c_b5b6cab6e4cb4e14bbfb5ac5b11876e3~mv2.jpg"],
-["Whirlwind Technologies","c3325c_f5ea70f9568f46bdb8112c4316a184ae~mv2.png"],
-["Symega Food Ingredients","c3325c_24547b6059bd45f0975f0a31bb4ffb04~mv2.png"],
-["Strategic Financial Solutions","c3325c_75e888aea4bd454899057cc6ddc93b0e~mv2.png"],
-["Martin Preferred Foods","c3325c_3e470d083ef94c47b0e2c0a9adbf83d1~mv2.jpg"],
-["Luxco","c3325c_1724144027e44be09b9912e9194c51c2.jpg"],
-["Micro-Tech","c3325c_41375d79b602441fa2745c5cf420fa5d.jpg"],
-["Morgan Properties","c3325c_110d700a91ea46128b8c4f80a8df2b6a~mv2.jpg"],
-["MAXX Properties","c3325c_5eddbd4d84eb48bbbf48b023a63d29df.jpg"],
-["Diesco","c3325c_a837aaf60dea42ecab51dd81acd68319.jpg"],
-["Woldenberg","c3325c_ee2119626c37483086649984e5ba618c.jpg"],
-["AFN","c3325c_8aa4de2492844fc4b41aed0e3d44e716.jpg"],
-["Zeman","c3325c_2da52284df8a47c690c501194c6d8690.jpg"],
+// Client names: live Lodestone homepage. Logo artwork: visually identified marks from company, university, supplier or press sources. Do not substitute client photographs. Preview only; obtain approved artwork, permission, and local copies before production. Null means no verified logo artwork yet.
+const clients: [string, string | null][] = [
+  [
+    "National Society of Leadership and Success",
+    "https://www.wtamu.edu/_files/images/student-life/OSEL/nsls/NSLS_Seal_Color_300dpi.png"
+  ],
+  [
+    "Diesco",
+    "https://www.diesco.com/wp-content/uploads/2021/02/Logo-Diesco-34-1.png"
+  ],
+  [
+    "Morgan Properties",
+    "https://mms.businesswire.com/media/20210224005622/en/827420/4/morgan_properties_logo.jpg"
+  ],
+  [
+    "Niles Industrial Coatings",
+    "https://www.munk-schmitz.de/content/uploads/2025/02/Logo-Niles.jpg"
+  ],
+  [
+    "MAXX Properties",
+    "https://mma.prnewswire.com/media/2960949/MAXX_Logo.jpg?p=facebook"
+  ],
+  [
+    "Pacific American Group",
+    "https://images.squarespace-cdn.com/content/v1/69fba79b7aff4e54514e2588/9c30014a-208f-4d70-9e3e-a3ee3bdc838d/In%2BJune%2B2026%2C%2BCatherine%2BBreed%2Bwill%2Battempt%2Bthe%2Bfirst-ever%2B900-mile%2Bstage%2Bswim%2Bdown%2Bthe%2BCalifornia%2Bcoast%2Bfrom%2BOregon%2Bto%2BMexico%2Bwhile%2Braising%2Bfunds%2B%28%24500k%2Bgoal%29%2Band%2Bawareness%2Bfor%2Bwomen%2Bin%2Bwater%2Bspor-13.png?format=1500w"
+  ],
+  [
+    "Martin Preferred Foods",
+    "https://www.pngkit.com/png/detail/178-1782868_to-search-for-a-product-or-company-please.png"
+  ],
+  [
+    "Luxco",
+    "https://cdn.tasteatlas.com/images/productmakers/45693d861448461cbf683bb8b77b7edc.png?m=facebook"
+  ],
+  [
+    "AFN",
+    "https://patch.com/img/cdn20/users/22912423/20180730/101103/styles/raw/public/processed_images/afn_logo_color-1532959840-1470.jpg"
+  ],
+  [
+    "Symega Food Ingredients",
+    null
+  ],
+  [
+    "Whirlwind Technologies",
+    null
+  ],
+  [
+    "Strategic Financial Solutions",
+    null
+  ],
+  [
+    "Micro-Tech",
+    null
+  ],
+  [
+    "Woldenberg",
+    null
+  ],
+  [
+    "Zeman",
+    null
+  ]
 ];
 
-function ClientLogo({name,file}:{name:string;file:string}){
+function ClientLogo({name,file}:{name:string;file:string | null}){
  const [failed,setFailed]=useState(false);
  return <li className="flex h-[86px] w-[170px] shrink-0 snap-start items-center justify-center px-4 sm:w-[195px]">
- {failed?<span className="text-center text-base font-medium leading-tight text-[#526478]">{name}</span>:<img src={"https://static.wixstatic.com/media/"+file} alt={name} loading="lazy" onError={()=>setFailed(true)} className="max-h-[70px] w-full object-contain grayscale transition duration-200 hover:grayscale-0" />}
+ {(failed || !file)?<span className="text-center text-base font-medium leading-tight text-[#526478]">{name}</span>:<img src={file} alt={name} loading="lazy" onError={()=>setFailed(true)} className="max-h-[70px] w-full object-contain grayscale transition duration-200 hover:grayscale-0" />}
  </li>;
 }
 
@@ -34,7 +78,7 @@ export function ClientLogoBar(){
  const el=rail.current;if(!el)return;
  const end=el.scrollWidth-el.clientWidth;
  const next=el.scrollLeft+direction*Math.max(180,el.clientWidth*.72);
- el.scrollTo({left:next>end+10?0:next<0?end:next,behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"instant":"smooth"});
+ el.scrollTo({left:next>end+10?0:next<0?end:next,behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"});
  }
  return <section aria-label="Selected current and past clients" className="border-b border-[#d5dde5] bg-white">
  <div className="mx-auto max-w-[1440px] px-6 py-8 md:px-12 lg:px-16">
