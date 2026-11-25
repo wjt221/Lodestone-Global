@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { BuyReportButton } from "@/components/BuyReportButton";
 import { BackgroundPhoto } from "@/components/BackgroundPhoto";
 import { photos } from "@/components/photos";
 import { latestEdition } from "@/lib/reports";
@@ -48,8 +49,8 @@ const process = [
 
 const ecosystem = [
   { name: "Lodestone Global", role: "Boards & governance", href: "/", logo: "/logo/lodestone-global-horizontal-white.png" },
-  { name: "E3 Scale Network", role: "Enterprise value creation", href: "/e3-scale-network", logo: null },
-  { name: "Lodestone Family Advisors", role: "Family wealth", href: "/family-advisors", logo: null },
+  { name: "E3 Scale Network", role: "Enterprise value creation", href: "https://e3-ii1imy8q0-wjt221s-projects.vercel.app", logo: null },
+  { name: "Lodestone Family Advisors", role: "Family wealth", href: "https://lfa-xi.vercel.app", logo: null },
   { name: "Lodestone Capital", role: "Private investment", href: "/lodestone-capital", logo: null },
 ];
 
@@ -153,7 +154,7 @@ export default function Home() {
               <h2 className="max-w-xl text-[clamp(2.6rem,4.7vw,4.6rem)] font-normal leading-[1.03] tracking-[-0.05em]">What should you pay your board?</h2>
               <p className="mt-6 max-w-md text-base leading-relaxed text-[#526478]">Benchmark director compensation against private companies by revenue, industry, size and ownership structure.</p>
               <div className="mt-8 flex flex-wrap items-center gap-x-7 gap-y-4">
-                <a href={latestEdition.purchaseUrl} className="group inline-flex items-center min-h-[52px] gap-3 bg-[#10243a] px-7 py-4 text-lg font-medium text-white">Purchase the report <Arrow /></a>
+                <BuyReportButton slug={latestEdition.slug} label="Purchase the report" className="group inline-flex items-center min-h-[52px] gap-3 bg-[#10243a] px-7 py-4 text-lg font-medium text-white" />
                 <Link href="/research" className="group inline-flex items-center min-h-[44px] gap-3 border-b border-[#10243a] pb-2 text-lg font-medium">Explore the research <Arrow /></Link>
               </div>
             </div>
