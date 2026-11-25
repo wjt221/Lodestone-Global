@@ -1,6 +1,7 @@
 # Lodestone website renewal — master plan
 Status: first design iteration; not approved for production.
-Baseline: latest inspected Vercel preview commit 56c1a04d17624b2b957aafd6a4e45c919606f84e (not the repository default branch).
+Production source of truth: the live Wix site at www.lodestoneglobal.com, including its existing public URLs, pricing and checkout. All Vercel deployments and GitHub design branches are prototypes only; Vercel's internal production label does not mean the public Lodestone website runs there.
+Code starting point: latest inspected Vercel preview commit 56c1a04d17624b2b957aafd6a4e45c919606f84e (not the repository default branch).
 Existing references: CONTENT_INVENTORY.md, REPORTS_SETUP.md, CONTENT_NEEDED.md. Preserve and reconcile rather than overwrite them.
 
 ## Direction
