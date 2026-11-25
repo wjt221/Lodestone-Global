@@ -13,7 +13,7 @@ import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: { absolute: "Private Company Board Advisory | Lodestone Global" },
-  description: "Build a board that helps drive enterprise value. Lodestone Global forms and strengthens private-company boards, recruits independent directors and publishes compensation research.",
+  description: "High-performing board experts. Lodestone Global builds, facilitates, optimizes and educates private-company boards around the globe to help owners create lasting enterprise value.",
   alternates: { canonical: "/" },
   robots: { index: false, follow: false }, // Remove only at approved production cutover.
 };
@@ -48,10 +48,10 @@ const process = [
 ];
 
 const ecosystem = [
-  { name: "Lodestone Global", role: "Boards & governance", href: "/", logo: "/logo/lodestone-global-horizontal-white.png" },
-  { name: "E3 Scale Network", role: "Enterprise value creation", href: "https://e3-ii1imy8q0-wjt221s-projects.vercel.app", logo: null },
-  { name: "Lodestone Family Advisors", role: "Family wealth", href: "https://lfa-xi.vercel.app", logo: null },
-  { name: "Lodestone Capital", role: "Private investment", href: "/lodestone-capital", logo: null },
+  { stage: "Operator", name: "E3 Scale Network", role: "Build a business that can scale beyond you.", desc: "Work with experienced operating partners to strengthen management, improve execution and accelerate enterprise value creation.", href: "https://e3-ii1imy8q0-wjt221s-projects.vercel.app", action: "Explore E3 Scale Network" },
+  { stage: "Owner", name: "Lodestone Global", role: "Build a board that makes your business more valuable.", desc: "Bring independent expertise and accountability into the boardroom. Focus management on strategy, capital allocation and the decisions that drive long-term value.", href: "#board-advisory", action: "Explore board advisory" },
+  { stage: "Investor", name: "Lodestone Capital", role: "Put capital to work as an owner.", desc: "Pursue selective private investment opportunities alongside aligned founders, families and experienced operators.", href: "/lodestone-capital", action: "Explore Lodestone Capital" },
+  { stage: "Steward", name: "Lodestone Family Advisors", role: "Turn business success into enduring family wealth.", desc: "Coordinate family wealth, investment strategy and governance with a long-term perspective across generations.", href: "https://lfa-xi.vercel.app", action: "Explore Family Advisors" },
 ];
 
 function Arrow() { return <span aria-hidden="true" className="inline-block transition-transform group-hover:translate-x-1">↗</span>; }
@@ -69,16 +69,43 @@ export default function Home() {
           <style>{`@keyframes lodestone-image-in { from { transform: scale(1.035); } to { transform: scale(1); } } @keyframes lodestone-copy-in { from { opacity: .15; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } } @media (prefers-reduced-motion:no-preference) { .lg-hero-copy { animation: lodestone-copy-in .75s ease-out both; } .lg-hero-photo img { animation: lodestone-image-in 1.4s ease-out both; } }`}</style>
           <div className="relative z-10 mx-auto flex min-h-[570px] max-w-[1600px] flex-col justify-end px-6 pb-12 pt-20 md:min-h-[680px] md:px-12 md:pb-16 lg:min-h-[min(740px,82svh)] lg:px-16">
             <div className="lg-hero-copy">
-              <p className="mb-8 text-sm font-medium text-[#d2e1ed]">Private company board advisory</p>
+              <p className="mb-7 text-[clamp(1rem,1.5vw,1.35rem)] font-medium tracking-[.015em] text-[#e0e9f1]">High-Performing Board Experts.</p>
               <h1 className="max-w-[1100px] text-[clamp(3.3rem,7.4vw,7.7rem)] font-normal leading-[.95] tracking-[-0.065em]">A better board.<br/>A more valuable business.</h1>
               <div className="mt-12 flex flex-col justify-between gap-8 border-t border-white/30 pt-7 md:flex-row md:items-end">
-                <p className="max-w-[490px] text-lg leading-relaxed text-[#e0e9f1]">We build and strengthen boards for private and family-owned companies to help owners grow enterprise value, improve leadership and make better decisions about the future of their business.</p>
-                <Link href="#board-advisory" className="group inline-flex min-h-[52px] w-fit items-center gap-5 bg-white px-7 py-4 text-lg font-medium text-[#10243a] hover:bg-[#dce8f2]">Explore our approach <Arrow /></Link>
+                <p className="max-w-[590px] text-lg leading-relaxed text-[#e0e9f1]">We build, facilitate, optimize and educate boards around the globe, helping private and family-owned businesses accelerate growth, strengthen leadership and create lasting enterprise value.</p>
+                <div className="flex shrink-0 flex-wrap items-center gap-5"><Link href="#board-advisory" className="group inline-flex min-h-[52px] w-fit items-center gap-4 bg-white px-6 py-4 text-lg font-medium text-[#10243a] hover:bg-[#dce8f2]">Explore our approach <Arrow /></Link><Link href="#client-evidence" className="group inline-flex min-h-[52px] w-fit items-center gap-3 border border-white/60 px-6 py-4 text-lg font-medium text-white transition-colors hover:bg-white/10">Our client results <Arrow /></Link></div>
               </div>
             </div>
           </div>
         </section>
         <ClientLogoBar />
+        <section id="ecosystem" className="relative isolate overflow-hidden bg-white text-[#10243a] scroll-mt-24">
+          <div className="mx-auto max-w-[1440px] px-6 py-16 md:px-12 md:py-20 lg:px-16">
+            <div className="grid items-end gap-6 lg:grid-cols-[1.1fr_.9fr] lg:gap-20">
+              <div><p className="mb-5 text-sm font-medium text-[#526478]">The Lodestone ecosystem</p><h2 className="text-[clamp(2.8rem,5.6vw,5.6rem)] font-normal leading-[.98] tracking-[-.06em]">From operator<br className="hidden sm:block"/> to steward.</h2></div>
+              <p className="max-w-xl text-lg leading-relaxed text-[#526478]">As your business grows, your responsibilities evolve. From running the company to governing it, investing capital and stewarding family wealth. Our four businesses support you across these roles.</p>
+            </div>
+            <div className="relative mt-12 border-y border-[#d5dde5]">
+              <div aria-hidden="true" className="absolute left-0 right-0 top-[31px] hidden h-px bg-gradient-to-r from-[#bccddd] via-[#456a88] to-[#10243a] lg:block"/>
+              <ol className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+                {ecosystem.map((item,i)=><li key={item.stage} className="group relative border-b border-[#d5dde5] last:border-b-0 sm:even:border-l lg:border-b-0 lg:border-l lg:first:border-l-0">
+                  <Link href={item.href} className={`relative flex min-h-[280px] h-full flex-col px-5 pb-7 pt-7 transition-colors md:px-6 ${item.stage==="Owner"?"bg-[#eef3f7] hover:bg-[#e1eaf2]":"hover:bg-[#f5f8fa]"}`}>
+                    <div className="relative flex items-center justify-between gap-4">
+                      <span className={`relative z-10 flex h-10 w-10 items-center justify-center rounded-full border border-[#a5b9cb] text-sm font-medium ${item.stage==="Owner"?"bg-[#10243a] text-white":"bg-white text-[#526478]"}`}>0{i+1}</span>
+                      <span className="text-2xl text-[#526478] transition-transform group-hover:translate-x-1" aria-hidden="true">↗</span>
+                    </div>
+                    <p className="mt-6 text-[clamp(1.6rem,2.8vw,2.65rem)] font-normal tracking-[-.04em]">{item.stage}</p>
+                    <h3 className="mt-2 text-base font-semibold">{item.name}</h3>
+                    <p className="mt-4 text-base leading-relaxed text-[#526478]">{item.role}</p>
+                    {item.stage==="Owner"&&<span className="mt-4 text-sm font-medium text-[#10243a]">You are here · Board advisory</span>}
+                    <span className="mt-auto pt-5 text-sm font-medium underline decoration-[#a5b9cb] underline-offset-4">{item.action}</span>
+                  </Link>
+                </li>)}
+              </ol>
+            </div>
+            <p className="mt-5 max-w-3xl text-sm leading-relaxed text-[#526478]">These are complementary roles, not fixed stages. Owners often occupy several at the same time.</p>
+          </div>
+        </section>
         <section id="board-advisory" className="bg-[#eef3f7]">
           <div className="mx-auto max-w-[1440px] px-6 py-20 md:px-12 md:py-28 lg:px-16">
             <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_.9fr] lg:gap-20">
@@ -131,22 +158,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="ecosystem" className="relative isolate overflow-hidden bg-gradient-to-br from-[#07192b] via-[#10243a] to-[#1d3f59] text-white">
-          <Image src="/logo/lodestone-global-icon.png" width={700} height={700} alt="" aria-hidden="true" className="pointer-events-none absolute -bottom-24 -right-32 -z-10 w-[650px] opacity-[0.07] brightness-0 invert" />
-          <div className="mx-auto max-w-[1440px] px-6 py-20 md:px-12 md:py-28 lg:px-16">
-            <div className="mb-14 grid items-end gap-6 lg:grid-cols-[1.1fr_.9fr] lg:gap-24">
-              <div><p className="mb-5 text-sm text-[#a8bdcf]">The Lodestone ecosystem</p><h2 className="max-w-2xl text-[clamp(2.6rem,5.5vw,5.5rem)] font-normal leading-[1.02] tracking-[-0.05em]">Beyond the boardroom.</h2></div>
-              <p className="max-w-md text-base leading-relaxed text-[#c1cfdd]">Our businesses work with owners on the board, the operating company, their investments and their family's wealth. Each has its own expertise.</p>
-            </div>
-            <ul className="grid gap-x-10 sm:grid-cols-2 lg:grid-cols-4">
-              {ecosystem.map(b => <li key={b.name} className="border-t border-white/30">
-                <Link href={b.href} className="group flex min-h-[130px] flex-col items-start gap-3 py-6 hover:text-[#b8d8ef]">
-                  <span className="text-xl font-medium md:text-2xl">{b.name}</span><span className="text-base text-[#a8bdcf]">{b.role}</span><span className="mt-auto"><Arrow /></span>
-                </Link>
-              </li>)}
-            </ul>
-          </div>
-        </section>
+
 
         <section className="mx-auto flex max-w-[1440px] flex-col items-start justify-between gap-8 px-6 py-20 md:flex-row md:items-end md:px-12 md:py-24 lg:px-16">
           <div><p className="mb-5 text-sm text-[#526478]">Start a conversation</p><h2 className="max-w-xl text-[clamp(2.2rem,4vw,4rem)] font-normal leading-[1.06] tracking-[-0.045em]">What could the right board do for your business?</h2></div>
