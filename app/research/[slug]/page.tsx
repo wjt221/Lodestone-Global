@@ -91,11 +91,11 @@ export default async function ReportEditionPage({
                 <span className="font-sans text-[0.72rem] uppercase tracking-widest2 text-brass-ink">
                   {edition.editionOrdinal} annual edition
                 </span>
-                <p className="text-base text-charcoal/80">Current pricing at checkout</p>
+                <p className="text-base text-charcoal/80">{edition.price}</p>
               </div>
 
               <div className="flex flex-wrap items-center gap-6">
-                <BuyReportButton slug={edition.slug} fallbackUrl={edition.purchaseUrl} />
+                <BuyReportButton slug={edition.slug} />
                 <FreeSampleForm slug={edition.slug} year={edition.year} />
               </div>
 
