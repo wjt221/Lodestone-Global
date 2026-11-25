@@ -484,7 +484,7 @@ export const leadership: Leader[] = [
       { org: "govern", title: "Founder and Managing Partner" },
       { org: "scale" },
       { org: "compound" },
-      { org: "steward" },
+      { org: "steward", title: "Chairman" },
     ],
     photo: `${WIX_MEDIA}/c3325c_5e6e1d60117749728698bfbe2bbeb52e~mv2.jpg/v1/fill/w_800,h_1000,al_c,q_85/portrait.jpg`,
     bio: "William Tenenbaum founded Lodestone Global to help private companies build, optimize, and educate high-performing boards. He brings more than two decades of investing and governance experience across private companies, family enterprises, and the public markets, including work as a portfolio manager at a fundamental hedge fund. He studied at NYU Stern and is an active member of YPO.",
@@ -579,6 +579,14 @@ export const leadership: Leader[] = [
     // capitalisation of "van Pelt". `employer` stays unset until the name is
     // confirmed, so no employer is asserted rather than the wrong one.
     roles: [{ org: "steward", title: "Head of Trust and Estate", relationship: "affiliate" }],
+  },
+  {
+    name: "Len Lombardo",
+    roles: [{ org: "steward", title: "Chief Technology Officer" }],
+  },
+  {
+    name: "Nolan Smith",
+    roles: [{ org: "steward", title: "Compliance Manager" }],
   },
   {
     name: "Booker Brancheau",
