@@ -12,16 +12,20 @@ const clients: [string, string | null][] = [
     "https://imageproxy.wolt.com/assets/69149c082d5740aaaa59a1d9"
   ],
   [
+    "Little Caesars",
+    "https://littlec.com.mx/assets/images/open-graph-little-caesars.jpg"
+  ],
+  [
     "Indiana Farmers Insurance",
     "https://thorneinsuranceagency.com/wp-content/uploads/indiana-farmers-insurance-logo-268.webp"
   ],
   [
     "Serra Automotive",
-    null
+    "/images/client-logos/serra.png"
   ],
   [
     "Indium Corporation",
-    "https://eepower.com/uploads/thumbnails/Indium_Corporation_Logo.jpg"
+    "/images/client-logos/indium.png"
   ],
   [
     "Innovative Construction Solutions",
@@ -57,7 +61,7 @@ const clients: [string, string | null][] = [
   ],
   [
     "MAXX Properties",
-    "https://mma.prnewswire.com/media/2960949/MAXX_Logo.jpg?p=facebook"
+    "/images/client-logos/maxx.png"
   ],
   [
     "Pacific American Group",
@@ -77,26 +81,42 @@ const clients: [string, string | null][] = [
   ],
   [
     "Symega Food Ingredients",
-    "https://symega.com/wp-content/uploads/2025/09/Symega-Possibilities-Unlimited-scaled.png"
+    "/images/client-logos/symega.png"
   ],
   [
     "Whirlwind Technologies",
     null
   ],
   [
-    "Strategic Financial Solutions",
-    "https://s3.amazonaws.com/stratfs/our-brands/sfs-stratfs-logo-sm.png"
+    "MicroTechnologies",
+    "/images/client-logos/microtech.png"
   ],
   [
-    "Micro-Tech",
+    "Zeman Homes",
+    "/images/client-logos/zeman.png"
+  ],
+  [
+    "Advanced Asset Management",
     null
   ],
   [
-    "Woldenberg",
+    "Coastal MD",
     null
   ],
   [
-    "Zeman",
+    "Eva Pharma",
+    "https://www.egycareers.com/wp-content/uploads/2022/01/eva-pharma.jpg"
+  ],
+  [
+    "Hencorp",
+    null
+  ],
+  [
+    "Horatio",
+    "https://cdn.prod.website-files.com/695e71bdb7b9bb290585a265/6979900783ce3f026e7d179b_Horatio_Preview_Logo.png"
+  ],
+  [
+    "USA Talent Solutions",
     null
   ]
 ];
