@@ -28,12 +28,22 @@ const services = [
   { title: "Find independent directors", desc: "Bring the right operating experience and perspectives to the boardroom.", href: "/governance-advisory" },
   { title: "Board compensation", desc: "Set director pay using research on the private-company market.", href: "/research" },
 ];
+// Editorial adaptation of the five board benefits on the live Wix homepage.
+// Source: https://www.lodestoneglobal.com/
 const value = [
-  { title: "Make better strategic decisions", desc: "Bring independent judgment and experience to growth priorities, acquisitions, capital allocation and the risks that come with them." },
-  { title: "Build a stronger leadership team", desc: "Give the CEO an experienced sounding board, hold management accountable to clear objectives and develop the next generation of leadership." },
-  { title: "Protect what you have built", desc: "Plan for succession, challenge assumptions and establish governance that can continue beyond any one individual." },
-  { title: "Open doors you could not open alone", desc: "Draw on directors' operating experience, relationships and industry knowledge when the business faces an unfamiliar opportunity or challenge." },
+  { title: "Promote accountability", desc: "Give the CEO a trusted sounding board, challenge assumptions and establish clear ownership of the commitments that matter." },
+  { title: "Drive performance", desc: "Sharpen strategy, concentrate resources on the highest-priority initiatives and maintain the discipline to execute." },
+  { title: "Extend your network", desc: "Access experienced operators, industry relationships and perspectives outside the company's existing circle." },
+  { title: "Lend credibility", desc: "Show customers, capital partners and other stakeholders that the business has independent expertise and a serious approach to governance." },
+  { title: "Provide air cover", desc: "Help management navigate difficult decisions, competing shareholder interests and sensitive family or leadership dynamics." },
 ];
+const differentiators = [
+  { title: "The right people, not just the right résumés", desc: "Our Qualified Director Database™ brings together thousands of experienced directors and executives. We assess their expertise and fit against the strategy of your company." },
+  { title: "Partners in the boardroom", desc: "We work alongside owners through board design, recruitment, onboarding and ongoing performance. Our team brings thousands of hours of public- and private-company board experience." },
+  { title: "Decisions informed by data", desc: "Our annual compensation research helps companies compete for the right directors and establish pay appropriate to their market and budget." },
+];
+const selectedClients = ["NSLS", "Niles Industrial Coatings & Plant Services", "Morgan Properties", "Diesco Group", "Martin Preferred Foods", "Symega Food Ingredients", "Luxco", "Micro-Tech"];
+const publications = ["Directors & Boards", "Private Company Director", "Family Business", "Forbes"];
 const process = [
   { title: "Strategic review", desc: "Interview the owners and key decision makers to understand the business, its objectives and whether a board is the right solution.", detail: "Start with the business, not the board seats." },
   { title: "Board design", desc: "Define the mandate and the mix of expertise and personal qualities needed in the boardroom.", detail: "Lodestone Global Matrix™" },
@@ -84,7 +94,7 @@ export default function Home() {
               <p className="mb-8 text-sm font-medium text-[#d2e1ed]">Private company board advisory</p>
               <h1 className="max-w-[1100px] text-[clamp(3.3rem,8.2vw,8.4rem)] font-normal leading-[.95] tracking-[-0.065em]">Build a board<br/>that matters.</h1>
               <div className="mt-12 flex flex-col justify-between gap-8 border-t border-white/30 pt-7 md:flex-row md:items-end">
-                <p className="max-w-[490px] text-lg leading-relaxed text-[#e0e9f1]">The right board brings experienced people into your corner, challenges your thinking and helps you make the decisions that shape the future of your business.</p>
+                <p className="max-w-[490px] text-lg leading-relaxed text-[#e0e9f1]">We build, facilitate, optimize and educate boards for private and family-owned companies, helping owners bring independent expertise to their most consequential decisions.</p>
                 <Link href="#board-advisory" className="group inline-flex min-h-[52px] w-fit items-center gap-5 bg-white px-7 py-4 text-lg font-medium text-[#10243a] hover:bg-[#dce8f2]">Discover the value of a board <Arrow /></Link>
               </div>
             </div>
@@ -105,15 +115,28 @@ export default function Home() {
             </div>
             <p className="max-w-md text-lg leading-relaxed text-[#526478]">Owners face decisions that can change the trajectory of a company. An effective independent board gives them access to people who have navigated those decisions before, without taking over the business.</p>
           </div>
-          <ul className="grid gap-x-12 md:grid-cols-2">
-            {value.map((v,i) => <li key={v.title} className="border-t border-[#d5dde5]">
-              <div className="flex min-h-[170px] items-start gap-5 py-7">
-                <span className="pt-1 text-sm tabular-nums text-[#526478]">0{i+1}</span>
-                <div><h3 className="text-2xl font-normal tracking-[-0.035em] md:text-3xl">{v.title}</h3><p className="mt-3 max-w-[480px] text-base leading-relaxed text-[#526478]">{v.desc}</p></div>
-              </div>
-            </li>)}
-          </ul>
+          <div className="grid items-start gap-12 lg:grid-cols-[.85fr_1.15fr] lg:gap-24">
+            <div className="border-t border-[#d5dde5] pt-8">
+              <p className="text-[clamp(7rem,15vw,13rem)] font-normal leading-[.8] tracking-[-0.09em] text-[#10243a] tabular-nums">90<span className="text-[.54em] align-top">%</span></p>
+              <p className="mt-8 max-w-[430px] text-[clamp(1.4rem,2.4vw,2.15rem)] leading-[1.25] tracking-[-.025em]">of surveyed companies reported higher EBITDA after putting a board in place.</p>
+              <p className="mt-5 max-w-sm text-sm leading-relaxed text-[#526478]">Source: 2026 Private Company Board Compensation Survey. Self-reported results do not establish causation or guarantee future performance.</p>
+              <Link href="/research" className="group mt-6 inline-flex min-h-[44px] items-center gap-3 border-b border-[#10243a] pb-2 text-lg font-medium">Explore the research <Arrow /></Link>
+            </div>
+            <ul>
+              {value.map(v => <li key={v.title} className="border-t border-[#d5dde5] py-5 md:py-6">
+                <h3 className="text-2xl font-normal tracking-tight">{v.title}</h3>
+                <p className="mt-2 max-w-xl text-base leading-relaxed text-[#526478]">{v.desc}</p>
+              </li>)}
+            </ul>
+          </div>
           <Link href="/contact" className="group mt-7 inline-flex min-h-[48px] items-center gap-4 border-b border-[#10243a] pb-2 text-lg font-medium">Discuss what a board could do for your business <Arrow /></Link>
+        </section>
+
+        <section className="border-y border-[#dce3eb] bg-[#f5f8fa]">
+          <div className="mx-auto grid max-w-[1440px] gap-12 px-6 py-16 md:px-12 md:py-20 lg:grid-cols-[.85fr_1.15fr] lg:gap-24 lg:px-16">
+            <div><p className="mb-5 text-sm font-medium text-[#526478]">Why Lodestone Global?</p><h2 className="text-[clamp(2.5rem,4.8vw,4.7rem)] font-normal leading-[1.04] tracking-[-0.05em]">We build boards.<br/>Not candidate lists.</h2><p className="mt-6 max-w-md text-lg leading-relaxed text-[#526478]">Our focus is the return an owner can get from an effective board, from its design to the work it does after appointment.</p></div>
+            <div>{differentiators.map(d => <div key={d.title} className="border-t border-[#ccd7e1] py-6"><h3 className="text-2xl font-normal tracking-tight">{d.title}</h3><p className="mt-3 text-base leading-relaxed text-[#526478]">{d.desc}</p></div>)}</div>
+          </div>
         </section>
 
         <section id="process" className="bg-[#07192b] text-white">
@@ -164,14 +187,43 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="mx-auto max-w-[1440px] px-6 py-20 md:px-12 md:py-28 lg:px-16">
+        {/* Historical client outcomes: https://www.lodestoneglobal.com/case-studies.
+            Testimonial and client/publication names: https://www.lodestoneglobal.com/.
+            Do not attribute all client performance to the board. */}
+        <section id="client-evidence" className="mx-auto max-w-[1440px] px-6 py-20 md:px-12 md:py-28 lg:px-16">
           <div className="flex flex-wrap items-end justify-between gap-6 border-b border-[#d5dde5] pb-8">
-            <div><p className="mb-5 text-sm font-medium text-[#526478]">Selected work</p><h2 className="text-[clamp(2.4rem,4.8vw,4.8rem)] font-normal leading-[1.04] tracking-[-0.05em]">In the boardroom.</h2></div>
-            <Link href="/case-studies" className="group inline-flex items-center min-h-[44px] gap-3 border-b border-[#10243a] pb-2 text-lg font-medium">All case studies <Arrow /></Link>
+            <div><p className="mb-5 text-sm font-medium text-[#526478]">Selected client outcomes</p><h2 className="text-[clamp(2.4rem,4.8vw,4.8rem)] font-normal leading-[1.04] tracking-[-0.05em]">What a board can help achieve.</h2></div>
+            <Link href="/case-studies" className="group inline-flex min-h-[44px] items-center gap-3 border-b border-[#10243a] pb-2 text-lg font-medium">All case studies <Arrow /></Link>
           </div>
-          <div className="grid gap-8 pt-10 md:grid-cols-[.72fr_1.28fr] lg:gap-24">
-            <div><p className="text-sm text-[#526478]">Family-owned enterprise</p><h3 className="mt-3 text-3xl font-normal tracking-tight">Diesco Group</h3></div>
-            <div><p className="max-w-2xl text-[clamp(1.5rem,2.7vw,2.65rem)] font-normal leading-[1.25] tracking-[-0.035em]">A board organized around the company’s strategy, recognized as Private Company Advisory Board of the Year in 2017.</p><Link href="/case-studies" className="group mt-7 inline-flex items-center min-h-[44px] gap-3 border-b border-[#10243a] pb-2 text-lg font-medium">See how we work <Arrow /></Link></div>
+          <div className="grid gap-10 py-10 md:grid-cols-2 lg:gap-20">
+            <article>
+              <p className="text-base font-medium text-[#526478]">Diesco Group</p>
+              <p className="mt-5 text-[clamp(4rem,8vw,7.5rem)] font-normal leading-none tracking-[-0.075em]">4×</p>
+              <h3 className="mt-4 text-2xl font-normal tracking-tight">EBITDA after the board was formed</h3>
+              <p className="mt-3 max-w-md text-base leading-relaxed text-[#526478]">Diesco's historical case study reports fourfold EBITDA growth and recognition as Advisory Board of the Year in 2017.</p>
+            </article>
+            <article className="border-t border-[#d5dde5] pt-10 md:border-l md:border-t-0 md:pl-10 md:pt-0 lg:pl-16">
+              <p className="text-base font-medium text-[#526478]">Morgan Properties</p>
+              <p className="mt-5 text-[clamp(4rem,8vw,7.5rem)] font-normal leading-none tracking-[-0.075em]">$2B+</p>
+              <h3 className="mt-4 text-2xl font-normal tracking-tight">Acquisitions guided by the board</h3>
+              <p className="mt-3 max-w-md text-base leading-relaxed text-[#526478]">The published case study describes strategic guidance on acquisitions following the board's formation in 2017.</p>
+            </article>
+          </div>
+          <p className="text-sm text-[#526478]">Historical client-reported outcomes. Other factors contributed to performance; results vary by company.</p>
+          <div className="mt-16 border-t border-[#d5dde5] pt-12 md:mt-20">
+            <figure className="grid gap-8 md:grid-cols-[.65fr_1.35fr] lg:gap-20">
+              <figcaption className="md:order-1"><p className="text-sm font-medium text-[#526478]">In our clients' words</p><p className="mt-5 text-xl font-medium">Jeff Tapick</p><p className="mt-1 text-base text-[#526478]">President &amp; CEO, Martin Preferred Foods</p><p className="mt-2 text-sm text-[#526478]">Title at time of testimonial</p></figcaption>
+              <blockquote className="md:order-2"><p className="text-[clamp(1.8rem,3.6vw,3.4rem)] font-normal leading-[1.2] tracking-[-0.045em]">“Lodestone Global has been absolutely instrumental in the process of creating an Advisory Board for my family business.”</p></blockquote>
+            </figure>
+          </div>
+          <div className="mt-16 border-t border-[#d5dde5] pt-10">
+            <h3 className="text-lg font-medium">Selected clients</h3>
+            <ul className="mt-6 grid grid-cols-2 gap-x-8 gap-y-5 md:grid-cols-4">{selectedClients.map(n => <li key={n} className="text-lg font-medium leading-tight text-[#10243a]">{n}</li>)}</ul>
+            <p className="mt-5 text-sm text-[#526478]">Selected current and historical client references from our published website.</p>
+          </div>
+          <div className="mt-10 border-t border-[#d5dde5] pt-8">
+            <h3 className="text-base font-medium text-[#526478]">Our work and research have appeared in</h3>
+            <ul className="mt-5 flex flex-wrap gap-x-10 gap-y-4">{publications.map(n => <li key={n} className="text-lg font-medium">{n}</li>)}</ul>
           </div>
         </section>
 
