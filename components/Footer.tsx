@@ -1,113 +1,31 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Container } from "./Container";
-import { businesses, CONTACT } from "@/lib/content";
+import { CONTACT } from "@/lib/content";
 
-const company = [
-  { href: "/about", label: "About" },
-  { href: "/insights", label: "Insights" },
-  { href: "/case-studies", label: "Case Studies" },
-  { href: "/contact", label: "Contact" },
+const groups = [
+  {title:"Board advisory",links:[{label:"Board services",href:"/governance-advisory"},{label:"Our process",href:"/#process"},{label:"Client case studies",href:"/case-studies"},{label:"Meet our team",href:"/about"}]},
+  {title:"Research & insights",links:[{label:"Compensation research",href:"/research"},{label:"Purchase reports",href:"/research#editions"},{label:"Insights",href:"/insights"}]},
+  {title:"Our ecosystem",links:[{label:"Lodestone Global",href:"/"},{label:"E3 Scale Network",href:"/e3-scale-network"},{label:"Lodestone Family Advisors",href:"/family-advisors"},{label:"Lodestone Capital",href:"/lodestone-capital"}]},
 ];
-
 export function Footer() {
   const year = new Date().getFullYear();
-
   return (
-    <footer id="footer" className="bg-navy text-ivory">
-      <Container className="py-16 md:py-20">
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-12">
-          {/* Brand + contact */}
-          <div className="flex flex-col items-start gap-6 md:col-span-4">
-            <Link href="/" aria-label="Lodestone Global home">
-              <Image
-                src="/logo/lodestone-global-horizontal-white.png"
-                alt="Lodestone Global"
-                width={320}
-                height={107}
-                className="h-9 w-auto"
-              />
-            </Link>
-            <p className="max-w-xs font-sans text-[0.9rem] leading-relaxed text-ivory/60">
-              Trusted counsel for owners building enduring companies and family wealth.
-            </p>
-            <address className="flex flex-col gap-1 font-sans text-[0.9rem] not-italic text-ivory/60">
-              <span>{CONTACT.location}</span>
-              <a href={`mailto:${CONTACT.email}`} className="w-fit hover:text-brass-light">
-                {CONTACT.email}
-              </a>
-              <a href={CONTACT.phoneHref} className="w-fit hover:text-brass-light">
-                {CONTACT.phone}
-              </a>
-              <a
-                href={CONTACT.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-fit hover:text-brass-light"
-              >
-                LinkedIn
-              </a>
-            </address>
-          </div>
-
-          {/* Ecosystem */}
-          <div className="md:col-span-5">
-            <h2 className="font-sans text-[0.7rem] uppercase tracking-widest2 text-brass-light">
-              The Ecosystem
-            </h2>
-            <ul className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2">
-              {businesses.map((b) => (
-                <li key={b.id}>
-                  <Link href={b.href} className="group flex flex-col gap-0.5">
-                    <span className="font-serif text-[1rem] font-normal text-ivory group-hover:text-brass-light">
-                      {b.name}
-                    </span>
-                    <span className="font-sans text-[0.8rem] text-ivory/50">{b.role}</span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Company */}
-          <div className="md:col-span-3">
-            <h2 className="font-sans text-[0.7rem] uppercase tracking-widest2 text-brass-light">
-              Company
-            </h2>
-            <ul className="mt-5 flex flex-col gap-3">
-              {company.map((l) => (
-                <li key={l.href}>
-                  <Link href={l.href} className="font-sans text-[0.9rem] text-ivory/65 hover:text-brass-light">
-                    {l.label}
-                  </Link>
-                </li>
-              ))}
-              <li>
-                <Link href="/privacy" className="font-sans text-[0.9rem] text-ivory/65 hover:text-brass-light">
-                  Privacy
-                </Link>
-              </li>
-            </ul>
-          </div>
+    <footer id="footer" className="bg-[#07192b] font-sans text-white">
+      <div className="mx-auto max-w-[1440px] px-6 pb-8 pt-16 md:px-12 md:pt-24 lg:px-16">
+        <div className="flex flex-col items-start justify-between gap-8 border-b border-white/20 pb-12 md:flex-row md:items-end">
+          <div><Link href="/" aria-label="Lodestone Global home"><Image src="/logo/lodestone-global-horizontal-white.png" alt="Lodestone Global" width={320} height={107} className="h-12 w-auto" /></Link>
+          <p className="mt-6 max-w-md text-[clamp(1.8rem,3vw,3.2rem)] font-normal leading-[1.1] tracking-[-.04em]">Private-company boards.<br/>Independent perspective.</p></div>
+          <Link href="/contact" className="group inline-flex min-h-[52px] items-center gap-5 bg-white px-7 py-4 text-lg font-medium text-[#10243a] hover:bg-[#dce8f2]">Contact Lodestone <span aria-hidden="true">↗</span></Link>
         </div>
-
-        <div className="mt-16 flex flex-col gap-6 border-t border-ivory/10 pt-8">
-          <p className="max-w-3xl font-sans text-[0.72rem] leading-relaxed text-ivory/65">
-            Lodestone Family Advisors provides advisory services; Lodestone Capital pursues investment
-            activities. Nothing on this site is an offer to sell or a solicitation to buy any security,
-            or investment, legal, or tax advice. Investing involves risk, including possible loss of
-            principal.
-          </p>
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <span className="font-sans text-[0.72rem] uppercase tracking-[0.08em] text-ivory/65">
-              &copy; {year} {CONTACT.legalEntity}. All rights reserved.
-            </span>
-            <span className="font-sans text-[0.72rem] uppercase tracking-[0.08em] text-ivory/65">
-              {CONTACT.location}
-            </span>
-          </div>
+        <div className="grid gap-x-10 gap-y-10 py-12 sm:grid-cols-2 lg:grid-cols-4">
+          {groups.map(g=><nav key={g.title} aria-label={g.title} className="flex flex-col gap-3"><h2 className="mb-2 text-sm font-medium text-[#a8bdcf]">{g.title}</h2>{g.links.map(l=><Link key={l.label} href={l.href} className="w-fit py-1 text-base text-white/90 hover:text-white hover:underline focus-visible:outline-white">{l.label}</Link>)}</nav>)}
+          <div className="flex flex-col gap-3"><h2 className="mb-2 text-sm font-medium text-[#a8bdcf]">Get in touch</h2><address className="flex flex-col gap-3 text-base not-italic text-white/90"><span>{CONTACT.location}</span><a href={`mailto:${CONTACT.email}`} className="break-all hover:underline">{CONTACT.email}</a><a href={CONTACT.phoneHref} className="hover:underline">{CONTACT.phone}</a><a href={CONTACT.linkedin} target="_blank" rel="noopener noreferrer" className="hover:underline">LinkedIn ↗</a></address></div>
         </div>
-      </Container>
+        <div className="border-t border-white/20 pt-8">
+          <p className="max-w-3xl text-sm leading-relaxed text-[#b6c7d6]">Lodestone Family Advisors provides advisory services; Lodestone Capital pursues investment activities. Nothing on this site is an offer to sell or a solicitation to buy any security, or investment, legal, or tax advice. Investing involves risk, including possible loss of principal.</p>
+          <div className="mt-6 flex flex-wrap items-center justify-between gap-4 text-sm text-[#b6c7d6]"><span>© {year} {CONTACT.legalEntity}. All rights reserved.</span><Link href="/privacy" className="text-base text-white hover:underline">Privacy policy</Link></div>
+        </div>
+      </div>
     </footer>
   );
 }
