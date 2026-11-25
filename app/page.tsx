@@ -90,11 +90,19 @@ export default function Home() {
         </section>
         <section id="client-evidence" className="mx-auto max-w-[1440px] px-6 py-20 md:px-12 md:py-28 lg:px-16">
           <div className="flex flex-wrap items-end justify-between gap-6"><div><p className="mb-5 text-sm font-medium text-[#526478]">Value creation in practice</p><h2 className="max-w-3xl text-[clamp(2.4rem,4.8vw,4.8rem)] font-normal leading-[1.04] tracking-[-.05em]">What the right board can help achieve.</h2></div><Link href="/case-studies" className="group inline-flex min-h-[44px] items-center gap-3 border-b border-[#10243a] pb-2 text-lg font-medium">Explore case studies <Arrow /></Link></div>
-          <div className="mt-12 grid gap-4 md:grid-cols-2">
-            <article className="flex min-h-[315px] flex-col justify-between bg-[#07192b] p-7 text-white md:p-10"><p className="text-base text-[#b7cadb]">Diesco Group · Profitability</p><div><p className="mt-6 text-[clamp(5rem,10vw,9rem)] leading-[.85] tracking-[-.075em]">4×</p><h3 className="mt-6 text-2xl font-normal">EBITDA following board formation</h3><p className="mt-3 max-w-lg text-base leading-relaxed text-[#c1cfdd]">Its board supported strategy, accountability and management development. Recognized as Advisory Board of the Year in 2017.</p></div></article>
-            <article className="flex min-h-[315px] flex-col justify-between bg-[#e8eff5] p-7 md:p-10"><p className="text-base text-[#526478]">Morgan Properties · Growth</p><div><p className="mt-6 text-[clamp(5rem,10vw,9rem)] leading-[.85] tracking-[-.075em]">$2B+</p><h3 className="mt-6 text-2xl font-normal">Acquisitions guided by the board</h3><p className="mt-3 max-w-lg text-base leading-relaxed text-[#526478]">Independent real estate and investment expertise supported acquisitions after board formation in 2017.</p></div></article>
-            <article className="border border-[#d5dde5] p-7 md:p-9"><p className="text-sm font-medium text-[#526478]">Martin Preferred Foods · Leadership</p><h3 className="mt-4 text-3xl font-normal tracking-tight">A stronger management team</h3><p className="mt-4 text-base leading-relaxed text-[#526478]">The company added new sales, operations and analytics leaders following board formation and a generational transition.</p></article>
-            <article className="border border-[#d5dde5] p-7 md:p-9"><p className="text-sm font-medium text-[#526478]">Symega Food Ingredients · International growth</p><h3 className="mt-4 text-3xl font-normal tracking-tight">Expertise for the next market</h3><p className="mt-4 text-base leading-relaxed text-[#526478]">The board brought international logistics, food-industry and marketing experience to the company's expansion and innovation agenda.</p></article>
+          {/* Industry imagery from the original public Wix case studies; illustrative, not verified photographs of the clients' premises. */}
+          <div className="mt-12 grid gap-5 lg:grid-cols-[1.15fr_.85fr]">
+            <article className="relative isolate flex min-h-[480px] flex-col justify-between overflow-hidden bg-[#07192b] p-8 text-white md:p-12">
+              <BackgroundPhoto src="https://static.wixstatic.com/media/b7569128e76a405e9b04cc240497d066.jpg" alt="Packaging manufacturing facility (illustrative)" sizes="(min-width:1024px) 55vw,100vw" overlayStyle={{backgroundImage:"linear-gradient(180deg,rgba(7,25,43,.32),rgba(7,25,43,.72) 38%,rgba(7,25,43,.97))"}}/>
+              <p className="relative z-10 text-base font-medium text-white">Diesco Group · Profitability</p>
+              <div className="relative z-10"><p className="mt-6 text-[clamp(5rem,10vw,9rem)] leading-[.85] tracking-[-.075em]">4×</p><h3 className="mt-6 text-3xl font-normal tracking-tight">EBITDA following board formation</h3><p className="mt-4 max-w-lg text-base leading-relaxed text-[#d8e5ef]">Independent directors supported strategy, accountability and management development. The board was recognized as Advisory Board of the Year in 2017.</p></div>
+            </article>
+            <article className="flex flex-col overflow-hidden bg-[#e8eff5]">
+              <div className="relative min-h-[200px] flex-1"><BackgroundPhoto src="https://static.wixstatic.com/media/d7f019a0e0ef4cfb83f63dab7b09ecfe.jpg" alt="Residential real estate (illustrative)" sizes="(min-width:1024px) 43vw,100vw" overlayStyle={{backgroundColor:"rgba(7,25,43,.1)"}} /></div>
+              <div className="p-8 md:p-10"><p className="text-base text-[#526478]">Morgan Properties · Growth</p><p className="mt-4 text-[clamp(4rem,7vw,6rem)] leading-none tracking-[-.075em]">$2B+</p><h3 className="mt-3 text-2xl font-normal">Acquisitions guided by the board</h3><p className="mt-3 max-w-lg text-base leading-relaxed text-[#526478]">Independent real estate and investment expertise supported acquisitions after board formation in 2017.</p></div>
+            </article>
+            <article className="grid overflow-hidden border border-[#d5dde5] sm:grid-cols-[.65fr_1fr]"><div className="relative min-h-[190px]"><BackgroundPhoto src="https://static.wixstatic.com/media/d9e74c6ef47b434da206cf466e4c270e.jpg" alt="Food preparation (illustrative)" sizes="(min-width:1024px) 22vw,50vw" /></div><div className="p-7"><p className="text-sm font-medium text-[#526478]">Martin Preferred Foods · Leadership</p><h3 className="mt-4 text-2xl font-normal tracking-tight">A stronger management team</h3><p className="mt-4 text-base leading-relaxed text-[#526478]">New sales, operations and analytics leaders joined following board formation and a generational transition.</p></div></article>
+            <article className="grid overflow-hidden border border-[#d5dde5] sm:grid-cols-[.65fr_1fr]"><div className="relative min-h-[190px]"><BackgroundPhoto src="https://static.wixstatic.com/media/0c8d97d482cd4c658502fff90ec9275b.jpg" alt="Food ingredients (illustrative)" sizes="(min-width:1024px) 20vw,50vw" /></div><div className="p-7"><p className="text-sm font-medium text-[#526478]">Symega · International growth</p><h3 className="mt-4 text-2xl font-normal tracking-tight">Expertise for the next market</h3><p className="mt-4 text-base leading-relaxed text-[#526478]">The board added international logistics, food-industry and marketing experience to the expansion agenda.</p></div></article>
           </div><p className="mt-5 text-sm text-[#526478]">Historical client case studies. Other factors contributed to business performance; outcomes vary.</p>
         </section>
         <ClientTestimonials />
@@ -116,14 +124,14 @@ export default function Home() {
                 <Link href="/research" className="group inline-flex items-center min-h-[44px] gap-3 border-b border-[#10243a] pb-2 text-lg font-medium">Explore the research <Arrow /></Link>
               </div>
             </div>
-            <div className="relative isolate flex min-h-[260px] items-center justify-center overflow-hidden bg-[#0e263d] p-8 md:min-h-[410px] md:p-12">
+            <div className="relative isolate flex min-h-[260px] items-center justify-center overflow-hidden bg-[radial-gradient(ellipse_at_75%_20%,#315570_0%,#102b43_46%,#07192b_100%)] p-8 md:min-h-[410px] md:p-12">
               <span aria-hidden="true" className="pointer-events-none absolute -right-8 -top-10 select-none text-[clamp(8rem,19vw,19rem)] font-normal leading-none tracking-[-.1em] text-white/10">{latestEdition.year}</span>
               <Image src={latestEdition.coverImage.url} alt={latestEdition.year + " Private Company Board Compensation Survey cover"} width={latestEdition.coverImage.width} height={latestEdition.coverImage.height} sizes="(min-width: 1024px) 40vw, 85vw" className="relative z-10 h-auto w-full max-w-[540px] object-contain shadow-2xl" />
             </div>
           </div>
         </section>
 
-        <section id="ecosystem" className="relative isolate overflow-hidden bg-[#07192b] text-white">
+        <section id="ecosystem" className="relative isolate overflow-hidden bg-gradient-to-br from-[#07192b] via-[#10243a] to-[#1d3f59] text-white">
           <Image src="/logo/lodestone-global-icon.png" width={700} height={700} alt="" aria-hidden="true" className="pointer-events-none absolute -bottom-24 -right-32 -z-10 w-[650px] opacity-[0.07] brightness-0 invert" />
           <div className="mx-auto max-w-[1440px] px-6 py-20 md:px-12 md:py-28 lg:px-16">
             <div className="mb-14 grid items-end gap-6 lg:grid-cols-[1.1fr_.9fr] lg:gap-24">
@@ -141,7 +149,7 @@ export default function Home() {
         </section>
 
         <section className="mx-auto flex max-w-[1440px] flex-col items-start justify-between gap-8 px-6 py-20 md:flex-row md:items-end md:px-12 md:py-24 lg:px-16">
-          <div><p className="mb-5 text-sm text-[#526478]">Start a conversation</p><h2 className="max-w-xl text-[clamp(2.2rem,4vw,4rem)] font-normal leading-[1.06] tracking-[-0.045em]">Let's talk about your board.</h2></div>
+          <div><p className="mb-5 text-sm text-[#526478]">Start a conversation</p><h2 className="max-w-xl text-[clamp(2.2rem,4vw,4rem)] font-normal leading-[1.06] tracking-[-0.045em]">What could the right board do for your business?</h2></div>
           <div className="flex flex-wrap gap-6">
             <Link href="/contact" className="group inline-flex items-center min-h-[44px] gap-3 border-b border-[#10243a] pb-2 text-lg font-medium">Contact Lodestone <Arrow /></Link>
             <Link href="/insights" className="group inline-flex items-center min-h-[44px] gap-3 border-b border-[#10243a] pb-2 text-lg font-medium">Read our insights <Arrow /></Link>
