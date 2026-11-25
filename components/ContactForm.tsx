@@ -1,259 +1,54 @@
 "use client";
-
-import { useId, useState } from "react";
+import { useId, useRef, useState } from "react";
 import { CONTACT } from "@/lib/content";
-
-type Status = "idle" | "submitting" | "success" | "error";
-
-const interests = [
-  "Governance advisory",
-  "Operating support (E3)",
-  "Capital and investing",
-  "Family advisory",
-  "Not sure yet",
-] as const;
-
-/**
- * Accessible contact form with inline validation, a honeypot for spam
- * protection (least intrusive method, no dependency), and clear success and
- * error states. Until a form destination is configured (see CONTENT_NEEDED.md),
- * submission falls back to composing an email to info@lodestoneglobal.com so
- * the control is never a dead end.
- */
-export function ContactForm() {
-  const nameId = useId();
-  const emailId = useId();
-  const orgId = useId();
-  const interestId = useId();
-  const messageId = useId();
-
-  const [status, setStatus] = useState<Status>("idle");
-  const [errors, setErrors] = useState<Record<string, string>>({});
-
-  function validate(form: HTMLFormElement) {
-    const next: Record<string, string> = {};
-    const name = (form.elements.namedItem("name") as HTMLInputElement)?.value.trim();
-    const email = (form.elements.namedItem("email") as HTMLInputElement)?.value.trim();
-    const message = (form.elements.namedItem("message") as HTMLTextAreaElement)?.value.trim();
-
-    if (!name) next.name = "Please enter your name.";
-    if (!email) {
-      next.email = "Please enter your email.";
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      next.email = "Please enter a valid email address.";
-    }
-    if (!message) next.message = "Please add a short note about what you are working on.";
-
-    return next;
-  }
-
-  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    const form = event.currentTarget;
-
-    // Honeypot: real users leave this hidden field empty.
-    const trap = (form.elements.namedItem("company_website") as HTMLInputElement)?.value;
-    if (trap) {
-      setStatus("success");
-      return;
-    }
-
-    const nextErrors = validate(form);
-    setErrors(nextErrors);
-    if (Object.keys(nextErrors).length > 0) {
-      const firstField = Object.keys(nextErrors)[0];
-      form.querySelector<HTMLElement>(`[name="${firstField}"]`)?.focus();
-      return;
-    }
-
-    setStatus("submitting");
-
-    const data = new FormData(form);
-    const name = String(data.get("name") ?? "");
-    const email = String(data.get("email") ?? "");
-    const org = String(data.get("organization") ?? "");
-    const interest = String(data.get("interest") ?? "");
-    const message = String(data.get("message") ?? "");
-
-    // No live form endpoint is configured yet (see CONTENT_NEEDED.md).
-    // Degrade gracefully to a pre-filled email rather than failing silently.
-    try {
-      const subject = encodeURIComponent(`Website inquiry from ${name || "a visitor"}`);
-      const body = encodeURIComponent(
-        [
-          `Name: ${name}`,
-          `Email: ${email}`,
-          org ? `Organization: ${org}` : "",
-          interest ? `Area of interest: ${interest}` : "",
-          "",
-          message,
-        ]
-          .filter(Boolean)
-          .join("\n"),
-      );
-      window.location.href = `mailto:${CONTACT.email}?subject=${subject}&body=${body}`;
-      setStatus("success");
-      form.reset();
-    } catch {
-      setStatus("error");
-    }
-  }
-
-  if (status === "success") {
-    return (
-      <div
-        role="status"
-        className="border border-charcoal/15 bg-parchment/50 p-8"
-      >
-        <h3 className="font-serif text-xl font-normal text-navy">Thank you.</h3>
-        <p className="mt-3 max-w-md font-sans text-[0.95rem] leading-relaxed text-charcoal/70">
-          Your email client should now be open with your message ready to send. If it did not open,
-          you can reach us directly at{" "}
-          <a href={`mailto:${CONTACT.email}`} className="border-b border-navy/40 text-navy">
-            {CONTACT.email}
-          </a>
-          . A member of the team will respond personally.
-        </p>
-      </div>
-    );
-  }
-
-  return (
-    <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-6">
-      {/* Honeypot field, visually hidden and off the tab order. */}
-      <div className="absolute left-[-9999px]" aria-hidden="true">
-        <label htmlFor="company_website">Company website</label>
-        <input id="company_website" name="company_website" type="text" tabIndex={-1} autoComplete="off" />
-      </div>
-
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-        <Field
-          id={nameId}
-          name="name"
-          label="Name"
-          error={errors.name}
-          autoComplete="name"
-          required
-        />
-        <Field
-          id={emailId}
-          name="email"
-          type="email"
-          label="Email"
-          error={errors.email}
-          autoComplete="email"
-          required
-        />
-      </div>
-
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-        <Field
-          id={orgId}
-          name="organization"
-          label="Company or family office"
-          autoComplete="organization"
-        />
-        <div className="flex flex-col gap-2">
-          <label htmlFor={interestId} className="font-sans text-[0.8rem] uppercase tracking-[0.08em] text-charcoal/80">
-            Area of interest
-          </label>
-          <select
-            id={interestId}
-            name="interest"
-            defaultValue=""
-            className="field px-4 py-3 text-[0.95rem]"
-          >
-            <option value="" disabled>
-              Select one
-            </option>
-            {interests.map((option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            ))}
-          </select>
-        </div>
-      </div>
-
-      <div className="flex flex-col gap-2">
-        <label htmlFor={messageId} className="font-sans text-[0.8rem] uppercase tracking-[0.08em] text-charcoal/80">
-          What are you working on? <span className="text-brass-ink">*</span>
-        </label>
-        <textarea
-          id={messageId}
-          name="message"
-          rows={5}
-          required
-          aria-invalid={errors.message ? "true" : undefined}
-          aria-describedby={errors.message ? `${messageId}-error` : undefined}
-          className="field px-4 py-3 text-[0.95rem] leading-relaxed"
-        />
-        {errors.message && (
-          <p id={`${messageId}-error`} className="font-sans text-[0.8rem] text-red-800">
-            {errors.message}
-          </p>
-        )}
-      </div>
-
-      {status === "error" && (
-        <p role="alert" className="font-sans text-[0.85rem] text-red-800">
-          Something went wrong. Please email{" "}
-          <a href={`mailto:${CONTACT.email}`} className="border-b border-current">
-            {CONTACT.email}
-          </a>{" "}
-          directly.
-        </p>
-      )}
-
-      <div className="flex flex-col gap-4 pt-2 sm:flex-row sm:items-center">
-        <button type="submit" disabled={status === "submitting"} className="btn-primary disabled:opacity-60">
-          {status === "submitting" ? "Sending" : "Schedule a Conversation"}
-        </button>
-        <p className="font-sans text-[0.8rem] leading-relaxed text-charcoal/80">
-          Every inquiry is treated as confidential.
-        </p>
-      </div>
-    </form>
-  );
-}
-
-function Field({
-  id,
-  name,
-  label,
-  type = "text",
-  error,
-  required,
-  autoComplete,
-}: {
-  id: string;
-  name: string;
-  label: string;
-  type?: string;
-  error?: string;
-  required?: boolean;
-  autoComplete?: string;
-}) {
-  return (
-    <div className="flex flex-col gap-2">
-      <label htmlFor={id} className="font-sans text-[0.8rem] uppercase tracking-[0.08em] text-charcoal/80">
-        {label} {required && <span className="text-brass-ink">*</span>}
-      </label>
-      <input
-        id={id}
-        name={name}
-        type={type}
-        required={required}
-        autoComplete={autoComplete}
-        aria-invalid={error ? "true" : undefined}
-        aria-describedby={error ? `${id}-error` : undefined}
-        className="field px-4 py-3 text-[0.95rem]"
-      />
-      {error && (
-        <p id={`${id}-error`} className="font-sans text-[0.8rem] text-red-800">
-          {error}
-        </p>
-      )}
-    </div>
-  );
+const topics = [{"id":"global","company":"Lodestone Global","label":"Building or improving my board"},{"id":"e3","company":"E3 Scale Network","label":"Scaling my business and increasing enterprise value"},{"id":"capital","company":"Lodestone Capital","label":"An investment or acquisition opportunity"},{"id":"lfa","company":"Lodestone Family Advisors","label":"Establishing or improving my family office"},{"id":"other","company":"Lodestone ecosystem","label":"Exploring the Lodestone ecosystem"}] as const;
+const sharedEmail = CONTACT.email;
+const destinations: Record<string, string | undefined> = {
+ global: process.env.NEXT_PUBLIC_CONTACT_GLOBAL_EMAIL,
+ e3: process.env.NEXT_PUBLIC_CONTACT_E3_EMAIL,
+ capital: process.env.NEXT_PUBLIC_CONTACT_CAPITAL_EMAIL,
+ lfa: process.env.NEXT_PUBLIC_CONTACT_LFA_EMAIL,
+ other: process.env.NEXT_PUBLIC_CONTACT_ECOSYSTEM_EMAIL,
+};
+type Draft = { to:string; subject:string; body:string; href:string };
+const inputClass="block min-h-12 w-full border border-[#b9c7d3] bg-white px-3 py-3 text-base text-[#10243a] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#10243a]";
+export function ContactForm(){
+ const id=useId(), formRef=useRef<HTMLFormElement>(null), statusRef=useRef<HTMLDivElement>(null);
+ const [topic,setTopic]=useState("");
+ const [draft,setDraft]=useState<Draft|null>(null);
+ const [copied,setCopied]=useState(false);
+ const [error,setError]=useState("");
+ const selection=topics.find(t=>t.id===topic);
+ const recipient=selection?(destinations[selection.id]||sharedEmail):sharedEmail;
+ const shared=!selection||!destinations[selection.id];
+ function submit(event:React.FormEvent<HTMLFormElement>){
+  event.preventDefault();setError("");setCopied(false);
+  const data=new FormData(event.currentTarget);const read=(name:string)=>String(data.get(name)||"").trim();
+  if(read("company_website"))return;
+  const first=read("firstName"),last=read("lastName"),email=read("email"),company=read("organization"),message=read("message");
+  if(!selection||!first||!last||!email||!event.currentTarget.checkValidity()){setError("Please complete the required fields.");event.currentTarget.reportValidity();return;}
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){setError("Please enter a valid email address.");return;}
+  const subject="Website inquiry — "+selection.company;
+  const body=["Business: "+selection.company,"Topic: "+selection.label,"Source website: Lodestone Global","Name: "+first+" "+last,"Email: "+email,company?"Company or family office: "+company:"","",message].filter(Boolean).join("\n");
+  const href="mailto:"+recipient+"?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(body);
+  setDraft({to:recipient,subject,body,href});
+  requestAnimationFrame(()=>statusRef.current?.focus());
+ }
+ async function copy(){if(!draft)return;try{await navigator.clipboard.writeText("To: "+draft.to+"\nSubject: "+draft.subject+"\n\n"+draft.body);setCopied(true);}catch{setError("Copy is unavailable. You can select and copy the draft manually.");}}
+ return <div className="text-[#10243a]">
+ <form ref={formRef} onSubmit={submit} className="grid gap-6">
+ <fieldset className="min-w-0"><legend className="mb-4 text-xl font-semibold">How can we help?</legend><div className="grid gap-2">{topics.map(t=><label key={t.id} className={`flex cursor-pointer items-start gap-3 border p-4 transition-colors ${topic===t.id?"border-[#10243a] bg-[#edf3f8]":"border-[#cbd5df] bg-white hover:bg-[#f4f7fa]"}`}><input type="radio" name="topic" value={t.id} checked={topic===t.id} onChange={()=>{setTopic(t.id);setDraft(null);}} required className="mt-1 h-4 w-4 shrink-0 accent-[#10243a]"/><span><span className="block font-medium">{t.label}</span><span className="mt-1 block text-sm text-[#526478]">{t.company}</span></span></label>)}</div></fieldset>
+ <div className="grid gap-4 sm:grid-cols-2">{[["firstName","First name","given-name"],["lastName","Last name","family-name"]].map(([name,label,auto])=><label key={name} className="grid gap-2 text-sm font-medium" htmlFor={id+name}>{label}<input id={id+name} name={name} autoComplete={auto} required maxLength={80} className={inputClass}/></label>)}</div>
+ <label htmlFor={id+"email"} className="grid gap-2 text-sm font-medium">Email<input id={id+"email"} name="email" type="email" autoComplete="email" required maxLength={254} className={inputClass}/></label>
+ <label htmlFor={id+"organization"} className="grid gap-2 text-sm font-medium">Company or family office (optional)<input id={id+"organization"} name="organization" autoComplete="organization" maxLength={160} className={inputClass}/></label>
+ <label htmlFor={id+"message"} className="grid gap-2 text-sm font-medium">How can we help? (optional)<textarea id={id+"message"} name="message" rows={4} maxLength={1200} className={inputClass} placeholder="A short note about what you are looking for."/></label>
+ <div className="absolute -left-[9999px]" aria-hidden="true"><label htmlFor={id+"trap"}>Website</label><input id={id+"trap"} name="company_website" tabIndex={-1} autoComplete="off"/></div>
+ <p className="text-sm leading-relaxed text-[#526478]">Please do not include account details, financial documents, tax records, or other sensitive information. </p>
+ {selection&&<p className="border-l-2 border-[#10243a] pl-3 text-sm" aria-live="polite">Your inquiry is addressed to <strong>{selection.company}</strong>. {shared?"A draft will be addressed to the shared Lodestone introduction mailbox ("+recipient+").":"A draft will be addressed to "+recipient+"."}</p>}
+ {error&&<p role="alert" className="text-sm text-red-800">{error}</p>}
+ <button type="submit" className="min-h-12 bg-[#10243a] px-6 py-3 text-base font-semibold text-white hover:bg-[#26465f] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">Prepare my introduction</button>
+ <p className="text-xs text-[#526478]">Nothing is sent automatically. Review the draft before opening it in your email app.</p>
+ </form>
+ {draft&&<div ref={statusRef} tabIndex={-1} role="status" className="mt-8 border border-[#b9c7d3] bg-[#edf3f8] p-5"><h2 className="text-xl font-semibold">Your introduction is ready</h2><p className="mt-2 text-sm">To: {draft.to}</p><p className="mt-2 text-sm">Subject: {draft.subject}</p><pre className="mt-4 whitespace-pre-wrap break-words font-sans text-sm">{draft.body}</pre><div className="mt-5 flex flex-wrap gap-4"><a href={draft.href} className="inline-flex min-h-11 items-center bg-[#10243a] px-4 text-sm font-medium text-white">Open email draft</a><button type="button" onClick={copy} className="min-h-11 border border-[#10243a] px-4 text-sm font-medium">{copied?"Copied":"Copy message"}</button></div><p className="mt-3 text-xs">This inquiry has not been sent.</p></div>}
+ </div>;
 }
