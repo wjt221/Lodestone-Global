@@ -4,193 +4,57 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Container } from "./Container";
-import { primaryNav, CTA_PRIMARY, type NavItem } from "@/lib/content";
+
+const links = [
+  { label: "Board advisory", href: "/governance-advisory" },
+  { label: "Our process", href: "/#process" },
+  { label: "Research", href: "/research" },
+  { label: "Our work", href: "/case-studies" },
+  { label: "Our ecosystem", href: "/#ecosystem" },
+];
+const ecosystem = [
+  {label:"Lodestone Global",href:"/"},
+  {label:"E3 Scale Network",href:"/e3-scale-network"},
+  {label:"Lodestone Family Advisors",href:"/family-advisors"},
+  {label:"Lodestone Capital",href:"/lodestone-capital"},
+];
 
 export function Header() {
-  const [open, setOpen] = useState(false);
   const pathname = usePathname();
-
-  function isActive(href: string) {
-    const base = href.split("#")[0];
-    if (base === "/") return pathname === "/";
-    return pathname === base || pathname.startsWith(`${base}/`);
-  }
-
-  function isActiveItem(item: NavItem) {
-    return isActive(item.href) || Boolean(item.children?.some((c) => isActive(c.href)));
-  }
-
+  const home = pathname === "/";
+  const [open,setOpen] = useState(false);
+  useEffect(() => { setOpen(false); }, [pathname]);
   useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [open]);
-
-  useEffect(() => {
-    function onKey(e: KeyboardEvent) {
-      if (e.key === "Escape") setOpen(false);
-    }
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, []);
-
+    const close = (e: KeyboardEvent) => { if(e.key === "Escape") setOpen(false); };
+    window.addEventListener("keydown",close);
+    return () => window.removeEventListener("keydown",close);
+  },[]);
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-ivory/10 bg-navy/95 backdrop-blur-sm">
-      <Container className="flex h-[4.25rem] items-center justify-between gap-4">
-        <Link href="/" className="flex shrink-0 items-center" aria-label="Lodestone Global home">
-          <Image
-            src="/logo/lodestone-global-horizontal-white.png"
-            alt="Lodestone Global"
-            width={320}
-            height={107}
-            priority
-            className="h-8 w-auto"
-          />
+    <header className={`${home ? "relative" : "fixed inset-x-0 top-0"} z-50 border-b border-white/10 bg-[#07192b] text-white`}>
+      <div className={`mx-auto flex max-w-[1600px] items-center justify-between gap-4 px-6 md:px-12 lg:px-16 ${home ? "py-6" : "h-[4.25rem]"}`}>
+        <Link href="/" onClick={()=>setOpen(false)} aria-label="Lodestone Global home" className="shrink-0">
+          <Image src="/logo/lodestone-global-horizontal-white.png" alt="Lodestone Global" width={320} height={107} priority className="h-10 w-auto md:h-11" />
         </Link>
-
-        <nav aria-label="Primary" className="hidden items-center gap-x-7 xl:flex">
-          {primaryNav.map((item) => {
-            const active = isActiveItem(item);
-            const linkClass = `whitespace-nowrap font-sans text-[0.75rem] uppercase tracking-[0.07em] transition-colors duration-200 hover:text-brass-light ${
-              active ? "text-brass-light" : "text-ivory/70"
-            }`;
-
-            if (item.children) {
-              return (
-                <div key={item.href} className="group relative">
-                  <Link
-                    href={item.href}
-                    aria-current={active ? "page" : undefined}
-                    className={`inline-flex items-center gap-1.5 ${linkClass}`}
-                  >
-                    {item.label}
-                    <span aria-hidden className="text-[0.55rem] leading-none">
-                      ▾
-                    </span>
-                  </Link>
-                  <div className="pointer-events-none absolute left-1/2 top-full z-50 -translate-x-1/2 pt-4 opacity-0 transition-opacity duration-150 group-hover:pointer-events-auto group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:opacity-100">
-                    <div className="min-w-[16rem] border border-ivory/10 bg-navy py-2 shadow-2xl">
-                      {item.children.map((child) => (
-                        <Link
-                          key={child.label}
-                          href={child.href}
-                          aria-current={isActive(child.href) ? "page" : undefined}
-                          className={`block whitespace-nowrap px-5 py-2.5 font-sans text-[0.75rem] uppercase tracking-[0.06em] transition-colors hover:text-brass-light ${
-                            isActive(child.href) ? "text-brass-light" : "text-ivory/75"
-                          }`}
-                        >
-                          {child.label}
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              );
-            }
-
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                aria-current={active ? "page" : undefined}
-                className={linkClass}
-              >
-                {item.label}
-              </Link>
-            );
-          })}
+        <nav aria-label="Primary" className="hidden items-center gap-6 text-[17px] xl:flex 2xl:gap-8">
+          {links.map(n => n.label === "Our ecosystem" ? (
+            <div key={n.href} className="group relative">
+              <Link href={n.href} className="inline-flex min-h-[44px] items-center gap-2 text-white/90 hover:text-white focus-visible:outline-white">{n.label}<span aria-hidden="true">⌄</span></Link>
+              <div className="invisible absolute right-0 top-full w-[290px] border border-white/15 bg-[#07192b] p-4 opacity-0 shadow-xl transition-opacity group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+                {ecosystem.map(b=><Link key={b.href} href={b.href} className="block px-3 py-3 text-base text-white hover:bg-white/10">{b.label}</Link>)}
+              </div>
+            </div>
+          ) : <Link key={n.href} href={n.href} aria-current={pathname===n.href?"page":undefined} className="inline-flex min-h-[44px] items-center whitespace-nowrap text-white/90 hover:text-white focus-visible:outline-white">{n.label}</Link>)}
         </nav>
-
-        <div className="flex shrink-0 items-center gap-3">
-          <Link
-            href={CTA_PRIMARY.href}
-            className="btn-inverse hidden whitespace-nowrap px-4 py-2.5 text-[0.68rem] tracking-[0.1em] xl:inline-flex"
-          >
-            {CTA_PRIMARY.label}
-          </Link>
-          <button
-            type="button"
-            onClick={() => setOpen((v) => !v)}
-            className="flex h-10 w-10 items-center justify-center text-ivory xl:hidden"
-            aria-expanded={open}
-            aria-controls="mobile-nav"
-            aria-label={open ? "Close menu" : "Open menu"}
-          >
-            <span className="relative block h-4 w-6" aria-hidden>
-              <span
-                className={`absolute left-0 top-0 h-px w-6 bg-current transition-transform duration-200 ${
-                  open ? "translate-y-2 rotate-45" : ""
-                }`}
-              />
-              <span
-                className={`absolute left-0 top-2 h-px w-6 bg-current transition-opacity duration-200 ${
-                  open ? "opacity-0" : ""
-                }`}
-              />
-              <span
-                className={`absolute left-0 top-4 h-px w-6 bg-current transition-transform duration-200 ${
-                  open ? "-translate-y-2 -rotate-45" : ""
-                }`}
-              />
-            </span>
-          </button>
+        <div className="flex items-center gap-4">
+          <Link href="/contact" className="group hidden min-h-[44px] items-center gap-3 border-b border-white/50 pb-1 text-[17px] font-medium md:inline-flex">Contact <span aria-hidden="true">↗</span></Link>
+          <button type="button" aria-expanded={open} aria-controls="mobile-nav" onClick={()=>setOpen(!open)} className="flex min-h-[44px] items-center gap-2 text-base font-medium xl:hidden">{open?"Close":"Menu"} <span aria-hidden="true">{open?"−":"+"}</span></button>
         </div>
-      </Container>
-
-      {open && (
-        <div
-          id="mobile-nav"
-          className="h-[calc(100vh-4.25rem)] overflow-y-auto border-t border-ivory/10 bg-navy xl:hidden"
-        >
-          <Container className="flex flex-col py-6">
-            <nav aria-label="Mobile" className="flex flex-col">
-              {primaryNav.map((item) => {
-                const active = isActiveItem(item);
-                return (
-                  <div key={item.href} className="border-b border-ivory/10">
-                    <Link
-                      href={item.href}
-                      onClick={() => setOpen(false)}
-                      aria-current={active ? "page" : undefined}
-                      className={`block py-4 font-sans text-[0.95rem] uppercase tracking-[0.06em] transition-colors hover:text-brass-light ${
-                        active ? "text-brass-light" : "text-ivory/80"
-                      }`}
-                    >
-                      {item.label}
-                    </Link>
-                    {item.children && (
-                      <div className="flex flex-col pb-3 pl-4">
-                        {item.children.map((child) => (
-                          <Link
-                            key={child.label}
-                            href={child.href}
-                            onClick={() => setOpen(false)}
-                            aria-current={isActive(child.href) ? "page" : undefined}
-                            className={`border-l border-ivory/15 py-2.5 pl-4 font-sans text-[0.85rem] tracking-[0.04em] transition-colors hover:text-brass-light ${
-                              isActive(child.href) ? "text-brass-light" : "text-ivory/60"
-                            }`}
-                          >
-                            {child.label}
-                          </Link>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
-            </nav>
-            <Link
-              href={CTA_PRIMARY.href}
-              onClick={() => setOpen(false)}
-              className="btn-inverse mt-6 w-fit"
-            >
-              {CTA_PRIMARY.label}
-            </Link>
-          </Container>
-        </div>
-      )}
+      </div>
+      {open && <nav id="mobile-nav" aria-label="Mobile" className="absolute inset-x-0 top-full max-h-[80svh] overflow-y-auto border-t border-white/20 bg-[#07192b] px-6 py-5 text-lg shadow-xl md:px-12 xl:hidden">
+        {links.map(n=><Link key={n.href} href={n.href} onClick={()=>setOpen(false)} className="block border-b border-white/15 py-4">{n.label}</Link>)}
+        <div className="grid gap-1 py-3 sm:grid-cols-2">{ecosystem.slice(1).map(n=><Link key={n.href} href={n.href} onClick={()=>setOpen(false)} className="block py-3 text-base text-[#c1cfdd]">{n.label}</Link>)}</div>
+        <Link href="/contact" onClick={()=>setOpen(false)} className="block border-t border-white/15 py-4">Contact ↗</Link>
+      </nav>}
     </header>
   );
 }
