@@ -4,9 +4,9 @@ import { CONTACT } from "@/lib/content";
 import { BOARD_TAGLINE } from "@/lib/site";
 
 const groups = [
-  {title:"Board advisory",links:[{label:"Board services",href:"/governance-advisory"},{label:"Build your board",href:"/build"},{label:"Our process",href:"/build#process"},{label:"Client case studies",href:"/case-studies"},{label:"Meet our team",href:"/about"}]},
+  {title:"Board advisory",links:[{label:"Board services",href:"/governance-advisory"},{label:"Build your board",href:"/build"},{label:"Our process",href:"/build#process"},{label:"Client case studies",href:"/case-studies"}]},
   {title:"Research & insights",links:[{label:"Compensation research",href:"/research"},{label:"Purchase reports",href:"/research#editions"},{label:"Insights",href:"/insights"}]},
-  {title:"Our ecosystem",links:[{label:"Lodestone Global",href:"/"},{label:"E3 Scale Network",href:"/e3-scale-network"},{label:"Lodestone Family Advisors",href:"/family-advisors"},{label:"Lodestone Capital",href:"/lodestone-capital"}]},
+  {title:"Our ecosystem",links:[{label:"Lodestone Global",href:"/"},{label:"E3 Scale Network",href:"/e3-scale-network"},{label:"Lodestone Family Advisors",href:"/family-advisors"},{label:"Lodestone Capital",href:"/lodestone-capital"},{label:"Our team",href:"/about#team"}]},
 ];
 export function Footer() {
   const year = new Date().getFullYear();
