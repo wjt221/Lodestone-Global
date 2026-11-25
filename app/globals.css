@@ -9,20 +9,20 @@
   }
 
   body {
-    background-color: #F7F5F0;
-    color: #25282A;
+    background-color: #FFFFFF;
+    color: #10243A;
     font-feature-settings: "kern" 1, "liga" 1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
   ::selection {
-    background-color: #0A1B2A;
-    color: #F7F5F0;
+    background-color: #07192B;
+    color: #FFFFFF;
   }
 
   :focus-visible {
-    outline: 2px solid #0A1B2A;
+    outline: 2px solid #07192B;
     outline-offset: 2px;
   }
 
@@ -109,20 +109,20 @@
   /* Card and door links: the whole card is the hover target. */
   .card-link {
     @apply underline underline-offset-4 transition-colors duration-200;
-    text-decoration-color: rgba(37, 40, 42, 0.25);
+    text-decoration-color: rgba(16, 36, 58, 0.25);
   }
   .group:hover .card-link {
-    color: #6E5A26;
-    text-decoration-color: #6E5A26;
+    color: #42617A;
+    text-decoration-color: #42617A;
   }
 
   /* Tone panel standing in for a photograph that could not be fetched. */
   .photo-fallback {
     background-image: linear-gradient(
       to bottom right,
-      rgba(10, 27, 42, 0.12),
-      #E9E5DC 55%,
-      rgba(215, 210, 198, 0.5)
+      rgba(7, 25, 43, 0.12),
+      #E8EFF5 55%,
+      rgba(213, 221, 229, 0.5)
     );
   }
 
@@ -157,7 +157,7 @@
    * there is only ever one compass file to keep in sync.
    */
   .compass-tile {
-    background-color: #0A1B2A;
+    background-color: #07192B;
   }
   /*
    * Listed at three specificities on purpose. The tile is used both on its own
@@ -202,12 +202,12 @@
     @apply border border-charcoal/20 bg-ivory font-sans text-charcoal;
   }
   .field:focus {
-    border-color: #0A1B2A;
+    border-color: #07192B;
     outline: none;
   }
   .field:focus-visible {
     outline: none;
-    box-shadow: 0 0 0 2px rgba(10, 27, 42, 0.4);
+    box-shadow: 0 0 0 2px rgba(7, 25, 43, 0.4);
   }
 
   /* Article body typography (no Tailwind typography plugin dependency). */
@@ -254,3 +254,14 @@
     @apply font-semibold text-charcoal;
   }
 }
+
+/* Shared editorial design: legacy utility names remain API-compatible, but
+   their palette and type now match the approved homepage. */
+.btn { font-size: 1.0625rem; text-transform: none; letter-spacing: 0; font-weight: 500; min-height: 48px; }
+.btn-primary, .btn-inverse { padding: 0.85rem 1.5rem; }
+.btn-text { min-height: 44px; }
+.kicker { font-size: .875rem; text-transform: none; letter-spacing: .015em; font-weight: 500; }
+main :is(h1,h2,h3).font-serif { font-weight: 400; }
+main a:not(.btn):focus-visible, footer a:focus-visible, header a:focus-visible { outline: 2px solid #648cac; outline-offset: 4px; }
+main a[class*="text-[0.78rem]"], main a[class*="text-[0.8rem]"], main a[class*="text-[0.85rem]"], main a[class*="text-[0.9rem]"] { font-size: 1rem; letter-spacing: 0; text-transform: none; }
+main .article-prose { font-size: 1.075rem; }
