@@ -1,18 +1,7 @@
 import type { Metadata } from "next";
-import { BusinessPage } from "@/components/BusinessPage";
-import { businessDetail } from "@/lib/content";
-
-export const metadata: Metadata = {
-  title: businessDetail.compound.meta.title,
-  description: businessDetail.compound.meta.description,
-  alternates: { canonical: "/lodestone-capital" },
-  openGraph: {
-    title: businessDetail.compound.meta.title,
-    description: businessDetail.compound.meta.description,
-    url: "/lodestone-capital",
-  },
-};
-
-export default function Page() {
-  return <BusinessPage id="compound" />;
-}
+import Image from "next/image";
+import Link from "next/link";
+import { BackgroundPhoto } from "@/components/BackgroundPhoto";
+import { photos } from "@/components/photos";
+export const metadata: Metadata={title:"Lodestone Capital",description:"Principal-led private investment and long-term partnerships.",alternates:{canonical:"/lodestone-capital"}};
+export default function Page(){return <div className="bg-[#0a1420] text-white"><header className="border-b border-white/20"><div className="mx-auto flex max-w-[1440px] flex-wrap items-center justify-between gap-5 px-6 py-6 md:px-12 lg:px-16"><Link href="/lodestone-capital" aria-label="Lodestone Capital"><Image src="/logo/lodestone-capital-horizontal-navy.png" alt="Lodestone Capital" width={1000} height={383} className="h-14 w-auto brightness-0 invert"/></Link><Link href="/#ecosystem" className="text-base text-white">Lodestone ecosystem ↗</Link></div></header><main id="main"><section className="relative isolate overflow-hidden"><BackgroundPhoto src={photos.compound.src} alt={photos.compound.alt} priority overlayStyle={{backgroundImage:"linear-gradient(90deg,rgba(10,20,32,.97),rgba(10,20,32,.45))"}}/><div className="relative z-10 mx-auto flex min-h-[620px] max-w-[1440px] flex-col justify-end px-6 py-20 md:px-12 lg:px-16"><p className="mb-8 text-base text-[#b8c6d3]">Lodestone Capital</p><h1 className="max-w-4xl text-[clamp(3.5rem,8vw,8rem)] font-normal leading-[.96] tracking-[-.065em]">Capital with an owner's perspective.</h1><p className="mt-8 max-w-xl text-lg leading-relaxed text-[#d3dee8]">A principal-led investment platform drawing on long-standing relationships with founders, families, directors and experienced operators.</p></div></section><section className="bg-white text-[#10243a]"><div className="mx-auto grid max-w-[1440px] gap-10 px-6 py-20 md:px-12 lg:grid-cols-2 lg:gap-24 lg:px-16"><h2 className="text-[clamp(2.5rem,4.5vw,4.5rem)] leading-[1.05] tracking-[-.05em]">A long-term approach to ownership.</h2><div className="space-y-6 text-lg leading-relaxed text-[#526478]"><p>Lodestone Capital pursues selective private-company, real estate and co-investment opportunities alongside aligned partners.</p><p>Our relationships with boards and operating executives inform how we evaluate businesses and work with owners.</p><Link href="/insights/lodestone-capital-blulabs-investment" className="inline-block border-b border-current pb-2 font-medium text-[#10243a]">Read the Blulabs announcement ↗</Link></div></div></section></main><footer className="mx-auto max-w-[1440px] px-6 py-12 md:px-12 lg:px-16"><div className="flex flex-wrap items-center justify-between gap-6 border-b border-white/20 pb-8"><Image src="/logo/lodestone-capital-horizontal-navy.png" alt="Lodestone Capital" width={1000} height={383} className="h-12 w-auto brightness-0 invert"/><Link href="/#ecosystem" className="text-base">Back to the Lodestone ecosystem ↗</Link></div><p className="mt-6 max-w-3xl text-sm leading-relaxed text-[#b8c6d3]">This information is provided for general informational purposes only and does not constitute an offer to sell or a solicitation to purchase any security. Investments involve risk, including possible loss of principal.</p><p className="mt-5 text-sm text-[#b8c6d3]">© {new Date().getFullYear()} Lodestone Capital.</p></footer></div>}
