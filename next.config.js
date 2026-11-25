@@ -13,9 +13,13 @@ const nextConfig = {
       },
     ],
   },
+  async headers() {
+    // This branch is a non-production design preview; do not index any route.
+    return [{ source: "/:path*", headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }] }];
+  },
   async redirects() {
     return [
-      { source: "/ecosystem", destination: "/about#ecosystem", permanent: true },
+      { source: "/ecosystem", destination: "/#ecosystem", permanent: true },
       { source: "/ecosystem/govern", destination: "/governance-advisory", permanent: true },
       { source: "/ecosystem/scale", destination: "/e3-scale-network", permanent: true },
       { source: "/ecosystem/compound", destination: "/lodestone-capital", permanent: true },
@@ -49,7 +53,7 @@ const nextConfig = {
       // Old Wix service pages -> Governance Advisory
       { source: "/build", destination: "/governance-advisory", permanent: true },
       { source: "/optimize", destination: "/governance-advisory", permanent: true },
-      { source: "/compensate", destination: "/governance-advisory", permanent: true },
+      { source: "/compensate", destination: "/research", permanent: true },
       { source: "/educate", destination: "/governance-advisory", permanent: true },
       { source: "/seminars", destination: "/governance-advisory", permanent: true },
       { source: "/qdd", destination: "/governance-advisory", permanent: true },
