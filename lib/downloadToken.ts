@@ -25,10 +25,11 @@ export function createDownloadToken(
   slug: string,
   kind: DownloadKind = "paid",
   ttlSeconds = 60 * 60 * 24 * 7,
+  issuedAt = Math.floor(Date.now() / 1000),
 ): string {
   const secret = process.env.DOWNLOAD_SIGNING_SECRET;
   if (!secret) throw new Error("DOWNLOAD_SIGNING_SECRET is not set");
-  const exp = Math.floor(Date.now() / 1000) + ttlSeconds;
+  const exp = issuedAt + ttlSeconds;
   const data = `${slug}.${kind}.${exp}`;
   return `${b64url(data)}.${sign(data, secret)}`;
 }
