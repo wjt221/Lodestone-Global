@@ -43,19 +43,7 @@ export default function ResearchPage() {
       <Header />
       <main id="main">
         {/* MASTHEAD */}
-        <section className="bg-navy pt-[4.25rem] text-ivory">
-          <Container className="flex flex-col gap-6 py-20 md:py-24">
-            <Kicker>Proprietary Research</Kicker>
-            <h1 className="max-w-3xl font-serif text-display-1 font-semibold text-ivory">
-              Private Company Board Compensation Survey
-            </h1>
-            <p className="max-w-2xl font-sans text-lg leading-relaxed text-ivory/75">
-              One of the most comprehensive studies of how private companies compensate their
-              directors, published annually since Lodestone Global began the work. It gives board
-              chairs, CEOs, and compensation committees real market data to set director pay.
-            </p>
-          </Container>
-        </section>
+        <section className="bg-[#e8eff5] pt-[4.25rem] text-[#10243a]"><Container className="grid items-center gap-10 py-16 md:py-24 lg:grid-cols-[1fr_.85fr] lg:gap-20"><div><p className="mb-6 text-base font-medium text-[#526478]">Lodestone Research · {latestEdition.editionOrdinal} annual edition</p><h1 className="text-[clamp(3rem,6vw,6rem)] font-normal leading-[.98] tracking-[-.06em]">Private Company Board Compensation Survey</h1><p className="mt-7 max-w-xl text-lg leading-relaxed text-[#526478]">Know what comparable private companies pay their directors. Benchmark retainers, meeting fees, equity and committee compensation by company size, industry and ownership.</p><div className="mt-8 flex flex-wrap items-center gap-5"><BuyReportButton slug={latestEdition.slug} label="Purchase the 2026 report" className="btn-primary bg-[#10243a] text-white"/><span className="text-xl font-medium">{latestEdition.price}</span></div><Link href="#editions" className="mt-5 inline-flex border-b border-current pb-1 text-base font-medium">Browse previous editions ↓</Link></div><div className="relative overflow-hidden bg-[#07192b] p-8 md:p-12"><p aria-hidden="true" className="absolute right-2 top-0 text-[clamp(5rem,15vw,12rem)] leading-none tracking-[-.08em] text-white/10">{latestEdition.year}</p><Image src={latestEdition.coverImage.url} alt={latestEdition.year+" board compensation survey cover"} width={latestEdition.coverImage.width} height={latestEdition.coverImage.height} priority className="relative mt-14 w-full shadow-2xl"/></div></Container></section>
 
         {/* WHAT IT COVERS */}
         <Section tone="light">
