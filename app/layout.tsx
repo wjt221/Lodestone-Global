@@ -1,22 +1,6 @@
 import type { Metadata } from "next";
-import { Source_Serif_4, Public_Sans } from "next/font/google";
 import "./globals.css";
 import { SITE_URL, SITE_NAME, BOARD_TAGLINE } from "@/lib/site";
-
-const display = Source_Serif_4({
-  subsets: ["latin"],
-  weight: ["400", "600", "700"],
-  style: ["normal", "italic"],
-  variable: "--font-display",
-  display: "swap",
-});
-
-const body = Public_Sans({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  variable: "--font-body",
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -52,7 +36,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${display.variable} ${body.variable}`}>
+    <html lang="en" style={{ "--font-display": "Georgia, Cambria, serif", "--font-body": "Arial, Helvetica, sans-serif" } as React.CSSProperties}>
       <body>
         <a href="#main" className="skip-link btn-primary bg-ivory">
           Skip to content
