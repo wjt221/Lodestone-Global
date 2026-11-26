@@ -9,7 +9,6 @@ import { BackgroundPhoto } from "@/components/BackgroundPhoto";
 import { practices } from "@/lib/ecosystem-content";
 import Image from "next/image";
 import { Leadership } from "@/components/Leadership";
-import { CTASection } from "@/components/CTASection";
 import { photos } from "@/components/photos";
 import { JsonLd } from "@/components/JsonLd";
 import { breadcrumbJsonLd, personJsonLd } from "@/lib/seo";
@@ -114,14 +113,6 @@ export default function AboutPage() {
             <Leadership />
           </div>
         </Section>
-
-        {/* CTA */}
-        <section className="relative overflow-hidden py-24 md:py-28">
-          <BackgroundPhoto src={photos.closing.src} alt={photos.closing.alt} overlayClassName="bg-gradient-to-b from-navy/80 via-navy/90 to-navy" objectPosition="top" />
-          <Container className="relative z-10">
-            <CTASection />
-          </Container>
-        </section>
       </main>
       <Footer ecosystem />
     </>

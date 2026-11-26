@@ -192,8 +192,8 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="mx-auto flex max-w-[1440px] flex-col items-start justify-between gap-8 px-6 py-20 md:flex-row md:items-end md:px-12 md:py-24 lg:px-16">
-          <div><h2 className="max-w-xl text-[clamp(2.2rem,4vw,4rem)] font-normal leading-[1.06] tracking-[-0.045em]">Discuss your board</h2></div>
+        <section className="mx-auto flex max-w-[1440px] flex-col items-start justify-between gap-5 px-6 py-8 md:flex-row md:items-center md:px-12 md:py-10 lg:px-16">
+          <div><h2 className="max-w-xl text-2xl font-normal leading-[1.1] tracking-tight md:text-3xl">Discuss your board</h2></div>
           <div className="flex flex-wrap gap-6">
             <Link href="/contact" className="group inline-flex items-center min-h-[44px] gap-3 border-b border-[#10243a] pb-2 text-lg font-medium">Contact Lodestone <Arrow /></Link>
             <Link href="/insights" className="group inline-flex items-center min-h-[44px] gap-3 border-b border-[#10243a] pb-2 text-lg font-medium">Read our insights <Arrow /></Link>

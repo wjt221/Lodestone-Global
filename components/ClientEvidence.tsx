@@ -175,14 +175,13 @@ export function ClientTestimonials(){
    return ()=>observer.disconnect();
  },[]);
  useEffect(()=>{
-   if(paused||reduced||!visible)return;
-   const duration=Math.max(7000,Math.min(18000,1800+q.quote.split(/\s+/).length*300));
+   if(paused||hover||focus||reduced||!visible)return;
+   const duration=Math.max(4500,Math.min(8000,2000+q.quote.split(/\s+/).length*115));
    const timer=window.setTimeout(()=>setActive(i=>(i+1)%quotes.length),duration);
    return ()=>window.clearTimeout(timer);
  },[active,paused,hover,focus,reduced,visible,q.quote]);
- const manual=(i:number)=>{setPaused(true);setActive((i+quotes.length)%quotes.length);};
  return <section id="testimonials" ref={sectionRef} aria-label="Client testimonials" aria-roledescription="carousel" onMouseEnter={()=>setHover(true)} onMouseLeave={()=>setHover(false)} onFocusCapture={()=>setFocus(true)} onBlurCapture={e=>{if(!e.currentTarget.contains(e.relatedTarget))setFocus(false);}} className="relative isolate overflow-hidden bg-gradient-to-br from-[#07192b] via-[#10243a] to-[#25475f] text-white">
- <style>{`@keyframes lg-quote-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}} @media(prefers-reduced-motion:no-preference){.lg-quote-in{animation:lg-quote-in .45s ease-out both}}`}</style>
+ <style>{`@keyframes lg-quote-in{from{opacity:0}to{opacity:1}} @media(prefers-reduced-motion:no-preference){.lg-quote-in{animation:lg-quote-in .3s ease-out both}}`}</style>
  <div className="mx-auto max-w-5xl px-8 py-10 text-center md:px-14 md:py-12">
  <div className="grid items-center">
  {quotes.map((item,i)=><figure key={i} aria-hidden={i!==active} className={`col-start-1 row-start-1 flex flex-col justify-center ${i===active?"lg-quote-in":"invisible pointer-events-none"}`}>
