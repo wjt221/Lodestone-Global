@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/site";
 import { articles } from "@/lib/articles";
 import { reportEditions } from "@/lib/reports";
+import { practices } from "@/lib/ecosystem-content";
 
 const routes = [
   "",
@@ -39,5 +40,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.5,
   }));
 
-  return [...staticEntries, ...articleEntries, ...reportEntries];
+  const practiceEntries=Object.values(practices).flatMap(p=>p.sections.map(s=>({url:`${SITE_URL}${p.href}/${s.id}`,changeFrequency:"yearly" as const,priority:0.7})));
+  return [...staticEntries, ...practiceEntries, ...articleEntries, ...reportEntries];
 }

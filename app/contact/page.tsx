@@ -79,7 +79,7 @@ export default function ContactPage() {
           </div>
         </Section>
       </main>
-      <Footer />
+      <Footer ecosystem />
     </>
   );
 }

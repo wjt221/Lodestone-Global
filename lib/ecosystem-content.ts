@@ -1,61 +1,564 @@
-// The shared public website content for E3, Capital and Family Advisors.
-// Review basis: E3 Platform Summary (Aug 18 2026), November 6 2026
-// Alyon / LFA presentation, and current owner positioning. No client-specific
-// information, internal fee terms, targets or unapproved track records.
-// Global's existing business pages are unchanged.
+// Owner-approved positioning; public-facing copy only. No private client data or internal investment economics.
 export type PracticeId = "e3" | "capital" | "lfa";
-type Block = { id:string; title:string; intro:string; items:{title:string;body:string}[] };
-type Practice = { name:string; href:string; canonical:string; logo:{src:string;width:number;height:number}; photo:"scale"|"compound"|"steward"; headline:string; lead:string; problemTitle:string; problem:string; sections:Block[]; cta:string; disclosure:string };
-export const practices: Record<PracticeId,Practice> = {
- e3:{
- name:"E3 Scale Network",href:"/e3-scale-network",canonical:"https://www.e3scale.com/",logo:{src:"/logo/e3-icon-navy.png",width:700,height:497},photo:"scale",
- headline:"Build a more valuable business that depends on you less.",
- lead:"E3 is an invitation-only network for founders and CEOs. We match each member with experienced Operating Partners who work alongside management to execute the company's strategy, strengthen its leadership team and increase enterprise value.",
- problemTitle:"The strategy is clear. The capacity to execute it is not.",
- problem:"A founder can have a strong board, a sound strategy and a capable management team, yet still be the bottleneck. The work of building a second leadership tier, entering new markets, improving margins, pursuing acquisitions and implementing technology competes with running the business. E3 supplies the operating experience and execution capacity to make that work happen.",
- sections:[
- {id:"who-we-serve",title:"Who E3 is for",intro:"Membership is selective because the relationship requires an owner who wants to build a better business and is willing to be challenged.",items:[{title:"Founder-led and family-owned businesses",body:"Established companies with meaningful revenue, a credible growth opportunity and a founder who wants the business to succeed beyond their personal involvement."},{title:"CEOs with ambitious operating agendas",body:"Leaders who have a strategy but need senior operating experience and dedicated capacity to deliver several demanding initiatives at once."},{title:"Owners preparing for their next chapter",body:"Whether the aim is continued ownership, partial liquidity, a transition to the next generation or a potential sale, the work starts with strengthening the company itself."}]},
- {id:"operating-partners",title:"Your Operating Partner team",intro:"We match people to the company's needs. Members work with a named team, not a directory of experts.",items:[{title:"Lead Operating Partner",body:"A former CEO or senior operator matched to the business. The Lead Operating Partner works closely with the founder and management, challenges decisions, prioritizes initiatives and maintains accountability between board and management meetings."},{title:"Strategic Operating Partners",body:"Specialists brought in for important decisions and defined projects, such as M&A, commercial strategy, compensation design, executive hiring, technology or AI transformation."},{title:"Delivery Operating Partners",body:"Experienced practitioners who provide hands-on execution capacity when management needs more than advice. They help deliver agreed initiatives and transfer capability to the company."}]},
- {id:"value-creation",title:"Enterprise value creation",intro:"The business should become more profitable, more resilient and less dependent on any one individual. We focus on the underlying drivers of value.",items:[{title:"Growth and profitability",body:"Identify the economics of the business by customer, offering and business line. Prioritize initiatives that improve sustainable growth, margins and productivity."},{title:"Leadership and accountability",body:"Clarify decision rights, build the leadership team and establish measurable priorities. Reduce the number of decisions that have to return to the founder."},{title:"Cash flow and capital allocation",body:"Understand cash conversion, working capital and capital expenditure. Evaluate investments against their expected contribution to the business."},{title:"Technology, AI and M&A",body:"Identify where technology or acquisitions address a real strategic constraint. Support implementation and integration rather than treating them as standalone projects."}]},
- {id:"approach",title:"How membership works",intro:"Envision. Execute. Expand. The E3 Scale Diagnostic turns the company's strategy and operating constraints into a practical plan.",items:[{title:"01 / Diagnose and match",body:"Understand the business, its strategy and leadership needs. Present a shortlist of Lead Operating Partners, with the member choosing the right fit."},{title:"02 / Establish the plan",body:"Validate the priorities with management and the board. Set a baseline, develop a 100-day execution plan and identify the resources needed."},{title:"03 / Execute and review",body:"Work through weekly operating priorities, monthly strategic reviews and quarterly planning. Track owners, milestones and operating results; adjust the plan when facts change."},{title:"04 / Build enduring capability",body:"Strengthen the systems and people that enable the company to operate effectively. Review progress toward longer-term value creation, with independent valuation where agreed."}]},
- {id:"network",title:"The member network",intro:"E3 connects owners with peers who have confronted similar decisions and operators who have already built and scaled businesses.",items:[{title:"A community of owners",body:"Members bring their own experience, ask difficult questions and exchange practical lessons on growth, leadership, succession and capital allocation."},{title:"Aligned economics",body:"Membership covers operating support. E3 may also participate in future value creation under separately agreed arrangements designed to align incentives with the owner. Specific terms depend on the engagement."},{title:"The wider Lodestone ecosystem",body:"Board expertise, investment capabilities and family-office support are available through separately engaged Lodestone businesses when the company or family needs them."}]}
- 
- ],cta:"Request an introduction",disclosure:"E3 provides operating and non-investment consulting services. Value creation objectives are not guarantees. Membership, economics and any investment arrangements are subject to separate agreements."
- },
- capital:{
- name:"Lodestone Capital",href:"/lodestone-capital",canonical:"https://capital.lodestoneglobal.com/",logo:{src:"/logo/lodestone-capital-horizontal-navy.png",width:1000,height:383},photo:"compound",
- headline:"Investing with the perspective of a business owner.",
- lead:"Lodestone Capital is a private investment platform that partners with founders, management teams and experienced operators. We invest where disciplined underwriting, sound governance and active ownership can help build lasting enterprise value.",
- problemTitle:"Capital alone is rarely the answer.",
- problem:"A business may need funding for acquisitions, expansion, shareholder liquidity or its next stage of ownership. The quality of the investment depends not only on the price paid, but also on the business's underlying economics, the people running it, and how capital will be put to work. We evaluate these questions together.",
- sections:[
- {id:"philosophy",title:"Investment philosophy",intro:"We approach investments as owners. Our objective is to understand the business, protect against avoidable downside and identify a credible path to value creation.",items:[{title:"Understand what we own",body:"Analyze how the business earns money, why customers choose it, the durability of margins, cash generation and the investment needed to sustain the business."},{title:"Underwrite the downside",body:"Test assumptions on demand, operating performance, leverage, liquidity and execution. Evaluate what would have to go wrong to impair capital."},{title:"Align people and capital",body:"Look for founders and management teams with clear goals, appropriate incentives and the willingness to build the business together."}]},
- {id:"strategies",title:"Where we invest",intro:"Our focus is selective private investment, with strategies suited to the opportunity rather than a predetermined transaction structure.",items:[{title:"Private equity and strategic acquisitions",body:"Invest in established businesses where a differentiated operating approach, strategic acquisition or ownership transition can support long-term growth."},{title:"Growth capital and shareholder liquidity",body:"Evaluate minority or control transactions, recapitalizations and growth investments based on the needs of the company and its owners."},{title:"Platform investments and buy-and-build",body:"Identify platforms with attractive underlying economics and a credible opportunity to expand through disciplined acquisitions and integration."},{title:"Real estate and opportunistic credit",body:"Evaluate selected real asset and credit opportunities using asset-level diligence, cash flow, collateral, counterparty and downside analysis. Opportunities are subject to applicable investment documents."}]},
- {id:"criteria",title:"Investment criteria",intro:"We look for businesses and assets we can understand and where our experience can contribute to the outcome.",items:[{title:"Established operating economics",body:"A defensible customer proposition, an understandable revenue model and a credible path to sustainable cash generation."},{title:"A clear reason to invest",body:"A specific investment thesis grounded in business performance, market opportunity, capital needs or a transition in ownership."},{title:"Management and governance",body:"A capable team, an appropriate governance structure and alignment around the decisions required to build value."},{title:"A disciplined entry",body:"Valuation and transaction structure that reflect the risks, potential return and capital requirements of the investment."}]},
- {id:"partnership",title:"Active ownership",intro:"The investment process does not end at closing. We assess what the business needs to achieve and how the ownership group can support management.",items:[{title:"Governance and operating support",body:"Establish clear oversight, a value creation plan and a regular review of the indicators that matter to the investment."},{title:"Capital allocation and acquisitions",body:"Evaluate reinvestment, growth initiatives and acquisition opportunities against the economics of the business and the risks of execution."},{title:"Long-term partnerships",body:"Work with owners and operators around agreed objectives. Separate governance and operating engagements may be available through Lodestone Global and E3."}]},
- {id:"announcements",title:"Investment announcements",intro:"Selected public announcements from Lodestone Capital.",items:[{title:"Blulabs",body:"Lodestone Capital announced an investment in Blulabs to support expansion of its global supply chain platform. Read the original announcement for details."}]}
- 
- ],cta:"Discuss an investment opportunity",disclosure:"This material is for general information only. It is not an offer to sell or a solicitation to purchase securities, or investment advice. Private investments may be illiquid and involve loss of some or all invested capital. Any offering is made only through applicable offering documents."
- },
- lfa:{
- name:"Lodestone Family Advisors",href:"/family-advisors",canonical:"https://www.lodestonefamilyadvisors.com/",logo:{src:"/logo/lodestone-family-advisors-vertical-navy.png",width:900,height:446},photo:"steward",
- headline:"A family office built around the wealth you have created.",
- lead:"Lodestone Family Advisors is an SEC-registered investment adviser serving entrepreneurial families who need the capabilities of a professionally managed family office. We work across the family's existing banks, investment managers and advisors to organize its wealth, guide investment decisions and coordinate the work that too often falls on the family itself.",
- problemTitle:"The person who built the wealth should not have to manage every financial relationship.",
- problem:"Families can own a business, private investments, real estate, trusts and accounts across several institutions. Each advisor sees part of the picture, while decisions on liquidity, risk, estate planning and investments depend on the whole. LFA provides an outsourced CIO and family-office coordination function, without requiring families to build a full internal investment team or move their assets to one custodian.",
- sections:[
- {id:"who-we-serve",title:"Who we serve",intro:"We work with families whose wealth and financial responsibilities have outgrown a traditional private banking relationship, typically with approximately $25 million to $1 billion in family net worth. The appropriate scope depends on the complexity of the family and its needs.",items:[{title:"Entrepreneurial families",body:"Families with substantial wealth, often still concentrated in an operating business, who want a professional investment framework and a clearer view of the relationship between business and personal capital."},{title:"Families approaching or following a liquidity event",body:"Owners preparing for a sale, recapitalization or succession who need to establish objectives, define liquidity needs and make deliberate decisions about the capital they will retain."},{title:"Existing family offices",body:"Families that have staff, controllers or investment relationships but need additional senior investment expertise, oversight or coordination. Our services complement existing providers."}]},
- {id:"investment-office",title:"Your outsourced CIO",intro:"We are investors and advisors. The family remains the decision maker unless it specifically agrees to discretionary authority.",items:[{title:"Client Investment Policy",body:"Establish objectives, risk tolerance, liquidity needs, allocation ranges, decision rights and milestones in a policy drafted with and approved by the family. Review it at least annually."},{title:"Portfolio construction and oversight",body:"Map investments across managers, custodians and private holdings. Evaluate exposures, costs, concentration and liquidity against the policy, taking the operating business into account without managing it."},{title:"Investment diligence and recommendations",body:"Review individual investments and managers, including family-sourced opportunities. Assess terms, fees, sponsor quality, downside risks and portfolio fit. Provide written recommendations; enhanced diligence may be separately engaged."},{title:"Manager and advisor evaluation",body:"Assess existing and prospective providers on capabilities, costs, reporting, alignment, operational quality and risk. Recommend changes where they better serve the family's objectives."}]},
- {id:"family-office",title:"Family office services",intro:"One coordinated view of the family's wealth and responsibilities.",items:[{title:"Consolidated balance sheet and reporting",body:"Organize holdings, entities, liabilities, commitments and advisor relationships. Bring together reports from banks, custodians, managers and internal staff for a consolidated view."},{title:"Liquidity and commitment planning",body:"Distinguish capital needed for spending, taxes, commitments and contingencies from capital that is genuinely available to invest. Plan the timing and size of commitments against those needs."},{title:"Advisor coordination",body:"Work with the family's attorneys, accountants, banks, investment managers and other professional advisors. Establish responsibilities and follow up on agreed decisions."},{title:"Family governance and wealth transfer",body:"Help families clarify investment decision rights, succession priorities and next-generation participation. Coordinate trust, estate and tax planning with qualified specialists; legal and tax advice is outside LFA's scope."}]},
- {id:"how-we-work",title:"How we work",intro:"Build the investment framework first, then use it to guide the decisions that follow.",items:[{title:"01 / Establish the relationship",body:"Understand the family, its objectives, current relationships and concerns. Agree scope, disclosures, confidentiality and authority before advisory work begins."},{title:"02 / Create a complete view",body:"Gather approved information and organize the family balance sheet, holdings, advisors, risk exposures, cash needs and unfunded commitments."},{title:"03 / Agree the investment policy",body:"Set the investment objectives, target portfolio, liquidity requirements, milestones and governance. Agree the initial priorities with the family."},{title:"04 / Advise and review",body:"Evaluate investments, coordinate implementation, update liquidity and commitments, provide consolidated quarterly reviews and revisit the policy at least annually."}]},
- {id:"work-products",title:"What families receive",intro:"The work is documented so families understand the reasoning behind each recommendation and can hold advisors accountable.",items:[{title:"Investment recommendation",body:"A concise written summary covering the opportunity, terms, fees, risks, diligence findings, portfolio fit and whether to proceed, proceed with conditions or decline."},{title:"Consolidated portfolio review",body:"A quarterly view of exposures, performance, liquidity, commitments and key decisions, drawing on the underlying managers' and custodians' reports."},{title:"Annual investment policy review",body:"A review of objectives, asset allocation, manager relationships, commitment pacing and priorities for the year ahead."},{title:"Liquidity and advisor tracking",body:"A forward view of cash requirements and commitments, plus responsibility tracking for the decisions and actions agreed with the family."}]}
- 
- ],cta:"Start a confidential conversation",disclosure:"Lodestone Family Advisors, LLC is an investment adviser registered with the U.S. Securities and Exchange Commission. Registration does not imply SEC approval or endorsement or a particular level of skill or training. LFA provides investment advisory services under a separately agreed scope. LFA is not a custodian, broker-dealer, law firm or tax advisor. Trust and estate services are separately contracted with qualified providers. Affiliated investment or consulting services are optional; affiliations and material conflicts must be disclosed. Investments involve risk."
- }
+export type Block = {id:string;title:string;intro:string;items:{title:string;body:string}[]};
+export type Practice = {name:string;href:string;canonical:string;logo:{src:string;width:number;height:number};photo:"scale"|"compound"|"steward";headline:string;lead:string;problemTitle:string;problem:string;sections:Block[];cta:string;disclosure:string};
+export const practices:Record<PracticeId,Practice> = {
+  "e3": {
+    "name": "E3 Scale Network",
+    "href": "/e3-scale-network",
+    "canonical": "https://www.e3scale.com/",
+    "logo": {
+      "src": "/logo/e3-icon-navy.png",
+      "width": 700,
+      "height": 497
+    },
+    "photo": "scale",
+    "headline": "Unlock the potential of your business.",
+    "lead": "An invitation-only community of business owners, backed by accomplished operating leaders, specialist expertise and our proprietary Compass platform. We partner with management to scale rapidly and sustainably, with economics aligned to the value we create together.",
+    "problemTitle": "The cost of figuring it out alone.",
+    "problem": "Your team may get there on its own. But the journey takes longer, the founder stays deeply involved, and the risks of expensive mistakes are greater. E3 brings experience from people who have faced those decisions before, access to expertise that would be difficult to hire, and a disciplined system for turning ambition into results.",
+    "cta": "Explore membership",
+    "disclosure": "Membership and investment arrangements are subject to selection, diligence and separate agreements. Value creation is an objective, not a guarantee. Investment opportunities through affiliates are subject to separate terms and eligibility.",
+    "sections": [
+      {
+        "id": "approach",
+        "title": "Our approach",
+        "intro": "We invest our time, reputation and expertise alongside the owner. Base fees are designed to cover delivery costs and overhead; our upside is tied to the value created, under the terms of each engagement.",
+        "items": [
+          {
+            "title": "Envision",
+            "body": "Develop a value creation thesis: where the business can go, what is holding it back and which economic levers matter most. Establish a baseline, ambitions and a focused first 100 days."
+          },
+          {
+            "title": "Execute",
+            "body": "Work with the CEO and leadership team to turn the thesis into a small number of priorities, decisions, owners and milestones. Bring specialist capacity to the moments it matters."
+          },
+          {
+            "title": "Expand",
+            "body": "Build the leadership and management systems that make progress repeatable. Revisit the thesis as evidence changes, and expand the opportunities available to the owner."
+          }
+        ]
+      },
+      {
+        "id": "operating-partners",
+        "title": "Operating Partners",
+        "intro": "Exceptional business leaders who have built, scaled or transformed significant companies, selected for their judgment, coaching ability and desire to help other entrepreneurs succeed.",
+        "items": [
+          {
+            "title": "Lead Operating Partner",
+            "body": "A dedicated senior operator who understands the business, challenges assumptions, coaches the CEO and keeps attention on the highest-value priorities. Management retains responsibility for running the company."
+          },
+          {
+            "title": "Strategic Operating Partners",
+            "body": "Experienced functional leaders who bring deep specialist judgment to pivotal decisions, from pricing and leadership design to acquisitions and capital allocation."
+          },
+          {
+            "title": "Delivery Operating Partners",
+            "body": "Hands-on expertise to help the team implement defined initiatives, build capability and turn decisions into operating results."
+          }
+        ]
+      },
+      {
+        "id": "functional-expertise",
+        "title": "Functional expertise",
+        "intro": "A business rarely has every capability it needs at every stage of growth. Members can access specialists across the operating disciplines, without building an entire executive bench in-house.",
+        "items": [
+          {
+            "title": "Strategy & governance",
+            "body": "Strategy, governance, management systems, KPI architecture, decision rights and accountability."
+          },
+          {
+            "title": "People & organization",
+            "body": "Human capital, organizational design, leadership, compensation and succession."
+          },
+          {
+            "title": "Commercial growth",
+            "body": "Sales, marketing, pricing and customer experience."
+          },
+          {
+            "title": "Operational excellence",
+            "body": "Operations, procurement, supply chain, productivity, technology and AI."
+          },
+          {
+            "title": "Finance & capital",
+            "body": "Strategic finance, capital allocation, M&A, integration and financial performance."
+          }
+        ]
+      },
+      {
+        "id": "compass",
+        "title": "E3 Compass",
+        "intro": "Our proprietary AI-driven value creation platform gives Operating Partners a continuously evolving understanding of the business. It combines E3 knowledge with company-specific evidence and experienced human judgment.",
+        "items": [
+          {
+            "title": "E3 knowledge",
+            "body": "Operating frameworks, functional expertise and repeatable E3 Plays support the diagnosis and execution of specific business challenges."
+          },
+          {
+            "title": "Member context",
+            "body": "Strategy, financial results, operating plans, people decisions and business history provide the context for better questions."
+          },
+          {
+            "title": "Meeting intelligence",
+            "body": "Decisions, commitments and emerging evidence are tracked over time so the team can see what has changed and what still needs attention."
+          },
+          {
+            "title": "Operating judgment",
+            "body": "The Operating Partner tests hypotheses against evidence, challenges assumptions and decides when specialist support is warranted."
+          },
+          {
+            "title": "A living Value Creation Thesis",
+            "body": "Compass helps maintain a focused economic and causal thesis, distinguish symptoms from constraints, prepare for meetings and track the priorities with the greatest potential impact. AI assists judgment; verified evidence and management decisions remain authoritative."
+          }
+        ]
+      },
+      {
+        "id": "network",
+        "title": "Member community & academy",
+        "intro": "Our ambition is a deliberately limited community of 100–400 member companies, built around trust, ambition and meaningful contribution.",
+        "items": [
+          {
+            "title": "Forums",
+            "body": "Confidential peer groups where owners can work through consequential decisions with people who understand the responsibility of ownership."
+          },
+          {
+            "title": "Member connections",
+            "body": "Curated introductions based on needs, expertise and shared opportunities."
+          },
+          {
+            "title": "E3 Academy",
+            "body": "Structured learning designed to help entrepreneurs become stronger leaders, operators and owners."
+          },
+          {
+            "title": "Learning events & community",
+            "body": "Engage with experienced leaders and specialists, build enduring relationships and share what you have learned with others."
+          }
+        ]
+      },
+      {
+        "id": "institutional-partnerships",
+        "title": "Institutional partnerships",
+        "intro": "For private equity firms, independent sponsors and family offices making direct investments, E3 and Lodestone Global extend operating and governance capabilities across the portfolio and at the GP level.",
+        "items": [
+          {
+            "title": "Governance at scale",
+            "body": "Lodestone Global helps build and strengthen portfolio company boards, establish effective oversight and improve accountability."
+          },
+          {
+            "title": "Execution at scale",
+            "body": "E3 places Operating Partners in portfolio companies with functional expertise and Compass. Where agreed, incentives can participate in company management incentive plans."
+          },
+          {
+            "title": "Research & investment process",
+            "body": "A dedicated Operating Partner at the GP level strengthens sector research, deal diligence, value creation underwriting and post-acquisition planning."
+          },
+          {
+            "title": "Aligned partnership",
+            "body": "Institutional engagements may include an investment right in the GP, alongside portfolio company alignment. Terms are negotiated separately. E3 also supports Lodestone Capital investments and appropriate direct investments by LFA clients."
+          }
+        ]
+      },
+      {
+        "id": "membership",
+        "title": "Membership",
+        "intro": "We select businesses as investment partners, not simply customers. Each prospective member is considered by our Investment Committee against economic and cultural criteria.",
+        "items": [
+          {
+            "title": "An investable business",
+            "body": "An attractive underlying business with credible potential to scale quickly and sustainably."
+          },
+          {
+            "title": "A value creation thesis",
+            "body": "A clear, evidence-based view of how our partnership could materially improve the business."
+          },
+          {
+            "title": "Character and contribution",
+            "body": "Integrity, humility, respect, coachability and a genuine desire to contribute to the community. We have no place for people who mistreat others."
+          },
+          {
+            "title": "Purpose",
+            "body": "Owners who want to unlock the potential of their people and business, and do something good in the world."
+          }
+        ]
+      }
+    ]
+  },
+  "capital": {
+    "name": "Lodestone Capital",
+    "href": "/lodestone-capital",
+    "canonical": "https://capital.lodestoneglobal.com/",
+    "logo": {
+      "src": "/logo/lodestone-capital-horizontal-navy.png",
+      "width": 1000,
+      "height": 300
+    },
+    "photo": "compound",
+    "headline": "Investing with an owner’s perspective.",
+    "lead": "Lodestone Capital invests across private equity, real estate and alternative strategies. Our investment approach is rooted in proprietary relationships, operating expertise, disciplined governance and a long-term perspective.",
+    "problemTitle": "An investment platform built around relationships.",
+    "problem": "Our ecosystem brings us close to businesses and their owners. It gives us a perspective on opportunities that cannot always be gained through a conventional transaction process, and capabilities that extend beyond providing capital.",
+    "cta": "Contact Lodestone Capital",
+    "disclosure": "For informational purposes only. Not an offer to sell or solicitation to purchase securities. Strategies may be subject to development, availability, eligibility and definitive offering documents. Investing involves risk, including loss of principal. No investment outcome is assured.",
+    "sections": [
+      {
+        "id": "philosophy",
+        "title": "Investment philosophy",
+        "intro": "Four structural advantages inform how we originate, underwrite and own investments.",
+        "items": [
+          {
+            "title": "Proprietary origination",
+            "body": "Long-standing relationships across the Lodestone ecosystem help us identify opportunities, understand context and engage with owners."
+          },
+          {
+            "title": "Embedded operating expertise",
+            "body": "E3 provides experienced operating leaders, functional specialists and Compass to support execution and build management capability in portfolio companies."
+          },
+          {
+            "title": "Institutional governance",
+            "body": "Lodestone Global brings board formation, director expertise and governance discipline to the businesses in which we invest."
+          },
+          {
+            "title": "Patient capital",
+            "body": "Our predominantly family-office investor base supports an approach that can accommodate longer investment horizons, subject to each vehicle’s terms. We seek to make exit decisions on business fundamentals, rather than a predetermined timetable."
+          }
+        ]
+      },
+      {
+        "id": "strategies",
+        "title": "Investment strategies",
+        "intro": "Five distinct strategies reflect the breadth of opportunities across our network. Each is governed by its own investment mandate and terms.",
+        "items": [
+          {
+            "title": "Lodestone Liquid Alternatives",
+            "body": "Emerging investment managers, with first-loss capital structures designed around alignment between managers and capital providers."
+          },
+          {
+            "title": "Lodestone Private Equity I",
+            "body": "Short-duration tactical opportunities sourced through our network. We seek complex, time-sensitive transactions where familiarity with management, structuring expertise and speed of execution can matter."
+          },
+          {
+            "title": "Lodestone Private Equity II",
+            "body": "Platform building and consolidation in established, cash-generative industries, including scaffolding, roofing, environmental services, and drilling and blasting. Combine acquisitions with organic growth, operating improvements and strong governance."
+          },
+          {
+            "title": "Lodestone Real Estate Fund",
+            "body": "Short-duration real estate opportunities involving unusual asset characteristics, complexity or specific value creation catalysts, including environmentally impacted land where appropriate."
+          },
+          {
+            "title": "E3 Founders Fund",
+            "body": "A dedicated vehicle intended to hold investment rights arising from E3 member engagements. Participation is restricted to eligible LFA clients and employees, subject to applicable terms."
+          }
+        ]
+      },
+      {
+        "id": "announcements",
+        "title": "Selected transactions",
+        "intro": "An illustration of how familiarity with management and the ability to structure capital can matter in a time-sensitive transaction.",
+        "items": [
+          {
+            "title": "Blulabs",
+            "body": "A business known through our network needed financing within weeks after winning a new contract. Lodestone Capital was able to understand the opportunity, structure financing and execute within the required timeframe. This example illustrates the approach; it is not a representation of typical results."
+          }
+        ]
+      }
+    ]
+  },
+  "lfa": {
+    "name": "Lodestone Family Advisors",
+    "href": "/family-advisors",
+    "canonical": "https://www.lodestonefamilyadvisors.com/",
+    "logo": {
+      "src": "/logo/lodestone-family-advisors-vertical-navy.png",
+      "width": 700,
+      "height": 650
+    },
+    "photo": "steward",
+    "headline": "More time for the life you want to live.",
+    "lead": "A boutique, investment-led family office for entrepreneurial families. We bring clarity to the complexity of your wealth, provide experienced investment judgment and coordinate the people who advise you, so you can focus on what matters most.",
+    "problemTitle": "Who is looking after the whole picture?",
+    "problem": "You may have several wealth managers, private investments, operating businesses, accountants and attorneys. Each knows a part of your financial world. Few are responsible for how it all fits together. We act as your outsourced investment office, working alongside your family’s CFO and existing advisors to bring the same discipline to your wealth that you brought to building your business.",
+    "cta": "Begin a private conversation",
+    "disclosure": "Lodestone Family Advisors, LLC is an SEC-registered investment adviser. Registration does not imply a particular level of skill or training. Advisory services are subject to a written agreement. Affiliated businesses are optional, separately engaged and may create conflicts disclosed to clients. Investment decisions involve risk; no outcome is guaranteed. Legal and tax advice is provided by qualified external professionals.",
+    "sections": [
+      {
+        "id": "who-we-serve",
+        "title": "Who we serve",
+        "intro": "We work with a select number of entrepreneurial families, generally with $25 million to $1 billion in wealth, whose financial lives warrant dedicated investment oversight. We seek enduring relationships, not a large book of accounts.",
+        "items": [
+          {
+            "title": "Building wealth",
+            "body": "Understand how the family business affects the overall financial picture, concentration, liquidity needs and personal ambitions."
+          },
+          {
+            "title": "Realizing wealth",
+            "body": "Prepare for liquidity events, coordinate with transaction, tax and estate advisors, and consider how proceeds will support the family’s goals."
+          },
+          {
+            "title": "Living and compounding",
+            "body": "Create an investment strategy around the life the family wants to live, including spending, commitments, risk, future entrepreneurial pursuits and long-term wealth."
+          },
+          {
+            "title": "Stewarding wealth",
+            "body": "Support generational transition, family governance, education, philanthropy and shared purpose. Families may move between all four stages throughout their lives."
+          }
+        ]
+      },
+      {
+        "id": "investment-office",
+        "title": "Outsourced Investment Office",
+        "intro": "A dedicated senior investment professional leads each family relationship, supported by the LFA investment team and Investment Committee. We work across accounts and managers, rather than requiring assets to move to a new custodian.",
+        "items": [
+          {
+            "title": "Investment policy",
+            "body": "Document the family’s objectives, liquidity requirements, risk tolerance, time horizon, decision rights and portfolio guidelines in a Client Investment Policy."
+          },
+          {
+            "title": "Portfolio construction",
+            "body": "Consider public and private investments together, including concentration, underlying exposures, commitments and liquidity. Build an allocation that reflects the family’s actual needs."
+          },
+          {
+            "title": "Manager oversight",
+            "body": "Evaluate the investment strategy, track record, costs, reporting, service, risks and alignment of existing and prospective managers. Recommend changes where appropriate."
+          },
+          {
+            "title": "Investment reporting",
+            "body": "Analyze consolidated portfolio performance and risk with the family CFO’s underlying financial data. Review investment relationships, allocations and commitments regularly."
+          },
+          {
+            "title": "Aligned advice",
+            "body": "We are paid an agreed advisory fee, not product sales commissions. LFA does not receive direct compensation for recommending Lodestone Capital funds or share in their fund fees. Potential affiliate conflicts are disclosed; families retain freedom of choice."
+          }
+        ]
+      },
+      {
+        "id": "private-investments",
+        "title": "Private investment advisory",
+        "intro": "Private markets require more than collecting fund documents. We independently examine the merits, terms, risks and portfolio fit of each opportunity, whether sourced by the family or through our relationships.",
+        "items": [
+          {
+            "title": "Direct investment underwriting",
+            "body": "Assess the business model, management, market, financial performance, downside scenarios, structure and potential value creation."
+          },
+          {
+            "title": "Fund due diligence",
+            "body": "Evaluate managers, strategy, investment process, portfolio construction, terms, fees, alignment and operational risks."
+          },
+          {
+            "title": "Investment decisions",
+            "body": "Prepare clear recommendations for the family, supported by Investment Committee review, sizing considerations and the Client Investment Policy. Non-discretionary relationships are the default."
+          },
+          {
+            "title": "Access and ongoing oversight",
+            "body": "Evaluate relevant proprietary opportunities from our network alongside third-party investments. Monitor performance, material developments and commitments after investment. No family is required to use an affiliated investment vehicle."
+          }
+        ]
+      },
+      {
+        "id": "family-office",
+        "title": "Family office establishment",
+        "intro": "We help establish an investment office suited to the family’s complexity, with clear responsibilities and an appropriate legal and operating framework.",
+        "items": [
+          {
+            "title": "Entity and governance framework",
+            "body": "Support the family and qualified counsel in establishing its family office entity, decision rights, investment policy and coordination model."
+          },
+          {
+            "title": "Advisor coordination",
+            "body": "Work with existing custodians, wealth managers, accountants, attorneys and other specialists, clarifying responsibilities and identifying gaps."
+          },
+          {
+            "title": "Working with your CFO",
+            "body": "The family retains an internal CFO or financial administrator for accounting, NAV collection and reconciliation, capital call administration, payments and records. LFA provides strategic investment analysis and advice; it does not replace that administrative function."
+          }
+        ]
+      },
+      {
+        "id": "trust-estate",
+        "title": "Trust & estate planning",
+        "intro": "Help families bring their ownership, estate and investment structures into alignment with their long-term intentions, working with qualified legal and tax professionals.",
+        "items": [
+          {
+            "title": "Planning and coordination",
+            "body": "Review the family’s objectives, entity and trust structure, liquidity considerations and estate planning needs with its professional advisors."
+          },
+          {
+            "title": "Transitions and legacy",
+            "body": "Help identify issues around succession, gifting, charitable giving, ownership transition and the financial implications of estate planning. Implementation is handled by the appropriate qualified professionals."
+          }
+        ]
+      },
+      {
+        "id": "family-governance",
+        "title": "Family governance",
+        "intro": "Successful families need more than an investment strategy. They need shared expectations about how wealth is used, how decisions are made and how the next generation is prepared.",
+        "items": [
+          {
+            "title": "Family councils and constitutions",
+            "body": "Establish forums for thoughtful discussion and document shared principles, responsibilities and decision-making practices."
+          },
+          {
+            "title": "Succession and next-generation education",
+            "body": "Help prepare future stewards to understand investments, ownership, responsibility and the choices available to them."
+          },
+          {
+            "title": "Purpose and philanthropy",
+            "body": "Create space for conversations about what is enough, how the family wants to live and what positive contribution its wealth can make."
+          }
+        ]
+      },
+      {
+        "id": "how-we-work",
+        "title": "Our approach",
+        "intro": "A thoughtful, confidential process that starts with understanding your family and its circumstances, before we propose an advisory relationship.",
+        "items": [
+          {
+            "title": "Introduction and conflicts clearance",
+            "body": "Understand objectives and fit; complete preliminary conflicts checks before the pitch and disclose relevant relationships."
+          },
+          {
+            "title": "Mutual NDA",
+            "body": "Establish confidentiality before exchanging sensitive information."
+          },
+          {
+            "title": "Wealth diagnostic",
+            "body": "Review the financial picture, investment exposures, liquidity, commitments, fees, advisor relationships and structural complexities. Present preliminary observations and a tailored proposal."
+          },
+          {
+            "title": "100-day implementation",
+            "body": "Following agreement and compliance clearance, finalize investment policy, establish reporting and coordinate investment relationships."
+          },
+          {
+            "title": "Ongoing stewardship",
+            "body": "Review investment opportunities, monitor the portfolio, conduct quarterly reviews and revisit the policy annually or as circumstances change."
+          }
+        ]
+      },
+      {
+        "id": "ecosystem",
+        "title": "Understanding the business behind the wealth",
+        "intro": "Many families we serve created their wealth through operating businesses. Our broader ecosystem understands entrepreneurship, governance, scaling and investment, bringing valuable context to the family’s financial decisions.",
+        "items": [
+          {
+            "title": "Govern, scale, compound, steward",
+            "body": "Lodestone Global, E3 and Lodestone Capital offer distinct capabilities through separate, optional relationships. LFA focuses on the family’s investment portfolio, not the management of the operating business."
+          },
+          {
+            "title": "A relationship built for continuity",
+            "body": "We know the people, their aspirations and their concerns, not just the accounts. The purpose is to give families clarity, confidence and time back, so wealth supports the life they want."
+          }
+        ]
+      }
+    ]
+  }
 };
-export const sharedNavigation: [string,[string,string][]][] = [
- ["Lodestone Global",[["Overview","/lodestone-global"],["Build Your Board","/build"],["Board Advisory & Optimization","/governance-advisory"],["Board Compensation & Research","/research"],["Client Results","/case-studies"],["Insights","/insights"],["Our Team","/about#team"]]],
- ["E3 Scale Network",[["Overview","/e3-scale-network"],["Who We Serve","/e3-scale-network#who-we-serve"],["Operating Partners","/e3-scale-network#operating-partners"],["Enterprise Value Creation","/e3-scale-network#value-creation"],["Our Approach","/e3-scale-network#approach"],["The Member Network","/e3-scale-network#network"],["Methodology & Examples","/e3-scale-network#methodology"],["Our Team","/about#team"]]],
- ["Lodestone Capital",[["Overview","/lodestone-capital"],["Investment Philosophy","/lodestone-capital#philosophy"],["Investment Strategies","/lodestone-capital#strategies"],["Investment Criteria","/lodestone-capital#criteria"],["Active Ownership","/lodestone-capital#partnership"],["Announcements","/lodestone-capital#announcements"],["Underwriting & Examples","/lodestone-capital#methodology"],["Our Team","/about#team"]]],
- ["Lodestone Family Advisors",[["Overview","/family-advisors"],["Who We Serve","/family-advisors#who-we-serve"],["Outsourced CIO","/family-advisors#investment-office"],["Family Office Services","/family-advisors#family-office"],["How We Work","/family-advisors#how-we-work"],["What Families Receive","/family-advisors#work-products"],["Methodology & Examples","/family-advisors#methodology"],["Our Team","/about#team"]]]
+export const sharedNavigation:[string,[string,string][]][] = [
+  [
+    "Lodestone Global",
+    [
+      [
+        "Build Your Board",
+        "/build"
+      ],
+      [
+        "Board Advisory & Optimization",
+        "/governance-advisory"
+      ],
+      [
+        "Board Compensation & Research",
+        "/research"
+      ],
+      [
+        "Client Results",
+        "/case-studies"
+      ],
+      [
+        "Insights",
+        "/insights"
+      ]
+    ]
+  ],
+  [
+    "E3 Scale Network",
+    [
+      [
+        "Our approach",
+        "/e3-scale-network/approach"
+      ],
+      [
+        "Operating Partners",
+        "/e3-scale-network/operating-partners"
+      ],
+      [
+        "Functional expertise",
+        "/e3-scale-network/functional-expertise"
+      ],
+      [
+        "E3 Compass",
+        "/e3-scale-network/compass"
+      ],
+      [
+        "Member community & academy",
+        "/e3-scale-network/network"
+      ],
+      [
+        "Institutional partnerships",
+        "/e3-scale-network/institutional-partnerships"
+      ],
+      [
+        "Membership",
+        "/e3-scale-network/membership"
+      ]
+    ]
+  ],
+  [
+    "Lodestone Capital",
+    [
+      [
+        "Investment philosophy",
+        "/lodestone-capital/philosophy"
+      ],
+      [
+        "Investment strategies",
+        "/lodestone-capital/strategies"
+      ],
+      [
+        "Selected transactions",
+        "/lodestone-capital/announcements"
+      ]
+    ]
+  ],
+  [
+    "Lodestone Family Advisors",
+    [
+      [
+        "Who we serve",
+        "/family-advisors/who-we-serve"
+      ],
+      [
+        "Outsourced Investment Office",
+        "/family-advisors/investment-office"
+      ],
+      [
+        "Private investment advisory",
+        "/family-advisors/private-investments"
+      ],
+      [
+        "Family office establishment",
+        "/family-advisors/family-office"
+      ],
+      [
+        "Trust & estate planning",
+        "/family-advisors/trust-estate"
+      ],
+      [
+        "Family governance",
+        "/family-advisors/family-governance"
+      ],
+      [
+        "Our approach",
+        "/family-advisors/how-we-work"
+      ]
+    ]
+  ]
 ];
+export const businessHomes = ["/lodestone-global",practices.e3.href,practices.capital.href,practices.lfa.href] as const;

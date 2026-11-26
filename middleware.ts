@@ -8,7 +8,9 @@ const landing: Record<string,string> = {
 };
 export function middleware(request:NextRequest){
  const host=(request.headers.get("host")||request.nextUrl.hostname).toLowerCase().split(":")[0];
- const target=landing[host];
+ const configured=process.env.NEXT_PUBLIC_LODESTONE_FRONT_DOOR;
+ const byBrand:Record<string,string>={e3:"/e3-scale-network",capital:"/lodestone-capital",lfa:"/family-advisors"};
+ const target=landing[host]||(configured?byBrand[configured]:undefined);
  if(request.nextUrl.pathname==="/"&&target){const url=request.nextUrl.clone();url.pathname=target;return NextResponse.rewrite(url);}
  return NextResponse.next();
 }

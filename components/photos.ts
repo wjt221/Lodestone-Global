@@ -47,8 +47,8 @@ export const photos = {
     alt: "A wide view of an industrial manufacturing floor with operating equipment and visible activity",
   },
   compound: {
-    src: "/images/lodestone/capital-blulabs.jpg",
-    alt: "A Lodestone Capital portfolio company: a founder- and family-led supply chain and manufacturing business",
+    src: "/images/lodestone/closing-skyline.jpg",
+    alt: "The Empire State Building and Manhattan skyline",
   },
   steward: {
     src: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=2400&q=85",

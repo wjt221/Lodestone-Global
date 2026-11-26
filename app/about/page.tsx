@@ -6,16 +6,17 @@ import { Section } from "@/components/Section";
 import { Container } from "@/components/Container";
 import { SectionHeading } from "@/components/SectionHeading";
 import { BackgroundPhoto } from "@/components/BackgroundPhoto";
-import { EcosystemList } from "@/components/EcosystemList";
+import { practices } from "@/lib/ecosystem-content";
+import Image from "next/image";
 import { Leadership } from "@/components/Leadership";
 import { CTASection } from "@/components/CTASection";
 import { photos } from "@/components/photos";
 import { JsonLd } from "@/components/JsonLd";
 import { breadcrumbJsonLd, personJsonLd } from "@/lib/seo";
-import { howWeWork, CONTACT, leadership } from "@/lib/content";
+import { CONTACT, leadership } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "About",
+  title: { absolute: "About Us | Lodestone" },
   description:
     "Lodestone is an integrated practice serving entrepreneurial owners and families: governance advisory, an operating-partner network, an investment platform, and a multi-family office.",
   alternates: { canonical: "/about" },
@@ -47,12 +48,10 @@ export default function AboutPage() {
           <Container className="relative z-10 flex flex-col gap-6 py-24 md:py-28">
             
             <h1 className="max-w-3xl font-serif text-display-1 font-semibold text-ivory">
-              About Lodestone Global
+              About Lodestone
             </h1>
             <p className="max-w-2xl font-sans text-lg leading-relaxed text-ivory/80">
-              Lodestone began in the boardroom. Since {CONTACT.founded}, the practice has helped
-              private and family-owned companies build the governance they need, and it has grown
-              into an integrated set of capabilities around a single trusted relationship.
+              Since {CONTACT.founded}, we have worked alongside entrepreneurs, business owners and families. Four specialized businesses, one shared commitment to helping people realize their potential.
             </p>
           </Container>
         </section>
@@ -61,7 +60,7 @@ export default function AboutPage() {
         <Section tone="light">
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-4">
-              <SectionHeading title="Our history" />
+              <SectionHeading title="Our story" />
             </div>
             <div className="flex flex-col gap-6 lg:col-span-8">
               <p className="max-w-2xl font-sans text-[1.05rem] leading-relaxed text-charcoal/75">
@@ -72,10 +71,7 @@ export default function AboutPage() {
                 steward the wealth that followed.
               </p>
               <p className="max-w-2xl font-sans text-[1.05rem] leading-relaxed text-charcoal/75">
-                Rather than hand each of those questions to a separate advisor, we built the
-                capability to answer them as one team. Governance advisory, an operating-partner
-                network, an investment platform, and a multi-family office now sit alongside each
-                other, coordinated so the context an owner shares once is not lost between mandates.
+                We built complementary capabilities around those questions. Today, our work spans boards, operating leadership, investments and family wealth. Each business has its own mandate and expertise; together they bring a broader perspective to the decisions owners face. Clients choose the services that fit their needs, through separate engagements.
               </p>
             </div>
           </div>
@@ -85,19 +81,19 @@ export default function AboutPage() {
         <Section id="ecosystem" tone="parchment">
           <div className="flex flex-col gap-12">
             <SectionHeading
-              title="Govern, scale, compound, steward."
-              description="Four capabilities, each delivered by a dedicated part of the practice. No client is expected to use all four. Lodestone brings the capability that fits the situation and keeps one relationship intact as it changes."
+              title="From operator to steward."
+              description="Four specialized businesses, supporting entrepreneurs as they build companies, allocate capital and decide what comes next. The journey is rarely linear."
             />
-            <EcosystemList />
+            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">{[{stage:"Govern",name:"Lodestone Global",href:"/lodestone-global",logo:{src:"/logo/lodestone-global-horizontal-navy.png",width:1000,height:287},summary:"High-Performing Board Experts."},{stage:"Scale",...practices.e3,summary:"Embedded operating leadership and aligned value creation."},{stage:"Compound",...practices.capital,summary:"Proprietary investments, operating expertise and patient capital."},{stage:"Steward",...practices.lfa,summary:"A boutique investment office for entrepreneurial families."}].map(b=><Link key={b.stage} href={b.href} className="flex flex-col gap-5 border-t border-charcoal/20 pt-6"><span className="text-lg font-medium">{b.stage}</span><Image src={b.logo.src} alt={b.name} width={b.logo.width} height={b.logo.height} className="h-14 w-auto max-w-[190px] object-contain object-left"/><p className="text-base leading-relaxed">{b.summary}</p><span className="text-sm underline">Explore {b.name}</span></Link>)}</div>
           </div>
         </Section>
 
         {/* HOW WE WORK */}
         <Section tone="light">
           <div className="flex flex-col gap-12">
-            <SectionHeading title="How we work" />
+            <SectionHeading title="Our philosophy and values" />
             <div className="grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-8">
-              {howWeWork.map((s) => (
+              {[{step:"01",title:"Excellence without ego",body:"We seek exceptional expertise, intellectual honesty and humility. The quality of the outcome matters more than who gets credit."},{step:"02",title:"Enduring trust",body:"We build long-term relationships grounded in integrity, discretion and doing what we say we will do."},{step:"03",title:"Aligned interests",body:"We work alongside owners, investors and families with a clear understanding of what success means to them. We believe strong relationships require mutual contribution and accountability."}].map((s) => (
                 <div key={s.step} className="flex flex-col gap-4 border-t border-charcoal/20 pt-6">
                   <span className="index-number">{s.step}</span>
                   <h3 className="font-serif text-xl font-normal text-navy">{s.title}</h3>
@@ -112,7 +108,7 @@ export default function AboutPage() {
         <Section id="team" tone="parchment">
           <div className="flex flex-col gap-12">
             <SectionHeading
-              title="Our team"
+              title="Our people"
               description="Meet the people across the Lodestone ecosystem, bringing together governance, operating, investment and family office experience."
             />
             <Leadership />
@@ -127,7 +123,7 @@ export default function AboutPage() {
           </Container>
         </section>
       </main>
-      <Footer />
+      <Footer ecosystem />
     </>
   );
 }

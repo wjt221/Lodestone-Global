@@ -76,11 +76,11 @@ export const businesses: Business[] = [
     id: "scale",
     stage: "Scale",
     name: "E3 Scale Network",
-    role: "An operating-partner network for founder-led businesses",
+    role: "Embedded operating leadership and aligned value creation",
     href: "/e3-scale-network",
-    evidence: "For $20M+ founder-led companies. Built on Envision, Execute, Expand",
+    evidence: "Invitation-only membership. Built on Envision, Execute, Expand",
     summary:
-      "E3 pairs founder-led companies with senior Operating Partners who work alongside owners and management to professionalize and scale the business.",
+      "E3 partners with founders and institutional investors to scale businesses rapidly and sustainably through experienced operating leaders, specialist expertise, Compass and an aligned economic model.",
     capabilities: [
       "Senior Operating Partners",
       "Execution systems and management cadence",
@@ -89,23 +89,22 @@ export const businesses: Business[] = [
       "Technology and AI enablement",
     ],
     logo: { src: "/logo/e3-icon-navy.png", width: 700, height: 497 },
-    external: "https://www.e3scale.com",
   },
   {
     id: "compound",
     stage: "Compound",
     name: "Lodestone Capital",
-    role: "A principal-led investment platform",
+    role: "Proprietary investments, operating expertise and patient capital",
     href: "/lodestone-capital",
     evidence: "Invests alongside founders and family offices",
     summary:
-      "Lodestone Capital partners with founder-led and family-owned businesses to support growth, governance, and capital strategy, drawing on the executive relationships built across the wider practice.",
+      "Lodestone Capital invests across five strategies, drawing on proprietary origination, embedded operating expertise, institutional governance and patient family-office capital.",
     capabilities: [
-      "Private equity",
+      "Liquid alternatives",
+      "Private Equity I — tactical opportunities",
+      "Private Equity II — platform building",
       "Real estate",
-      "Select tactical opportunities",
-      "Co-investments",
-      "Founder and family investment opportunities",
+      "E3 Founders Fund",
     ],
     logo: { src: "/logo/lodestone-capital-horizontal-navy.png", width: 1000, height: 383 },
   },
@@ -113,11 +112,11 @@ export const businesses: Business[] = [
     id: "steward",
     stage: "Steward",
     name: "Lodestone Family Advisors",
-    role: "An independent multi-family-office platform",
+    role: "A boutique investment-led family office",
     href: "/family-advisors",
-    evidence: "Single-family-office capability, without building one",
+    evidence: "Dedicated senior investment professional, supported by a team",
     summary:
-      "Lodestone Family Advisors gives entrepreneurial families the capabilities and coordination of a single-family office without having to build every function internally.",
+      "Lodestone Family Advisors acts as an outsourced investment office for entrepreneurial families, coordinating investment relationships and bringing clarity to complex wealth alongside the family CFO.",
     capabilities: [
       "Strategic wealth advisory and investment oversight",
       "Family governance",
@@ -491,6 +490,7 @@ export const leadership: Leader[] = [
   },
   {
     name: "Sam Tenenbaum",
+    photo: "/team/sam-tenenbaum.jpg",
     // "Partner" is the seniority title. Relationship is staff, not "affiliate".
     roles: [{ org: "govern", title: "Partner" }],
   },
@@ -525,6 +525,7 @@ export const leadership: Leader[] = [
   },
   {
     name: "Andrew Halliday",
+    photo: "/team/andrew-halliday.jpg",
     // Genuinely spans two businesses. This is the kind of thing the grouped,
     // labelled team page shows well and an unlabelled list would hide.
     // CCO confirmed as Chief Compliance Officer (William, 2026-08-20). Worth
@@ -552,6 +553,7 @@ export const leadership: Leader[] = [
   },
   {
     name: "Carolina Morales",
+    photo: "/team/carolina-morales.jpg",
     roles: [{ org: "scale", title: "Project Manager and Executive Assistant" }],
   },
   {
@@ -569,10 +571,12 @@ export const leadership: Leader[] = [
   // ---- Lodestone Family Advisors ----
   {
     name: "Alex Harris",
+    photo: "/team/alex-harris.jpg",
     roles: [{ org: "steward", title: "President and Chief Investment Officer" }],
   },
   {
     name: "Bill van Pelt",
+    photo: "/team/bill-van-pelt.jpg",
     // Employed by Midcontinent, partnering into the ecosystem through trust and
     // estate. NOT LFA staff: `worksFor: Lodestone Family Advisors` would be false.
     // NEEDS CONFIRMATION — exact legal name of the Midcontinent entity, and the
@@ -594,6 +598,7 @@ export const leadership: Leader[] = [
   },
   {
     name: "Eva Creixell",
+    photo: "/team/eva-creixell.jpg",
     // Midcontinent, partnering through trust and estate. See Bill van Pelt above.
     roles: [{ org: "steward", title: "Associate", relationship: "affiliate" }],
   },
